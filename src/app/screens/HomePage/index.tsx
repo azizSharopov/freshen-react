@@ -5,6 +5,8 @@ import { TopCategories } from "./TopCategories";
 import { SalePage } from "./SalePage";
 import { FeaturedPage } from "./FeaturedPage";
 import { DeliveryPage } from "./DeliveryPage";
+import { GalleryPage } from "./GalleryPage";
+import { WhyChoose } from "./WhyChoose";
 
 export function HomePage() {
   return (
@@ -14,6 +16,8 @@ export function HomePage() {
       <SalePage />
       <FeaturedPage />
       <DeliveryPage />
+      <WhyChoose />
+      <GalleryPage />
     </div>
   );
 }

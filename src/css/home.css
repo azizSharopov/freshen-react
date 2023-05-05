@@ -110,21 +110,21 @@
   width: 630px;
   height: 300px;
   display: flex;
-  background: url("/public/admin_photo/sale1.jpg");
+  background: url("/public/admin_photo/home_fruit.jpg");
   background-size: cover;
 }
 .sale_page2 {
   width: 300px;
   height: 300px;
   display: flex;
-  background: url("/public/admin_photo/sale1.jpg");
+  background: url("/public/admin_photo/bread.jpg");
   background-size: cover;
 }
 .sale_page3 {
   width: 300px;
   height: 300px;
   display: flex;
-  background: url("/public/admin_photo/sale1.jpg");
+  background: url("/public/admin_photo/vege.jpg");
   background-size: cover;
 }
 
@@ -251,4 +251,47 @@
   text-align: center;
   text-transform: uppercase;
   color: #41544a;
+}
+
+/** Why Choose */
+.why_choose_icon {
+  width: 278px;
+  height: 70px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.why_choose_tex {
+  width: 278px;
+  height: 24px;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #121212;
+}
+.why_choose_text {
+  width: 278px;
+  height: 48px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #4f4f4f;
+}
+
+/** Our Gallery */
+.home_gallery {
+  width: 240px;
+  height: 200px;
+  display: flex;
+  position: relative;
 }
