@@ -1,0 +1,254 @@
+.homepage {
+  background: #ffffff;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mySwiper {
+  width: 100%;
+  height: 600px;
+}
+/** TopCategories css */
+
+.home_top_categ {
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.home_top {
+  width: 100%;
+  height: 30px;
+  margin-top: 111px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #121212;
+}
+.home_top_cat {
+  width: 125px;
+  height: 162px;
+  margin-top: 30px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+}
+.home_top_icon {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  border: 1px solid #ebebeb;
+}
+.home_top_icon:hover {
+  border: 1px solid #86bc42;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+.home_top_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home_top_tex {
+  width: 125px;
+  height: 17px;
+  margin-top: 20px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #121212;
+  text-decoration: none;
+}
+.home_top_tex:hover {
+  color: #86bc42;
+}
+
+/** SalePage css*/
+.sale_page {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  position: relative;
+  gap: 30px;
+}
+.sale_page1 {
+  width: 630px;
+  height: 300px;
+  display: flex;
+  background: url("/public/admin_photo/sale1.jpg");
+  background-size: cover;
+}
+.sale_page2 {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  background: url("/public/admin_photo/sale1.jpg");
+  background-size: cover;
+}
+.sale_page3 {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  background: url("/public/admin_photo/sale1.jpg");
+  background-size: cover;
+}
+
+.sale_page_info1 {
+  width: 107px;
+  height: 14px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.sale_page_info2 {
+  height: 80px;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 40px;
+  text-transform: uppercase;
+}
+.sale_page_info3 {
+  width: 79px;
+  height: 17px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+}
+/** Featured Page */
+.shop_filter_box {
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.shop_filter_box .button_tex {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+/* .shop_filter_box :hover {
+  color: #ffffff;
+}
+.shop_filter_box .button_tex:hover {
+  color: #86bc42;
+} */
+.products_slider {
+  width: 270px;
+  height: 452px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.products:hover {
+  border: 1px solid #eaeaea;
+}
+.products_slider_img_box {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+}
+.products_slider_img_box:hover img {
+  width: 215px;
+  height: 215px;
+}
+.products_slider_img_box img {
+  width: 230px;
+  height: 230px;
+  transition: all 0.5s;
+}
+
+/** DeliveryPage */
+
+.delivery_home {
+  width: 100%;
+  height: 149px;
+  margin-top: 30px;
+  background: #ffffff;
+  display: flex;
+  position: relative;
+}
+.delivery_home .delivery_pic {
+  width: 194px;
+  height: 135px;
+  position: absolute;
+  margin-left: 13px;
+  background: url("/public/icons/Group.png");
+  z-index: 4;
+}
+.delivery_home .delivery_tex {
+  width: 100%;
+  height: 120px;
+  margin-top: 29px;
+  position: relative;
+  background: #fafaeb;
+  border: 1px dashed #86bc42;
+  border-radius: 4px;
+  z-index: 1;
+  display: flex;
+}
+.delivery_tex .delivery_text {
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #41544a;
+}

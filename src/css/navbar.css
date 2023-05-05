@@ -1,0 +1,128 @@
+body {
+  box-sizing: border-box;
+  padding: 0px;
+}
+
+.freshen_navbar {
+  height: 250px;
+  background: #ffffff;
+  padding: 0px;
+}
+.navbar_header {
+  width: 100%;
+  height: 30px;
+  background: #41544a;
+  display: flex;
+}
+.nav_text {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 30px;
+}
+.navbar_middle {
+  width: 1290px;
+  height: 90px;
+  margin-top: 10px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.navbar_footer {
+  width: 1290px;
+  height: 40px;
+  margin-top: 30px;
+  display: flex;
+}
+.logo {
+  height: 60px;
+  width: 184px;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+.select {
+  border: 2px solid rgba(33, 30, 30, 0.1);
+}
+.searchselect {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.searchinput {
+  height: 30px;
+  width: 436px;
+  margin-top: 10px;
+  padding-left: 15px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #4f4f4f;
+}
+.searchinput:focus {
+  border: none;
+  outline: none;
+}
+
+.searchinput:active {
+  border: none;
+}
+
+.icon_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.hover-line {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  color: #86bc42;
+}
+
+.underline {
+  display: block;
+  content: "";
+  border-bottom: solid 2px #41544a;
+  color: #41544a;
+}
+
+.hover-line:after {
+  display: block;
+
+  content: "";
+  border-bottom: solid 2px #41544a;
+  color: #41544a;
+
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+.hover-line:hover::after {
+  transform: scaleX(1);
+  color: #41544a;
+}
+.nav_tex {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+}
