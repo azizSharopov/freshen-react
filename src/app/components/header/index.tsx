@@ -29,15 +29,13 @@ const MenuProps = {
 
 const names = [
   "Bakery",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
+  "Chocolate",
+  "Cookies",
+  "Coffee",
+  "Fresh fruit",
+  "Vegetables",
+  "Meat",
+  "Milks",
 ];
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
@@ -74,24 +72,52 @@ export function NavbarCommon(props: any) {
         >
           <Stack
             className="nav_head"
-            sx={{ display: "flex", gap: "10px", flexDirection: "row" }}
+            sx={{
+              display: "flex",
+              gap: "10px",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             <Box
               className="nav_head1"
-              sx={{ display: "flex", gap: "10px", flexDirection: "row" }}
+              sx={{
+                display: "flex",
+                gap: "10px",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              <Box sx={{ marginTop: "5px" }}>
+              <Box>
                 <img src="/icons/phone-call.png" alt="phone" />
               </Box>
-              <Box className="nav_text" sx={{ color: "#ffffff" }}>
+              <Box
+                className="nav_text"
+                sx={{
+                  color: "#ffffff",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "400",
+                  fontSize: "14px",
+                  lineHeight: "30px",
+                }}
+              >
                 +8210 8257 8505
               </Box>
             </Box>
             <Box
               className="nav_head1"
-              sx={{ display: "flex", gap: "10px", flexDirection: "row" }}
+              sx={{
+                display: "flex",
+                gap: "10px",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              <Box sx={{ marginTop: "5px" }}>
+              <Box>
                 <img src="/icons/Vector.png" alt="email" />
               </Box>
               <Box className="nav_text" sx={{ color: "#ffffff" }}>
@@ -104,31 +130,61 @@ export function NavbarCommon(props: any) {
             sx={{
               display: "flex",
               flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
               color: "#ffffff",
             }}
           >
-            Biz sizga yaxshisini ilinamiz
+            WE wish YOU the BEST
           </Stack>
           <Stack
             className="nav_head"
-            sx={{ display: "flex", gap: "10px", flexDirection: "row" }}
+            sx={{
+              display: "flex",
+              gap: "10px",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             <Box
               className="nav_head1"
-              sx={{ display: "flex", gap: "10px", flexDirection: "row" }}
+              sx={{
+                display: "flex",
+                gap: "10px",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              <Box sx={{ marginTop: "5px" }}>
+              <Box>
                 <img src="/icons/phone-call.png" alt="phone" />
               </Box>
-              <Box className="nav_text" sx={{ color: "#ffffff" }}>
+              <Box
+                className="nav_text"
+                sx={{
+                  color: "#ffffff",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "400",
+                  fontSize: "14px",
+                  lineHeight: "30px",
+                }}
+              >
                 +8210 8257 8505
               </Box>
             </Box>
             <Box
               className="nav_head1"
-              sx={{ display: "flex", gap: "10px", flexDirection: "row" }}
+              sx={{
+                display: "flex",
+                gap: "10px",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              <Box sx={{ marginTop: "5px" }}>
+              <Box>
                 <img src="/icons/Vector.png" alt="email" />
               </Box>
               <Box className="nav_text" sx={{ color: "#ffffff" }}>

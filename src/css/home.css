@@ -29,19 +29,10 @@
   height: 600px;
 }
 
-.home_ads2 {
-  width: 250px;
-  height: 250px;
-  background: #86bc42;
-  background-size: cover;
-  display: flex;
-  position: relative;
-  z-index: 10;
-}
 .home_ads1 {
   width: 100%;
   height: 600px;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   position: relative;
 }
@@ -50,11 +41,90 @@
   display: flex;
   position: relative;
 }
+.swiper_box1 {
+  width: 100%;
+  height: 600px;
+  background-image: url("/public/admin_photo/girl_milk.jpg");
+  background-size: cover;
+  display: flex;
+  position: relative;
+}
+.swiper_box2 {
+  width: 100%;
+  height: 600px;
+  background-image: url("/public/homepage/woman.jpg");
+  background-size: cover;
+}
+
+.specialOffer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 104px;
+  height: 30px;
+  cursor: pointer;
+  background: #f5c34b;
+  border-radius: 6px;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 22px;
+
+  color: #121212;
+}
+.big_text {
+  text-align: left;
+  width: 352px;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 87px;
+  color: #468fbc;
+  border-radius: 1px solid red;
+}
+.big_text {
+  text-align: left;
+  width: 552px;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 87px;
+  color: #468fbc;
+  border-radius: 1px solid red;
+}
+.small_text {
+  font-family: "Lato";
+  font-style: normal;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  color: #86bc42;
+}
+
+.shop_btn {
+  margin-top: 350px;
+  margin-left: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 440px;
+  height: 52px;
+  gap: 20px;
+  cursor: pointer;
+
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+}
 
 /** TopCategories css */
 
 .home_top_categ {
-  height: 450px;
+  height: 222px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -76,29 +146,44 @@
   text-transform: uppercase;
   color: #121212;
 }
+.prev_btn,
+.next_btn {
+  width: 5%;
+  height: 162px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shop_avatars_wrapper {
+  width: 90%;
+  height: 162px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
 .home_top_cat {
   width: 125px;
   height: 162px;
-  margin-top: 30px;
   display: flex;
-  position: relative;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
+
 .home_top_icon {
   width: 125px;
   height: 125px;
   border-radius: 50%;
   border: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .home_top_icon:hover {
   border: 1px solid #86bc42;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-}
-.home_top_icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .home_top_tex {

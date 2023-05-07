@@ -4,9 +4,12 @@ import { NavLink } from "react-router-dom";
 
 export function SalePage() {
   return (
-    <div style={{ background: "#ffffff" }}>
+    <div style={{ background: "#ffffff", marginTop: "70px" }}>
       <Container>
-        <Stack className="sale_page" style={{ flexDirection: "row" }}>
+        <Stack
+          className="sale_page"
+          style={{ flexDirection: "row", marginTop: "20px" }}
+        >
           <Box className="sale_page1">
             <Box
               className="sale_page_info"

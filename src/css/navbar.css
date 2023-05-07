@@ -10,7 +10,7 @@ body {
 }
 .navbar_header {
   width: 100%;
-  height: 30px;
+  height: 40px;
   background: #41544a;
   display: flex;
 }
@@ -18,7 +18,7 @@ body {
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 30px;
 }
 .navbar_middle {
