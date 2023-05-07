@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 
 export function AdsPage() {
   return (
@@ -28,17 +28,42 @@ export function AdsPage() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide style={{ background: "#41544A" }}>
-          <Container style={{ background: "#ffffff" }}></Container>
+        <SwiperSlide style={{ background: "#41544a" }}>
+          <Container className="home_ads">
+            <Box className="home_ads1">
+              <img src="./admin_photo/girl_milk.jpg" alt="milk" />
+            </Box>
+            <Box className="home_ads2"></Box>
+          </Container>
         </SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide style={{ background: "#41544a" }}>
+          <Container className="home_ads">
+            <Box className="home_ads1">
+              <img src="./admin_photo/front-view-fruit.jpg" alt="milk" />
+            </Box>
+          </Container>
+        </SwiperSlide>
+        <SwiperSlide style={{ background: "#41544A" }}>
+          <Container className="home_ads">
+            <Box className="home_ads1">
+              <img src="./admin_photo/veget.jpg" alt="milk" />
+            </Box>
+          </Container>
+        </SwiperSlide>
+        <SwiperSlide style={{ background: "#41544A" }}>
+          <Container className="home_ads">
+            <Box className="home_ads1">
+              <img src="./admin_photo/large-set.jpg" alt="milk" />
+            </Box>
+          </Container>
+        </SwiperSlide>
+        <SwiperSlide style={{ background: "#41544A" }}>
+          <Container className="home_ads">
+            <Box className="home_ads1">
+              <img src="./admin_photo/sert.jpg" alt="milk" />
+            </Box>
+          </Container>
+        </SwiperSlide>
       </Swiper>
     </div>
   );

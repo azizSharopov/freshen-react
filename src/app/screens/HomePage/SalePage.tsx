@@ -41,7 +41,7 @@ export function SalePage() {
               sx={{
                 width: "188px",
                 height: "151px",
-                mt: "84px",
+                mt: "54px",
                 ml: "30px",
                 display: "flex",
                 flexDirection: "column",
@@ -76,8 +76,8 @@ export function SalePage() {
               sx={{
                 width: "188px",
                 height: "151px",
-                mt: "84px",
-                ml: "30px",
+                mt: "54px",
+                ml: "80px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-around",

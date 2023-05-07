@@ -7,6 +7,7 @@ import { FeaturedPage } from "./FeaturedPage";
 import { DeliveryPage } from "./DeliveryPage";
 import { GalleryPage } from "./GalleryPage";
 import { WhyChoose } from "./WhyChoose";
+import { BlogPage } from "./BlogPage";
 
 export function HomePage() {
   return (
@@ -16,6 +17,7 @@ export function HomePage() {
       <SalePage />
       <FeaturedPage />
       <DeliveryPage />
+      <BlogPage />
       <WhyChoose />
       <GalleryPage />
     </div>

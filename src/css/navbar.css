@@ -50,7 +50,7 @@ body {
   font-family: "Lato";
   font-style: normal;
   font-weight: 700px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 16px;
 }
 .searchinput {
@@ -93,9 +93,9 @@ body {
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 16px;
-  color: #86bc42;
+  color: #121212;
 }
 
 .underline {
@@ -107,11 +107,9 @@ body {
 
 .hover-line:after {
   display: block;
-
   content: "";
   border-bottom: solid 2px #41544a;
   color: #41544a;
-
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
@@ -123,6 +121,9 @@ body {
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

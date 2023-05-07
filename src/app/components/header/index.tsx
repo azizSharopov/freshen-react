@@ -298,7 +298,6 @@ export function NavbarCommon(props: any) {
           sx={{
             flexDirection: "row",
             justifyContent: "space-around",
-            gap: "90px",
           }}
         >
           <Box className="nav_footer">
@@ -306,7 +305,7 @@ export function NavbarCommon(props: any) {
             <Button
               variant="contained"
               style={{
-                width: "241px",
+                width: "240px",
                 height: "50px",
                 background: "#86BC42",
                 borderRadius: "4px",
@@ -316,6 +315,7 @@ export function NavbarCommon(props: any) {
                 fontSize: "13px",
                 lineHeight: "16px",
                 color: "#FFFFFF",
+                position: "relative",
               }}
               // onClick={() => setValue(!value)}
               onClick={props.handleSignUpOpen}
@@ -326,46 +326,60 @@ export function NavbarCommon(props: any) {
           </Box>
 
           <Stack
+            position={"relative"}
+            display={"flex"}
             flexDirection={"row"}
-            width={"380px"}
-            justifyContent={"flex-start"}
-            gap={"30px"}
+            width={"40%"}
+            height={"50px"}
+            gap="30px"
             alignItems={"center"}
           >
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink
                 to="/"
-                //activeClassName="underline"
-                style={{ color: "#121212", textDecoration: "none" }}
+                // activeClassName="underline"
+                style={{
+                  color: "#121212",
+                  textDecoration: "none",
+                }}
               >
-                Home
+                HOME
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink
                 to="/shop"
-                style={{ color: "#121212", textDecoration: "none" }}
+                style={{
+                  color: "#121212",
+                  textDecoration: "none",
+                }}
                 activeClassName="underline"
               >
-                Shop
+                SHOP
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink
                 to="/community"
-                style={{ color: "#121212", textDecoration: "none" }}
+                style={{
+                  color: "#121212",
+                  textDecoration: "none",
+                }}
                 activeClassName="underline"
               >
-                Blogs
+                BLOGS
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink
                 to="/member-page"
-                style={{ color: "#121212", textDecoration: "none" }}
+                style={{
+                  color: "#121212",
+                  textDecoration: "none",
+                }}
                 activeClassName="underline"
               >
-                My page
+                MY PAGE
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
@@ -377,7 +391,7 @@ export function NavbarCommon(props: any) {
                 }}
                 activeClassName="underline"
               >
-                Info
+                INFO
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
@@ -389,13 +403,27 @@ export function NavbarCommon(props: any) {
                 }}
                 activeClassName="underline"
               >
-                About
+                ABOUT
               </NavLink>
             </Box>
           </Stack>
 
           <Stack sx={{ display: "flex", gap: "10px", flexDirection: "row" }}>
-            <Box sx={{ display: "flex", gap: "10px", flexDirection: "row" }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "10px",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "700",
+                fontSize: "16px",
+                lineHeight: "16px",
+              }}
+            >
               <Box>
                 <img src="./icons/phone.png" alt="phone" />
               </Box>
