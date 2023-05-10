@@ -28,7 +28,7 @@ export function SalePage() {
                 className="sale_page_info2"
                 sx={{ color: "#ffffff", width: "285px" }}
               >
-                Fresh Summer With Just $200.99
+                Fresh Summer With Just $99.99
               </Box>
               <Box className="sale_page_info3">
                 <NavLink className="service_link" to="/our_stores">
@@ -60,7 +60,7 @@ export function SalePage() {
                   Up To Breads
                 </Box>
 
-                <span style={{ color: "#849D6A" }}>50% Off</span>
+                <span style={{ color: "#849D6A" }}>20% Off</span>
               </Box>
               <Box className="sale_page_info3">
                 <NavLink

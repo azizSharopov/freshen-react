@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 
 const shop_list = Array.from(Array(10).keys());
-export function DealPage() {
+export function BestPage() {
   return (
     <div
       style={{
@@ -33,7 +33,7 @@ export function DealPage() {
         alignItems: "center",
       }}
     >
-      <Container className="home_top">Deal of the Day</Container>
+      <Container className="home_top">Best Products</Container>
       <div
         className={"best_products"}
         style={{

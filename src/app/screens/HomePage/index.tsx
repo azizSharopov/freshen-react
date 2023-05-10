@@ -3,11 +3,13 @@ import React from "react";
 import { AdsPage } from "./Ads";
 import { TopCategories } from "./TopCategories";
 import { SalePage } from "./SalePage";
-import { FeaturedPage } from "./FeaturedPage";
+import { NewPage } from "./NewPage";
 import { DeliveryPage } from "./DeliveryPage";
 import { GalleryPage } from "./GalleryPage";
 import { WhyChoose } from "./WhyChoose";
-import { BlogPage } from "./BlogPage";
+import { BestPage } from "./BestPage";
+import { DealPage } from "./DealPage";
+import BlogPage from "./BlogPage";
 
 export function HomePage() {
   return (
@@ -15,8 +17,10 @@ export function HomePage() {
       <AdsPage />
       <TopCategories />
       <SalePage />
-      <FeaturedPage />
+      <BestPage />
+      <NewPage />
       <DeliveryPage />
+      <DealPage />
       <BlogPage />
       <WhyChoose />
       <GalleryPage />

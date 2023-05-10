@@ -29,7 +29,14 @@ export function AdsPage() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide style={{ background: "#41544a" }}>
+        <SwiperSlide style={{ background: "#ffffff" }}>
+          <Container className="home_ads">
+            <Box className="home_ads1">
+              <img src="./admin_photo/large-set.jpg" alt="milk" />
+            </Box>
+          </Container>
+        </SwiperSlide>
+        <SwiperSlide style={{ background: "#ffffff" }}>
           <Container className="swiper_box1">
             <div className="specialOffer">Natural</div>
             <div className="big_text">Milk Products</div>
@@ -83,13 +90,6 @@ export function AdsPage() {
           <Container className="home_ads">
             <Box className="home_ads1">
               <img src="./admin_photo/veget.jpg" alt="milk" />
-            </Box>
-          </Container>
-        </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="home_ads">
-            <Box className="home_ads1">
-              <img src="./admin_photo/large-set.jpg" alt="milk" />
             </Box>
           </Container>
         </SwiperSlide>
