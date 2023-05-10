@@ -10,6 +10,7 @@ import { WhyChoose } from "./WhyChoose";
 import { BestPage } from "./BestPage";
 import { DealPage } from "./DealPage";
 import BlogPage from "./BlogPage";
+import { AdverPage } from "./AdverPage";
 
 export function HomePage() {
   return (
@@ -21,6 +22,7 @@ export function HomePage() {
       <NewPage />
       <DeliveryPage />
       <DealPage />
+      <AdverPage />
       <BlogPage />
       <WhyChoose />
       <GalleryPage />

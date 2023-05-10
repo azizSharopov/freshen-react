@@ -24,7 +24,7 @@ export function DealPage() {
     <div
       style={{
         width: "100%",
-        height: "524px",
+        height: "530px",
         background: "#ffffff",
         display: "flex",
         flexDirection: "column",
@@ -49,7 +49,7 @@ export function DealPage() {
       >
         <Box className="prev_btn shop_prev">
           <ArrowBackIosNewIcon
-            sx={{ fontSize: 40 }}
+            sx={{ fontSize: 30 }}
             style={{
               color: "#86bc42",
               display: "flex",
@@ -81,6 +81,7 @@ export function DealPage() {
               <SwiperSlide
                 style={{
                   cursor: "pointer",
+                  border: "1px solid #121212",
                 }}
                 key={index}
                 className="productsbest"

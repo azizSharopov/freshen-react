@@ -16,10 +16,37 @@ export default function BlogPage() {
             <Box className="blog_box">
               <Box
                 className="blog_img"
-                sx={{ backgroundImage: "url(/homepage/blog.jpg)" }}
+                sx={{
+                  backgroundImage: "url(/homepage/woman.jpg)",
+                  zIndex: "3",
+                }}
               >
                 {/* <img src="/homepage/blog.jpg" alt="blog" /> */}
+                <Box
+                  sx={{
+                    width: "65px",
+                    height: "77px",
+                    background: "#86bc42",
+                    zIndex: "5",
+                    position: "absolute",
+                    marginLeft: "20px",
+                  }}
+                ></Box>
+                <Box
+                  sx={{
+                    width: "150px",
+                    height: "30px",
+                    background: "#86bc42",
+                    zIndex: "5",
+                    position: "absolute",
+                    marginLeft: "20px",
+                    marginTop: "225px",
+
+                    borderRadius: "60px",
+                  }}
+                ></Box>
               </Box>
+
               <Box className="blog_type">Tips & Tricks</Box>
               <Box className="blog_subject">
                 Collar brings back coffee brewing ritual

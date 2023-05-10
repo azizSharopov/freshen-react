@@ -272,86 +272,31 @@
   line-height: 17px;
   color: #ffffff;
 }
-/** Featured Page */
-/* .shop_filter_box {
-  width: 60%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.shop_filter_box .button_tex {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-} */
-/* .shop_filter_box :hover {
-  color: #ffffff;
-}
-.shop_filter_box .button_tex:hover {
-  color: #86bc42;
-} */
-/* .products_slider {
-  width: 270px;
-  height: 452px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.products:hover {
-  border: 1px solid #eaeaea;
-}
-.products_slider_img_box {
-  position: relative;
-  width: 230px;
-  height: 230px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/** Best Page */
 
-  margin-bottom: 15px;
-}
-.products_slider_img_box:hover img {
-  width: 215px;
-  height: 215px;
-}
-.products_slider_img_box img {
-  width: 230px;
-  height: 230px;
-  transition: all 0.5s;
-} */
-/* .best_products {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 .best_products_wrapper {
+  position: relative;
   display: flex;
   width: 1280px;
-  height: 454px;
+  height: 430px;
+
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   overflow: hidden;
 }
 
 .productsbest {
-  width: 300px;
-  height: 454px;
+  height: 400px;
   display: flex;
   position: relative;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   cursor: "pointer";
+  /* margin-bottom: 15px; */
+  border: 3px solid #1620cd;
 }
 .products_sliderbest {
-  width: 300px;
   height: 395px;
   display: flex;
   align-items: center;
@@ -460,9 +405,6 @@
   line-height: 14px;
   text-align: center;
   letter-spacing: 0.1em;
-
-  /* Text */
-
   color: #4f4f4f;
 }
 .product_namebest {
@@ -615,12 +557,15 @@
 }
 
 .blog_box {
-  width: 430px;
-  height: 425px;
+  width: 410px;
+  height: 400px;
+  position: relative;
 }
 .blog_img {
-  width: 430px;
-  height: 285px;
+  width: 410px;
+  height: 240px;
+  background-size: cover;
+  position: relative;
 }
 
 .blog_type {
