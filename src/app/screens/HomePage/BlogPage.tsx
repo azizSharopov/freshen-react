@@ -5,10 +5,15 @@ import { Box, Container, Stack } from "@mui/material";
 const restaurant_list = Array.from(Array(3).keys());
 export default function BlogPage() {
   return (
-    <Container style={{ marginTop: "110px" }}>
+    <Container>
       <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Box className="category_text">Top Selling Products</Box>
-        <Box className="top_product_link">View All</Box>
+        <Box className="home_top">Our Blog</Box>
+        <Box
+          sx={{ marginTop: "111px", width: "100px" }}
+          className="top_product_link"
+        >
+          View All
+        </Box>
       </Stack>
       <Stack className="blogs" sx={{ flexDirection: "row" }}>
         {restaurant_list.map((ele, index) => {
@@ -26,12 +31,22 @@ export default function BlogPage() {
                   sx={{
                     width: "65px",
                     height: "77px",
-                    background: "#86bc42",
+                    background: "#ffffff",
                     zIndex: "5",
                     position: "absolute",
                     marginLeft: "20px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
                   }}
-                ></Box>
+                >
+                  <span className="brand_namebest" style={{ color: "#121212" }}>
+                    MAY
+                  </span>
+                  <span className="home_blog_date">24</span>
+                </Box>
                 <Box
                   sx={{
                     width: "150px",
@@ -41,17 +56,34 @@ export default function BlogPage() {
                     position: "absolute",
                     marginLeft: "20px",
                     marginTop: "225px",
-
                     borderRadius: "60px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                ></Box>
+                >
+                  <Box className="blog_subject_home">BAKERY</Box>
+                </Box>
               </Box>
-
-              <Box className="blog_type">Tips & Tricks</Box>
-              <Box className="blog_subject">
-                Collar brings back coffee brewing ritual
+              <Box className="blog_subject_info">
+                <Box className="blog_subject_text">
+                  How To Make A Fresh Juice Blended For Your Family?
+                </Box>
+                <Box className="blog_by">
+                  <Box>
+                    <span>
+                      <img src="/icons/user1.png" alt="blog_by" />
+                    </span>
+                    <span className="blog_by_css">By Admin</span>
+                  </Box>
+                  <Box>
+                    <span>
+                      <img src="/icons/chat1.png" alt="blog_by" />
+                    </span>
+                    <span className="blog_by_css">32 Comments</span>
+                  </Box>
+                </Box>
               </Box>
-              <Box className="blog_date">April 06, 2022</Box>
             </Box>
           );
         })}

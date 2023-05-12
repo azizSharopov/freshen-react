@@ -586,7 +586,88 @@
   line-height: 30px;
   color: #121212;
 }
+.home_blog_date {
+  /* 30 / Head */
 
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 30px;
+  /* identical to box height, or 100% */
+
+  text-align: center;
+  text-transform: uppercase;
+
+  /* Head */
+
+  color: #121212;
+}
+
+.blog_subject_home {
+  width: 99px;
+  height: 14px;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* 12 / Bold */
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  /* White */
+  color: #ffffff;
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.blog_subject_info {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 10px;
+}
+.blog_subject_text {
+  margin-top: 30px;
+  width: 390px;
+  height: 60px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  /* or 167% */
+
+  /* Head */
+
+  color: #121212;
+}
+
+.blog_by {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.blog_by_css {
+  margin-left: 10px;
+  /* 14 / Regular */
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  /* Text */
+
+  color: #4f4f4f;
+}
 /** Why Choose */
 .why_choose_icon {
   width: 278px;
