@@ -9,6 +9,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
@@ -25,8 +26,8 @@ export function BestPage() {
       style={{
         width: "100%",
         height: "650px",
-        marginTop: "50px",
-        background: "#bc8642",
+        marginTop: "30px",
+
         display: "flex",
         flexDirection: "column",
         position: "relative",
@@ -34,13 +35,18 @@ export function BestPage() {
         alignItems: "center",
       }}
     >
-      <Box className="home_top">Best Products</Box>
+      <Container style={{ display: "flex", flexDirection: "row" }}>
+        <Box className="home_top"> Best Products</Box>
+        <Box className="best_product_link">
+          View All_ <ArrowRightAltIcon />
+        </Box>
+      </Container>
       <div
         className={"best_products"}
         style={{
           width: "1500px",
           height: "454px",
-          background: "#86bc42",
+
           marginTop: "40px",
           display: "flex",
           position: "relative",
@@ -53,7 +59,7 @@ export function BestPage() {
           <ArrowBackIosNewIcon
             sx={{ fontSize: 40 }}
             style={{
-              color: "#121212",
+              color: "#41544A",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -94,16 +100,6 @@ export function BestPage() {
                     <Box className="products_slider_img_best">
                       <img src="/homepage/strawberry.jpg" alt="" />
 
-                      <Box className="add_card_btnbest">
-                        <Box>
-                          <img
-                            style={{ width: "20px", height: "20px" }}
-                            src="./icons/shopping-cart.png"
-                            alt=""
-                          />{" "}
-                        </Box>
-                        <Box>ADD TO CART</Box>
-                      </Box>
                       <Box className="like_view_boxbest">
                         <Box className="like_view_box2best">
                           <Button
@@ -143,6 +139,16 @@ export function BestPage() {
                       </Box>
 
                       <Box className="product_pricebest">
+                        <Box className="add_card_btnbest">
+                          <Box>
+                            <img
+                              style={{ width: "20px", height: "20px" }}
+                              src="./icons/shopping-cart.png"
+                              alt=""
+                            />{" "}
+                          </Box>
+                          <Box>ADD TO CART</Box>
+                        </Box>
                         <Box className="product_price_currentbest">$11.99</Box>
                         <Box className="product_price_oldbest">$15</Box>
                       </Box>
@@ -153,7 +159,7 @@ export function BestPage() {
             })}
           </Swiper>
         </Container>
-        <Box className="next_btn shop-next" style={{ color: "#121212" }}>
+        <Box className="next_btn shop-next" style={{ color: "#41544A" }}>
           <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
         </Box>
       </div>

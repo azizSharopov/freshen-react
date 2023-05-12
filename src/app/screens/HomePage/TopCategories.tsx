@@ -20,7 +20,7 @@ export function TopCategories() {
           <Box className={"prev_btn shop-prev"}>
             <ArrowBackIosNewIcon
               sx={{ fontSize: 40 }}
-              style={{ color: "#86bc42" }}
+              style={{ color: "#41544A" }}
             />
           </Box>
           <Swiper
@@ -47,6 +47,8 @@ export function TopCategories() {
                           backgroundSize: "cover",
                           width: "57px",
                           height: "57px",
+                          transition:
+                            "opacity 0.2s ease-in-out, transform 0.2s ease-in-out",
                         }}
                         src="./homepage/steak.png"
                         alt="home_food"
@@ -58,7 +60,7 @@ export function TopCategories() {
               );
             })}
           </Swiper>
-          <Box className={"next_btn shop-next"} style={{ color: "#86bc42" }}>
+          <Box className={"next_btn shop-next"} style={{ color: "#41544A" }}>
             <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
           </Box>
         </Stack>

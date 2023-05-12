@@ -9,6 +9,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
@@ -33,7 +34,13 @@ export function NewPage() {
         alignItems: "center",
       }}
     >
-      <Container className="home_top">New Products</Container>
+      <Container style={{ display: "flex", flexDirection: "row" }}>
+        <Box className="home_top"> New Products</Box>
+        <Box className="best_product_link">
+          View All_ <ArrowRightAltIcon />
+        </Box>
+      </Container>
+
       <div
         className={"best_products"}
         style={{
@@ -51,7 +58,7 @@ export function NewPage() {
           <ArrowBackIosNewIcon
             sx={{ fontSize: 40 }}
             style={{
-              color: "#86bc42",
+              color: "#41544A",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -89,16 +96,6 @@ export function NewPage() {
                   <Box className="products_slider_img_best">
                     <img src="/homepage/strawberry.jpg" alt="" />
 
-                    <Box className="add_card_btnbest">
-                      <Box>
-                        <img
-                          style={{ width: "20px", height: "20px" }}
-                          src="./icons/shopping-cart.png"
-                          alt=""
-                        />{" "}
-                      </Box>
-                      <Box>ADD TO CART</Box>
-                    </Box>
                     <Box className="like_view_boxbest">
                       <Box className="like_view_box2best">
                         <Button
@@ -134,6 +131,16 @@ export function NewPage() {
                     </Box>
 
                     <Box className="product_pricebest">
+                      <Box className="add_card_btnbest">
+                        <Box>
+                          <img
+                            style={{ width: "20px", height: "20px" }}
+                            src="./icons/shopping-cart.png"
+                            alt=""
+                          />{" "}
+                        </Box>
+                        <Box>ADD TO CART</Box>
+                      </Box>
                       <Box className="product_price_currentbest">$11.99</Box>
                       <Box className="product_price_oldbest">$15</Box>
                     </Box>
@@ -143,7 +150,7 @@ export function NewPage() {
             );
           })}
         </Swiper>
-        <Box className="next_btn shop-next" style={{ color: "#86bc42" }}>
+        <Box className="next_btn shop-next" style={{ color: "#41544A" }}>
           <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
         </Box>
       </div>

@@ -32,7 +32,7 @@ const names = [
   "Chocolate",
   "Cookies",
   "Coffee",
-  "Fresh fruit",
+  "Fresh Fruit",
   "Vegetables",
   "Meat",
   "Milks",
@@ -200,14 +200,14 @@ export function NavbarCommon(props: any) {
           sx={{ width: "100%", flexDirection: "row" }}
         >
           <Box className="logo">
-            <img src="/icons/logo.png" alt="logo" />
+            <img src="/icons/logo.svg" alt="logo" />
           </Box>
           <Box
             className="select"
             sx={{
-              width: "740px",
+              width: "620px",
               height: "50px",
-              ml: "40px",
+              ml: "20px",
               background: "white",
               display: "flex",
               flexDirection: "row",
@@ -272,7 +272,7 @@ export function NavbarCommon(props: any) {
                 ))}
               </Select>
             </FormControl>
-            <Box sx={{ paddingTop: "5px" }}>
+            <Box sx={{ paddingTop: "10px" }}>
               <Marginer
                 direction="vertical"
                 height="30"
@@ -301,6 +301,7 @@ export function NavbarCommon(props: any) {
                   width: "50px",
                   marginRight: "0px",
                   cursor: "pointer",
+                  position: "relative",
                 }}
               >
                 <img src="/icons/search 1.png" alt="search" />
@@ -332,7 +333,7 @@ export function NavbarCommon(props: any) {
             </Box>
             <Box>
               {/* Total */}
-              $244.99
+              $99.99
             </Box>
             <Box className="icon_box">
               <Badge badgeContent={3} color="secondary">

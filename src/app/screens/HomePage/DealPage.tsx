@@ -49,9 +49,9 @@ export function DealPage() {
       >
         <Box className="prev_btn shop_prev">
           <ArrowBackIosNewIcon
-            sx={{ fontSize: 30 }}
+            sx={{ fontSize: 40 }}
             style={{
-              color: "#86bc42",
+              color: "#41544A",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -81,7 +81,7 @@ export function DealPage() {
               <SwiperSlide
                 style={{
                   cursor: "pointer",
-                  border: "1px solid #121212",
+                  border: "1px solid #41544A",
                 }}
                 key={index}
                 className="productsbest"
@@ -89,17 +89,8 @@ export function DealPage() {
                 <Box className="products_sliderbest">
                   <Box className="products_slider_img_best">
                     <img src="/homepage/strawberry.jpg" alt="" />
+                    <Box className="product_sale_info">-10 %</Box>
 
-                    <Box className="add_card_btnbest">
-                      <Box>
-                        <img
-                          style={{ width: "20px", height: "20px" }}
-                          src="./icons/shopping-cart.png"
-                          alt=""
-                        />{" "}
-                      </Box>
-                      <Box>ADD TO CART</Box>
-                    </Box>
                     <Box className="like_view_boxbest">
                       <Box className="like_view_box2best">
                         <Button
@@ -135,6 +126,16 @@ export function DealPage() {
                     </Box>
 
                     <Box className="product_pricebest">
+                      <Box className="add_card_btnbest">
+                        <Box>
+                          <img
+                            style={{ width: "20px", height: "20px" }}
+                            src="./icons/shopping-cart.png"
+                            alt=""
+                          />{" "}
+                        </Box>
+                        <Box>ADD TO CART</Box>
+                      </Box>
                       <Box className="product_price_currentbest">$11.99</Box>
                       <Box className="product_price_oldbest">$15</Box>
                     </Box>
@@ -144,7 +145,7 @@ export function DealPage() {
             );
           })}
         </Swiper>
-        <Box className="next_btn shop-next" style={{ color: "#86bc42" }}>
+        <Box className="next_btn shop-next" style={{ color: "#41544A" }}>
           <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
         </Box>
       </div>

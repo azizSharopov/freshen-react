@@ -9,8 +9,9 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { Box, Button, Container } from "@mui/material";
+import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { url } from "inspector";
 
 export function AdsPage() {
   return (
@@ -29,76 +30,105 @@ export function AdsPage() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="home_ads">
-            <Box className="home_ads1">
-              <img src="./admin_photo/large-set.jpg" alt="milk" />
-            </Box>
-          </Container>
-        </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="swiper_box1">
-            <div className="specialOffer">Natural</div>
-            <div className="big_text">Milk Products</div>
-
-            <div className="shop_btn">
-              <Box
-                sx={{
-                  display: "flex",
-                  gap: "10px",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  position: "relative",
+        <SwiperSlide>
+          <Box className="swiper_box2">
+            <Container
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                // justifyContent: "space-between",
+                alignItems: "flex-start",
+                marginTop: "110px",
+              }}
+            >
+              <Box className="ads_text">All natural products</Box>
+              <Box className="ads_text1">
+                <span>Healthy Food</span> <br />
+                <span style={{ color: "#86BC42" }}>& Organic Market</span>
+              </Box>
+              <Box className="ads_text2">
+                <span style={{ fontWeight: "600" }}>Organic food</span> is food
+                produced by methods that comply with the standards of organic
+                farming.
+              </Box>
+              <Button
+                variant="contained"
+                style={{
+                  width: "152px",
+                  height: "50px",
+                  marginTop: "30px",
+                  background: "#41544A",
+                  borderRadius: "4px",
                   fontFamily: "Lato",
                   fontStyle: "normal",
                   fontWeight: "700",
-                  fontSize: "16px",
+                  fontSize: "13px",
                   lineHeight: "16px",
+                  color: "#FFFFFF",
+                  position: "relative",
                 }}
+                // onClick={() => setValue(!value)}
               >
-                A healthy child is the future confidence.
-              </Box>
-              <NavLink className="small_text" to="/our_stores">
                 SHOP NOW
-              </NavLink>
-            </div>
-          </Container>
+              </Button>
+            </Container>
+          </Box>
         </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="swiper_box2">
-            <div className="specialOffer">Special Offer</div>
-            <div className="big_text">GET A FREE 2-MONTH YOGA PASS</div>
 
-            <Box
+        <SwiperSlide style={{ background: "#ffffff" }} className="home_ads">
+          <Box className="home_ads1">
+            <img src="./admin_photo/large-set.jpg" alt="ads_vege" />
+          </Box>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Box className="swiper_box3">
+            <Container
               sx={{
-                width: "300px",
-                height: "300px",
-                marginTop: "10px",
-                background: "#86bc42",
+                display: "flex",
+                flexDirection: "column",
+                // justifyContent: "space-between",
+                alignItems: "flex-start",
+                marginTop: "110px",
               }}
             >
-              <img src="./homepage/carb-cyc.jpg" alt="ads" />
-            </Box>
-            <div style={{ marginTop: "10px" }} className="shop_btn">
-              <NavLink className="small_text" to="/our_stores">
-                SHOP WITH US AND
-              </NavLink>
-            </div>
-          </Container>
+              <Box className="ads_text">All natural products</Box>
+              <Box className="ads_text1">
+                <span>Fresh Fruit</span> <br />
+                <span style={{ color: "#86BC42" }}>Food every days</span>
+              </Box>
+              <Box className="ads_text2">
+                <span style={{ fontWeight: "600" }}>Fresh Fruit</span> is food
+                produced by methods that comply with the standards of organic
+                farming.
+              </Box>
+              <Button
+                variant="contained"
+                style={{
+                  width: "152px",
+                  height: "50px",
+                  marginTop: "30px",
+                  background: "#41544A",
+                  borderRadius: "4px",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "700",
+                  fontSize: "13px",
+                  lineHeight: "16px",
+                  color: "#FFFFFF",
+                  position: "relative",
+                }}
+                // onClick={() => setValue(!value)}
+              >
+                SHOP NOW
+              </Button>
+            </Container>
+          </Box>
         </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="home_ads">
-            <Box className="home_ads1">
-              <img src="./admin_photo/veget.jpg" alt="milk" />
-            </Box>
-          </Container>
-        </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="home_ads">
-            <Box className="home_ads1">
-              <img src="./admin_photo/sert.jpg" alt="milk" />
-            </Box>
-          </Container>
+
+        <SwiperSlide style={{ background: "#ffffff" }} className="home_ads">
+          <Box className="home_ads1">
+            <img src="./admin_photo/sert.jpg" alt="ads_fruit" />
+          </Box>
         </SwiperSlide>
       </Swiper>
     </div>

@@ -1,5 +1,6 @@
 .homepage {
   background: #ffffff;
+  text-align: center;
 }
 
 .swiper {
@@ -31,11 +32,11 @@
 }
 .swiper-button-next,
 .swiper-button-prev {
-  color: #86bc42;
+  color: #41544a;
 }
 
 .home_ads1 {
-  width: 100%;
+  width: 90%;
   height: 600px;
   z-index: 4;
   display: flex;
@@ -46,27 +47,24 @@
   display: flex;
   position: relative;
 }
-.swiper_box1 {
+.swiper_box3 {
   width: 100%;
   height: 600px;
-  background-image: url("/public/admin_photo/girl_milk.jpg");
-  background-size: cover;
-  display: flex;
-  position: relative;
+  background-image: url("/public/admin_photo/s-2.jpg");
 }
 .swiper_box2 {
   width: 100%;
   height: 600px;
-  background-image: url("/public/homepage/woman.jpg");
-  background-size: cover;
+  background-image: url("/public/homepage/fermer.jpg");
 }
 
 .specialOffer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 104px;
+  width: 404px;
   height: 30px;
+  margin-top: 50px;
   cursor: pointer;
   background: #f5c34b;
   border-radius: 6px;
@@ -75,57 +73,64 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 22px;
-
   color: #121212;
 }
 .big_text {
-  text-align: left;
-  width: 352px;
+  text-align: right;
+  width: 652px;
   font-family: "Jost";
   font-style: normal;
   font-weight: 400;
-  font-size: 60px;
+  font-size: 50px;
   line-height: 87px;
   color: #468fbc;
   border-radius: 1px solid red;
 }
-.big_text {
-  text-align: left;
-  width: 552px;
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 87px;
-  color: #468fbc;
-  border-radius: 1px solid red;
-}
+
 .small_text {
   font-family: "Lato";
   font-style: normal;
-
   font-weight: 700;
   font-size: 16px;
   line-height: 16px;
   color: #86bc42;
 }
 
-.shop_btn {
-  margin-top: 350px;
-  margin-left: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 440px;
-  height: 52px;
-  gap: 20px;
-  cursor: pointer;
-
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  border-radius: 6px;
+.ads_text {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #41544a;
 }
-
+.ads_text1 {
+  margin-top: 10px;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 74px;
+  text-transform: uppercase;
+  color: #41544a;
+  text-align: left;
+}
+.ads_text2 {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #41544a;
+}
+.ads_btn {
+  width: 152px;
+  height: 50px;
+  background: #41544a;
+  border-radius: 4px;
+}
 /** TopCategories css */
 
 .home_top_categ {
@@ -191,6 +196,17 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+.home_top_cat:hover .home_top_icon img {
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+.home_top_cat:hover {
+  cursor: pointer;
+  /* enable pointer events to allow hover effect on the container */
+  pointer-events: auto;
+}
+
 .home_top_tex {
   width: 125px;
   height: 17px;
@@ -223,35 +239,51 @@
   width: 630px;
   height: 300px;
   display: flex;
-  background: url("/public/admin_photo/home_fruit.jpg");
+  background: url("/public/admin_photo/banner1.jpg");
   background-size: cover;
+  transition: background-size 0.2s ease-in-out;
+}
+.sale_page1:hover {
+  background-size: 110%;
 }
 .sale_page2 {
   width: 300px;
   height: 300px;
   display: flex;
-  background: url("/public/admin_photo/bread_home.jpg");
+  position: relative;
+  background: url("/public/admin_photo/banner2.jpg");
   background-size: cover;
+  transition: background-size 0.2s ease-in-out;
 }
+.sale_page2:hover {
+  background-size: 110%;
+}
+
 .sale_page3 {
   width: 300px;
   height: 300px;
   display: flex;
-  background: url("/public/admin_photo/tomato.jpg");
+  background: url("/public/admin_photo/banner3.jpg");
   background-size: cover;
+  transition: background-size 0.2s ease-in-out;
+}
+.sale_page3:hover {
+  background-size: 110%;
 }
 
 .sale_page_info1 {
-  width: 107px;
-  height: 14px;
+  width: 117px;
+  height: 16px;
+  position: relative;
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffffff;
+  text-align: start;
 }
 .sale_page_info2 {
   height: 80px;
@@ -261,6 +293,7 @@
   font-size: 24px;
   line-height: 40px;
   text-transform: uppercase;
+  text-align: start;
 }
 .sale_page_info3 {
   width: 79px;
@@ -271,6 +304,7 @@
   font-size: 14px;
   line-height: 17px;
   color: #ffffff;
+  text-align: start;
 }
 /** Best Page */
 
@@ -294,15 +328,37 @@
   align-items: center;
   cursor: "pointer";
   /* margin-bottom: 15px; */
-  border: 3px solid #1620cd;
+  border: 3px solid #ffffff;
 }
 .products_sliderbest {
   height: 395px;
   display: flex;
+
   align-items: center;
   justify-content: center;
   flex-direction: column;
   border: 1px solid #ffffff;
+}
+.product_sale_info {
+  position: absolute;
+  width: 59px;
+  height: 24px;
+  margin-right: 220px;
+  margin-bottom: 150px;
+  z-index: 4;
+  background: #cf3e3b;
+  border-radius: 60px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  padding-top: 7px;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .products_slider_img_best {
@@ -313,8 +369,9 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
+  z-index: 2;
 }
-.products_slider_img_best:hover img {
+.products_sliderbest:hover .products_slider_img_best img {
   width: 190px;
   height: 190px;
 }
@@ -326,7 +383,7 @@
 .add_card_btnbest {
   height: 45px;
   width: 240px;
-  position: absolute;
+  position: relative;
   bottom: -5px;
   margin-bottom: -5;
   background: #86bc42;
@@ -375,6 +432,12 @@
 
 .productsbest:hover .add_card_btnbest {
   opacity: 1;
+}
+.productsbest:hover .product_price_currentbest {
+  display: none;
+}
+.productsbest:hover .product_price_oldbest {
+  display: none;
 }
 .products_sliderbest:hover .like_view_box2best {
   opacity: 1;
@@ -433,6 +496,9 @@
 .product_pricebest {
   display: flex;
   flex-direction: row;
+  position: relative;
+  width: 240px;
+  height: 45px;
 }
 .product_price_currentbest {
   font-family: "Jost";
@@ -442,6 +508,7 @@
   line-height: 28px;
   color: #121212;
 }
+
 .product_price_oldbest {
   font-family: "Jost";
   font-style: normal;
@@ -451,6 +518,23 @@
   text-decoration-line: line-through;
   color: #626974;
   margin-top: 3px;
+}
+.best_product_link {
+  width: 100%;
+  height: 30px;
+  margin-top: 111px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #41544a;
 }
 
 /** DeliveryPage */

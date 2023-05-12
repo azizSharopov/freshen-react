@@ -21,7 +21,7 @@ export function GalleryPage() {
               style={{
                 width: "240px",
               }}
-              src="./admin_photo/open.jpg"
+              src="./homepage/blog9.jpg"
               alt="our_gallery
             "
             />
@@ -31,7 +31,7 @@ export function GalleryPage() {
               style={{
                 width: "240px",
               }}
-              src="./admin_photo/asel.jpg"
+              src="./homepage/blog4.jpg"
               alt="our_gallery
             "
             />
@@ -41,7 +41,7 @@ export function GalleryPage() {
               style={{
                 width: "230px",
               }}
-              src="./admin_photo/call-center.jpg"
+              src="./homepage/blog2.jpg"
               alt="our_gallery
             "
             />
@@ -51,7 +51,7 @@ export function GalleryPage() {
               style={{
                 width: "240px",
               }}
-              src="./admin_photo/people-working.jpg"
+              src="./homepage/blog6.jpg"
               alt="our_gallery
             "
             />
@@ -61,7 +61,7 @@ export function GalleryPage() {
               style={{
                 width: "240px",
               }}
-              src="./admin_photo/delivy.jpg"
+              src="./homepage/blog1.jpg"
               alt="our_gallery"
             />
           </Box>
