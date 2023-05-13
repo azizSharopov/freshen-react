@@ -130,17 +130,17 @@ export function NewPage() {
                       Fresh Strawberry - 100% Organic. Natural
                     </Box>
 
-                    <Box className="product_pricebest">
-                      <Box className="add_card_btnbest">
-                        <Box>
-                          <img
-                            style={{ width: "20px", height: "20px" }}
-                            src="./icons/shopping-cart.png"
-                            alt=""
-                          />{" "}
-                        </Box>
-                        <Box>ADD TO CART</Box>
+                    <Box className="add_card_btnbest">
+                      <Box>
+                        <img
+                          style={{ width: "20px", height: "20px" }}
+                          src="./icons/shopping-cart.png"
+                          alt=""
+                        />{" "}
                       </Box>
+                      <Box>ADD TO CART</Box>
+                    </Box>
+                    <Box className="product_pricebest">
                       <Box className="product_price_currentbest">$11.99</Box>
                       <Box className="product_price_oldbest">$15</Box>
                     </Box>

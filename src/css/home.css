@@ -62,18 +62,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 404px;
+  width: 140px;
   height: 30px;
   margin-top: 50px;
   cursor: pointer;
-  background: #f5c34b;
+  background: #86bc42;
   border-radius: 6px;
   font-family: "Jost";
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 22px;
-  color: #121212;
+  color: #ffffff;
 }
 .big_text {
   text-align: right;
@@ -83,7 +83,7 @@
   font-weight: 400;
   font-size: 50px;
   line-height: 87px;
-  color: #468fbc;
+  color: #41544a;
   border-radius: 1px solid red;
 }
 
@@ -118,6 +118,9 @@
   text-align: left;
 }
 .ads_text2 {
+  width: 579px;
+  height: 48px;
+  text-align: start;
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
@@ -246,6 +249,15 @@
 .sale_page1:hover {
   background-size: 110%;
 }
+.sale_page1:hover .sale_page_info3 {
+  color: #ffffff;
+}
+.sale_page2:hover .sale_page_info3 {
+  color: #121212;
+}
+.sale_page3:hover .sale_page_info3 {
+  color: #121212;
+}
 .sale_page2 {
   width: 300px;
   height: 300px;
@@ -303,7 +315,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #ffffff;
+  color: #41544a;
   text-align: start;
 }
 /** Best Page */
@@ -383,9 +395,10 @@
 .add_card_btnbest {
   height: 45px;
   width: 240px;
-  position: relative;
-  bottom: -5px;
-  margin-bottom: -5;
+  position: absolute;
+  margin-top: 150px;
+  /* bottom: -5px;
+  margin-bottom: -5; */
   background: #86bc42;
   box-shadow: 0px 5px 20px rgba(0, 83, 246, 0.1);
   border-radius: 6px;
@@ -433,10 +446,10 @@
 .productsbest:hover .add_card_btnbest {
   opacity: 1;
 }
-.productsbest:hover .product_price_currentbest {
+/* .productsbest:hover .product_price_currentbest {
   display: none;
-}
-.productsbest:hover .product_price_oldbest {
+} */
+.productsbest:hover .product_pricebest {
   display: none;
 }
 .products_sliderbest:hover .like_view_box2best {
@@ -460,6 +473,16 @@
   justify-content: center;
   gap: 10px;
 }
+.product_infosale {
+  text-align: center;
+  width: 200px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 .brand_namebest {
   font-family: "Lato";
   font-style: normal;
@@ -473,7 +496,7 @@
 .product_namebest {
   font-family: "Lato";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 14px;
   line-height: 24px;
   /* or 171% */
@@ -496,17 +519,26 @@
 .product_pricebest {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: 240px;
   height: 45px;
+  gap: 5px;
 }
 .product_price_currentbest {
-  font-family: "Jost";
+  font-family: "Lato";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
-  line-height: 28px;
-  color: #121212;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  text-align: center;
+
+  /* Color / 4 */
+
+  color: #86bc42;
 }
 
 .product_price_oldbest {
@@ -517,7 +549,8 @@
   line-height: 22px;
   text-decoration-line: line-through;
   color: #626974;
-  margin-top: 3px;
+  /* margin-top: 3px; */
+  text-align: center;
 }
 .best_product_link {
   width: 100%;
@@ -535,6 +568,91 @@
   text-align: center;
   text-transform: uppercase;
   color: #41544a;
+}
+
+.sold_info {
+  position: absolute;
+  width: 108px;
+  height: 6px;
+
+  /* Color / 4 */
+
+  background: #86bc42;
+  border-radius: 30px;
+}
+
+.product_sold2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 240px;
+  height: 24px;
+}
+
+.sold2_text {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  /* Text */
+
+  color: #4f4f4f;
+}
+
+.sold2_numb {
+  margin-left: 5px;
+  /* 14 / Regular */
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+
+  /* Head */
+
+  color: #121212;
+}
+
+.sale_time {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 111px;
+  width: 210px;
+  height: 40px;
+  /* Color / 4 */
+
+  background: #86bc42;
+  border-radius: 30px;
+}
+.sale_time_end {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  /* White */
+  color: #ffffff;
+}
+.sale_time1 {
+  /* 16 / Bold */
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+  /* White */
+  color: #ffffff;
 }
 
 /** DeliveryPage */
@@ -575,6 +693,27 @@
   text-align: center;
   text-transform: uppercase;
   color: #41544a;
+}
+
+/** AdverPage */
+
+.adver_box2 {
+  width: 100%;
+  height: 600px;
+  background-image: url("/public/admin_photo/milk_products.jpg");
+  background-size: cover;
+}
+.adver_box1 {
+  width: 80%;
+  height: 600px;
+  background-image: url("/public/admin_photo/group_yoga.jpg");
+  background-size: cover;
+}
+.adver_box3 {
+  width: 100%;
+  height: 600px;
+  background-image: url("/public/admin_photo/fruits.png");
+  background-size: cover;
 }
 
 /** BlogPage */
@@ -668,50 +807,6 @@
 
   color: #4f4f4f;
 }
-/** Why Choose */
-.why_choose_icon {
-  width: 278px;
-  height: 70px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-
-.why_choose_tex {
-  width: 278px;
-  height: 24px;
-  font-family: "Signika";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #121212;
-}
-.why_choose_text {
-  width: 278px;
-  height: 48px;
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  color: #4f4f4f;
-}
-
-/** Our Gallery */
-.home_gallery {
-  width: 240px;
-  height: 200px;
-  display: flex;
-  position: relative;
-}
-
-/*Blogs section*/
 
 .blogs {
   margin-top: 30px;
@@ -758,4 +853,47 @@
   font-size: 16px;
   line-height: 28px;
   color: #626974;
+}
+
+/** Why Choose */
+.why_choose_icon {
+  width: 278px;
+  height: 70px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.why_choose_tex {
+  width: 278px;
+  height: 24px;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #121212;
+}
+.why_choose_text {
+  width: 278px;
+  height: 48px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #4f4f4f;
+}
+
+/** Our Gallery */
+.home_gallery {
+  width: 240px;
+  height: 200px;
+  display: flex;
+  position: relative;
 }

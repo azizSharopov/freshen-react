@@ -33,7 +33,21 @@ export function DealPage() {
         alignItems: "center",
       }}
     >
-      <Container className="home_top">Deal of the Day</Container>
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <Box className="home_top" sx={{ width: "50%" }}>
+          Deal of the Day
+        </Box>
+        <Box className="sale_time">
+          <span className="sale_time_end">Ends in:</span>
+          <span className="sale_time1">04 : 43 : 11</span>
+        </Box>
+      </Container>
       <div
         className={"best_products"}
         style={{
@@ -89,6 +103,16 @@ export function DealPage() {
                 <Box className="products_sliderbest">
                   <Box className="products_slider_img_best">
                     <img src="/homepage/strawberry.jpg" alt="" />
+                    <Box className="add_card_btnbest">
+                      <Box>
+                        <img
+                          style={{ width: "20px", height: "20px" }}
+                          src="./icons/shopping-cart.png"
+                          alt=""
+                        />{" "}
+                      </Box>
+                      <Box>ADD TO CART</Box>
+                    </Box>
                     <Box className="product_sale_info">-10 %</Box>
 
                     <Box className="like_view_boxbest">
@@ -111,7 +135,7 @@ export function DealPage() {
                       <Box className="like_view_box2best"></Box>
                     </Box>
                   </Box>
-                  <Box className="product_infobest">
+                  <Box className="product_infosale">
                     <Box className="brand_namebest">FRUITS</Box>
                     <Box className="product_retingbest">
                       <Rating
@@ -126,18 +150,40 @@ export function DealPage() {
                     </Box>
 
                     <Box className="product_pricebest">
-                      <Box className="add_card_btnbest">
-                        <Box>
-                          <img
-                            style={{ width: "20px", height: "20px" }}
-                            src="./icons/shopping-cart.png"
-                            alt=""
-                          />{" "}
-                        </Box>
-                        <Box>ADD TO CART</Box>
-                      </Box>
                       <Box className="product_price_currentbest">$11.99</Box>
                       <Box className="product_price_oldbest">$15</Box>
+                    </Box>
+                    <Box
+                      className="product_sold"
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "240px",
+                        height: "41px",
+                        marginBottom: "15px",
+                      }}
+                    >
+                      <Box
+                        className="product_sold1"
+                        sx={{
+                          width: "240px",
+                          height: "6px",
+                          background: "#EBEBEB",
+                          borderRadius: "30px",
+                        }}
+                      >
+                        <Box className="sold_info"></Box>
+                      </Box>
+                      <Box className="product_sold2">
+                        <Box>
+                          <span className="sold2_text">Available:</span>
+                          <span className="sold2_numb">200</span>
+                        </Box>
+                        <Box>
+                          <span className="sold2_text">Already Sold:</span>
+                          <span className="sold2_numb">157</span>
+                        </Box>
+                      </Box>
                     </Box>
                   </Box>
                 </Box>

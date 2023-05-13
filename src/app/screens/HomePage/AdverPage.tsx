@@ -38,91 +38,197 @@ export function AdverPage() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide style={{ background: "#ffffff", zIndex: "4" }}>
-          <Container className="home_ads">
-            <Box className="home_ads1">
-              <img src="./admin_photo/large-set.jpg" alt="milk" />
-            </Box>
-          </Container>
-        </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="swiper_box1">
-            <div className="specialOffer">Natural</div>
-            <div className="big_text">Milk Products</div>
-
-            <div className="shop_btn">
+        <SwiperSlide>
+          <Box className="adver_box3">
+            <Container
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                // justifyContent: "space-between",
+                alignItems: "flex-start",
+                marginTop: "70px",
+              }}
+            >
+              <Box>
+                <img src="/icons/food.png" alt="adver" />
+              </Box>
               <Box
-                sx={{
-                  display: "flex",
-                  gap: "10px",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  position: "relative",
+                className="ads_text"
+                sx={{ color: "#849D6A", marginTop: "20px" }}
+              >
+                Orange Juice
+              </Box>
+              <Box className="ads_text1">
+                <span>For Human Health</span> <br />
+              </Box>
+              <Box className="ads_text2">
+                Organic food is food produced by methods that comply with the
+                standards of organic farming. Standards vary worldwide, but
+                organic farming in general features.
+              </Box>
+              <Button
+                variant="contained"
+                style={{
+                  width: "152px",
+                  height: "50px",
+                  marginTop: "30px",
+                  background: "#86bc42",
+                  borderRadius: "4px",
                   fontFamily: "Lato",
                   fontStyle: "normal",
                   fontWeight: "700",
-                  fontSize: "16px",
+                  fontSize: "13px",
                   lineHeight: "16px",
+                  color: "#FFFFFF",
+                  position: "relative",
                 }}
+                // onClick={() => setValue(!value)}
               >
-                A healthy child is the future confidence.
-              </Box>
-              <NavLink className="small_text" to="/our_stores">
-                SHOP NOW
-              </NavLink>
-            </div>
-          </Container>
+                GO SHOP
+              </Button>
+            </Container>
+          </Box>
         </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="swiper_box2">
-            <div className="specialOffer">Special Offer</div>
-            <div className="big_text">GET A FREE 2-MONTH YOGA PASS</div>
-
-            <Box
+        <SwiperSlide>
+          <Box className="adver_box2">
+            <Container
               sx={{
-                width: "300px",
-                height: "300px",
-                marginTop: "10px",
-                background: "#86bc42",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
               }}
             >
-              <img src="./homepage/carb-cyc.jpg" alt="ads" />
-            </Box>
-            <div style={{ marginTop: "10px" }} className="shop_btn">
-              <NavLink className="small_text" to="/our_stores">
-                SHOP WITH US AND
-              </NavLink>
+              <Box sx={{ marginTop: "100px" }}>
+                <Box
+                  className="ads_text"
+                  sx={{ color: "#849D6A", textAlign: "start" }}
+                >
+                  Natural
+                </Box>
+                <Box className="ads_text1">
+                  <span>Milk Products</span>
+                </Box>
+                <Box className="ads_text2">
+                  A healthy child is the future confidence.
+                </Box>
+                <Button
+                  variant="contained"
+                  style={{
+                    width: "152px",
+                    height: "50px",
+                    marginTop: "40px",
+                    display: "flex",
+
+                    background: "#86bc42",
+                    borderRadius: "4px",
+                    fontFamily: "Lato",
+                    fontStyle: "normal",
+                    fontWeight: "700",
+                    fontSize: "13px",
+                    lineHeight: "16px",
+                    color: "#FFFFFF",
+                    position: "relative",
+                  }}
+                  // onClick={() => setValue(!value)}
+                >
+                  SHOP NOW
+                </Button>
+              </Box>
+              <Box>
+                <img
+                  style={{
+                    width: "650px",
+                    height: "350px",
+                    marginTop: "40px",
+                    backgroundSize: "cover",
+                    borderRadius: "4px",
+                  }}
+                  src="/admin_photo/girl_milk.jpg"
+                  alt="adver"
+                />
+              </Box>
+            </Container>
+          </Box>
+        </SwiperSlide>
+        <SwiperSlide style={{ background: "#ffffff" }}>
+          <Container className="adver_box1">
+            <div className="specialOffer">Special Offer</div>
+            <div
+              className="ads_text1"
+              style={{
+                textAlign: "start",
+                fontWeight: "500",
+              }}
+            >
+              GET A FREE 2-MONTH YOGA PASS
             </div>
-          </Container>
-        </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="home_ads">
-            <Box className="home_ads1">
-              <img src="./admin_photo/veget.jpg" alt="milk" />
-            </Box>
-          </Container>
-        </SwiperSlide>
-        <SwiperSlide style={{ background: "#ffffff" }}>
-          <Container className="home_ads">
-            <Box className="home_ads1">
-              <img src="./admin_photo/sert.jpg" alt="milk" />
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Button
+                variant="contained"
+                style={{
+                  width: "152px",
+                  height: "50px",
+                  marginTop: "40px",
+                  display: "flex",
+
+                  background: "#86bc42",
+                  borderRadius: "4px",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "700",
+                  fontSize: "13px",
+                  lineHeight: "16px",
+                  color: "#FFFFFF",
+                  position: "relative",
+                }}
+                // onClick={() => setValue(!value)}
+              >
+                SHOP WITH US
+              </Button>
+              <Box
+                sx={{
+                  width: "300px",
+                  height: "300px",
+                  marginTop: "50px",
+                }}
+              >
+                <img src="./homepage/carb-cyc.jpg" alt="ads" />
+              </Box>
             </Box>
           </Container>
         </SwiperSlide>
       </Swiper>
       <Box
         sx={{
-          width: "800px",
+          width: "900px",
           height: "130px",
-          background: "#86bc42",
+          background: "#ffffff",
           marginTop: "590px",
           display: "flex",
+          flexDirection: "row",
           position: "absolute",
-          justifyContent: "center",
+          justifyContent: "space-around",
           alignItems: "center",
           zIndex: "6",
         }}
-      ></Box>
+      >
+        <Box>
+          <img src="/homepage/image22.png" alt="adver" />
+        </Box>
+        <Box>
+          <img src="/homepage/image 26.png" alt="adver" />
+        </Box>
+        <Box>
+          <img src="/homepage/image 24.png" alt="adver" />
+        </Box>
+        <Box>
+          <img src="/homepage/image 23.png" alt="adver" />
+        </Box>
+        <Box>
+          <img src="/homepage/image 25.png" alt="adver" />
+        </Box>
+      </Box>
     </div>
   );
 }

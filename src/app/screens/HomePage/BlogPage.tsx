@@ -22,7 +22,7 @@ export default function BlogPage() {
               <Box
                 className="blog_img"
                 sx={{
-                  backgroundImage: "url(/homepage/woman.jpg)",
+                  backgroundImage: "url(/admin_photo/girl-milk.jpg)",
                   zIndex: "3",
                 }}
               >

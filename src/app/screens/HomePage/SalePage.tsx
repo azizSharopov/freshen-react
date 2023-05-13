@@ -60,10 +60,7 @@ export function SalePage() {
               </Box>
 
               <NavLink to="/our_stores">
-                <Box className="sale_page_info3" style={{ color: "#121212" }}>
-                  {" "}
-                  SHOP NOW
-                </Box>
+                <Box className="sale_page_info3"> SHOP NOW</Box>
               </NavLink>
             </Box>
           </Box>
@@ -93,10 +90,7 @@ export function SalePage() {
                 <span style={{ color: "#849D6A" }}>Vegetables</span>
               </Box>
               <NavLink to="/our_stores">
-                <Box className="sale_page_info3" style={{ color: "#121212" }}>
-                  {" "}
-                  SHOP NOW
-                </Box>
+                <Box className="sale_page_info3"> SHOP NOW</Box>
               </NavLink>
             </Box>
           </Box>
