@@ -1,6 +1,22 @@
-import { Container } from "@mui/material";
 import React from "react";
+import { Container } from "@mui/material";
+import "../../../css/shop.css";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { AllProducts } from "./AllProducts";
+import { ChosenProduct } from "./ChosenProduct";
 
-export function ShopPage() {
-  return <Container>ShopPage</Container>;
+export default function ShopPage() {
+  const shop = useRouteMatch();
+  return (
+    <div style={{ background: "#ffffff" }}>
+      <Switch>
+        <Route path={`${shop.path}/:product_id`}>
+          <ChosenProduct />
+        </Route>
+        <Route path={`${shop.path}`}>
+          <AllProducts />
+        </Route>
+      </Switch>
+    </div>
+  );
 }

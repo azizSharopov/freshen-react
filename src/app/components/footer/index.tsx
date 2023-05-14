@@ -5,7 +5,7 @@ import Marginer from "../marginer";
 
 export function Footer() {
   return (
-    <div className="freshen_footer">
+    <div className="freshen_footer" style={{ backgroundColor: "#ffffff" }}>
       <Container className="footer">
         <Stack className="footer_head">
           <Box className="ft_head">

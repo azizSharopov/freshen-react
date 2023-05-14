@@ -25,7 +25,7 @@ export function NewPage() {
     <div
       style={{
         width: "100%",
-        height: "524px",
+        height: "555px",
         background: "#ffffff",
         display: "flex",
         flexDirection: "column",
@@ -44,14 +44,15 @@ export function NewPage() {
       <div
         className={"best_products"}
         style={{
-          width: "1441",
+          width: "1500px",
           height: "454px",
+
           marginTop: "40px",
           display: "flex",
           position: "relative",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-around",
         }}
       >
         <Box className="prev_btn shop_prev">
@@ -62,6 +63,7 @@ export function NewPage() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              position: "relative",
             }}
           />
         </Box>

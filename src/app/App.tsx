@@ -1,7 +1,7 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { ShopPage } from "./screens/ShopPage";
+import ShopPage from "./screens/ShopPage";
 import { CommunityPage } from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import { MemberPage } from "./screens/MemberPage";

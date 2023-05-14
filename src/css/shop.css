@@ -1,0 +1,331 @@
+.shopPage {
+  background-image: url("/public/homepage/vector.png");
+  width: 100%;
+  height: 300px;
+}
+
+.shop_page {
+  width: 125px;
+  height: 62px;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 62px;
+  text-transform: uppercase;
+  color: #4f4f4f;
+}
+.shop_page1 {
+  width: 97px;
+  height: 24px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+  color: #4f4f4f;
+}
+.shop_categ {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: start;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height, or 133% */
+  text-transform: uppercase;
+  color: #121212;
+}
+.shop_categ_text {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 35px;
+  /* or 250% */
+
+  /* Head */
+
+  color: #121212;
+}
+.shop_categ_text:hover {
+  color: #86bc42;
+}
+.shop_ads {
+  width: 900px;
+  height: 530px;
+  background-image: url("/public/homepage/all_pro.jpg");
+  background-size: cover;
+}
+.count_sort_products_section {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.count_products_section {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #121212;
+}
+.count_products_section a {
+  text-decoration: none;
+  color: #121212;
+}
+.count_products_section a:hover {
+  text-decoration: underline;
+  color: #86bc42;
+}
+
+.sort_select {
+  height: 22px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  color: #121212;
+}
+.sort_products_section {
+  margin-right: 20px;
+}
+
+.pagination_item:hover {
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+/** shop products */
+
+.shop_pro_wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.shop_sliderbest {
+  width: 300px;
+  height: 420px;
+  display: flex;
+  /* margin-top: 10px; */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #ffffff;
+}
+.product_sale_info {
+  position: absolute;
+  width: 59px;
+  height: 24px;
+  margin-right: 220px;
+  margin-bottom: 150px;
+  z-index: 4;
+  background: #cf3e3b;
+  border-radius: 60px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  padding-top: 7px;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.shop_slider_img_best {
+  background-size: cover;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  z-index: 2;
+}
+.shop_sliderbest:hover .shop_slider_img_best img {
+  width: 190px;
+  height: 190px;
+}
+.shop_slider_img_best img {
+  width: 300px;
+  height: 200px;
+  transition: all 0.5s;
+}
+.add_card_btnbest {
+  height: 45px;
+  width: 240px;
+  position: relative;
+  margin-top: 150px;
+  /* bottom: -5px;
+  margin-bottom: -5; */
+  background: #86bc42;
+  box-shadow: 0px 5px 20px rgba(0, 83, 246, 0.1);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  /* identical to box height */
+  text-align: center;
+  color: #ffffff;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.like_view_boxbest {
+  position: relative;
+  height: 115px;
+  width: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.like_view_btnbest {
+  height: 34px;
+  width: 30px;
+
+  border-radius: 50%;
+}
+.like_view_box2best {
+  height: 34px;
+  width: 34px;
+  opacity: 0;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+
+.shop_sliderbest:hover .add_card_btnbest {
+  opacity: 1;
+}
+/* .productsbest:hover .product_price_currentbest {
+  display: none;
+} */
+.shop_sliderbest:hover .product_pricebest {
+  display: none;
+}
+.shop_sliderbest:hover .like_view_box2best {
+  opacity: 1;
+}
+
+.like_view_btnbest:hover {
+  background: #f3f5f6;
+  /* Box-Shadow */
+
+  box-shadow: 0px 10px 25px rgba(4, 30, 66, 0.05);
+  z-index: 3;
+}
+.product_infobest {
+  text-align: center;
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.product_infosale {
+  text-align: center;
+  width: 200px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.brand_namebest {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: #4f4f4f;
+}
+.product_namebest {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  /* or 171% */
+  text-align: center;
+  /* Head */
+  color: #121212;
+}
+.product_retingbest {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #626974;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product_pricebest {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 240px;
+  height: 45px;
+  gap: 5px;
+}
+.product_price_currentbest {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #86bc42;
+}
+
+.product_price_oldbest {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  text-decoration-line: line-through;
+  color: #626974;
+  text-align: center;
+}
+.shop_pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
