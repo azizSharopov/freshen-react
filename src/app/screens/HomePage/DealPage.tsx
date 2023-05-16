@@ -102,12 +102,15 @@ export function DealPage() {
               >
                 <Box className="products_sliderbest">
                   <Box className="products_slider_img_best">
-                    <img src="/homepage/strawberry.jpg" alt="" />
-                    <Box className="add_card_btnbest">
+                    <img src="/homepage/ripe-blueberries.jpg" alt="" />
+                    <Box
+                      className="add_card_btnbest"
+                      sx={{ marginBottom: "0px" }}
+                    >
                       <Box>
                         <img
                           style={{ width: "20px", height: "20px" }}
-                          src="./icons/shopping-cart.png"
+                          src="/icons/shopping-cart.png"
                           alt=""
                         />{" "}
                       </Box>

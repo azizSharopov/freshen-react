@@ -3,7 +3,7 @@ import { Container } from "@mui/material";
 import "../../../css/shop.css";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { AllProducts } from "./AllProducts";
-import { ChosenProduct } from "./ChosenProduct";
+import ChosenProduct from "./ChosenProduct";
 
 export default function ShopPage() {
   const shop = useRouteMatch();

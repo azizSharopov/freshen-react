@@ -1,5 +1,5 @@
 import { Box, Button, Checkbox, Container, Rating, Stack } from "@mui/material";
-import { Favorite, Visibility } from "@mui/icons-material";
+import { Favorite } from "@mui/icons-material";
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import assert from "assert";
@@ -26,7 +26,7 @@ export function BestPage() {
       style={{
         width: "100%",
         height: "650px",
-        marginTop: "30px",
+        marginTop: "10px",
 
         display: "flex",
         flexDirection: "column",
@@ -141,7 +141,7 @@ export function BestPage() {
                         <Box>
                           <img
                             style={{ width: "20px", height: "20px" }}
-                            src="./icons/shopping-cart.png"
+                            src="/icons/shopping-cart.png"
                             alt=""
                           />{" "}
                         </Box>

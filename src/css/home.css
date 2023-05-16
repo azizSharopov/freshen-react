@@ -413,7 +413,6 @@
   font-weight: 700;
   font-size: 13px;
   line-height: 16px;
-  /* identical to box height */
   text-align: center;
   color: #ffffff;
   opacity: 0;
@@ -450,7 +449,7 @@
   display: none;
 } */
 .productsbest:hover .product_pricebest {
-  display: none;
+  opacity: 0;
 }
 .products_sliderbest:hover .like_view_box2best {
   opacity: 1;
@@ -458,8 +457,6 @@
 
 .like_view_btnbest:hover {
   background: #f3f5f6;
-  /* Box-Shadow */
-
   box-shadow: 0px 10px 25px rgba(4, 30, 66, 0.05);
   z-index: 3;
 }
@@ -499,9 +496,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 24px;
-  /* or 171% */
   text-align: center;
-  /* Head */
   color: #121212;
 }
 .product_retingbest {
@@ -532,12 +527,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  /* identical to box height, or 150% */
-
   text-align: center;
-
-  /* Color / 4 */
-
   color: #86bc42;
 }
 
@@ -549,7 +539,6 @@
   line-height: 22px;
   text-decoration-line: line-through;
   color: #626974;
-  /* margin-top: 3px; */
   text-align: center;
 }
 .best_product_link {
@@ -574,9 +563,6 @@
   position: absolute;
   width: 108px;
   height: 6px;
-
-  /* Color / 4 */
-
   background: #86bc42;
   border-radius: 30px;
 }
@@ -595,25 +581,16 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  /* identical to box height, or 171% */
-
-  /* Text */
-
   color: #4f4f4f;
 }
 
 .sold2_numb {
   margin-left: 5px;
-  /* 14 / Regular */
-
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-
-  /* Head */
-
   color: #121212;
 }
 
@@ -626,8 +603,6 @@
   margin-top: 111px;
   width: 210px;
   height: 40px;
-  /* Color / 4 */
-
   background: #86bc42;
   border-radius: 30px;
 }
@@ -639,19 +614,14 @@
   line-height: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  /* White */
   color: #ffffff;
 }
 .sale_time1 {
-  /* 16 / Bold */
-
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  /* identical to box height, or 150% */
-  /* White */
   color: #ffffff;
 }
 

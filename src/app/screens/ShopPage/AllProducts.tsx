@@ -160,7 +160,7 @@ export function AllProducts() {
               Showing <span style={{ fontWeight: "600" }}>1–20</span> of{" "}
               <span style={{ fontWeight: "600" }}>200</span> results
             </Box>
-            <Marginer
+            {/* <Marginer
               direction="horizontal"
               height="1"
               width="2"
@@ -199,7 +199,7 @@ export function AllProducts() {
             />
             <Box>
               <a href="#">all</a>
-            </Box>
+            </Box> */}
           </Box>
           <Box className="sort_products_section">
             <Box>

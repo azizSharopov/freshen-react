@@ -318,17 +318,17 @@ export function NavbarCommon(props: any) {
           >
             <Box className="icon_box">
               <NavLink style={{ marginTop: "8px" }} to="/login">
-                <img src="./icons/default_user.png" alt="user" />
+                <img src="/icons/default_user.png" alt="user" />
               </NavLink>
             </Box>
             <Box className="icon_box">
               <Badge badgeContent={3} color="secondary">
-                <img src="./icons/heart.png" alt="heart" />
+                <img src="/icons/heart.png" alt="heart" />
               </Badge>
             </Box>
             <Box className="icon_box">
               <Badge badgeContent={3} color="secondary">
-                <img src="./icons/cart.png" alt="cart" />
+                <img src="/icons/cart.png" alt="cart" />
               </Badge>
             </Box>
             <Box>
@@ -482,7 +482,7 @@ export function NavbarCommon(props: any) {
               }}
             >
               <Box>
-                <img src="./icons/phone.png" alt="phone" />
+                <img src="/icons/phone.png" alt="phone" />
               </Box>
               <Box className="nav_tex" sx={{ color: "#121212" }}>
                 HOTLINE

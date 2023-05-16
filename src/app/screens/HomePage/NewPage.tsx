@@ -96,7 +96,11 @@ export function NewPage() {
               >
                 <Box className="products_sliderbest">
                   <Box className="products_slider_img_best">
-                    <img src="/homepage/strawberry.jpg" alt="" />
+                    <img
+                      style={{ backgroundSize: "cover" }}
+                      src="/homepage/green-broccoli.jpg"
+                      alt=""
+                    />
 
                     <Box className="like_view_boxbest">
                       <Box className="like_view_box2best">
@@ -136,7 +140,7 @@ export function NewPage() {
                       <Box>
                         <img
                           style={{ width: "20px", height: "20px" }}
-                          src="./icons/shopping-cart.png"
+                          src="/icons/shopping-cart.png"
                           alt=""
                         />{" "}
                       </Box>
