@@ -256,7 +256,7 @@ export function AllProducts() {
               <Box
                 className="shop_sliderbest"
                 sx={{
-                  border: "1px solid #41544A",
+                  border: "1px solid #ebebeb",
                   margin: "5px",
                 }}
               >

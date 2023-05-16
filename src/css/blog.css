@@ -1,0 +1,208 @@
+.blogPage {
+  background-image: url("/public/homepage/vector.png");
+  width: 100%;
+  height: 300px;
+}
+
+.blog_page {
+  width: 285px;
+  height: 62px;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 62px;
+  text-transform: uppercase;
+  color: #4f4f4f;
+}
+.blog_page1 {
+  width: 197px;
+  height: 24px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #4f4f4f;
+}
+.blog_left {
+  width: 960px;
+  height: 1602px;
+  background: #86bc42;
+  position: relative;
+}
+.blog_right {
+  width: 270px;
+  height: 900px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.blog_categ {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: start;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #121212;
+}
+.blog_categ_text {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 35px;
+  color: #121212;
+}
+.blog_categ_text:hover {
+  color: #86bc42;
+}
+.home_blog_p {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  color: #121212;
+}
+.home_blog_date {
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #121212;
+}
+
+.blog_subject_home {
+  width: 99px;
+  height: 14px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.blog_subject_info {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 10px;
+}
+.blog_subject_text {
+  margin-top: 30px;
+  width: 390px;
+  height: 60px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  color: #121212;
+}
+
+.blog_by {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.blog_by_css {
+  margin-left: 10px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #4f4f4f;
+}
+
+.com_blog_box {
+  width: 465px;
+  height: 514px;
+  position: relative;
+}
+.com_blog_img {
+  width: 465px;
+  height: 300px;
+  background-size: cover;
+  position: relative;
+}
+
+.blog_type {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #626974;
+  margin-top: 20px;
+}
+
+.blog_subject {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  color: #041e42;
+}
+.blog_date {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #626974;
+}
+.brand_namebest {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: #4f4f4f;
+}
+
+.blog_category_box {
+  width: 270px;
+  height: 900px;
+  position: relative;
+}
+
+.blog_category {
+  margin-top: 40px;
+  position: relative;
+}
+
+.write_blog_btn {
+  width: 200px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #86bc42;
+  color: white;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  border-radius: 6px;
+  /* or 200% */
+}
