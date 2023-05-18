@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ShopPage from "./screens/ShopPage";
 import CommunityPage from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage";
-import { MemberPage } from "./screens/MemberPage";
+
 import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage";
 import { HomePage } from "./screens/HomePage";
@@ -16,6 +16,7 @@ import "../css/home.css";
 import { AboutPage } from "./screens/AboutPage";
 import { Footer } from "./components/footer";
 import { ContactPage } from "./screens/ContactPage";
+import MemberPage from "./screens/MemberPage";
 
 function App() {
   const [path, setPath] = useState();
