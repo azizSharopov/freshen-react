@@ -2,24 +2,23 @@ import React from "react";
 import { Box, Container, Pagination, PaginationItem } from "@mui/material";
 import "../../../css/shop.css";
 
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function PaginationAllProducts() {
   return (
     <Box sx={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
       <Pagination
         count={3}
-        page={2}
+        page={1}
         renderItem={(item) => (
           <PaginationItem
-            className="pagination_item"
             components={{
-              previous: ArrowBackIosIcon,
-              next: ArrowForwardIosIcon,
+              previous: ArrowBackIcon,
+              next: ArrowForwardIcon,
             }}
             {...item}
-            color="primary"
+            color="secondary"
           />
         )}
       />

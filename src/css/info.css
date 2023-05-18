@@ -1,0 +1,178 @@
+.help_page {
+  width: 100%;
+  height: auto;
+  display: flex;
+  background: #0b0e11;
+}
+
+.css-1c5904 {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.css-1c5904 {
+  width: 100%;
+  margin: 50px auto;
+  box-sizing: border-box;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 100%;
+}
+
+.help_page .help_menu {
+  border-bottom: 1px solid #fff;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: center;
+  width: 100%;
+}
+
+.help_page .css-1gsv261 {
+  width: 75%;
+}
+
+.css-ttwr4n {
+  position: absolute;
+  height: 2px;
+  bottom: 0px;
+  width: 100%;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: rgb(25, 118, 210);
+}
+
+.help_page .theRules_box {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ededed;
+  border-radius: 8px;
+  box-shadow: 0 20px 30px rgb(25 25 46 / 4%);
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: center;
+  padding: 24px;
+  width: 100%;
+}
+
+.theRules_box .theRulesFrame {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.theRules_box .theRulesFrame p {
+  border-bottom: 1px solid #ddd;
+  color: #000;
+  font-family: "Roboto, Helvetica, Arial, sans-serif";
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.00938em;
+  line-height: 2.5;
+}
+
+.help_page .help_main_content {
+  height: 1000px;
+  width: 100%;
+}
+
+.help_page .accordian_menu,
+.help_page .admin_letter_box {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+}
+
+.help_page .admin_letter_box {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ededed;
+  border-radius: 8px;
+  box-shadow: 0 20px 30px rgb(25 25 46 / 4%);
+  justify-content: center;
+  padding: 60px;
+}
+
+.help_page .admin_letter_box .admin_letter_container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.help_page .admin_letter_container .admin_letter_frame {
+  display: flex;
+  flex-direction: column;
+}
+
+.help_page .admin_letter_frame span {
+  color: #140342;
+  font-family: "ABeeZee";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.help_page .admin_letter_frame p {
+  color: #4f547b;
+  font-family: "Sedan";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  margin-top: 20px;
+}
+
+.help_page .admin_letter_frame .admin_input_box {
+  margin-top: 15px;
+}
+
+.help_page .admin_letter_frame .admin_input_box label {
+  width: 196.23px;
+  height: 19.21px;
+  font-family: "Verdana";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  /* Head - Color */
+  color: #140342;
+}
+
+.help_page .admin_letter_frame .admin_input_box input {
+  margin-top: 10px;
+  padding: 20px;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  font-family: "Verdana";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  color: #4f547b;
+}
+
+.help_page .admin_letter_frame .admin_input_box textarea {
+  margin-top: 10px;
+  padding: 20px;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  font-family: "Verdana";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  color: #4f547b;
+}

@@ -1,7 +1,7 @@
 import { Box, Container } from "@mui/material";
 import React from "react";
 
-export function MemberPage() {
+export function ContactPage() {
   return (
     <div>
       <div className="blogPage">

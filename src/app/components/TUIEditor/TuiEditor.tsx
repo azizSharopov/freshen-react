@@ -35,9 +35,18 @@ export const TuiEditor = (props: any) => {
               <MenuItem value="">
                 <span>choose category</span>
               </MenuItem>
-              <MenuItem value={"technology"}>Technology</MenuItem>
-              <MenuItem value={"lifehacks"}>Life-Hacks</MenuItem>
-              <MenuItem value={"story"}>story</MenuItem>
+              <MenuItem value={"technology"}>Fruit</MenuItem>
+
+              <MenuItem value={"story"}>Meats</MenuItem>
+              <MenuItem value={"story"}>Fishs</MenuItem>
+              <MenuItem value={"lifehacks"}>Vegetables</MenuItem>
+              <MenuItem value={"story"}>Drinks</MenuItem>
+              <MenuItem value={"story"}>Bakery</MenuItem>
+              <MenuItem value={"story"}>Butter & Egges</MenuItem>
+              <MenuItem value={"story"}>Milks & Creams</MenuItem>
+              <MenuItem value={"story"}>Coffee & Tea</MenuItem>
+              <MenuItem value={"story"}>Cookies</MenuItem>
+              <MenuItem value={"story"}>Chocolates</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -76,8 +85,22 @@ export const TuiEditor = (props: any) => {
       <Stack direction="row" justifyContent="center">
         <Button
           variant="contained"
-          color="secondary"
-          style={{ margin: "30px", width: "250px", height: "65px" }}
+          style={{
+            width: "240px",
+            height: "50px",
+            marginTop: "30px",
+            background: "#86BC42",
+            borderRadius: "4px",
+            fontFamily: "Lato",
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontSize: "13px",
+            lineHeight: "16px",
+            color: "#FFFFFF",
+            position: "relative",
+          }}
+          // onClick={() => setValue(!value)}
+          onClick={props.handleSignUpOpen}
         >
           Register
         </Button>

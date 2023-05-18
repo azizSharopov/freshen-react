@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Container, Stack } from "@mui/material";
 // import PaginationAllProducts from "../ShopPage/paginationAllProduct";
 
-const restaurant_list = Array.from(Array(3).keys());
+const blog_best_list = Array.from(Array(3).keys());
 export default function BlogPage() {
   return (
     <Container>
@@ -16,7 +16,7 @@ export default function BlogPage() {
         </Box>
       </Stack>
       <Stack className="blogs" sx={{ flexDirection: "row" }}>
-        {restaurant_list.map((ele, index) => {
+        {blog_best_list.map((ele, index) => {
           return (
             <Box className="blog_box">
               <Box

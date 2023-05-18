@@ -28,14 +28,17 @@ const MenuProps = {
 };
 
 const names = [
-  "Bakery",
-  "Chocolate",
-  "Cookies",
-  "Coffee",
-  "Fresh Fruit",
+  "Fruits",
+  "Meats",
+  "Fishs",
   "Vegetables",
-  "Meat",
-  "Milks",
+  "Drinks",
+  "Bakery",
+  "Butter & Egges",
+  "Milks & Creams",
+  "Coffee & Tea",
+  "Cookies",
+  "Chocolates",
 ];
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
@@ -355,6 +358,7 @@ export function NavbarCommon(props: any) {
           sx={{
             flexDirection: "row",
             justifyContent: "space-around",
+            position: "relative",
           }}
         >
           <Box className="nav_footer">
@@ -386,8 +390,8 @@ export function NavbarCommon(props: any) {
             position={"relative"}
             display={"flex"}
             flexDirection={"row"}
-            width={"40%"}
-            height={"50px"}
+            width={"50%"}
+            height={"60px"}
             gap="30px"
             alignItems={"center"}
           >
@@ -461,6 +465,18 @@ export function NavbarCommon(props: any) {
                 activeClassName="underline"
               >
                 ABOUT
+              </NavLink>
+            </Box>
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink
+                to="/contact"
+                style={{
+                  color: "#121212",
+                  textDecoration: "none",
+                }}
+                activeClassName="underline"
+              >
+                CONTACT
               </NavLink>
             </Box>
           </Stack>

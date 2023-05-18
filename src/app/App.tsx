@@ -15,6 +15,7 @@ import "../css/footer.css";
 import "../css/home.css";
 import { AboutPage } from "./screens/AboutPage";
 import { Footer } from "./components/footer";
+import { ContactPage } from "./screens/ContactPage";
 
 function App() {
   const [path, setPath] = useState();
@@ -66,6 +67,9 @@ function App() {
         </Route>
         <Route path="/about">
           <AboutPage />
+        </Route>
+        <Route path="/contact">
+          <ContactPage />
         </Route>
         <Route path="/login">
           <LoginPage />

@@ -102,6 +102,14 @@ export function AllProducts() {
               <span>(34)</span>
             </Box>
             <Box className="shop_categ_text">
+              <span>Meats</span>
+              <span>(34)</span>
+            </Box>
+            <Box className="shop_categ_text">
+              <span>Fishs</span>
+              <span>(16)</span>
+            </Box>
+            <Box className="shop_categ_text">
               <span>Vegetables</span>
               <span>(45)</span>
             </Box>
@@ -120,14 +128,6 @@ export function AllProducts() {
             <Box className="shop_categ_text">
               <span>Milks & Creams</span>
               <span>(58)</span>
-            </Box>
-            <Box className="shop_categ_text">
-              <span>Meats</span>
-              <span>(34)</span>
-            </Box>
-            <Box className="shop_categ_text">
-              <span>Fish</span>
-              <span>(16)</span>
             </Box>
             <Box className="shop_categ_text">
               <span>Cofee & Tea</span>

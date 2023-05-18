@@ -244,7 +244,7 @@
   display: flex;
   background: url("/public/admin_photo/banner1.jpg");
   background-size: cover;
-  transition: background-size 0.2s ease-in-out;
+  transition: background-size 0.5s ease-in-out;
 }
 .sale_page1:hover {
   background-size: 110%;
@@ -265,7 +265,7 @@
   position: relative;
   background: url("/public/admin_photo/banner2.jpg");
   background-size: cover;
-  transition: background-size 0.2s ease-in-out;
+  transition: background-size 0.5s ease-in-out;
 }
 .sale_page2:hover {
   background-size: 110%;
@@ -277,7 +277,7 @@
   display: flex;
   background: url("/public/admin_photo/banner3.jpg");
   background-size: cover;
-  transition: background-size 0.2s ease-in-out;
+  transition: background-size 0.5s ease-in-out;
 }
 .sale_page3:hover {
   background-size: 110%;
