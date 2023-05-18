@@ -175,9 +175,7 @@
   background-size: cover;
   position: relative;
 }
-.blog_img:hover {
-  aspect-ratio: auto 440 / 300;
-}
+
 .blog_subject_text:hover {
   color: #86bc42;
 }

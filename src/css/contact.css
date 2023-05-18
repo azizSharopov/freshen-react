@@ -1,0 +1,131 @@
+.contact_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 182px;
+  height: 155px;
+}
+.contact_text {
+  width: 182px;
+  height: 24px;
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact_text1 {
+  width: 182px;
+  height: 48px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #4f4f4f;
+  text-align: center;
+}
+.contact_map {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 120px;
+}
+.contact_map_left {
+  width: 60%;
+  height: 724px;
+  border: 1px solid red;
+}
+.contact_map_right {
+  width: 40%;
+  height: 724px;
+}
+.admin_letter_box {
+  height: 724px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ededed;
+  border-radius: 8px;
+  box-shadow: 0 20px 30px rgb(25 25 46 / 4%);
+  justify-content: center;
+  padding: 60px;
+}
+
+.admin_letter_box .admin_letter_container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.admin_letter_container .admin_letter_frame {
+  width: 580px;
+  height: 24px;
+}
+
+.admin_letter_frame span {
+  font-family: "Signika";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #121212;
+}
+
+.admin_letter_frame .admin_input_box {
+  margin-top: 30px;
+}
+.admin_letter_frame .admin_input_box label {
+  width: 196.23px;
+  height: 19.21px;
+  font-family: "Verdana";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  /* Head - Color */
+  color: #121212;
+}
+
+.admin_letter_frame .admin_input_box input {
+  margin-top: 10px;
+  padding: 20px;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  font-family: "Verdana";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  color: #4f547b;
+}
+
+.admin_letter_frame .admin_input_box textarea {
+  margin-top: 10px;
+  padding: 20px;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  font-family: "Verdana";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  color: #4f547b;
+}

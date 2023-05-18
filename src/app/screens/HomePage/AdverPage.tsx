@@ -211,6 +211,7 @@ export function AdverPage() {
           justifyContent: "space-around",
           alignItems: "center",
           zIndex: "6",
+          opacity: "0.9",
         }}
       >
         <Box>

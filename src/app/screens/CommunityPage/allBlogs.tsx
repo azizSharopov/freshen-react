@@ -18,10 +18,11 @@ import { TuiEditor } from "../../components/TUIEditor/TuiEditor";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Marginer from "../../components/marginer";
+import "../../../css/blog.css";
 
 const blogs_list = Array.from(Array(6).keys());
 export default function AllBlogs() {
-  const [value, setValue] = React.useState("14");
+  const [value, setValue] = React.useState("2");
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
