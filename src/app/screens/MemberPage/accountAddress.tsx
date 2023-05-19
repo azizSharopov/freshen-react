@@ -4,12 +4,12 @@ import { Box, Button, Container } from "@mui/material";
 export default function AccauntAddress() {
   const [isEditing, setIsEditing] = useState(false);
 
-  const [addressValue, setAddressValue] = useState(`Daniel Robinson
+  const [addressValue, setAddressValue] = useState(`Ayden
 1418 River Drive, Suite 35 Cottonhall, CA 9622
-United States
+South Korea
 
-sale@hitechmart.com
-+3 8493 92 932 021`);
+sharopovaziz23@gmail.com
+010 8257 8505`);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -30,10 +30,10 @@ sale@hitechmart.com
       <Box
         className="dash_product_tab"
         sx={{
-          width: "1000px",
+          width: "900px",
           display: "flex",
           flexDirection: "row",
-          gap: "30px",
+          gap: "20px",
         }}
       >
         <Box>
@@ -43,17 +43,17 @@ sale@hitechmart.com
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
-              width: "450px",
+              width: "400px",
             }}
           >
-            <span>Billing Address</span>{" "}
+            <span style={{ fontWeight: "550" }}>Billing Address</span>{" "}
             {!isEditing ? (
               <Button
                 className="dash_search_btn"
                 onClick={handleEditClick}
                 sx={{
                   color: "#000000",
-                  fontSize: "14px",
+                  fontSize: "16px",
                   boxShadow: "none",
                   width: "60px",
                   height: "20px",
@@ -62,6 +62,7 @@ sale@hitechmart.com
                   textTransform: "none",
                   "&:hover": {
                     backgroundColor: "none",
+                    color: "#86bc42",
                   },
                 }}
               >
@@ -73,7 +74,7 @@ sale@hitechmart.com
                 onClick={handleSaveClick}
                 sx={{
                   color: "#000000",
-                  fontSize: "14px",
+                  fontSize: "16px",
                   boxShadow: "none",
                   width: "60px",
                   height: "20px",
@@ -82,6 +83,7 @@ sale@hitechmart.com
                   textTransform: "none",
                   "&:hover": {
                     backgroundColor: "none",
+                    color: "#86bc42",
                   },
                 }}
               >
@@ -107,17 +109,17 @@ sale@hitechmart.com
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
-              width: "450px",
+              width: "400px",
             }}
           >
-            <span>Shipping Address</span>{" "}
+            <span style={{ fontWeight: "550" }}>Shipping Address</span>{" "}
             {!isEditing ? (
               <Button
                 className="dash_search_btn"
                 onClick={handleEditClick}
                 sx={{
                   color: "#000000",
-                  fontSize: "14px",
+                  fontSize: "16px",
                   boxShadow: "none",
                   width: "60px",
                   height: "20px",
@@ -126,6 +128,7 @@ sale@hitechmart.com
                   textTransform: "none",
                   "&:hover": {
                     backgroundColor: "none",
+                    color: "#86bc42",
                   },
                 }}
               >
@@ -137,7 +140,7 @@ sale@hitechmart.com
                 onClick={handleSaveClick}
                 sx={{
                   color: "#000000",
-                  fontSize: "14px",
+                  fontSize: "16px",
                   boxShadow: "none",
                   width: "60px",
                   height: "20px",
@@ -146,6 +149,7 @@ sale@hitechmart.com
                   textTransform: "none",
                   "&:hover": {
                     backgroundColor: "none",
+                    color: "#86bc42",
                   },
                 }}
               >

@@ -191,6 +191,7 @@ export function AdverPage() {
                   width: "300px",
                   height: "300px",
                   marginTop: "50px",
+                  opacity: "0.9",
                 }}
               >
                 <img src="./homepage/carb-cyc.jpg" alt="ads" />

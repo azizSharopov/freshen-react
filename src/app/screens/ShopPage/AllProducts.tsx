@@ -278,7 +278,6 @@ export function AllProducts() {
                         style={{ left: "36px" }}
                         disableTouchRipple
                       >
-                        {/* hover -> */}
                         <Checkbox
                           icon={<FavoriteBorder style={{ color: "black" }} />}
                           id={`${index}`}

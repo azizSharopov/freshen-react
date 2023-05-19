@@ -4,6 +4,13 @@
   position: relative;
   margin-top: 60px;
 }
+.spec_input:focus {
+  outline: none; /* Optional: Remove default focus outline */
+  border-color: #86bc42; /* Change the border color when focused */
+}
+.spec_input {
+  border-radius: 4px;
+}
 .my_page_tablist {
   width: 25%;
   position: relative;
@@ -65,209 +72,138 @@
   width: 75%;
   background: #f3f5f6;
   position: relative;
-}
-.marketPage_head {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 40px;
-  text-align: center;
-  color: #041e42;
-  margin-top: 90px;
-  margin-bottom: 70px;
-}
-.markets_box {
-  width: 355px;
-  height: 534px;
-  background: #ffffff;
+  border-radius: 4px;
   border: 1px solid #eaeaea;
-  border-radius: 6px;
-  padding: 30px;
 }
-.markets_img_box {
-  width: 295px;
-  height: 200px;
-  border-radius: 6px;
-  background-size: cover;
+
+/** account_detail */
+
+.dash_head_text span {
+  margin-left: 50px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: #121212;
 }
-.markets_name_box {
-  font-family: "Jost";
+
+.market_account_set_box {
+  width: 100%;
+  font-family: "Lato";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 28px;
-  color: #041e42;
-  margin-top: 20px;
+  color: #121212;
 }
-.markets_rating_box {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  color: #041e42;
-  margin-bottom: 20px;
-}
-.markets_address_box {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 28px;
-  color: #041e42;
-}
-.market_btn {
-  font-family: "Jost";
+.market_setting_input_box {
+  display: flex;
+  flex-direction: column;
+  gap: "5px";
+  font-family: "Lato";
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
-  line-height: 22px;
-  text-align: center;
-
-  filter: drop-shadow(0px 5px 20px rgba(245, 195, 75, 0.15));
-  border-radius: 6px;
-  background-color: #041e42;
-  width: 293px;
-  height: 52px;
-  margin-top: 20px;
+  line-height: 28px;
+  color: #121212;
+  width: 400px;
 }
 
-.market_like_view_btnonsale {
-  position: absolute;
-  z-index: 2;
-  left: 150px;
-}
-
-.market_head_img {
-  width: 1400px;
-  height: 400px;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.market_page_header_box {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 60px;
-}
-.market_info {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-}
-
-.chosen_market_page_follow_btn {
-  width: 150px;
-  height: 52px;
-}
-.market_page_market_img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ff3365;
-}
-.market_page_name {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 38px;
-  color: #ffffff;
-}
-.market_page_rating {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: "Jost";
+.market_setting_input_box input {
+  font-family: "Lato";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  color: white;
   line-height: 22px;
+  color: #121212;
+  padding: 10px;
+  border: 1px solid #eaeaea;
 }
-
-.marketpage_tabs {
-  font-family: "Jost";
+.per_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 40px;
+  margin-bottom: 15px;
+}
+.note_type {
+  font-family: "Lato";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 28px;
-  color: #626974;
-  margin-top: 20px;
+  color: #121212;
 }
-
-.marketpage_tab_lists .Mui-selected .MuiTab-wrapper {
-  color: #041e42;
+.note_text {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #121212;
 }
-
-.prev_next_frame {
-  position: relative;
-  display: flex;
-  justify-content: end;
-  align-items: center;
+/** Address */
+.dash_product_tab {
   width: 100%;
-  height: 30px;
-  text-align: right;
-  margin-top: 20px;
+  margin-top: 50px;
+  background-color: white;
+  padding: 20px;
+}
+.member_media_frame {
+  background: #f7f7f7;
+  border-radius: 5px;
+  display: flex;
+  height: auto;
+  margin-top: 25px;
+  padding: 10px;
+  position: relative;
+  width: 100%;
 }
 
-.dot_frame_paginaton {
-  position: relative;
-  width: auto;
-  padding-left: 1100px;
-  gap: 10px;
-}
-.marketpage_about_box {
+.media_change_box {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  height: 100%;
+  margin-left: 20px;
+  position: relative;
+  width: auto;
 }
 
-.marketpage_about_text {
-  font-family: "Jost";
+.media_change_box span {
+  color: #121212;
+  font-family: GT Walsheim Pro;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 28px;
-  color: #041e42;
+  line-height: 18px;
 }
-.marketpage_about_head {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 29px;
-  color: #041e42;
-}
-/**/
 
-.dash_head_text span {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 40px;
-  color: #041e42;
-}
-.dash_head_text {
-  font-family: "Jost";
+.media_change_box p {
+  color: #4f547b;
+  font-family: GT Walsheim Pro;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 28px;
-  color: #041e42;
+  line-height: 16px;
+  margin: 10px 0 14px;
 }
+
+.up_del_box {
+  align-items: center;
+  background: #cbcbcb;
+  border-radius: 8px;
+  display: flex;
+  height: 37px;
+  justify-content: center;
+  position: relative;
+  width: 37px;
+}
+
+/** gfg */
+
 .dash_stat_box {
   width: 100%;
   display: flex;
@@ -286,7 +222,7 @@
   font-weight: 500;
   font-size: 15px;
   line-height: 22px;
-  color: #041e42;
+  color: #d53f20;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -348,12 +284,12 @@
   padding: 20px;
 }
 .table_data {
-  font-family: "Jost";
+  font-family: "Lato";
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 22px;
-  color: #041e42;
+  color: #121212;
 }
 .activity {
   width: 90%;
@@ -392,13 +328,6 @@
   font-weight: 500;
 }
 
-.dash_product_tab {
-  width: 100%;
-  margin-top: 50px;
-  background-color: white;
-  padding: 20px;
-}
-
 .dash_product_search {
   width: 100%;
   display: flex;
@@ -406,15 +335,15 @@
   gap: 10px;
 }
 .dash_search {
-  width: 100%;
+  width: 700px;
 
-  height: 40px;
+  height: 90px;
   display: flex;
   gap: 10px;
   justify-content: space-between;
 }
 
-.dash_search_btn {
+/* .dash_search_btn {
   width: 200px;
   height: 40px;
   background: #f5c34b;
@@ -428,7 +357,7 @@
   line-height: 22px;
   text-align: center;
   color: #041e42;
-}
+} */
 
 .dash_search_add {
   width: 100%;
@@ -441,16 +370,6 @@
 .product_table {
   height: auto;
   margin-top: 50px;
-}
-
-.market_account_set_box {
-  width: 100%;
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 28px;
-  color: #626974;
 }
 
 .img_edit_box {
@@ -505,30 +424,6 @@
   margin-top: 30px;
 }
 
-.market_setting_input_box {
-  display: flex;
-  flex-direction: column;
-  gap: "5px";
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 28px;
-  color: #041e42;
-  width: 450px;
-}
-
-.market_setting_input_box input {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  color: #626974;
-  padding: 10px;
-  border: 1px solid #eaeaea;
-}
-
 .mb_desc {
   width: 930px;
   height: 290px;
@@ -565,32 +460,6 @@
   line-height: 28px;
 }
 
-.note_type {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 28px;
-  color: #041e42;
-}
-.note_text {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 28px;
-  color: #041e42;
-}
-
-.per_box {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 15px;
-  gap: 40px;
-  margin-bottom: 15px;
-}
 .billing_address {
   width: 416px;
   height: 239px;
@@ -617,4 +486,52 @@
   left: 90px;
   z-index: 999;
   background-color: #eaeaea;
+}
+.add_card_mypage {
+  height: 45px;
+  width: 200px;
+  background: #86bc42;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+  opacity: 1;
+  transition: all 0.5s;
+}
+.add_card_mypage:hover {
+  color: #121212;
+  background: #ffffff;
+}
+.coupon_setting_input_box {
+  display: flex;
+  flex-direction: column;
+  gap: "5px";
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 28px;
+  color: #121212;
+  width: 300px;
+  height: 40px;
+}
+.coupon_setting_input_box input {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #121212;
+  padding: 10px;
+  border: 1px solid #eaeaea;
 }

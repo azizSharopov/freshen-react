@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button, Container, Switch, Tab } from "@mui/material";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Marginer from "../../components/marginer";
 const label = { inputProps: { "aria-label": "Switch demo" } };
@@ -14,14 +15,16 @@ export default function AccauntDetail() {
         <span>Account Details</span>
       </Box>
       <TabContext value={value}>
-        <Box className="market_account_set_box">
+        <Box className="market_account_set_box" sx={{ marginLeft: "10px" }}>
           <TabList onChange={handleChange}>
             <Tab
               label="Profile Informations"
               value={"1"}
               sx={{
                 "&.Mui-selected": {
-                  color: "#000000;",
+                  color: "#86bc42;",
+                  fontSize: "18px",
+                  fontWeight: "600",
                 },
                 textTransform: "none",
               }}
@@ -31,17 +34,21 @@ export default function AccauntDetail() {
               value={"2"}
               sx={{
                 "&.Mui-selected": {
-                  color: "#000000;",
+                  color: "#86bc42;",
+                  fontSize: "18px",
+                  fontWeight: "600",
                 },
                 textTransform: "none",
               }}
             ></Tab>
             <Tab
-              label="Permissions"
+              label="Img and SNS link"
               value={"3"}
               sx={{
                 "&.Mui-selected": {
-                  color: "#000000;",
+                  color: "#86bc42;",
+                  fontSize: "18px",
+                  fontWeight: "600",
                 },
                 textTransform: "none",
               }}
@@ -57,7 +64,7 @@ export default function AccauntDetail() {
                   flexDirection: "row",
                   gap: "30px",
                   flexWrap: "wrap",
-                  width: "950px",
+                  width: "900px",
                   marginBottom: "20px",
                 }}
               >
@@ -66,7 +73,7 @@ export default function AccauntDetail() {
                   <input
                     className={"spec_input mb_first_name"}
                     type="text"
-                    placeholder={"Umar"}
+                    placeholder={"Ayden"}
                     name="mb_first_name"
                   />
                 </Box>
@@ -75,7 +82,7 @@ export default function AccauntDetail() {
                   <input
                     className={"spec_input mb_last_name"}
                     type="text"
-                    placeholder={"Rakhmatjonov"}
+                    placeholder={"Sharopov"}
                     name="mb_last_name"
                   />
                 </Box>
@@ -84,7 +91,7 @@ export default function AccauntDetail() {
                   <input
                     className={"spec_input mb_phone"}
                     type="text"
-                    placeholder={"01032025252"}
+                    placeholder={"01082578505"}
                     name="mb_phone"
                   />
                 </Box>{" "}
@@ -93,7 +100,7 @@ export default function AccauntDetail() {
                   <input
                     className={"spec_input mb_email"}
                     type="text"
-                    placeholder={"someone@mail.com"}
+                    placeholder={"sharopovaziz23@mail.com"}
                     name="mb_email"
                   />
                 </Box>
@@ -102,37 +109,50 @@ export default function AccauntDetail() {
                 <Button
                   className="dash_search_btn"
                   sx={{
-                    color: "#000000",
-                    fontSize: "14px",
-                    width: "160px",
-                    height: "40px",
+                    background: "#86BC42",
+                    borderRadius: "4px",
+                    fontFamily: "Lato",
+                    fontStyle: "normal",
+                    fontWeight: "700",
+                    fontSize: "13px",
+                    lineHeight: "16px",
+                    color: "#FFFFFF",
 
-                    border: "2px solid #f5c34b",
-                    backgroundColor: "#f5c34b",
+                    width: "160px",
+                    height: "50px",
+
                     textTransform: "none",
                     "&:hover": {
-                      backgroundColor: "#f5c34b",
+                      color: "#121212",
+                      border: "1px solid #eaeaea",
                     },
                   }}
                 >
-                  Update
+                  UPDATE
                 </Button>
                 <Button
                   className="dash_search_btn"
                   sx={{
-                    color: "#000000",
+                    background: "#86BC42",
+                    borderRadius: "4px",
+                    fontFamily: "Lato",
+                    fontStyle: "normal",
+                    fontWeight: "700",
                     fontSize: "13px",
+                    lineHeight: "16px",
+                    color: "#FFFFFF",
                     marginLeft: "20px",
                     width: "160px",
-                    height: "40px",
-                    border: "2px solid #f5c34b",
+                    height: "50px",
+
                     textTransform: "none",
                     "&:hover": {
-                      backgroundColor: "#f5c34b",
+                      color: "#121212",
+                      border: "1px solid #eaeaea",
                     },
                   }}
                 >
-                  Cancel
+                  CANCEL
                 </Button>
               </Box>
             </Box>
@@ -173,47 +193,60 @@ export default function AccauntDetail() {
               <Button
                 className="dash_search_btn"
                 sx={{
-                  color: "#000000",
-                  fontSize: "14px",
-                  width: "160px",
-                  height: "40px",
+                  background: "#86BC42",
+                  borderRadius: "4px",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "700",
+                  fontSize: "13px",
+                  lineHeight: "16px",
+                  color: "#FFFFFF",
 
-                  border: "2px solid #f5c34b",
-                  backgroundColor: "#f5c34b",
+                  width: "160px",
+                  height: "50px",
+
                   textTransform: "none",
                   "&:hover": {
-                    backgroundColor: "#f5c34b",
+                    color: "#121212",
+                    border: "1px solid #eaeaea",
                   },
                 }}
               >
-                Update Profile
+                UPDATE PROFILE
               </Button>
               <Button
                 className="dash_search_btn"
                 sx={{
-                  color: "#000000",
+                  background: "#86BC42",
+                  borderRadius: "4px",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "700",
                   fontSize: "13px",
+                  lineHeight: "16px",
+                  color: "#FFFFFF",
                   marginLeft: "20px",
                   width: "160px",
-                  height: "40px",
-                  border: "2px solid #f5c34b",
+                  height: "50px",
+
                   textTransform: "none",
                   "&:hover": {
-                    backgroundColor: "#f5c34b",
+                    color: "#121212",
+                    border: "1px solid #eaeaea",
                   },
                 }}
               >
-                Cancel
+                CANCEL
               </Button>
             </Box>
           </TabPanel>
-          <TabPanel value={"3"}>
+          {/* <TabPanel value={"3"}>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "row",
 
-                width: "950px",
+                width: "930px",
                 marginBottom: "20px",
               }}
             >
@@ -221,8 +254,8 @@ export default function AccauntDetail() {
                 <Box>
                   <Box className="note_type">SMS</Box>
                   <Box className="note_text">
-                    Messages to be sent by hitechmart to your mobile phone via
-                    SMS method
+                    Messages to be sent by Freshen to your mobile phone via SMS
+                    method
                   </Box>
                 </Box>
                 <Box>
@@ -234,38 +267,196 @@ export default function AccauntDetail() {
               <Button
                 className="dash_search_btn"
                 sx={{
-                  color: "#000000",
-                  fontSize: "14px",
-                  width: "160px",
-                  height: "40px",
+                  background: "#86BC42",
+                  borderRadius: "4px",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "700",
+                  fontSize: "13px",
+                  lineHeight: "16px",
+                  color: "#FFFFFF",
 
-                  border: "2px solid #f5c34b",
-                  backgroundColor: "#f5c34b",
+                  width: "160px",
+                  height: "50px",
+
                   textTransform: "none",
                   "&:hover": {
-                    backgroundColor: "#f5c34b",
+                    color: "#121212",
+                    border: "1px solid #eaeaea",
                   },
                 }}
               >
-                Update
+                UPDATE
               </Button>
               <Button
                 className="dash_search_btn"
                 sx={{
-                  color: "#000000",
+                  background: "#86BC42",
+                  borderRadius: "4px",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "700",
                   fontSize: "13px",
+                  lineHeight: "16px",
+                  color: "#FFFFFF",
                   marginLeft: "20px",
                   width: "160px",
-                  height: "40px",
-                  border: "2px solid #f5c34b",
+                  height: "50px",
+
                   textTransform: "none",
                   "&:hover": {
-                    backgroundColor: "#f5c34b",
+                    color: "#121212",
+                    border: "1px solid #eaeaea",
                   },
                 }}
               >
-                Cancel
+                CANCEL
               </Button>
+            </Box>
+          </TabPanel> */}
+          <TabPanel value={"3"}>
+            <Box className={"member_media_frame"}>
+              <img
+                src={"/homepage/hand-drawn.jpg"}
+                className={"mb_image"}
+                style={{ borderRadius: "50%" }}
+                width={"100px"}
+                height={"100px"}
+              />
+              <div className={"media_change_box"}>
+                <span>Upload image</span>
+                <p>You can upload images in JPG, JPEG, PNG format!</p>
+                <div className={"up_del_box"}>
+                  <Button component="label" style={{ minWidth: "0" }}>
+                    <CloudDownloadIcon />
+                    <input type="file" hidden />
+                  </Button>
+                </div>
+              </div>
+            </Box>
+            <Box className="market_account_set_box" sx={{ marginTop: "40px" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "30px",
+                  flexWrap: "wrap",
+                  width: "900px",
+                  marginBottom: "20px",
+                }}
+              >
+                <Box className="market_setting_input_box">
+                  <label className={"spec_label"}>
+                    {" "}
+                    <Box>
+                      <img src="/icons/ins.png" alt="fc" />
+                    </Box>
+                    Link Instagram
+                  </label>
+                  <input
+                    className={"spec_input mb_first_name"}
+                    type="text"
+                    placeholder={"Instagram"}
+                    name="mb_first_name"
+                  />
+                </Box>
+                <Box className="market_setting_input_box">
+                  <label className={"spec_label"}>
+                    <Box>
+                      <img
+                        style={{ width: "15px" }}
+                        src="/icons/tg.png"
+                        alt="fc"
+                      />
+                    </Box>
+                    Link Telegram
+                  </label>
+                  <input
+                    className={"spec_input mb_last_name"}
+                    type="text"
+                    placeholder={"Telegram"}
+                    name="mb_last_name"
+                  />
+                </Box>
+                <Box className="market_setting_input_box">
+                  <label className={"spec_label"}>
+                    <Box>
+                      <img src="/icons/fc.png" alt="fc" />
+                    </Box>
+                    Link Facebook
+                  </label>
+                  <input
+                    className={"spec_input mb_phone"}
+                    type="text"
+                    placeholder={"Facebook"}
+                    name="mb_phone"
+                  />
+                </Box>{" "}
+                <Box className="market_setting_input_box">
+                  <label className={"spec_label"}>
+                    <Box>
+                      <img src="/icons/tw1.png" alt="fc" />
+                    </Box>
+                    Link Twitter
+                  </label>
+                  <input
+                    className={"spec_input mb_email"}
+                    type="text"
+                    placeholder={"Twitter"}
+                    name="mb_email"
+                  />
+                </Box>
+              </Box>
+              <Box>
+                <Button
+                  className="dash_search_btn"
+                  sx={{
+                    background: "#86BC42",
+                    borderRadius: "4px",
+                    fontFamily: "Lato",
+                    fontStyle: "normal",
+                    fontWeight: "700",
+                    fontSize: "13px",
+                    lineHeight: "16px",
+                    color: "#FFFFFF",
+
+                    width: "160px",
+                    height: "50px",
+
+                    textTransform: "none",
+                    "&:hover": {
+                      color: "#121212",
+                      border: "1px solid #eaeaea",
+                    },
+                  }}
+                >
+                  UPDATE
+                </Button>
+                <Button
+                  className="dash_search_btn"
+                  sx={{
+                    background: "#86BC42",
+                    borderRadius: "4px",
+                    fontFamily: "Lato",
+                    fontStyle: "normal",
+                    fontWeight: "700",
+                    fontSize: "13px",
+                    lineHeight: "16px",
+                    color: "#FFFFFF",
+                    marginLeft: "20px",
+                    width: "160px",
+                    height: "50px",
+
+                    textTransform: "none",
+                    "&:hover": {
+                      color: "#121212",
+                      border: "1px solid #eaeaea",
+                    },
+                  }}
+                >
+                  CANCEL
+                </Button>
+              </Box>
             </Box>
           </TabPanel>
         </Box>

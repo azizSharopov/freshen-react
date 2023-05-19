@@ -1,4 +1,5 @@
 import React from "react";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {
   Box,
   Container,
@@ -30,99 +31,68 @@ function createData(
 const rows = [
   {
     id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
+    Order: "#2418",
+    Data: "2 Iyun, 2023",
+    Actions: "Paid",
     Status: "Delivered",
-    Total: "$56.00",
+    Total: "$148.99",
   },
   {
     id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
-    Status: "Cancel",
-    Total: "$56.00",
-  },
-  {
-    id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
+    Order: "#2418",
+    Data: "2 Iyun, 2023",
+    Actions: "Paid",
     Status: "Delivered",
-    Total: "$56.00",
+    Total: "$148.99",
   },
   {
     id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
-    Status: "In Progress",
-    Total: "$56.00",
-  },
-  {
-    id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
+    Order: "#2418",
+    Data: "2 Iyun, 2023",
+    Actions: "Paid",
     Status: "Delivered",
-    Total: "$56.00",
+    Total: "$148.99",
   },
   {
     id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
+    Order: "#2418",
+    Data: "2 Iyun, 2023",
+    Actions: "Paid",
     Status: "Delivered",
-    Total: "$56.00",
+    Total: "$148.99",
   },
   {
     id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
+    Order: "#2418",
+    Data: "2 Iyun, 2023",
+    Actions: "Paid",
     Status: "Delivered",
-    Total: "$56.00",
+    Total: "$148.99",
   },
   {
     id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
+    Order: "#2418",
+    Data: "2 Iyun, 2023",
+    Actions: "Paid",
     Status: "Delivered",
-    Total: "$56.00",
+    Total: "$148.99",
   },
   {
     id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
+    Order: "#2418",
+    Data: "2 Iyun, 2023",
+    Actions: "Paid",
     Status: "Delivered",
-    Total: "$56.00",
+    Total: "$148.99",
   },
+
   {
     id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
+    Order: "#2418",
+    Data: "2 Iyun, 2023",
+    Actions: "Paid",
     Status: "Delivered",
-    Total: "$56.00",
-  },
-  {
-    id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
-    Status: "Delivered",
-    Total: "$56.00",
-  },
-  {
-    id: 1,
-    Product: "Lenovo IdeaPad 3 15.6 Laptop - Sand ",
-    Date: "Aug 15, 2020",
-    Payment: "Paid",
-    Status: "Delivered",
-    Total: "$56.00",
+    Total: "$148.99",
   },
 ];
 
@@ -132,86 +102,71 @@ export default function AccauntOrders() {
       <Box className="dash_head_text" sx={{ marginBottom: "20px" }}>
         <span>Order</span>
       </Box>
-      <Box className="dash_product_tab" sx={{ width: "1000px" }}>
+      <Box className="dash_product_tab" sx={{ width: "900px" }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 750 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow
                 sx={{
-                  backgroundColor: "#F3F5F6",
+                  backgroundColor: "#ebebeb",
                   borderRadius: "6px",
                   mb: "10px",
                 }}
               >
                 <TableCell
                   sx={{
-                    fontSize: "14px",
+                    width: "150px",
+                    fontSize: "13px",
                     fontWeight: "500",
-                    fontFamily: "Jost",
-                    paddingLeft: "10px",
-                  }}
-                >
-                  ID
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: "500",
-                    fontFamily: "Jost",
+                    fontFamily: "Lato",
                     paddingLeft: "15px",
                   }}
                 >
-                  Order's products
+                  ORDER
                 </TableCell>
                 <TableCell
                   sx={{
-                    fontSize: "14px",
+                    width: "150px",
+                    fontSize: "13px",
                     fontWeight: "500",
-                    fontFamily: "Jost",
+                    fontFamily: "Lato",
+                    paddingLeft: "15px",
+                  }}
+                >
+                  DATA
+                </TableCell>
+                <TableCell
+                  sx={{
+                    width: "150px",
+                    fontSize: "13px",
+                    fontWeight: "500",
+                    fontFamily: "Lato",
                     paddingLeft: "17px",
                   }}
                 >
-                  Date
+                  STATUS
                 </TableCell>
                 <TableCell
                   sx={{
-                    fontSize: "14px",
+                    width: "200px",
+                    fontSize: "13px",
                     fontWeight: "500",
-                    fontFamily: "Jost",
+                    fontFamily: "Lato",
                     paddingLeft: "5px",
                   }}
                 >
-                  Payment
+                  TOTAL
                 </TableCell>
                 <TableCell
                   sx={{
-                    fontSize: "14px",
+                    width: "50px",
+                    fontSize: "13px",
                     fontWeight: "500",
-                    fontFamily: "Jost",
+                    fontFamily: "Lato",
                     paddingLeft: "15px",
                   }}
                 >
-                  Status
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: "500",
-                    fontFamily: "Jost",
-                    paddingLeft: "15px",
-                  }}
-                >
-                  Total
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: "500",
-                    fontFamily: "Jost",
-                    paddingLeft: "15px",
-                  }}
-                >
-                  Action
+                  ACTIONS
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -229,49 +184,29 @@ export default function AccauntOrders() {
                   <TableCell
                     sx={{
                       fontSize: "13px",
-                      fontFamily: "Jost",
+                      fontFamily: "Lato",
                       border: "none",
                     }}
-                    component="th"
-                    scope="row"
                   >
-                    {index + 1}
+                    {row.Order}
                   </TableCell>
                   <TableCell
                     sx={{
                       fontSize: "13px",
-                      fontFamily: "Jost",
+                      fontFamily: "Lato",
                       border: "none",
                     }}
                   >
-                    {row.Product}
+                    {row.Data}
                   </TableCell>
                   <TableCell
                     sx={{
                       fontSize: "13px",
-                      fontFamily: "Jost",
-                      border: "none",
-                    }}
-                  >
-                    {row.Date}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontSize: "13px",
-                      fontFamily: "Jost",
-                      border: "none",
-                    }}
-                  >
-                    {row.Payment}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontSize: "13px",
-                      fontFamily: "Jost",
+                      fontFamily: "Lato",
                       border: "none",
                       color:
                         row.Status === "Delivered"
-                          ? "#00A3FF"
+                          ? "#86bc42"
                           : row.Status === "Cancel"
                           ? "red"
                           : "orange",
@@ -279,10 +214,12 @@ export default function AccauntOrders() {
                   >
                     {row.Status}
                   </TableCell>
+
                   <TableCell
                     sx={{
+                      width: "200px",
                       fontSize: "13px",
-                      fontFamily: "Jost",
+                      fontFamily: "Lato",
                       border: "none",
                     }}
                   >
@@ -290,50 +227,13 @@ export default function AccauntOrders() {
                   </TableCell>
                   <TableCell
                     sx={{
+                      width: "50px",
                       fontSize: "13px",
-                      fontFamily: "Jost",
+                      fontFamily: "Lato",
                       border: "none",
                     }}
                   >
-                    <Button component="label" style={{ minWidth: "0" }}>
-                      <img src="/icons/delete.png" alt="upload" />
-                    </Button>
-                    <Button
-                      className="dash_search_btn"
-                      sx={{
-                        color: "#000000",
-                        fontSize: "11px",
-                        width: "40px",
-                        height: "20px",
-                        marginLeft: "10px",
-                        border: "2px solid #f5c34b",
-
-                        textTransform: "none",
-                        "&:hover": {
-                          backgroundColor: "#f5c34b",
-                        },
-                      }}
-                    >
-                      cancel
-                    </Button>
-                    <Button
-                      className="dash_search_btn"
-                      sx={{
-                        color: "#000000",
-                        fontSize: "11px",
-                        width: "40px",
-                        height: "20px",
-                        marginLeft: "10px",
-                        border: "2px solid #f5c34b",
-
-                        textTransform: "none",
-                        "&:hover": {
-                          backgroundColor: "#f5c34b",
-                        },
-                      }}
-                    >
-                      payment
-                    </Button>
+                    <HighlightOffIcon />
                   </TableCell>
                 </TableRow>
               ))}

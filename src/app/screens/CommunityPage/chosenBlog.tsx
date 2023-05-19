@@ -179,10 +179,6 @@ export default function ChosenBlog() {
                 <span>(34)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Fishs</span>
-                <span>(16)</span>
-              </Box>
-              <Box className="blog_categor1">
                 <span>Vegetables</span>
                 <span>(45)</span>
               </Box>
@@ -195,24 +191,20 @@ export default function ChosenBlog() {
                 <span>(67)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Butter & Egges</span>
+                <span>Freshen</span>
                 <span>(78)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Milks & Creams</span>
+                <span>Latest news</span>
                 <span>(58)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Cofee & Tea</span>
+                <span>Best blogs</span>
                 <span>(89)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Cookies</span>
+                <span>Others</span>
                 <span>(63)</span>
-              </Box>
-              <Box className="blog_categor1">
-                <span>Chocolates</span>
-                <span>(49)</span>
               </Box>
             </Stack>
           </Stack>

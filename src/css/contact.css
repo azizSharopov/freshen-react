@@ -53,7 +53,6 @@
   background: #fff;
   border: 1px solid #ededed;
 
-  box-shadow: 0 20px 30px rgb(25 25 46 / 4%);
   justify-content: center;
   padding: 60px;
 }
@@ -110,7 +109,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
-  color: #4f547b;
+  color: #121212;
 }
 
 .admin_letter_frame .admin_input_box textarea {
@@ -127,5 +126,5 @@
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
-  color: #4f547b;
+  color: #121212;
 }

@@ -390,7 +390,7 @@ export function NavbarCommon(props: any) {
             position={"relative"}
             display={"flex"}
             flexDirection={"row"}
-            width={"50%"}
+            width={"45%"}
             height={"60px"}
             gap="30px"
             alignItems={"center"}
@@ -484,6 +484,7 @@ export function NavbarCommon(props: any) {
           <Stack sx={{ display: "flex", gap: "10px", flexDirection: "row" }}>
             <Box
               sx={{
+                width: "100px",
                 display: "flex",
                 gap: "10px",
                 flexDirection: "row",

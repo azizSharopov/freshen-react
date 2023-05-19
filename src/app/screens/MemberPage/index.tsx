@@ -9,17 +9,23 @@ import AccauntAddress from "./accountAddress";
 import AccauntWishlist from "./accauntWishlist";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import HomeIcon from "@mui/icons-material/Home";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import LogoutIcon from "@mui/icons-material/Logout";
+import ArticleIcon from "@mui/icons-material/Article";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import "../../../css/my_page.css";
+import AccountFollowers from "./accountFollowers";
+import AccountFollowings from "./accountFollowings";
+import AccauntArticle from "./accauntArticle";
+import AccauntCoupon from "./accauntCoupon";
 export default function MemberPage() {
   const [value, setValue] = useState("1");
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
   return (
-    <div>
+    <div style={{ background: "#ffffff" }}>
       <div className="blogPage">
         <div>
           <img src="/homepage/image 28.png" alt="" />
@@ -59,6 +65,27 @@ export default function MemberPage() {
                   sharopovaziz23@gmail.com
                 </Box>
               </Box>
+              <Box className="spes_box">
+                <Box className="spes_type">SNS:</Box>
+                <Box className="sns_icons">
+                  <Box>
+                    <img src="/icons/fc.png" alt="fc" />
+                  </Box>
+                  <Box>
+                    <img src="/icons/tw1.png" alt="fc" />
+                  </Box>
+                  <Box>
+                    <img src="/icons/ins.png" alt="fc" />
+                  </Box>
+                  <Box>
+                    <img
+                      style={{ width: "15px" }}
+                      src="/icons/tg.png"
+                      alt="fc"
+                    />
+                  </Box>
+                </Box>
+              </Box>
               <Marginer
                 direction="horizontal"
                 height="1"
@@ -79,7 +106,7 @@ export default function MemberPage() {
                       <ViewListIcon /> Orders
                     </Box>
                   }
-                  value={"2"}
+                  value={"7"}
                   className="tablist_style"
                   sx={{
                     "&.Mui-selected": {
@@ -93,11 +120,85 @@ export default function MemberPage() {
                     textTransform: "none",
                   }}
                 />
+
                 <Tab
                   label={
                     <Box className="dash_tab">
                       {" "}
-                      <HomeIcon /> Address
+                      <img src="/icons/heart.png" alt="" /> Wishlist
+                    </Box>
+                  }
+                  value={"6"}
+                  className="tablist_style"
+                  sx={{
+                    "&.Mui-selected": {
+                      color: "#000000;",
+                      backgroundColor: "#86bc42",
+                      borderRadius: "5px",
+                    },
+                    textTransform: "none",
+                  }}
+                />
+                <Tab
+                  label={
+                    <Box className="dash_tab">
+                      {" "}
+                      <AccountBalanceWalletIcon /> Coupon
+                    </Box>
+                  }
+                  value={"8"}
+                  className="tablist_style"
+                  sx={{
+                    "&.Mui-selected": {
+                      color: "#000000;",
+                      backgroundColor: "#86bc42",
+                      borderRadius: "5px",
+                    },
+                    textTransform: "none",
+                  }}
+                />
+                <Tab
+                  label={
+                    <Box className="dash_tab">
+                      {" "}
+                      <PeopleAltIcon /> Followers
+                    </Box>
+                  }
+                  value={"5"}
+                  className="tablist_style"
+                  sx={{
+                    "&.Mui-selected": {
+                      color: "#000000;",
+                      backgroundColor: "#86bc42",
+                      borderRadius: "5px",
+                    },
+                    textTransform: "none",
+                  }}
+                />
+                <Tab
+                  label={
+                    <Box className="dash_tab">
+                      {" "}
+                      <PeopleOutlineIcon /> Followings
+                    </Box>
+                  }
+                  value={"4"}
+                  className="tablist_style"
+                  sx={{
+                    "&.Mui-selected": {
+                      color: "#000000;",
+                      backgroundColor: "#86bc42",
+                      borderRadius: "5px",
+                    },
+                    textTransform: "none",
+                  }}
+                />
+
+                <Tab
+                  label={
+                    <Box className="dash_tab">
+                      {" "}
+                      <ArticleIcon /> Articles
                     </Box>
                   }
                   value={"3"}
@@ -115,10 +216,10 @@ export default function MemberPage() {
                   label={
                     <Box className="dash_tab">
                       {" "}
-                      <img src="/icons/heart.png" alt="" /> Wishlist
+                      <HomeIcon /> Address
                     </Box>
                   }
-                  value={"4"}
+                  value={"2"}
                   className="tablist_style"
                   sx={{
                     "&.Mui-selected": {
@@ -129,25 +230,6 @@ export default function MemberPage() {
                     textTransform: "none",
                   }}
                 />
-                <Tab
-                  label={
-                    <Box className="dash_tab">
-                      {" "}
-                      <PeopleAltIcon /> Followers / Followings
-                    </Box>
-                  }
-                  value={"5"}
-                  className="tablist_style"
-                  sx={{
-                    "&.Mui-selected": {
-                      color: "#000000;",
-                      backgroundColor: "#86bc42",
-                      borderRadius: "5px",
-                    },
-                    textTransform: "none",
-                  }}
-                />
-
                 <Tab
                   label={
                     <Box className="dash_tab">
@@ -165,24 +247,6 @@ export default function MemberPage() {
                     textTransform: "none",
                   }}
                 />
-                <Tab
-                  label={
-                    <Box className="dash_tab">
-                      {" "}
-                      <LogoutIcon /> Logout
-                    </Box>
-                  }
-                  value={"6"}
-                  className="tablist_style"
-                  sx={{
-                    "&.Mui-selected": {
-                      color: "#000000;",
-                      backgroundColor: "#86bc42",
-                      borderRadius: "5px",
-                    },
-                    textTransform: "none",
-                  }}
-                />
               </TabList>
             </Box>
             <Box sx={{ background: "#ffffff" }} className="my_page_tabpanels">
@@ -190,17 +254,25 @@ export default function MemberPage() {
                 <AccauntDetail />
               </TabPanel>
               <TabPanel value={"2"}>
-                <AccauntOrders />
-              </TabPanel>
-              <TabPanel value={"3"}>
                 <AccauntAddress />
               </TabPanel>
+              <TabPanel value={"3"}>
+                <AccauntArticle />
+              </TabPanel>
               <TabPanel value={"4"}>
+                <AccountFollowings />
+              </TabPanel>
+              <TabPanel value={"5"}>
+                <AccountFollowers />
+              </TabPanel>
+              <TabPanel value={"6"}>
                 <AccauntWishlist />
               </TabPanel>
-
-              <TabPanel value={"6"}>
-                <h1>logout</h1>
+              <TabPanel value={"7"}>
+                <AccauntOrders />
+              </TabPanel>
+              <TabPanel value={"8"}>
+                <AccauntCoupon />
               </TabPanel>
             </Box>
           </Box>
