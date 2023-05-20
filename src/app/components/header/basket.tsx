@@ -6,6 +6,10 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
 import Marginer from "../marginer";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import ClearIcon from "@mui/icons-material/Clear";
+import ControlPointIcon from "@mui/icons-material/ControlPoint";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 const promote_list = [1, 2, 3];
 
@@ -19,6 +23,7 @@ export default function Basket(props: any) {
   React.useEffect(() => {
     console.log("test");
   }, [product_cnt]);
+
   /** HANDLERS **/
   const handle_cnt_minus = (event: any) => {
     setProduct_cnt((prev) => prev - 1);
@@ -47,8 +52,8 @@ export default function Basket(props: any) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Badge badgeContent={1} color="secondary">
-          <img src="/icons/cart.svg" alt="cartcha" />
+        <Badge badgeContent={3} color="secondary">
+          <img src="/icons/cart.png" alt="cart" />
         </Badge>
       </IconButton>
       <Menu
@@ -97,20 +102,20 @@ export default function Basket(props: any) {
                 minWidth: "0",
                 width: "30px",
                 height: "30px",
-                backgroundColor: "#eaeaea",
+                background: "#d53f20",
                 position: "absolute",
                 top: "30px",
                 left: "410px",
               }}
             >
-              <img style={{ width: "15px" }} src="/icons/x.png" alt="upload" />
+              <HighlightOffIcon />
             </Button>
           </Box>
 
           <Box className={"orders_main_wrapper"}>
             <Box className={"orders_wrapper"}>
               {promote_list.map(() => {
-                const image_path = "/homepage/laptop.png";
+                const image_path = "/shop_photo/natural-tomatoes.jpg";
                 return (
                   <>
                     <Box className={"basket_info_box"}>
@@ -118,6 +123,9 @@ export default function Basket(props: any) {
                         className="x_btn"
                         component="label"
                         style={{
+                          marginTop: "5px",
+                          background: "#ffffff",
+                          color: "#d53f20",
                           minWidth: "0",
                           width: "20px",
                           height: "20px",
@@ -126,11 +134,7 @@ export default function Basket(props: any) {
                           left: "390px",
                         }}
                       >
-                        <img
-                          style={{ width: "10px" }}
-                          src="/icons/x.png"
-                          alt="upload"
-                        />
+                        <HighlightOffIcon />
                       </Button>
                       <Box>
                         <img src={image_path} className={"product_img"} />
@@ -138,37 +142,30 @@ export default function Basket(props: any) {
                       <Box>
                         <Box>
                           <span className={"product_name"}>
-                            Apple MacBook Pro with Apple M1 Chip
+                            Natural Tomatoes
                           </span>
                         </Box>
                         <Box className="inc_box">
                           <Box
-                            className="count_cart_buy "
-                            sx={{ width: "90px", height: "35px" }}
+                            style={{ marginTop: "7px" }}
+                            onClick={handle_cnt_minus}
                           >
-                            <Box
-                              className="add_change"
-                              sx={{
-                                width: "35px",
-                                height: "35px",
-                                borderRadius: "17.5px",
-                              }}
-                              onClick={handle_cnt_minus}
-                            >
-                              -
-                            </Box>
-                            {product_cnt}
-                            <Box
-                              className="add_change"
-                              sx={{ width: "35px", height: "35px" }}
-                              onClick={handle_cnt_plus}
-                            >
-                              +
-                            </Box>
+                            <RemoveCircleOutlineIcon />
                           </Box>
 
+                          <Box
+                            style={{ marginTop: "7px" }}
+                            onClick={handle_cnt_plus}
+                          >
+                            <ControlPointIcon />
+                          </Box>
+
+                          <Box sx={{ marginLeft: "60px" }}>{product_cnt}</Box>
+                          <Box style={{ marginTop: "7px" }}>
+                            <ClearIcon />
+                          </Box>
                           <Box sx={{ minWidth: 120 }}>
-                            <span>$3.399</span>{" "}
+                            <span>$4.99</span>{" "}
                           </Box>
                         </Box>
                       </Box>
@@ -199,11 +196,9 @@ export default function Basket(props: any) {
                 <span className={"price_text"}>Cart Total</span>
               </Box>
               <Box className="pricebox">
-                Product Subtotal <span>$229</span>
+                Product Subtotal <span>$145</span>
               </Box>
-              <Box className="pricebox">
-                Order Discounts <span>-$30.01</span>
-              </Box>
+
               <Box className="pricebox">
                 Estimated Shipping <span>Free</span>
               </Box>
@@ -214,17 +209,23 @@ export default function Basket(props: any) {
                 bg="#EAEAEA"
                 opsty="1"
               />
-              <Box className="pricebox" sx={{ fontWeight: "600" }}>
-                Total <span>$229</span>
-              </Box>
-              <Button
-                onClick={processOrderHandler}
-                startIcon={<ShoppingCartIcon />}
-                variant={"contained"}
-                sx={{ color: "#041e42" }}
+              <Box
+                className="pricebox"
+                sx={{ fontWeight: "600", marginTop: "10px" }}
               >
-                Place Order
-              </Button>
+                Total <span style={{ color: "#86bc42" }}>$229</span>
+              </Box>
+
+              <Box className="add_card_basket">
+                <Box>
+                  <img
+                    style={{ width: "20px", height: "20px" }}
+                    src="./icons/shopping-cart.png"
+                    alt=""
+                  />{" "}
+                </Box>
+                <Box>SHOPPING CART</Box>
+              </Box>
             </Box>
           ) : (
             ""

@@ -51,7 +51,7 @@ export default function PausedOrders(props: any) {
                   return (
                     <Box className={"ordersName_price"}>
                       <Box className={"priceBox"}>
-                        <Box>
+                        <Box sx={{ marginTop: "10px" }}>
                           <HighlightOffIcon />
                         </Box>
                         <img src={image_path} className={"orderProductImg"} />
@@ -63,7 +63,7 @@ export default function PausedOrders(props: any) {
                         </p>
                       </Box>
                       <Box className={"priceBox"}>
-                        <p>$11</p>
+                        <p style={{ color: "#86bc42" }}>$11</p>
 
                         <p>5</p>
 
@@ -88,7 +88,7 @@ export default function PausedOrders(props: any) {
                 <Button
                   variant="contained"
                   style={{
-                    background: "rgb(196, 9, 9)",
+                    background: "#d53f20",
                     color: "#ffffff",
                     borderRadius: "4px",
                     fontWeight: "700",

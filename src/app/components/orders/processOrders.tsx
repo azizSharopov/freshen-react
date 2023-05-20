@@ -52,7 +52,7 @@ export default function ProcessOrders(props: any) {
                   return (
                     <Box className={"ordersName_price"}>
                       <Box className={"priceBox"}>
-                        <Box>
+                        <Box sx={{ marginTop: "10px" }}>
                           <HighlightOffIcon />
                         </Box>
                         <img src={image_path} className={"orderProductImg"} />
@@ -64,7 +64,7 @@ export default function ProcessOrders(props: any) {
                         </p>
                       </Box>
                       <Box className={"priceBox"}>
-                        <p>$11</p>
+                        <p style={{ color: "#86bc42" }}>$11</p>
 
                         <p>5</p>
 

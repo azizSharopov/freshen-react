@@ -44,8 +44,8 @@
 
   font-family: "Signika";
   font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 13px;
   line-height: 24px;
   text-transform: uppercase;
   color: #121212;
@@ -205,9 +205,9 @@
   align-items: center;
   font-family: "Lato";
   font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
   color: #121212;
 }
 .total_price_box {

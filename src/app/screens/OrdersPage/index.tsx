@@ -73,8 +73,8 @@ export function OrdersPage() {
                 >
                   <Tab
                     sx={{
-                      fontWeight: "600",
-                      fontSize: "16px",
+                      fontWeight: "700",
+                      fontSize: "13px",
                       color: "#121212",
                       fontFamily: "Signika",
                       lineHeight: "24px",
@@ -93,8 +93,8 @@ export function OrdersPage() {
                   />
                   <Tab
                     sx={{
-                      fontWeight: "600",
-                      fontSize: "16px",
+                      fontWeight: "700",
+                      fontSize: "13px",
                       color: "#121212",
                       fontFamily: "Signika",
                       lineHeight: "24px",
@@ -112,8 +112,8 @@ export function OrdersPage() {
                   />
                   <Tab
                     sx={{
-                      fontWeight: "600",
-                      fontSize: "16px",
+                      fontWeight: "700",
+                      fontSize: "13px",
                       color: "#121212",
                       fontFamily: "Signika",
                       lineHeight: "24px",

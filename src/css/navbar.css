@@ -130,3 +130,188 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/* START BASKET */
+
+.basket_frame {
+  position: relative;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 16px;
+}
+.inc_box {
+  display: flex;
+  width: 350px;
+  margin-top: 7px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inc_box span {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: #86bc42;
+}
+
+.basket_frame .all_check_box {
+  padding: 30px 30px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  border-bottom: 1px solid #eaeaea;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #121212;
+}
+
+.basket_frame .basket_info_box {
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  height: auto;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.basket_info_box .product_img {
+  width: 60px;
+  height: 60px;
+}
+
+.basket_info_box .product_name {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #121212;
+  margin-bottom: 10px;
+}
+
+/* .basket_info_box .product_price {
+  width: 80px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: #ae0000;
+} */
+
+.basket_info_box
+  .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 6.5px 14px;
+}
+
+.basket_info_box .css-ece9u5 {
+  min-width: 72px;
+}
+
+.basket_frame .cancel_btn {
+  position: absolute;
+  top: 32%;
+  right: 3%;
+  cursor: pointer;
+}
+
+.basket_frame .to_order_box {
+  margin-top: 15px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 45px;
+}
+.pricebox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #121212;
+}
+.pricebox span {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+.to_order_box .price_text {
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #121212;
+}
+
+.basket_frame .orders_wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.basket_frame .orders_main_wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 260px;
+
+  display: flex;
+  flex-direction: column;
+}
+.add_card_basket {
+  margin-left: 70px;
+  height: 40px;
+  width: 300px;
+  position: relative;
+  margin-bottom: 10px;
+  background: #86bc42;
+  box-shadow: 0px 5px 20px rgba(0, 83, 246, 0.1);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+  opacity: 1;
+  transition: all 0.5s;
+}
+.add_card_basket:hover {
+  color: #121212;
+}
+/* END BASKET */
