@@ -366,7 +366,7 @@ export function NavbarCommon(props: any) {
             <Button
               variant="contained"
               style={{
-                width: "240px",
+                width: "200px",
                 height: "50px",
                 background: "#86BC42",
                 borderRadius: "4px",
@@ -390,7 +390,7 @@ export function NavbarCommon(props: any) {
             position={"relative"}
             display={"flex"}
             flexDirection={"row"}
-            width={"45%"}
+            width={"55%"}
             height={"60px"}
             gap="30px"
             alignItems={"center"}
@@ -429,6 +429,18 @@ export function NavbarCommon(props: any) {
                 activeClassName="underline"
               >
                 BLOGS
+              </NavLink>
+            </Box>
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink
+                to="/orders"
+                style={{
+                  color: "#121212",
+                  textDecoration: "none",
+                }}
+                activeClassName="underline"
+              >
+                ORDER
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>

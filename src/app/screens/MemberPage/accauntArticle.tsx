@@ -7,8 +7,34 @@ const blogs_list = Array.from(Array(6).keys());
 export default function AccauntArticle() {
   return (
     <Box>
-      <Box className="dash_head_text" sx={{ marginBottom: "30px" }}>
+      <Box
+        className="dash_head_text"
+        sx={{
+          marginBottom: "30px",
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
         <span>Articles</span>
+        <Button
+          variant="contained"
+          style={{
+            width: "200px",
+            height: "40px",
+            background: "#86BC42",
+            borderRadius: "4px",
+            fontFamily: "Lato",
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontSize: "13px",
+            lineHeight: "16px",
+            color: "#FFFFFF",
+            position: "relative",
+          }}
+          // onClick={() => setValue(!value)}
+        >
+          Create Post
+        </Button>
       </Box>
       <Box
         sx={{

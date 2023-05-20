@@ -6,6 +6,10 @@
   width: 182px;
   height: 155px;
 }
+.admin_input_box:focus {
+  outline: none; /* Optional: Remove default focus outline */
+  border-color: #86bc42; /* Change the border color when focused */
+}
 .contact_text {
   width: 182px;
   height: 24px;
@@ -88,8 +92,8 @@
   font-family: "Verdana";
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 13px;
+  line-height: 24px;
   /* identical to box height */
   /* Head - Color */
   color: #121212;
@@ -111,7 +115,14 @@
   line-height: 26px;
   color: #121212;
 }
-
+.admin_input_box textarea:focus {
+  outline: none;
+  border-color: #86bc42;
+  box-shadow: 0 0 0 1px #86bc42;
+}
+.admin_input_box input:focus {
+  border-color: #86bc42;
+}
 .admin_letter_frame .admin_input_box textarea {
   margin-top: 10px;
   padding: 20px;

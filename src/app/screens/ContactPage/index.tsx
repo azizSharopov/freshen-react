@@ -117,14 +117,20 @@ export function ContactPage() {
               >
                 <div className={"admin_input_box"}>
                   <label>Name</label>
-                  <input type={"text"} name={"mb_nick"} placeholder={"Name"} />
+                  <input
+                    className={"spec_input mb_first_name"}
+                    type="text"
+                    placeholder={"Ayden"}
+                    name="mb_first_name"
+                  />
                 </div>
                 <div className={"admin_input_box"}>
                   <label>Email</label>
                   <input
-                    type={"text"}
-                    name={"mb_email"}
-                    placeholder={"Email"}
+                    className={"spec_input mb_email"}
+                    type="text"
+                    placeholder={"sharopovaziz23@mail.com"}
+                    name="mb_email"
                   />
                 </div>
                 <div className={"admin_input_box"}>
@@ -148,7 +154,7 @@ export function ContactPage() {
                       fontStyle: "normal",
                       fontWeight: "700",
                       fontSize: "13px",
-                      lineHeight: "16px",
+                      lineHeight: "24px",
                       color: "#FFFFFF",
                       position: "relative",
                     }}

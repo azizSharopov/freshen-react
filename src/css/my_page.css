@@ -463,13 +463,15 @@
 .billing_address {
   width: 416px;
   height: 239px;
-  font-family: "Jost";
+  font-family: "Lato";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 28px;
-  color: #041e42;
+  line-height: 24px;
+  color: #121212;
   margin-top: 20px;
+  text-align: start;
+  border-radius: 4px;
   background-color: white;
 }
 .dash_product_tab span {

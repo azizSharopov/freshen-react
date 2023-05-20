@@ -46,20 +46,29 @@ sharopovaziz23@gmail.com
               width: "400px",
             }}
           >
-            <span style={{ fontWeight: "550" }}>Billing Address</span>{" "}
+            <span
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "24px",
+                color: "#121212",
+              }}
+            >
+              Billing Address
+            </span>{" "}
             {!isEditing ? (
               <Button
                 className="dash_search_btn"
                 onClick={handleEditClick}
                 sx={{
-                  color: "#000000",
-                  fontSize: "16px",
-                  boxShadow: "none",
-                  width: "60px",
-                  height: "20px",
-                  marginLeft: "10px",
-                  textDecoration: "underline",
-                  textTransform: "none",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  fontSize: "13px",
+                  lineHeight: "24px",
+                  color: "#121212",
                   "&:hover": {
                     backgroundColor: "none",
                     color: "#86bc42",
@@ -73,14 +82,12 @@ sharopovaziz23@gmail.com
                 className="dash_search_btn"
                 onClick={handleSaveClick}
                 sx={{
-                  color: "#000000",
-                  fontSize: "16px",
-                  boxShadow: "none",
-                  width: "60px",
-                  height: "20px",
-                  marginLeft: "10px",
-                  textDecoration: "underline",
-                  textTransform: "none",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  fontSize: "13px",
+                  lineHeight: "24px",
+                  color: "#121212",
                   "&:hover": {
                     backgroundColor: "none",
                     color: "#86bc42",
@@ -93,7 +100,7 @@ sharopovaziz23@gmail.com
           </Box>
           <Box>
             <textarea
-              style={{ border: isEditing ? "1px solid black" : "none" }}
+              style={{ border: isEditing ? "1px solid #86bc42" : "none" }}
               className="billing_address"
               name="mb_address"
               value={addressValue}
@@ -112,20 +119,29 @@ sharopovaziz23@gmail.com
               width: "400px",
             }}
           >
-            <span style={{ fontWeight: "550" }}>Shipping Address</span>{" "}
+            <span
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "24px",
+                color: "#121212",
+              }}
+            >
+              Shipping Address
+            </span>{" "}
             {!isEditing ? (
               <Button
                 className="dash_search_btn"
                 onClick={handleEditClick}
                 sx={{
-                  color: "#000000",
-                  fontSize: "16px",
-                  boxShadow: "none",
-                  width: "60px",
-                  height: "20px",
-                  marginLeft: "10px",
-                  textDecoration: "underline",
-                  textTransform: "none",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  fontSize: "13px",
+                  lineHeight: "24px",
+                  color: "#121212",
                   "&:hover": {
                     backgroundColor: "none",
                     color: "#86bc42",
@@ -139,14 +155,12 @@ sharopovaziz23@gmail.com
                 className="dash_search_btn"
                 onClick={handleSaveClick}
                 sx={{
-                  color: "#000000",
-                  fontSize: "16px",
-                  boxShadow: "none",
-                  width: "60px",
-                  height: "20px",
-                  marginLeft: "10px",
-                  textDecoration: "underline",
-                  textTransform: "none",
+                  fontFamily: "Lato",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  fontSize: "13px",
+                  lineHeight: "24px",
+                  color: "#121212",
                   "&:hover": {
                     backgroundColor: "none",
                     color: "#86bc42",
@@ -159,7 +173,7 @@ sharopovaziz23@gmail.com
           </Box>
           <Box>
             <textarea
-              style={{ border: isEditing ? "1px solid black" : "none" }}
+              style={{ border: isEditing ? "1px solid #86bc42" : "none" }}
               className="billing_address"
               name="mb_address"
               value={addressValue}

@@ -101,22 +101,40 @@ export function HelpPage() {
                   {" "}
                   <Tab
                     sx={{
+                      fontWeight: "700",
+                      fontSize: "13px",
+                      color: "#121212",
+                      fontFamily: "Signika",
+                      lineHeight: "24px",
+
                       "&.Mui-selected": {
-                        color: "#86bc42;",
-                        fontWeight: "600",
+                        backgroundColor: "#86bc42",
+                        borderRadius: "4px",
+                        border: "none !important",
+                        boxShadow: "none",
+                        outline: "none",
                       },
-                      textTransform: "none",
+                      textTransform: "uppercase",
                     }}
                     label="Rules"
                     value={"1"}
                   />
                   <Tab
                     sx={{
+                      fontWeight: "700",
+                      fontSize: "13px",
+                      color: "#121212",
+                      fontFamily: "Signika",
+                      lineHeight: "24px",
+
                       "&.Mui-selected": {
-                        color: "#86bc42;",
-                        fontWeight: "600",
+                        backgroundColor: "#86bc42",
+                        borderRadius: "4px",
+                        border: "none !important",
+                        boxShadow: "none",
+                        outline: "none",
                       },
-                      textTransform: "none",
+                      textTransform: "uppercase",
                     }}
                     label="FAQ"
                     value={"2"}
@@ -145,10 +163,34 @@ export function HelpPage() {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                           >
-                            <Typography>{ele.question}</Typography>
+                            <Typography
+                              sx={{
+                                fontFamily: "Lato",
+                                fontStyle: "normal",
+                                fontWeight: "400",
+                                fontSize: "16px",
+                                lineHeight: "24px",
+
+                                color: "#121212",
+                              }}
+                            >
+                              {ele.question}
+                            </Typography>
                           </AccordionSummary>
                           <AccordionDetails>
-                            <Typography>{ele.answer}</Typography>
+                            <Typography
+                              sx={{
+                                fontFamily: "Lato",
+                                fontStyle: "normal",
+                                fontWeight: "400",
+                                fontSize: "16px",
+                                lineHeight: "24px",
+
+                                color: "#121212",
+                              }}
+                            >
+                              {ele.answer}
+                            </Typography>
                           </AccordionDetails>
                         </Accordion>
                       );

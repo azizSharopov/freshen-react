@@ -47,7 +47,7 @@ body {
 }
 
 .select {
-  border: 2px solid rgba(33, 30, 30, 0.1);
+  border: 2px solid #ebebeb;
 }
 .searchselect {
   font-family: "Lato";

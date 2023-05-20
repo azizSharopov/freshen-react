@@ -21,6 +21,12 @@ export default function AccauntDetail() {
               label="Profile Informations"
               value={"1"}
               sx={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "24px",
+                color: "#121212",
                 "&.Mui-selected": {
                   color: "#86bc42;",
                   fontSize: "18px",
@@ -33,6 +39,12 @@ export default function AccauntDetail() {
               label="Password"
               value={"2"}
               sx={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "24px",
+                color: "#121212",
                 "&.Mui-selected": {
                   color: "#86bc42;",
                   fontSize: "18px",
@@ -45,6 +57,12 @@ export default function AccauntDetail() {
               label="Img and SNS link"
               value={"3"}
               sx={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "24px",
+                color: "#121212",
                 "&.Mui-selected": {
                   color: "#86bc42;",
                   fontSize: "18px",

@@ -64,12 +64,13 @@
 
 .theRules_box .theRulesFrame p {
   border-bottom: 1px solid #ddd;
-  color: #000;
-  font-family: "Roboto, Helvetica, Arial, sans-serif";
-  font-size: 1rem;
+  font-family: "Lato";
+  font-style: normal;
   font-weight: 400;
-  letter-spacing: 0.00938em;
-  line-height: 2.5;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: start;
+  color: #121212;
 }
 
 .help_page .help_main_content {

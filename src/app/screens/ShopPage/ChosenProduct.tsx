@@ -319,11 +319,20 @@ export default function ChosenPage() {
                   value={"1"}
                   className="tablist_style"
                   sx={{
+                    fontWeight: "700",
+                    fontSize: "13px",
+                    color: "#121212",
+                    fontFamily: "Signika",
+                    lineHeight: "24px",
+
                     "&.Mui-selected": {
-                      color: "#000000;",
-                      borderBottom: "2px solid #000000",
-                      borderColor: "#86bc42",
+                      backgroundColor: "#86bc42",
+                      borderRadius: "4px",
+                      border: "none !important",
+                      boxShadow: "none",
+                      outline: "none",
                     },
+                    textTransform: "uppercase",
                   }}
                 />
                 <Tab
@@ -335,11 +344,20 @@ export default function ChosenPage() {
                   value={"2"}
                   className="tablist_style"
                   sx={{
-                    "&.Mui-selected ": {
-                      color: "#000000;",
-                      borderBottom: "2px solid #000000",
-                      borderColor: "#86bc42;",
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    color: "#121212",
+                    fontFamily: "Signika",
+                    lineHeight: "24px",
+
+                    "&.Mui-selected": {
+                      backgroundColor: "#86bc42",
+                      borderRadius: "4px",
+                      border: "none !important",
+                      boxShadow: "none",
+                      outline: "none",
                     },
+                    textTransform: "uppercase",
                   }}
                 />
                 <Tab
@@ -347,11 +365,20 @@ export default function ChosenPage() {
                   value={"3"}
                   className="tablist_style"
                   sx={{
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    color: "#121212",
+                    fontFamily: "Signika",
+                    lineHeight: "24px",
+
                     "&.Mui-selected": {
-                      color: "#000000;",
-                      borderBottom: 2,
-                      borderColor: "#86bc42;",
+                      backgroundColor: "#86bc42",
+                      borderRadius: "4px",
+                      border: "none !important",
+                      boxShadow: "none",
+                      outline: "none",
                     },
+                    textTransform: "uppercase",
                   }}
                 />
               </TabList>
