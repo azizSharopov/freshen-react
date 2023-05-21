@@ -340,25 +340,22 @@
   align-items: center;
   cursor: "pointer";
   /* margin-bottom: 15px; */
-  border: 3px solid #ffffff;
+  border: 1px solid #ffffff;
 }
 .products_sliderbest {
   height: 395px;
   display: flex;
-
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+
   border: 1px solid #ffffff;
+  z-index: 1;
 }
 .product_sale_info {
-  position: absolute;
   width: 59px;
   height: 24px;
-  margin-right: 220px;
-  margin-bottom: 150px;
-  z-index: 4;
-  background: #cf3e3b;
+  z-index: 6;
+  margin-top: 20px;
+  background: #d53f20;
   border-radius: 60px;
   font-family: "Lato";
   font-style: normal;
@@ -375,21 +372,20 @@
 
 .products_slider_img_best {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 220px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
+
   z-index: 2;
 }
 .products_sliderbest:hover .products_slider_img_best img {
   width: 190px;
   height: 190px;
+  z-index: 3;
 }
 .products_slider_img_best img {
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 220px;
   transition: all 0.5s;
 }
 .add_card_btnbest {
@@ -418,31 +414,55 @@
   opacity: 0;
   transition: all 0.5s;
 }
-
-.like_view_boxbest {
+.add_card_deal {
+  height: 45px;
+  width: 240px;
   position: absolute;
-  height: 115px;
-  width: 31px;
-  top: -45px;
-  right: 35px;
+  margin-top: 180px;
+  z-index: 8;
+  background: #86bc42;
+  box-shadow: 0px 5px 20px rgba(0, 83, 246, 0.1);
+  border-radius: 6px;
   display: flex;
+  flex-direction: row;
+  gap: 10px;
   justify-content: center;
   align-items: center;
-}
-.like_view_btnbest {
-  height: 34px;
-  width: 30px;
-  border-radius: 50%;
-}
-.like_view_box2best {
-  height: 34px;
-  width: 34px;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
   opacity: 0;
-  border-radius: 50%;
   transition: all 0.5s;
 }
 
+.like_view_boxbest {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background: #ffffff;
+  margin-top: 20px;
+  margin-left: 200px;
+  border: 1px solid #86bc42;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 40px;
+  z-index: 4;
+  opacity: 0;
+}
+.like_view_boxbest img {
+  position: absolute;
+  width: 16px;
+  height: 14px;
+}
+
 .productsbest:hover .add_card_btnbest {
+  opacity: 1;
+}
+.productsbest:hover .add_card_deal {
   opacity: 1;
 }
 /* .productsbest:hover .product_price_currentbest {
@@ -451,14 +471,13 @@
 .productsbest:hover .product_pricebest {
   opacity: 0;
 }
-.products_sliderbest:hover .like_view_box2best {
+.products_sliderbest:hover .like_view_boxbest {
   opacity: 1;
 }
 
-.like_view_btnbest:hover {
-  background: #f3f5f6;
-  box-shadow: 0px 10px 25px rgba(4, 30, 66, 0.05);
-  z-index: 3;
+.products_sliderbest:hover .like_view_boxbest img {
+  width: 16px;
+  height: 14px;
 }
 .product_infobest {
   text-align: center;
@@ -472,7 +491,7 @@
 }
 .product_infosale {
   text-align: center;
-  width: 200px;
+  width: 240px;
   height: 160px;
   display: flex;
   flex-direction: column;

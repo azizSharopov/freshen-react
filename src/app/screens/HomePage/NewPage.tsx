@@ -103,23 +103,7 @@ export function NewPage() {
                     />
 
                     <Box className="like_view_boxbest">
-                      <Box className="like_view_box2best">
-                        <Button
-                          className={"like_view_btnbest"}
-                          style={{ left: "36px" }}
-                          disableTouchRipple
-                        >
-                          {/* hover -> */}
-                          <Checkbox
-                            icon={<FavoriteBorder style={{ color: "black" }} />}
-                            id={`${index}`}
-                            checkedIcon={<Favorite style={{ color: "red" }} />}
-                            checked={false}
-                            disableTouchRipple
-                          />
-                        </Button>
-                      </Box>
-                      <Box className="like_view_box2best"></Box>
+                      <img src="/icons/heart_green.png" alt="" />
                     </Box>
                   </Box>
                   <Box className="product_infobest">

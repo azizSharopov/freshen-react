@@ -101,44 +101,40 @@ export function DealPage() {
                 className="productsbest"
               >
                 <Box className="products_sliderbest">
-                  <Box className="products_slider_img_best">
-                    <img src="/homepage/ripe-blueberries.jpg" alt="" />
-                    <Box
-                      className="add_card_btnbest"
-                      sx={{ marginBottom: "0px" }}
-                    >
-                      <Box>
-                        <img
-                          style={{ width: "20px", height: "20px" }}
-                          src="/icons/shopping-cart.png"
-                          alt=""
-                        />{" "}
-                      </Box>
-                      <Box>ADD TO CART</Box>
-                    </Box>
-                    <Box className="product_sale_info">-10 %</Box>
+                  <Box
+                    sx={{ zIndex: "5", position: "absolute" }}
+                    className="product_sale_info"
+                  >
+                    -10 %
+                  </Box>
+                  <Box
+                    className="products_slider_img_best"
+                    style={{ width: "240px", height: "220px" }}
+                  >
+                    <img
+                      style={{ width: "240px", height: "220px" }}
+                      src="/homepage/ripe-blueberries.jpg"
+                      alt=""
+                    />
 
-                    <Box className="like_view_boxbest">
-                      <Box className="like_view_box2best">
-                        <Button
-                          className={"like_view_btnbest"}
-                          style={{ left: "36px" }}
-                          disableTouchRipple
-                        >
-                          {/* hover -> */}
-                          <Checkbox
-                            icon={<FavoriteBorder style={{ color: "black" }} />}
-                            id={`${index}`}
-                            checkedIcon={<Favorite style={{ color: "red" }} />}
-                            checked={false}
-                            disableTouchRipple
-                          />
-                        </Button>
-                      </Box>
-                      <Box className="like_view_box2best"></Box>
+                    <Box
+                      sx={{ zIndex: "6", position: "absolute" }}
+                      className="like_view_boxbest"
+                    >
+                      <img src="/icons/heart_green.png" alt="" />
                     </Box>
                   </Box>
-                  <Box className="product_infosale">
+                  <Box className="add_card_deal" sx={{ marginBottom: "0px" }}>
+                    <Box>
+                      <img
+                        style={{ width: "20px", height: "20px" }}
+                        src="/icons/shopping-cart.png"
+                        alt=""
+                      />{" "}
+                    </Box>
+                    <Box>ADD TO CART</Box>
+                  </Box>
+                  <Box className="product_infosale" sx={{ marginTop: "30px" }}>
                     <Box className="brand_namebest">FRUITS</Box>
                     <Box className="product_retingbest">
                       <Rating
@@ -161,9 +157,10 @@ export function DealPage() {
                       sx={{
                         display: "flex",
                         flexDirection: "column",
+
                         width: "240px",
                         height: "41px",
-                        marginBottom: "15px",
+                        marginBottom: "45px",
                       }}
                     >
                       <Box

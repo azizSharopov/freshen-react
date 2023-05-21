@@ -264,30 +264,23 @@ export function AllProducts() {
                   <img
                     style={{
                       backgroundSize: "cover",
-                      width: "200px",
-                      height: "200px",
+                      width: "240px",
+                      height: "220px",
                     }}
                     src="/homepage/cucumber.jpg"
                     alt=""
                   />
-
-                  <Box className="like_view_boxbest">
-                    <Box className="like_view_box2best">
-                      <Button
-                        className={"like_view_btnbest"}
-                        style={{ left: "36px" }}
-                        disableTouchRipple
-                      >
-                        <Checkbox
-                          icon={<FavoriteBorder style={{ color: "black" }} />}
-                          id={`${index}`}
-                          checkedIcon={<Favorite style={{ color: "red" }} />}
-                          checked={false}
-                          disableTouchRipple
-                        />
-                      </Button>
-                    </Box>
-                    <Box className="like_view_box2best"></Box>
+                  <Box
+                    sx={{ zIndex: "5", position: "absolute" }}
+                    className="product_sale_shop"
+                  >
+                    -10 %
+                  </Box>
+                  <Box
+                    sx={{ marginBottom: "130px" }}
+                    className="like_view_boxbest"
+                  >
+                    <img src="/icons/heart_green.png" alt="" />
                   </Box>
                 </Box>
                 <Box className="product_infobest">
