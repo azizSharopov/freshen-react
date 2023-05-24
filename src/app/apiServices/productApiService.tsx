@@ -14,7 +14,7 @@ class ProductApiService {
 
   async getTargetProducts(data: ProductSearchObj): Promise<Product[]> {
     try {
-      const url = "/products?order=top&page=1&limit=20",
+      const url = "/products",
         result = await axios.post(this.path + url, data, {
           withCredentials: true,
         });

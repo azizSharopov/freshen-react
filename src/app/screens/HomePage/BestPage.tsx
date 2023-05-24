@@ -137,7 +137,7 @@ export function BestPage() {
                     onClick={() => chosenProductHandler(product._id)}
                   >
                     <Box className="products_slider_img_best">
-                      <img src={image_path} alt="" />
+                      <img src={image_path} alt="best product" />
 
                       <Box className="like_view_boxbest">
                         <img src="/icons/heart_green.png" alt="" />
