@@ -75,11 +75,11 @@ export function AdsPage() {
           </Box>
         </SwiperSlide>
 
-        <SwiperSlide style={{ background: "#ffffff" }} className="home_ads">
+        {/* <SwiperSlide style={{ background: "#ffffff" }} className="home_ads">
           <Box className="home_ads1">
             <img src="./admin_photo/large-set.jpg" alt="ads_vege" />
           </Box>
-        </SwiperSlide>
+        </SwiperSlide> */}
         <SwiperSlide>
           <Box className="swiper_box3">
             <Container
@@ -125,11 +125,11 @@ export function AdsPage() {
           </Box>
         </SwiperSlide>
 
-        <SwiperSlide style={{ background: "#ffffff" }} className="home_ads">
+        {/* <SwiperSlide style={{ background: "#ffffff" }} className="home_ads">
           <Box className="home_ads1">
             <img src="./admin_photo/sert.jpg" alt="ads_fruit" />
           </Box>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </div>
   );

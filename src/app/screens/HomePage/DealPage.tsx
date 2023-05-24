@@ -95,7 +95,7 @@ export function DealPage() {
               <SwiperSlide
                 style={{
                   cursor: "pointer",
-                  border: "1px solid #41544A",
+                  border: "1px solid #eaeaea",
                 }}
                 key={index}
                 className="productsbest"

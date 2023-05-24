@@ -1,7 +1,6 @@
 import { Box, Button, Checkbox, Container, Rating, Stack } from "@mui/material";
 import { Favorite } from "@mui/icons-material";
 import React, { useState, useEffect, useRef } from "react";
-import { useHistory } from "react-router-dom";
 import assert from "assert";
 import StarIcon from "@mui/icons-material/Star";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,17 +9,53 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { Autoplay, Pagination, Navigation } from "swiper";
 
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Badge from "@mui/material/Badge";
 // REDUX
-
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
+import { setBestProducts } from "../../screens/HomePage/slice";
+import { Product } from "../../../types/product";
+import ProductApiService from "../../apiServices/productApiService";
+import { retrieveBestProducts } from "./selector";
+import { createSelector } from "reselect";
+import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
-const shop_list = Array.from(Array(10).keys());
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setBestProducts: (data: Product[]) => dispach(setBestProducts(data)),
+});
+
+/** REDUX SELECTOR */
+const bestProductRetriever = createSelector(
+  retrieveBestProducts,
+  (bestProducts) => ({
+    bestProducts,
+  })
+);
+
 export function BestPage() {
+  /** INITIALIZATIONS */
+  const history = useHistory();
+  const { setBestProducts } = actionDispatch(useDispatch());
+  const { bestProducts } = useSelector(bestProductRetriever);
+
+  useEffect(() => {
+    const productService = new ProductApiService();
+    productService
+      .getTargetProducts({ order: "product_likes", page: 1, limit: 200 })
+      .then((data) => setBestProducts(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  /** HANDLERS */
+  const chosenProductHandler = (id: string) => {
+    history.push(`/shop/product/${id}`);
+  };
   return (
     <div
       style={{
@@ -73,7 +108,7 @@ export function BestPage() {
             className={"best_products_wrapper"}
             slidesPerView={4}
             centeredSlides={false}
-            spaceBetween={10}
+            spaceBetween={30}
             navigation={{
               nextEl: ".shop-next",
               prevEl: ".shop-prev",
@@ -82,23 +117,27 @@ export function BestPage() {
               el: ".swiper-pagination",
               clickable: true,
             }}
+            modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,
             }}
           >
-            {shop_list.map((ele, index) => {
+            {bestProducts.map((product: Product) => {
+              const image_path = `${serverApi}/${product.product_images[0]}`;
               return (
                 <SwiperSlide
                   style={{
                     cursor: "pointer",
                   }}
-                  key={index}
                   className="productsbest"
                 >
-                  <Box className="products_sliderbest">
+                  <Box
+                    className="products_sliderbest"
+                    onClick={() => chosenProductHandler(product._id)}
+                  >
                     <Box className="products_slider_img_best">
-                      <img src="/homepage/strawberry.jpg" alt="" />
+                      <img src={image_path} alt="" />
 
                       <Box className="like_view_boxbest">
                         <img src="/icons/heart_green.png" alt="" />
@@ -115,7 +154,7 @@ export function BestPage() {
                         />
                       </Box>
                       <Box className="product_namebest">
-                        Fresh Strawberry - 100% Organic. Natural
+                        {product.product_name}
                       </Box>
                       <Box className="add_card_btnbest">
                         <Box>

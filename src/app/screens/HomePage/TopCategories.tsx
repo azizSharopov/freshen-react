@@ -4,10 +4,24 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Autoplay, Pagination, Navigation } from "swiper";
 
-const shop_list = Array.from(Array(10).keys());
+// REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTopShops } from "../../screens/HomePage/selector";
+import { Shop } from "../../../types/user";
+import { serverApi } from "../../../lib/config";
+
+/** REDUX SELECTOR */
+const topShopRetriever = createSelector(retrieveTopShops, (topShops) => ({
+  topShops,
+}));
 
 export function TopCategories() {
+  const { topShops } = useSelector(topShopRetriever);
+  console.log("topShops:::", topShops);
+
   return (
     <div style={{ background: "#ffffff" }}>
       <Container className="home_top_categ">
@@ -32,12 +46,22 @@ export function TopCategories() {
               nextEl: ".shop-next",
               prevEl: ".shop-prev",
             }}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
           >
-            {shop_list.map((ele, index) => {
+            {topShops.map((ele: Shop) => {
+              const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <SwiperSlide
                   style={{ cursor: "pointer" }}
-                  key={index}
+                  key={ele._id}
                   className={"shop_avatars"}
                 >
                   <Box className="home_top_cat">
@@ -50,11 +74,11 @@ export function TopCategories() {
                           transition:
                             "opacity 0.2s ease-in-out, transform 0.2s ease-in-out",
                         }}
-                        src="./homepage/steak.png"
+                        src={image_path}
                         alt="home_food"
                       />
                     </Box>
-                    <Box className="home_top_tex">Fresh Meat</Box>
+                    <Box className="home_top_tex">{ele.mb_nick}</Box>
                   </Box>
                 </SwiperSlide>
               );

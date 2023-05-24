@@ -344,182 +344,183 @@ export function NavbarCommon(props: any) {
             </Box>
           </Box>
         </Stack>
-
-        <Marginer
-          direction="horizontal"
-          height="2"
-          width="1"
-          bg="#013113"
-          opsty="0.1"
-        />
-        <Stack
-          className="navbar_footer"
-          sx={{
-            flexDirection: "row",
-            justifyContent: "space-around",
-            position: "relative",
-          }}
-        >
-          <Box className="nav_footer">
-            {/* {!verifiedMemberData ? ( */}
-            <Button
-              variant="contained"
-              style={{
-                width: "200px",
-                height: "50px",
-                background: "#86BC42",
-                borderRadius: "4px",
-                fontFamily: "Lato",
-                fontStyle: "normal",
-                fontWeight: "700",
-                fontSize: "13px",
-                lineHeight: "16px",
-                color: "#FFFFFF",
-                position: "relative",
-              }}
-              // onClick={() => setValue(!value)}
-              onClick={props.handleSignUpOpen}
-            >
-              Sign up
-            </Button>
-            {/* ) : null} */}
-          </Box>
-
-          <Stack
-            position={"relative"}
-            display={"flex"}
-            flexDirection={"row"}
-            width={"55%"}
-            height={"60px"}
-            gap="30px"
-            alignItems={"center"}
+      </Container>
+      <Marginer
+        direction="horizontal"
+        height="2"
+        width="1"
+        bg="#013113"
+        opsty="0.1"
+      />
+      <Container
+        className="navbar_footer"
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
+        <Stack className="nav_footer">
+          {/* {!verifiedMemberData ? ( */}
+          <Button
+            variant="contained"
+            style={{
+              width: "170px",
+              height: "40px",
+              background: "#86BC42",
+              borderRadius: "4px",
+              fontFamily: "Lato",
+              fontStyle: "normal",
+              fontWeight: "700",
+              fontSize: "13px",
+              lineHeight: "16px",
+              color: "#FFFFFF",
+              position: "relative",
+            }}
+            // onClick={() => setValue(!value)}
+            onClick={props.handleSignUpOpen}
           >
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink
-                to="/"
-                // activeClassName="underline"
-                style={{
-                  color: "#121212",
-                  textDecoration: "none",
-                }}
-              >
-                HOME
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink
-                to="/shop"
-                style={{
-                  color: "#121212",
-                  textDecoration: "none",
-                }}
-                activeClassName="underline"
-              >
-                SHOP
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink
-                to="/community"
-                style={{
-                  color: "#121212",
-                  textDecoration: "none",
-                }}
-                activeClassName="underline"
-              >
-                BLOGS
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink
-                to="/orders"
-                style={{
-                  color: "#121212",
-                  textDecoration: "none",
-                }}
-                activeClassName="underline"
-              >
-                ORDER
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink
-                to="/member-page"
-                style={{
-                  color: "#121212",
-                  textDecoration: "none",
-                }}
-                activeClassName="underline"
-              >
-                MY PAGE
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink
-                to="/help"
-                style={{
-                  color: "#121212",
-                  textDecoration: "none",
-                }}
-                activeClassName="underline"
-              >
-                INFO
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink
-                to="/about"
-                style={{
-                  color: "#121212",
-                  textDecoration: "none",
-                }}
-                activeClassName="underline"
-              >
-                ABOUT
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink
-                to="/contact"
-                style={{
-                  color: "#121212",
-                  textDecoration: "none",
-                }}
-                activeClassName="underline"
-              >
-                CONTACT
-              </NavLink>
-            </Box>
-          </Stack>
+            Sign up
+          </Button>
+          {/* ) : null} */}
+        </Stack>
 
-          <Stack sx={{ display: "flex", gap: "10px", flexDirection: "row" }}>
-            <Box
-              sx={{
-                width: "100px",
-                display: "flex",
-                gap: "10px",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-                fontFamily: "Lato",
-                fontStyle: "normal",
-                fontWeight: "700",
-                fontSize: "16px",
-                lineHeight: "16px",
+        <Stack
+          position={"relative"}
+          display={"flex"}
+          flexDirection={"row"}
+          width={"55%"}
+          height={"60px"}
+          gap="30px"
+          alignItems={"center"}
+        >
+          <Box className="hover-line" onClick={props.setPath}>
+            <NavLink
+              to="/"
+              // activeClassName="underline"
+              style={{
+                color: "#121212",
+                textDecoration: "none",
               }}
             >
-              <Box>
-                <img src="/icons/phone.png" alt="phone" />
-              </Box>
-              <Box className="nav_tex" sx={{ color: "#121212" }}>
-                HOTLINE
-              </Box>
+              HOME
+            </NavLink>
+          </Box>
+          <Box className="hover-line" onClick={props.setPath}>
+            <NavLink
+              to="/shop"
+              style={{
+                color: "#121212",
+                textDecoration: "none",
+              }}
+              activeClassName="underline"
+            >
+              SHOP
+            </NavLink>
+          </Box>
+          <Box className="hover-line" onClick={props.setPath}>
+            <NavLink
+              to="/community"
+              style={{
+                color: "#121212",
+                textDecoration: "none",
+              }}
+              activeClassName="underline"
+            >
+              BLOGS
+            </NavLink>
+          </Box>
+          <Box className="hover-line" onClick={props.setPath}>
+            <NavLink
+              to="/orders"
+              style={{
+                color: "#121212",
+                textDecoration: "none",
+              }}
+              activeClassName="underline"
+            >
+              ORDER
+            </NavLink>
+          </Box>
+          <Box className="hover-line" onClick={props.setPath}>
+            <NavLink
+              to="/member-page"
+              style={{
+                color: "#121212",
+                textDecoration: "none",
+              }}
+              activeClassName="underline"
+            >
+              MY PAGE
+            </NavLink>
+          </Box>
+          <Box className="hover-line" onClick={props.setPath}>
+            <NavLink
+              to="/help"
+              style={{
+                color: "#121212",
+                textDecoration: "none",
+              }}
+              activeClassName="underline"
+            >
+              INFO
+            </NavLink>
+          </Box>
+          <Box className="hover-line" onClick={props.setPath}>
+            <NavLink
+              to="/about"
+              style={{
+                color: "#121212",
+                textDecoration: "none",
+              }}
+              activeClassName="underline"
+            >
+              ABOUT
+            </NavLink>
+          </Box>
+          <Box className="hover-line" onClick={props.setPath}>
+            <NavLink
+              to="/contact"
+              style={{
+                color: "#121212",
+                textDecoration: "none",
+              }}
+              activeClassName="underline"
+            >
+              CONTACT
+            </NavLink>
+          </Box>
+        </Stack>
+
+        <Stack sx={{ display: "flex", gap: "10px", flexDirection: "row" }}>
+          <Box
+            sx={{
+              width: "100px",
+              display: "flex",
+              gap: "10px",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              fontFamily: "Lato",
+              fontStyle: "normal",
+              fontWeight: "700",
+              fontSize: "16px",
+              lineHeight: "16px",
+            }}
+          >
+            <Box>
+              <img src="/icons/phone.png" alt="phone" />
             </Box>
-            <Box className="nav_tex" sx={{ color: "#86BC42" }}>
-              998990070007
+            <Box className="nav_tex" sx={{ color: "#121212" }}>
+              HOTLINE
             </Box>
-          </Stack>
+          </Box>
+          <Box className="nav_tex" sx={{ color: "#86BC42" }}>
+            998990070007
+          </Box>
         </Stack>
       </Container>
     </div>

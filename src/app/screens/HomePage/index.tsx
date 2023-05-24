@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
-import React from "react";
+
+import React, { useEffect } from "react";
 import { AdsPage } from "./Ads";
 import { TopCategories } from "./TopCategories";
 import { SalePage } from "./SalePage";
@@ -12,7 +13,38 @@ import { DealPage } from "./DealPage";
 import BlogPage from "./BlogPage";
 import { AdverPage } from "./AdverPage";
 
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { setTopShops } from "../../screens/HomePage/slice";
+import { retrieveTopShops } from "../../screens/HomePage/selector";
+import { Shop } from "../../../types/user";
+import ShopApiService from "../../apiServices/shopApiService";
+
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setTopShops: (data: Shop[]) => dispach(setTopShops(data)),
+});
+/** REDUX SELECTOR */
+const topShopRetriever = createSelector(retrieveTopShops, (topShops) => ({
+  topShops,
+}));
+
 export function HomePage() {
+  /** INITIALIZATION */
+  const { setTopShops } = actionDispatch(useDispatch());
+
+  useEffect(() => {
+    const shopService = new ShopApiService();
+    shopService
+      .getTopShops()
+      .then((data) => {
+        setTopShops(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="homepage">
       <AdsPage />

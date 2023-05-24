@@ -1,20 +1,18 @@
 import React from "react";
 import { Box, Container, Stack } from "@mui/material";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 // import PaginationAllProducts from "../ShopPage/paginationAllProduct";
 
 const blog_best_list = Array.from(Array(3).keys());
 export default function BlogPage() {
   return (
     <Container>
-      <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Box className="home_top">Our Blog</Box>
-        <Box
-          sx={{ marginTop: "111px", width: "100px" }}
-          className="top_product_link"
-        >
-          View All
+      <Container style={{ display: "flex", flexDirection: "row" }}>
+        <Box className="home_top">OUR BLOG</Box>
+        <Box className="best_product_link">
+          View All_ <ArrowRightAltIcon />
         </Box>
-      </Stack>
+      </Container>
       <Stack className="blogs" sx={{ flexDirection: "row" }}>
         {blog_best_list.map((ele, index) => {
           return (
