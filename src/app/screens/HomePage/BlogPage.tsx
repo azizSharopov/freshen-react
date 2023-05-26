@@ -1,10 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 // import PaginationAllProducts from "../ShopPage/paginationAllProduct";
 
-const blog_best_list = Array.from(Array(3).keys());
+// REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setBestBoArticles } from "./slice";
+import { retrieveBestBoArticles } from "./selector";
+
+import { BoArticle } from "../../../types/boArticle";
+import { serverApi } from "../../../lib/config";
+import TViewer from "../../components/TUIEditor/TuiViewer";
+import CommunityApiService from "../../apiServices/communityApiService";
+import { useHistory } from "react-router-dom";
+
+// REDUX SLICE
+const actionDispatch = (dispatch: Dispatch) => ({
+  setBestBoArticles: (data: BoArticle[]) => dispatch(setBestBoArticles(data)),
+});
+
+// REDUX SELECTOR
+const bestBoArticlesRetriever = createSelector(
+  retrieveBestBoArticles,
+  (bestBoArticles) => ({
+    bestBoArticles,
+  })
+);
+
 export default function BlogPage() {
+  /** INITIALIZATIONSS **/
+
+  const history = useHistory();
+  const { setBestBoArticles } = actionDispatch(useDispatch());
+  const { bestBoArticles } = useSelector(bestBoArticlesRetriever);
+  useEffect(() => {
+    const communityService = new CommunityApiService();
+    communityService
+      .getTargetArticles({
+        bo_id: "freshen",
+        page: 1,
+        limit: 3,
+        order: "art_likes",
+      })
+      .then((data) => setBestBoArticles(data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Container>
       <Container style={{ display: "flex", flexDirection: "row" }}>
@@ -14,13 +59,16 @@ export default function BlogPage() {
         </Box>
       </Container>
       <Stack className="blogs" sx={{ flexDirection: "row" }}>
-        {blog_best_list.map((ele, index) => {
+        {bestBoArticles?.map((article: BoArticle, index: any) => {
+          const art_image_url = article?.art_image
+            ? `${serverApi}/${article?.art_image}`
+            : "/homepage/diet-food.jpg";
           return (
-            <Box className="blog_box">
+            <Box className="blog_box" key={index}>
               <Box
                 className="blog_img"
                 sx={{
-                  backgroundImage: "url(/admin_photo/girl-milk.jpg)",
+                  backgroundImage: `url(${art_image_url})`,
                   zIndex: "3",
                 }}
               >
@@ -60,13 +108,13 @@ export default function BlogPage() {
                     alignItems: "center",
                   }}
                 >
-                  <Box className="blog_subject_home">BAKERY</Box>
+                  <Box className="blog_subject_home">
+                    {article?.art_subject}
+                  </Box>
                 </Box>
               </Box>
               <Box className="blog_subject_info">
-                <Box className="blog_subject_text">
-                  How To Make A Fresh Juice Blended For Your Family?
-                </Box>
+                <Box className="blog_subject_text">{article?.art_content}</Box>
                 <Box className="blog_by">
                   <Box>
                     <span>

@@ -1,12 +1,12 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ShopPage from "./screens/ShopPage";
 import CommunityPage from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage";
 
 import { HelpPage } from "./screens/HelpPage";
-import { LoginPage } from "./screens/LoginPage";
+
 import { HomePage } from "./screens/HomePage";
 import { NavbarCommon } from "./components/header";
 import "../css/App.css";
@@ -17,13 +17,87 @@ import { AboutPage } from "./screens/AboutPage";
 import { Footer } from "./components/footer";
 import { ContactPage } from "./screens/ContactPage";
 import MemberPage from "./screens/MemberPage";
+import AuthenticationModal from "./components";
+import { Member } from "../types/user";
+import { serverApi } from "../lib/config";
+import {
+  sweetFailureProvider,
+  sweetTopSmallSuccessAlert,
+} from "../lib/sweetAlert";
+import { Definer } from "../lib/Definer";
+import MemberApiService from "./apiServices/memberApiService";
+import "../app/apiServices/verify";
+import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 
 function App() {
+  /** INITIALIZATIONS */
+  const [verifiedMemberData, setVerifiedMemberData] = useState<Member | null>(
+    null
+  );
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    console.log("=== useEffect: App ===");
+    const memberDataJson: any = localStorage.getItem("member_data")
+      ? localStorage.getItem("member_data")
+      : null;
+    const member_data = memberDataJson ? JSON.parse(memberDataJson) : null;
+    if (member_data) {
+      member_data.mb_image = member_data.mb_image
+        ? `${serverApi}/${member_data.mb_image}`
+        : "/icons/default_user.png";
+      setVerifiedMemberData(member_data);
+    }
+  }, [signUpOpen, loginOpen]);
+
+  /** HANDLERS */
+  const handleSignUpOpen = () => setSignUpOpen(true);
+  const handleSignUpClose = () => setSignUpOpen(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
+
+  const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(null);
+  };
+  const handleLogOutRequest = async () => {
+    try {
+      const memberApiService = new MemberApiService();
+      await memberApiService.logOutRequest();
+      await sweetTopSmallSuccessAlert("success", 700, true);
+    } catch (err: any) {
+      console.log(err);
+      sweetFailureProvider(Definer.general_err1);
+    }
+  };
+
+  const top = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <Router>
-      <NavbarCommon />
+      <p className="top_btn" onClick={top}>
+        <AirplanemodeActiveIcon />
+      </p>
+      <NavbarCommon
+        handleLoginOpen={handleLoginOpen}
+        handleSignUpOpen={handleSignUpOpen}
+        handleSignUpClose={handleSignUpClose}
+        verifiedMemberData={verifiedMemberData}
+        handleLogOutClick={handleLogOutClick}
+        handleCloseLogOut={handleCloseLogOut}
+        handleLogOutRequest={handleLogOutRequest}
+        anchorEl={anchorEl}
+        open={open}
+      />
       {/* <nav>
           <ul>
             <li>
@@ -72,15 +146,21 @@ function App() {
         <Route path="/contact">
           <ContactPage />
         </Route>
-        <Route path="/login">
-          <LoginPage />
-        </Route>
+
         <Route path="/">
           <HomePage />
         </Route>
       </Switch>
 
       <Footer />
+      <AuthenticationModal
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleLoginClose={handleLoginClose}
+        signUpOpen={signUpOpen}
+        handleSignUpOpen={handleSignUpOpen}
+        handleSignUpClose={handleSignUpClose}
+      />
     </Router>
   );
 }

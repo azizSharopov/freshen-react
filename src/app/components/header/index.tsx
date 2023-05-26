@@ -4,6 +4,8 @@ import {
   Button,
   Container,
   FormControl,
+  ListItemIcon,
+  Menu,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -16,6 +18,8 @@ import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Marginer from "../marginer";
 import Basket from "./basket";
+import { verifiedMemberData } from "../../apiServices/verify";
+import { Logout } from "@mui/icons-material";
 
 const ITEM_HEIGHT = 50;
 const ITEM_PADDING_TOP = 8;
@@ -320,11 +324,69 @@ export function NavbarCommon(props: any) {
               gap: "10px",
             }}
           >
-            <Box className="icon_box">
-              <NavLink style={{ marginTop: "8px" }} to="/login">
-                <img src="/icons/default_user.png" alt="user" />
-              </NavLink>
-            </Box>
+            {!verifiedMemberData ? (
+              <Box className="icon_box" onClick={props.handleLoginOpen}>
+                <Box style={{ marginTop: "8px" }}>
+                  <img
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      borderRadius: "24px",
+                    }}
+                    src="/icons/default_user.png"
+                    alt="user"
+                  />
+                </Box>
+                <Box className="login">Login</Box>
+              </Box>
+            ) : (
+              <img
+                style={{ width: "50px", height: "50px", borderRadius: "24px" }}
+                src={verifiedMemberData.mb_image}
+                onClick={props.handleLogOutClick}
+              />
+            )}
+            <Menu
+              anchorEl={props.anchorEl}
+              open={props.open}
+              onClose={props.handleCloseLogOut}
+              onClick={props.handleCloseLogOut}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.32))",
+                  mt: 1.5,
+                  "& .MuiAvatar-root": {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <MenuItem onClick={props.handleLogOutRequest}>
+                <ListItemIcon>
+                  <Logout fontSize="small" style={{ color: "#86bc42" }} />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </Menu>
             <Box className="icon_box">
               <Badge badgeContent={3} color="secondary">
                 <img src="/icons/heart.png" alt="heart" />
@@ -357,33 +419,35 @@ export function NavbarCommon(props: any) {
         sx={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           alignItems: "center",
           position: "relative",
         }}
       >
         <Stack className="nav_footer">
           {/* {!verifiedMemberData ? ( */}
-          <Button
-            variant="contained"
-            style={{
-              width: "170px",
-              height: "40px",
-              background: "#86BC42",
-              borderRadius: "4px",
-              fontFamily: "Lato",
-              fontStyle: "normal",
-              fontWeight: "700",
-              fontSize: "13px",
-              lineHeight: "16px",
-              color: "#FFFFFF",
-              position: "relative",
-            }}
-            // onClick={() => setValue(!value)}
-            onClick={props.handleSignUpOpen}
-          >
-            Sign up
-          </Button>
+          {!verifiedMemberData ? (
+            <Button
+              variant="contained"
+              style={{
+                width: "170px",
+                height: "40px",
+                background: "#86BC42",
+                borderRadius: "4px",
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "700",
+                fontSize: "13px",
+                lineHeight: "16px",
+                color: "#FFFFFF",
+                position: "relative",
+              }}
+              // onClick={() => setValue(!value)}
+              onClick={props.handleSignUpOpen}
+            >
+              Sign up
+            </Button>
+          ) : null}
           {/* ) : null} */}
         </Stack>
 
@@ -391,9 +455,9 @@ export function NavbarCommon(props: any) {
           position={"relative"}
           display={"flex"}
           flexDirection={"row"}
-          width={"55%"}
+          width={"50%"}
           height={"60px"}
-          gap="30px"
+          justifyContent={"space-between"}
           alignItems={"center"}
         >
           <Box className="hover-line" onClick={props.setPath}>

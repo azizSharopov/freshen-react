@@ -28,6 +28,7 @@ import { useHistory } from "react-router-dom";
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setBestProducts: (data: Product[]) => dispach(setBestProducts(data)),
+  // setChosenShop: (data: Shop) => dispach(setChosenShop(data)),
 });
 
 /** REDUX SELECTOR */
@@ -37,6 +38,12 @@ const bestProductRetriever = createSelector(
     bestProducts,
   })
 );
+// const chosenShopRetriever = createSelector(
+//   retrieveChosenShop,
+//   (chosenShop) => ({
+//     chosenShop,
+//   })
+// );
 
 export function BestPage() {
   /** INITIALIZATIONS */
@@ -144,7 +151,10 @@ export function BestPage() {
                       </Box>
                     </Box>
                     <Box className="product_infobest">
-                      <Box className="brand_namebest">FRUITS</Box>
+                      <Box className="brand_namebest">
+                        {/* {chosenShop?.mb_nick} */}
+                        FRUITS
+                      </Box>
                       <Box className="product_retingbest">
                         <Rating
                           size="small"

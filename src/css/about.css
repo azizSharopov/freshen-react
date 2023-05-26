@@ -134,22 +134,19 @@
   height: 680px;
   background-image: url("/public/icons/bg-test.jpg");
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 10;
 }
 .abound_brand {
   width: 100%;
   height: 400px;
   background: #86bc42;
 }
-.why_love {
+.why_love_about {
   width: 100%;
   height: 30px;
-  position: absolute;
-  margin-top: 70px;
+  margin-top: 50px;
   display: flex;
-  position: relative;
+  position: absolute;
   align-items: center;
   justify-content: center;
   font-family: "Signika";
@@ -160,4 +157,95 @@
   text-align: center;
   text-transform: uppercase;
   color: #121212;
+  z-index: 20;
+}
+.about_wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 1240px;
+  height: 380px;
+}
+
+.blog_box_about {
+  width: 400px;
+  height: 380px;
+  position: relative;
+}
+.blog_img_about {
+  width: 395px;
+  height: 240px;
+  background-size: cover;
+  position: absolute;
+}
+
+.blog_type {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #626974;
+  margin-top: 20px;
+}
+
+.blog_subject {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  color: #121212;
+}
+.blog_date {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #626974;
+}
+.blog_subject_info {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 10px;
+}
+.about_subject_text {
+  margin-top: 270px;
+  width: 390px;
+  height: 80px;
+  margin-left: 30px;
+  position: absolute;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  color: #121212;
+  z-index: 45;
+}
+.about_subject_text:hover {
+  color: #86bc42;
+}
+.blog_by {
+  margin-top: 340px;
+  margin-left: 30px;
+  width: 380px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+}
+.blog_by_css {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #4f4f4f;
 }

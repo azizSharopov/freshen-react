@@ -26,6 +26,11 @@
   justify-content: space-between;
   align-items: center;
 }
+.subscribtion_input input:focus {
+  outline: none;
+  border-color: #86bc42;
+  box-shadow: 0 0 0 1px #86bc42;
+}
 .footer_head .ft_head {
   width: 436px;
   height: 68px;

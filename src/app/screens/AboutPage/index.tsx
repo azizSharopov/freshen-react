@@ -1,9 +1,60 @@
 import { Box, Container, Stack } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../css/about.css";
+import "../../../css/home.css";
 
-const blog_best_list = Array.from(Array(3).keys());
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+// REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setFreshenBoArticles } from "./slice";
+import { retrieveFreshenBoArticles } from "./selector";
+
+import { BoArticle } from "../../../types/boArticle";
+import { serverApi } from "../../../lib/config";
+import TViewer from "../../components/TUIEditor/TuiViewer";
+import CommunityApiService from "../../apiServices/communityApiService";
+import { useHistory } from "react-router-dom";
+
+// REDUX SLICE
+const actionDispatch = (dispatch: Dispatch) => ({
+  setFreshenBoArticles: (data: BoArticle[]) =>
+    dispatch(setFreshenBoArticles(data)),
+});
+
+// REDUX SELECTOR
+const freshenBoArticlesRetriever = createSelector(
+  retrieveFreshenBoArticles,
+  (freshenBoArticles) => ({
+    freshenBoArticles,
+  })
+);
+
 export function AboutPage() {
+  /** INITIALIZATIONSS **/
+
+  const history = useHistory();
+  const { setFreshenBoArticles } = actionDispatch(useDispatch());
+  const { freshenBoArticles } = useSelector(freshenBoArticlesRetriever);
+  useEffect(() => {
+    const communityService = new CommunityApiService();
+    communityService
+      .getTargetArticles({
+        bo_id: "FRESHEN",
+        page: 1,
+        limit: 10,
+      })
+      .then((data) => setFreshenBoArticles(data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div style={{ background: "#ffffff" }}>
       <div className="blogPage">
@@ -285,20 +336,62 @@ export function AboutPage() {
           </Box>
         </Stack>
       </Container>
-      <div className="why_love_us">
-        <Container
-          style={{ display: "flex", flexDirection: "column", gap: "40px" }}
+      <div
+        className="why_love_us"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+        }}
+      >
+        <Box className="why_love_about">People blog about us</Box>
+        <Stack
+          style={{
+            width: "100%",
+            height: "400px",
+            marginTop: "150px",
+            display: "flex",
+            flexDirection: "row",
+            position: "absolute",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: "40",
+          }}
         >
-          <div className="why_love">People blog about us</div>
-          <div className="why_love_blog">
-            <Stack className="blogs" sx={{ flexDirection: "row" }}>
-              {blog_best_list.map((ele, index) => {
-                return (
-                  <Box className="blog_box">
+          <Swiper
+            className={"about_wrapper"}
+            slidesPerView={3}
+            centeredSlides={false}
+            spaceBetween={30}
+            navigation={{
+              nextEl: ".shop-next",
+              prevEl: ".shop-prev",
+            }}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+          >
+            {freshenBoArticles?.map((article: BoArticle, index) => {
+              const art_image_url = article?.art_image
+                ? `${serverApi}/${article?.art_image}`
+                : "/homepage/diet-food.jpg";
+              return (
+                <SwiperSlide
+                  style={{
+                    cursor: "pointer",
+                  }}
+                >
+                  <Box className="blog_box_about" key={index}>
                     <Box
-                      className="blog_img"
+                      className="blog_img_about"
                       sx={{
-                        backgroundImage: "url(/admin_photo/girl-milk.jpg)",
+                        backgroundImage: `url(${art_image_url})`,
                         zIndex: "3",
                       }}
                     >
@@ -341,34 +434,48 @@ export function AboutPage() {
                           alignItems: "center",
                         }}
                       >
-                        <Box className="blog_subject_home">BAKERY</Box>
+                        <Box className="blog_subject_home">
+                          {article?.bo_id}
+                        </Box>
                       </Box>
                     </Box>
                     <Box className="blog_subject_info">
-                      <Box className="blog_subject_text">
-                        How To Make A Fresh Juice Blended For Your Family?
+                      <Box className="about_subject_text">
+                        {article?.art_subject}
                       </Box>
                       <Box className="blog_by">
                         <Box>
-                          <span>
-                            <img src="/icons/user1.png" alt="blog_by" />
-                          </span>
-                          <span className="blog_by_css">By Admin</span>
+                          <img
+                            style={{
+                              width: "15px",
+                              height: "15px",
+                            }}
+                            src="/icons/user1.png"
+                            alt="blog_by"
+                          />
                         </Box>
+                        <Box className="blog_by_css">By Admin</Box>
+
                         <Box>
-                          <span>
-                            <img src="/icons/chat1.png" alt="blog_by" />
-                          </span>
-                          <span className="blog_by_css">32 Comments</span>
+                          <img
+                            style={{
+                              width: "15px",
+                              height: "15px",
+                              marginLeft: "50px",
+                            }}
+                            src="/icons/chat1.png"
+                            alt="blog_by"
+                          />
                         </Box>
+                        <Box className="blog_by_css">32 Comments</Box>
                       </Box>
                     </Box>
                   </Box>
-                );
-              })}
-            </Stack>
-          </div>
-        </Container>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </Stack>
       </div>
 
       <Container

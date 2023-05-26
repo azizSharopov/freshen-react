@@ -1,3 +1,6 @@
+* {
+  scroll-behavior: smooth;
+}
 .App {
   text-align: center;
 }
@@ -36,4 +39,19 @@
   100% {
     transform: translateY(0px);
   }
+}
+.top_btn {
+  position: fixed;
+  right: 40px;
+  bottom: 80px;
+  z-index: 999;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #86bc42;
+  color: #86bc42;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -31,7 +31,7 @@ export function Footer() {
           <Box className="subscribtion">
             <Box className="subscribtion_input">
               <form action="">
-                <span>
+                <span className="subscribtion_input_color">
                   <input type="text" placeholder="Your Email..." />
                 </span>
                 <span>
