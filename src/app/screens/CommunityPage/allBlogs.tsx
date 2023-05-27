@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -19,20 +19,95 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Marginer from "../../components/marginer";
 import "../../../css/blog.css";
+import { BoArticle, SearchArticlesObj } from "../../../types/boArticle";
+import CommunityApiService from "../../apiServices/communityApiService";
+import { TargetArticles } from "./targetBoArticles";
+import { verifiedMemberData } from "../../apiServices/verify";
 
-const blogs_list = Array.from(Array(6).keys());
+// REDUX
+import { createSelector } from "reselect";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetBoArticles } from "./slice";
+import { retrieveTargetBoArticles } from "./selector";
+
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setTargetBoArticles: (data: BoArticle[]) =>
+    dispach(setTargetBoArticles(data)),
+});
+
+/** REDUX SELECTOR */
+const targetBoArticlesRetriever = createSelector(
+  retrieveTargetBoArticles,
+  (targetBoArticles) => ({
+    targetBoArticles,
+  })
+);
+
 export default function AllBlogs() {
-  const [value, setValue] = React.useState("1");
-  const handleChange = (event: any, newValue: string) => {
+  /** INITIALIZATIONS **/
+  const { setTargetBoArticles } = actionDispatch(useDispatch());
+  const { targetBoArticles } = useSelector(targetBoArticlesRetriever);
+
+  const [value, setValue] = React.useState("6");
+  const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
+    {
+      bo_id: "all",
+      page: 1,
+      limit: 6,
+      order: "createdAt",
+    }
+  );
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+
+  useEffect(() => {
+    const communityService = new CommunityApiService();
+    communityService
+      .getTargetArticles(searchArticlesObj)
+      .then((data) => setTargetBoArticles(data))
+      .catch((err) => console.log(err));
+  }, [searchArticlesObj, articlesRebuild]);
+
+  // const top100Films = [
+  //   { title: "Fruit" },
+  //   { title: "Meats" },
+  //   { title: "Vegetables" },
+  //   { title: "FRESHEN" },
+  //   { title: "OTHERS" },
+  // ];
+
+  /** HANDLES **/
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    searchArticlesObj.page = 1;
+    switch (newValue) {
+      case "1":
+        searchArticlesObj.bo_id = "FRUITS";
+        break;
+      case "2":
+        searchArticlesObj.bo_id = "MEATS";
+        break;
+      case "3":
+        searchArticlesObj.bo_id = "VEGETABLES";
+        break;
+      case "4":
+        searchArticlesObj.bo_id = "FRESHEN";
+        break;
+      case "5":
+        searchArticlesObj.bo_id = "OTHERS";
+        break;
+      case "6":
+        searchArticlesObj.bo_id = "all";
+        break;
+    }
+    setSearchArticlesObj({ ...searchArticlesObj });
     setValue(newValue);
   };
-  const top100Films = [
-    { title: "Fruit" },
-    { title: "Meats" },
-    { title: "Vegetables" },
-    { title: "Drinks" },
-    { title: "Bakery" },
-  ];
+  const handlePaginationChange = (event: any, value: number) => {
+    searchArticlesObj.page = value;
+    setSearchArticlesObj({ ...searchArticlesObj });
+  };
+
   return (
     <div>
       <div className="blogPage">
@@ -50,7 +125,7 @@ export default function AllBlogs() {
               flexDirection: "column",
             }}
           >
-            <Box className="blog_page">Latest News</Box>
+            <Box className="blog_page">OUR BLOG</Box>
             <Box className="blog_page1">
               <Box>
                 Home / <span style={{ fontWeight: "600" }}>Our Blog</span>
@@ -70,7 +145,7 @@ export default function AllBlogs() {
           <Box sx={{ display: "flex", flexDirection: "row" }}>
             <TabContext value={value}>
               <Box className="blog_right">
-                <Stack spacing={2} sx={{ width: "270px" }}>
+                {/* <Stack spacing={2} sx={{ width: "270px" }}>
                   <Autocomplete
                     freeSolo
                     id="free-solo-2-demo"
@@ -87,890 +162,256 @@ export default function AllBlogs() {
                       />
                     )}
                   />
-                </Stack>
-                <Box>
-                  <TabList orientation="vertical" onChange={handleChange}>
-                    <Box className="blog_category_box">
-                      <Box
-                        className="blog_category"
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <Box className="blog_categ">Blog Categories</Box>
-                        <Box className="blog_categor">
-                          <Tab label="Fruits" value={"1"} />
-                        </Box>
-                        <Box className="blog_categor">
-                          <Tab label="Meats" value={"2"} />
-                        </Box>
-                        <Box className="blog_categor">
-                          <Tab label="Vegetables" value={"3"} />
-                        </Box>
-                        <Box className="blog_categor">
-                          <Tab label="Freshen" value={"4"} />
-                        </Box>
-                        <Box className="blog_categor">
-                          <Tab label="Latest news" value={"5"} />
-                        </Box>
-                        <Box className="blog_categor">
-                          <Tab label="Best blogs" value={"6"} />
-                        </Box>
-                        <Box className="blog_categor">
-                          <Tab label="Others" value={"7"} />
-                        </Box>
-                      </Box>
+                </Stack> */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: "40px",
+                  }}
+                >
+                  <Box className="blog_categ">Blog Categories</Box>
 
+                  <TabList
+                    value={value}
+                    onChange={handleChange}
+                    orientation="vertical"
+                    variant="scrollable"
+                    style={{
+                      width: "260px",
+                    }}
+                  >
+                    <Tab
+                      label="Fruits"
+                      value={"1"}
+                      sx={{
+                        fontFamily: "Lato",
+                        fontSize: "18px",
+                        fontWeight: "600",
+                        lineHeight: "26px",
+                        color: "#121212",
+                        marginRight: "100px",
+                        "&.Mui-selected": {
+                          color: "#000000;",
+                          backgroundColor: "#86bc42",
+                          borderRadius: "5px",
+                          border: "none !important",
+                          boxShadow: "none",
+                          outline: "none",
+                        },
+                        textTransform: "none",
+                      }}
+                    />
+                    <Tab
+                      label="Meats"
+                      value={"2"}
+                      sx={{
+                        fontFamily: "Lato",
+                        fontSize: "18px",
+                        fontWeight: "600",
+                        lineHeight: "26px",
+                        color: "#121212",
+                        marginRight: "100px",
+                        "&.Mui-selected": {
+                          color: "#000000;",
+                          backgroundColor: "#86bc42",
+                          borderRadius: "5px",
+                          border: "none !important",
+                          boxShadow: "none",
+                          outline: "none",
+                        },
+                        textTransform: "none",
+                      }}
+                    />
+                    <Tab
+                      label="Vegetables"
+                      value={"3"}
+                      sx={{
+                        fontFamily: "Lato",
+                        fontSize: "18px",
+                        fontWeight: "600",
+                        lineHeight: "26px",
+                        color: "#121212",
+                        marginRight: "100px",
+                        "&.Mui-selected": {
+                          color: "#000000;",
+                          backgroundColor: "#86bc42",
+                          borderRadius: "5px",
+                          border: "none !important",
+                          boxShadow: "none",
+                          outline: "none",
+                        },
+                        textTransform: "none",
+                      }}
+                    />
+                    <Tab
+                      label="Freshen"
+                      value={"4"}
+                      sx={{
+                        fontFamily: "Lato",
+                        fontSize: "18px",
+                        fontWeight: "600",
+                        lineHeight: "26px",
+                        color: "#121212",
+                        marginRight: "100px",
+                        "&.Mui-selected": {
+                          color: "#000000;",
+                          backgroundColor: "#86bc42",
+                          borderRadius: "5px",
+                          border: "none !important",
+                          boxShadow: "none",
+                          outline: "none",
+                        },
+                        textTransform: "none",
+                      }}
+                    />
+                    <Tab
+                      label="Others"
+                      value={"5"}
+                      sx={{
+                        fontFamily: "Lato",
+                        fontSize: "18px",
+                        fontWeight: "600",
+                        lineHeight: "26px",
+                        color: "#121212",
+                        marginRight: "100px",
+                        "&.Mui-selected": {
+                          color: "#000000;",
+                          backgroundColor: "#86bc42",
+                          borderRadius: "5px",
+                          border: "none !important",
+                          boxShadow: "none",
+                          outline: "none",
+                        },
+                        textTransform: "none",
+                      }}
+                    />
+
+                    <Tab
+                      label="All"
+                      value={"6"}
+                      sx={{
+                        fontFamily: "Lato",
+                        fontSize: "18px",
+                        fontWeight: "600",
+                        lineHeight: "26px",
+                        color: "#121212",
+                        marginRight: "100px",
+                        "&.Mui-selected": {
+                          color: "#000000;",
+                          backgroundColor: "#86bc42",
+                          borderRadius: "5px",
+                          border: "none !important",
+                          boxShadow: "none",
+                          outline: "none",
+                        },
+                        textTransform: "none",
+                      }}
+                    />
+                    {verifiedMemberData ? (
                       <Box className="write_blog_btn">
                         <Tab
-                          sx={{ fontWeight: "700", color: "#ffffff" }}
                           label="Create Post"
-                          value={"8"}
+                          value={"7"}
+                          onClick={() => setValue("7")}
+                          sx={{
+                            fontFamily: "Lato",
+                            fontSize: "18px",
+                            fontWeight: "600",
+                            lineHeight: "26px",
+                            color: "#121212",
+                            "&.Mui-selected": {
+                              color: "#000000;",
+                              backgroundColor: "#86bc42",
+                              borderRadius: "5px",
+                              border: "none !important",
+                              boxShadow: "none",
+                              outline: "none",
+                            },
+                            textTransform: "none",
+                          }}
                         />
                       </Box>
-                    </Box>
+                    ) : null}
                   </TabList>
                 </Box>
               </Box>
               <Box className="blog_left">
-                <Box>
-                  <TabPanel value="1">
-                    <Stack
-                      className="blogs"
-                      sx={{ flexDirection: "row", flexWrap: "wrap" }}
-                    >
-                      {blogs_list.map((ele, index) => {
-                        return (
-                          <Box
-                            className="blog_box"
-                            sx={{
-                              height: "500px",
-                              width: "440px",
-                              marginTop: "40px",
-                            }}
-                          >
-                            <Box
-                              className="blog_img"
-                              sx={{
-                                backgroundImage:
-                                  "url(/admin_photo/girl-milk.jpg)",
-                                zIndex: "3",
-                                width: "440px",
-                                height: "300px",
-                              }}
-                            >
-                              <Box
-                                sx={{
-                                  width: "65px",
-                                  height: "77px",
-                                  background: "#ffffff",
-                                  zIndex: "5",
-                                  position: "absolute",
-                                  marginLeft: "20px",
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                  gap: "5px",
-                                }}
-                              >
-                                <span
-                                  className="brand_namebest"
-                                  style={{ color: "#121212" }}
-                                >
-                                  MAY
-                                </span>
-                                <span className="home_blog_date">24</span>
-                              </Box>
-                              <Box
-                                sx={{
-                                  width: "150px",
-                                  height: "30px",
-                                  background: "#86bc42",
-                                  zIndex: "5",
-                                  position: "absolute",
-                                  marginLeft: "20px",
-                                  marginTop: "285px",
-                                  borderRadius: "60px",
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <Box className="blog_subject_home">BAKERY</Box>
-                              </Box>
-                            </Box>
-                            <Box className="blog_subject_info">
-                              <Box className="blog_subject_text">
-                                How To Make A Fresh Juice Blended For Your
-                                Family?
-                              </Box>
-                              <Box className="chosen_retingbest">
-                                <Rating
-                                  size="small"
-                                  name="read-only"
-                                  value={4}
-                                  readOnly
-                                />
-                              </Box>
-                              <Box className="blog_by">
-                                <Box>
-                                  <span>
-                                    <img src="/icons/user1.png" alt="blog_by" />
-                                  </span>
-                                  <span className="blog_by_css">By Admin</span>
-                                </Box>
-                                <Box>
-                                  <span>
-                                    <img src="/icons/chat1.png" alt="blog_by" />
-                                  </span>
-                                  <span className="blog_by_css">
-                                    32 Comments
-                                  </span>
-                                </Box>
-                              </Box>
-                              <Box className="blog_text_small">
-                                Lorem ipsum dolor sit amet, consectetuer
-                                adipiscing elit, sed diam nonummy nibh euismod
-                                tincidunt ut laoreet dolore magna aliquam erat…
-                              </Box>
-                              <Box className="blog_text_conti">
-                                CONTINUE READING
-                              </Box>
-                            </Box>
-                          </Box>
-                        );
-                      })}
-                    </Stack>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        mb: "20px",
-                        width: "100%",
-                        mt: "90px",
-                      }}
-                    >
-                      <PaginationAllProducts />
-                    </Box>
-                  </TabPanel>
-                </Box>
+                <TabPanel value="1">
+                  <TargetArticles
+                    targetBoArticles={targetBoArticles}
+                    setArticlesRebuild={setArticlesRebuild}
+                  />
+                </TabPanel>
+
                 <TabPanel value="2">
-                  <Stack
-                    className="blogs"
-                    sx={{ flexDirection: "row", flexWrap: "wrap" }}
-                  >
-                    {blogs_list.map((ele, index) => {
-                      return (
-                        <Box
-                          className="blog_box"
-                          sx={{
-                            height: "500px",
-                            width: "440px",
-                            marginTop: "40px",
-                          }}
-                        >
-                          <Box
-                            className="blog_img"
-                            sx={{
-                              backgroundImage:
-                                "url(/admin_photo/girl-milk.jpg)",
-                              zIndex: "3",
-                              width: "440px",
-                              height: "300px",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: "65px",
-                                height: "77px",
-                                background: "#ffffff",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                gap: "5px",
-                              }}
-                            >
-                              <span
-                                className="brand_namebest"
-                                style={{ color: "#121212" }}
-                              >
-                                MAY
-                              </span>
-                              <span className="home_blog_date">24</span>
-                            </Box>
-                            <Box
-                              sx={{
-                                width: "150px",
-                                height: "30px",
-                                background: "#86bc42",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                marginTop: "285px",
-                                borderRadius: "60px",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Box className="blog_subject_home">BAKERY</Box>
-                            </Box>
-                          </Box>
-                          <Box className="blog_subject_info">
-                            <Box className="blog_subject_text">
-                              How To Make A Fresh Juice Blended For Your Family?
-                            </Box>
-                            <Box className="chosen_retingbest">
-                              <Rating
-                                size="small"
-                                name="read-only"
-                                value={4}
-                                readOnly
-                              />
-                            </Box>
-                            <Box className="blog_by">
-                              <Box>
-                                <span>
-                                  <img src="/icons/user1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">By Admin</span>
-                              </Box>
-                              <Box>
-                                <span>
-                                  <img src="/icons/chat1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">32 Comments</span>
-                              </Box>
-                            </Box>
-                            <Box className="blog_text_small">
-                              Lorem ipsum dolor sit amet, consectetuer
-                              adipiscing elit, sed diam nonummy nibh euismod
-                              tincidunt ut laoreet dolore magna aliquam erat…
-                            </Box>
-                            <Box className="blog_text_conti">
-                              CONTINUE READING
-                            </Box>
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </Stack>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      mb: "20px",
-                      width: "100%",
-                      mt: "90px",
-                    }}
-                  >
-                    <PaginationAllProducts />
-                  </Box>
+                  <TargetArticles
+                    targetBoArticles={targetBoArticles}
+                    setArticlesRebuild={setArticlesRebuild}
+                  />
                 </TabPanel>
                 <TabPanel value="3">
-                  <Stack
-                    className="blogs"
-                    sx={{ flexDirection: "row", flexWrap: "wrap" }}
-                  >
-                    {blogs_list.map((ele, index) => {
-                      return (
-                        <Box
-                          className="blog_box"
-                          sx={{
-                            height: "500px",
-                            width: "440px",
-                            marginTop: "40px",
-                          }}
-                        >
-                          <Box
-                            className="blog_img"
-                            sx={{
-                              backgroundImage:
-                                "url(/admin_photo/girl-milk.jpg)",
-                              zIndex: "3",
-                              width: "440px",
-                              height: "300px",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: "65px",
-                                height: "77px",
-                                background: "#ffffff",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                gap: "5px",
-                              }}
-                            >
-                              <span
-                                className="brand_namebest"
-                                style={{ color: "#121212" }}
-                              >
-                                MAY
-                              </span>
-                              <span className="home_blog_date">24</span>
-                            </Box>
-                            <Box
-                              sx={{
-                                width: "150px",
-                                height: "30px",
-                                background: "#86bc42",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                marginTop: "285px",
-                                borderRadius: "60px",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Box className="blog_subject_home">BAKERY</Box>
-                            </Box>
-                          </Box>
-                          <Box className="blog_subject_info">
-                            <Box className="blog_subject_text">
-                              How To Make A Fresh Juice Blended For Your Family?
-                            </Box>
-                            <Box className="chosen_retingbest">
-                              <Rating
-                                size="small"
-                                name="read-only"
-                                value={4}
-                                readOnly
-                              />
-                            </Box>
-                            <Box className="blog_by">
-                              <Box>
-                                <span>
-                                  <img src="/icons/user1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">By Admin</span>
-                              </Box>
-                              <Box>
-                                <span>
-                                  <img src="/icons/chat1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">32 Comments</span>
-                              </Box>
-                            </Box>
-                            <Box className="blog_text_small">
-                              Lorem ipsum dolor sit amet, consectetuer
-                              adipiscing elit, sed diam nonummy nibh euismod
-                              tincidunt ut laoreet dolore magna aliquam erat…
-                            </Box>
-                            <Box className="blog_text_conti">
-                              CONTINUE READING
-                            </Box>
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </Stack>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      mb: "20px",
-                      width: "100%",
-                      mt: "90px",
-                    }}
-                  >
-                    <PaginationAllProducts />
-                  </Box>
+                  <TargetArticles
+                    targetBoArticles={targetBoArticles}
+                    setArticlesRebuild={setArticlesRebuild}
+                  />
                 </TabPanel>
                 <TabPanel value="4">
-                  <Stack
-                    className="blogs"
-                    sx={{ flexDirection: "row", flexWrap: "wrap" }}
-                  >
-                    {blogs_list.map((ele, index) => {
-                      return (
-                        <Box
-                          className="blog_box"
-                          sx={{
-                            height: "500px",
-                            width: "440px",
-                            marginTop: "40px",
-                          }}
-                        >
-                          <Box
-                            className="blog_img"
-                            sx={{
-                              backgroundImage:
-                                "url(/admin_photo/girl-milk.jpg)",
-                              zIndex: "3",
-                              width: "440px",
-                              height: "300px",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: "65px",
-                                height: "77px",
-                                background: "#ffffff",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                gap: "5px",
-                              }}
-                            >
-                              <span
-                                className="brand_namebest"
-                                style={{ color: "#121212" }}
-                              >
-                                MAY
-                              </span>
-                              <span className="home_blog_date">24</span>
-                            </Box>
-                            <Box
-                              sx={{
-                                width: "150px",
-                                height: "30px",
-                                background: "#86bc42",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                marginTop: "285px",
-                                borderRadius: "60px",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Box className="blog_subject_home">BAKERY</Box>
-                            </Box>
-                          </Box>
-                          <Box className="blog_subject_info">
-                            <Box className="blog_subject_text">
-                              How To Make A Fresh Juice Blended For Your Family?
-                            </Box>
-                            <Box className="chosen_retingbest">
-                              <Rating
-                                size="small"
-                                name="read-only"
-                                value={4}
-                                readOnly
-                              />
-                            </Box>
-                            <Box className="blog_by">
-                              <Box>
-                                <span>
-                                  <img src="/icons/user1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">By Admin</span>
-                              </Box>
-                              <Box>
-                                <span>
-                                  <img src="/icons/chat1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">32 Comments</span>
-                              </Box>
-                            </Box>
-                            <Box className="blog_text_small">
-                              Lorem ipsum dolor sit amet, consectetuer
-                              adipiscing elit, sed diam nonummy nibh euismod
-                              tincidunt ut laoreet dolore magna aliquam erat…
-                            </Box>
-                            <Box className="blog_text_conti">
-                              CONTINUE READING
-                            </Box>
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </Stack>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      mb: "20px",
-                      width: "100%",
-                      mt: "90px",
-                    }}
-                  >
-                    <PaginationAllProducts />
-                  </Box>
+                  <TargetArticles
+                    targetBoArticles={targetBoArticles}
+                    setArticlesRebuild={setArticlesRebuild}
+                  />
                 </TabPanel>
                 <TabPanel value="5">
-                  <Stack
-                    className="blogs"
-                    sx={{ flexDirection: "row", flexWrap: "wrap" }}
-                  >
-                    {blogs_list.map((ele, index) => {
-                      return (
-                        <Box
-                          className="blog_box"
-                          sx={{
-                            height: "500px",
-                            width: "440px",
-                            marginTop: "40px",
-                          }}
-                        >
-                          <Box
-                            className="blog_img"
-                            sx={{
-                              backgroundImage:
-                                "url(/admin_photo/girl-milk.jpg)",
-                              zIndex: "3",
-                              width: "440px",
-                              height: "300px",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: "65px",
-                                height: "77px",
-                                background: "#ffffff",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                gap: "5px",
-                              }}
-                            >
-                              <span
-                                className="brand_namebest"
-                                style={{ color: "#121212" }}
-                              >
-                                MAY
-                              </span>
-                              <span className="home_blog_date">24</span>
-                            </Box>
-                            <Box
-                              sx={{
-                                width: "150px",
-                                height: "30px",
-                                background: "#86bc42",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                marginTop: "285px",
-                                borderRadius: "60px",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Box className="blog_subject_home">BAKERY</Box>
-                            </Box>
-                          </Box>
-                          <Box className="blog_subject_info">
-                            <Box className="blog_subject_text">
-                              How To Make A Fresh Juice Blended For Your Family?
-                            </Box>
-                            <Box className="chosen_retingbest">
-                              <Rating
-                                size="small"
-                                name="read-only"
-                                value={4}
-                                readOnly
-                              />
-                            </Box>
-                            <Box className="blog_by">
-                              <Box>
-                                <span>
-                                  <img src="/icons/user1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">By Admin</span>
-                              </Box>
-                              <Box>
-                                <span>
-                                  <img src="/icons/chat1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">32 Comments</span>
-                              </Box>
-                            </Box>
-                            <Box className="blog_text_small">
-                              Lorem ipsum dolor sit amet, consectetuer
-                              adipiscing elit, sed diam nonummy nibh euismod
-                              tincidunt ut laoreet dolore magna aliquam erat…
-                            </Box>
-                            <Box className="blog_text_conti">
-                              CONTINUE READING
-                            </Box>
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </Stack>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      mb: "20px",
-                      width: "100%",
-                      mt: "90px",
-                    }}
-                  >
-                    <PaginationAllProducts />
-                  </Box>
+                  <TargetArticles
+                    targetBoArticles={targetBoArticles}
+                    setArticlesRebuild={setArticlesRebuild}
+                  />
                 </TabPanel>
+
                 <TabPanel value="6">
-                  <Stack
-                    className="blogs"
-                    sx={{ flexDirection: "row", flexWrap: "wrap" }}
-                  >
-                    {blogs_list.map((ele, index) => {
-                      return (
-                        <Box
-                          className="blog_box"
-                          sx={{
-                            height: "500px",
-                            width: "440px",
-                            marginTop: "40px",
-                          }}
-                        >
-                          <Box
-                            className="blog_img"
-                            sx={{
-                              backgroundImage:
-                                "url(/admin_photo/girl-milk.jpg)",
-                              zIndex: "3",
-                              width: "440px",
-                              height: "300px",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: "65px",
-                                height: "77px",
-                                background: "#ffffff",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                gap: "5px",
-                              }}
-                            >
-                              <span
-                                className="brand_namebest"
-                                style={{ color: "#121212" }}
-                              >
-                                MAY
-                              </span>
-                              <span className="home_blog_date">24</span>
-                            </Box>
-                            <Box
-                              sx={{
-                                width: "150px",
-                                height: "30px",
-                                background: "#86bc42",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                marginTop: "285px",
-                                borderRadius: "60px",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Box className="blog_subject_home">BAKERY</Box>
-                            </Box>
-                          </Box>
-                          <Box className="blog_subject_info">
-                            <Box className="blog_subject_text">
-                              How To Make A Fresh Juice Blended For Your Family?
-                            </Box>
-                            <Box className="chosen_retingbest">
-                              <Rating
-                                size="small"
-                                name="read-only"
-                                value={4}
-                                readOnly
-                              />
-                            </Box>
-                            <Box className="blog_by">
-                              <Box>
-                                <span>
-                                  <img src="/icons/user1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">By Admin</span>
-                              </Box>
-                              <Box>
-                                <span>
-                                  <img src="/icons/chat1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">32 Comments</span>
-                              </Box>
-                            </Box>
-                            <Box className="blog_text_small">
-                              Lorem ipsum dolor sit amet, consectetuer
-                              adipiscing elit, sed diam nonummy nibh euismod
-                              tincidunt ut laoreet dolore magna aliquam erat…
-                            </Box>
-                            <Box className="blog_text_conti">
-                              CONTINUE READING
-                            </Box>
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </Stack>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      mb: "20px",
-                      width: "100%",
-                      mt: "90px",
-                    }}
-                  >
-                    <PaginationAllProducts />
-                  </Box>
+                  <TargetArticles
+                    targetBoArticles={targetBoArticles}
+                    setArticlesRebuild={setArticlesRebuild}
+                  />
                 </TabPanel>
+
                 <TabPanel value="7">
-                  <Stack
-                    className="blogs"
-                    sx={{ flexDirection: "row", flexWrap: "wrap" }}
-                  >
-                    {blogs_list.map((ele, index) => {
-                      return (
-                        <Box
-                          className="blog_box"
-                          sx={{
-                            height: "500px",
-                            width: "440px",
-                            marginTop: "40px",
-                          }}
-                        >
-                          <Box
-                            className="blog_img"
-                            sx={{
-                              backgroundImage:
-                                "url(/admin_photo/girl-milk.jpg)",
-                              zIndex: "3",
-                              width: "440px",
-                              height: "300px",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: "65px",
-                                height: "77px",
-                                background: "#ffffff",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                gap: "5px",
-                              }}
-                            >
-                              <span
-                                className="brand_namebest"
-                                style={{ color: "#121212" }}
-                              >
-                                MAY
-                              </span>
-                              <span className="home_blog_date">24</span>
-                            </Box>
-                            <Box
-                              sx={{
-                                width: "150px",
-                                height: "30px",
-                                background: "#86bc42",
-                                zIndex: "5",
-                                position: "absolute",
-                                marginLeft: "20px",
-                                marginTop: "285px",
-                                borderRadius: "60px",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Box className="blog_subject_home">BAKERY</Box>
-                            </Box>
-                          </Box>
-                          <Box className="blog_subject_info">
-                            <Box className="blog_subject_text">
-                              How To Make A Fresh Juice Blended For Your Family?
-                            </Box>
-                            <Box className="chosen_retingbest">
-                              <Rating
-                                size="small"
-                                name="read-only"
-                                value={4}
-                                readOnly
-                              />
-                            </Box>
-                            <Box className="blog_by">
-                              <Box>
-                                <span>
-                                  <img src="/icons/user1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">By Admin</span>
-                              </Box>
-                              <Box>
-                                <span>
-                                  <img src="/icons/chat1.png" alt="blog_by" />
-                                </span>
-                                <span className="blog_by_css">32 Comments</span>
-                              </Box>
-                            </Box>
-                            <Box className="blog_text_small">
-                              Lorem ipsum dolor sit amet, consectetuer
-                              adipiscing elit, sed diam nonummy nibh euismod
-                              tincidunt ut laoreet dolore magna aliquam erat…
-                            </Box>
-                            <Box className="blog_text_conti">
-                              CONTINUE READING
-                            </Box>
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </Stack>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      mb: "20px",
-                      width: "100%",
-                      mt: "90px",
-                    }}
-                  >
-                    <PaginationAllProducts />
-                  </Box>
-                </TabPanel>
-                <TabPanel value="8">
-                  <TuiEditor />
+                  <TuiEditor
+                    setValue={setValue}
+                    setArticlesRebuild={setArticlesRebuild}
+                  />
                 </TabPanel>
               </Box>
             </TabContext>
           </Box>
+          {value !== "7" && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "50px",
+              }}
+            >
+              <Pagination
+                count={
+                  searchArticlesObj.page >= 3 ? searchArticlesObj.page + 1 : 3
+                }
+                page={searchArticlesObj.page}
+                renderItem={(item) => (
+                  <PaginationItem
+                    components={{
+                      previous: ArrowBackIcon,
+                      next: ArrowForwardIcon,
+                    }}
+                    {...item}
+                    color="secondary"
+                  />
+                )}
+                onChange={handlePaginationChange}
+              />
+            </Box>
+          )}
         </Stack>
       </Container>
     </div>

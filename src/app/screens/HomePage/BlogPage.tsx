@@ -41,7 +41,7 @@ export default function BlogPage() {
     const communityService = new CommunityApiService();
     communityService
       .getTargetArticles({
-        bo_id: "freshen",
+        bo_id: "MEATS",
         page: 1,
         limit: 3,
         order: "art_likes",
@@ -108,13 +108,11 @@ export default function BlogPage() {
                     alignItems: "center",
                   }}
                 >
-                  <Box className="blog_subject_home">
-                    {article?.art_subject}
-                  </Box>
+                  <Box className="blog_subject_home">{article?.bo_id}</Box>
                 </Box>
               </Box>
               <Box className="blog_subject_info">
-                <Box className="blog_subject_text">{article?.art_content}</Box>
+                <Box className="blog_subject_text">{article?.art_subject}</Box>
                 <Box className="blog_by">
                   <Box>
                     <span>

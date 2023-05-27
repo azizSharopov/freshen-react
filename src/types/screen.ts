@@ -30,8 +30,9 @@ export interface AboutPageState {
 /** SHOP PAGE */
 export interface ShopPageState {
   chosenShop: Shop | null;
-  allProducts: Product[];
+  targetProducts: Product[];
   chosenProduct: Product | null;
+  targetShops: Shop[];
 }
 
 /** ORDERS PAGE */

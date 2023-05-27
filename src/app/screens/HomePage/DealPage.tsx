@@ -1,7 +1,6 @@
 import { Box, Button, Checkbox, Container, Rating, Stack } from "@mui/material";
 import { Favorite, Visibility } from "@mui/icons-material";
 import React, { useState, useEffect, useRef } from "react";
-import { useHistory } from "react-router-dom";
 import assert from "assert";
 import StarIcon from "@mui/icons-material/Star";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,17 +8,55 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Badge from "@mui/material/Badge";
-// REDUX
+import { Autoplay, Pagination, Navigation } from "swiper";
 
+// REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
+import { setSaleProducts } from "../../screens/HomePage/slice";
+import { Product } from "../../../types/product";
+import ProductApiService from "../../apiServices/productApiService";
+import { retrieveSaleProducts } from "./selector";
+import { createSelector } from "reselect";
+import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
-const shop_list = Array.from(Array(10).keys());
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setSaleProducts: (data: Product[]) => dispach(setSaleProducts(data)),
+  // setChosenShop: (data: Shop) => dispach(setChosenShop(data)),
+});
+
+/** REDUX SELECTOR */
+const saleProductRetriever = createSelector(
+  retrieveSaleProducts,
+  (saleProducts) => ({
+    saleProducts,
+  })
+);
+
 export function DealPage() {
+  /** INITIALIZATIONS */
+  const history = useHistory();
+  const { setSaleProducts } = actionDispatch(useDispatch());
+  const { saleProducts } = useSelector(saleProductRetriever);
+
+  useEffect(() => {
+    const productService = new ProductApiService();
+    productService
+      .getTargetProducts({ order: "discounted_price", page: 1, limit: 200 })
+      .then((data) => setSaleProducts(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  /** HANDLERS */
+  const chosenProductHandler = (id: string) => {
+    history.push(`/shop/${id}`);
+  };
+
   return (
     <div
       style={{
@@ -73,10 +110,11 @@ export function DealPage() {
           />
         </Box>
         <Swiper
+          style={{ width: "1280px" }}
           className={"best_products_wrapper"}
           slidesPerView={4}
           centeredSlides={false}
-          spaceBetween={10}
+          spaceBetween={30}
           navigation={{
             nextEl: ".shop-next",
             prevEl: ".shop-prev",
@@ -85,22 +123,26 @@ export function DealPage() {
             el: ".swiper-pagination",
             clickable: true,
           }}
+          modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
           }}
         >
-          {shop_list.map((ele, index) => {
+          {saleProducts.map((product: Product) => {
+            const image_path = `${serverApi}/${product.product_images[0]}`;
             return (
               <SwiperSlide
                 style={{
                   cursor: "pointer",
                   border: "1px solid #eaeaea",
                 }}
-                key={index}
                 className="productsbest"
               >
-                <Box className="products_sliderbest">
+                <Box
+                  className="products_sliderbest"
+                  onClick={() => chosenProductHandler(product._id)}
+                >
                   <Box
                     sx={{ zIndex: "5", position: "absolute" }}
                     className="product_sale_info"

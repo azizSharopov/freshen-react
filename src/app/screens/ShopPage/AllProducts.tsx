@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PaginationItem from "@mui/material/PaginationItem";
@@ -40,15 +40,161 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, EffectFade } from "swiper";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import Marginer from "../../components/marginer";
 import { Favorite } from "@mui/icons-material";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 
-const products_list = Array.from(Array(20).keys());
-console.log(products_list);
+// REDUX
+import { createSelector } from "reselect";
+import {
+  retrieveChosenShop,
+  retrieveTargetProducts,
+  retrieveTargetShops,
+} from "../../screens/ShopPage/selector";
+import { Shop } from "../../../types/user";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setChosenShop,
+  setTargetProducts,
+  setTargetShops,
+} from "../../screens/ShopPage/slice";
+import { verifiedMemberData } from "../../apiServices/verify";
+import { Product } from "../../../types/product";
+import { useParams } from "react-router-dom";
+import { ProductSearchObj } from "../../../types/others";
+import ProductApiService from "../../apiServices/productApiService";
+import { serverApi } from "../../../lib/config";
+import ShopApiService from "../../apiServices/shopApiService";
+import { Definer } from "../../../lib/Definer";
+import assert from "assert";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 
-export function AllProducts() {
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenShop: (data: Shop) => dispach(setChosenShop(data)),
+  setTargetProducts: (data: Product[]) => dispach(setTargetProducts(data)),
+  setTargetShops: (data: Shop[]) => dispach(setTargetShops(data)),
+});
+
+/** REDUX SELECTOR */
+const targetShopsRetriever = createSelector(
+  retrieveTargetShops,
+  (targetShops) => ({
+    targetShops,
+  })
+);
+
+const chosenShopRetriever = createSelector(
+  retrieveChosenShop,
+  (chosenShop) => ({
+    chosenShop,
+  })
+);
+const targetProductsRetriever = createSelector(
+  retrieveTargetProducts,
+  (targetProducts) => ({
+    targetProducts,
+  })
+);
+
+export function AllProducts(props: any) {
+  /** INITIALIZATIONS */
+  const history = useHistory();
+  let { shop_id } = useParams<{ shop_id: string }>();
+  const { setTargetShops, setChosenShop, setTargetProducts } = actionDispatch(
+    useDispatch()
+  );
+  const { targetShops } = useSelector(targetShopsRetriever);
+  const { chosenShop } = useSelector(chosenShopRetriever);
+  const { targetProducts } = useSelector(targetProductsRetriever);
+  const [chosenShopId, setChosenShopId] = useState<string>(shop_id);
+  const [targetProductsSearchObj, setTargetProductsSearchObj] =
+    useState<ProductSearchObj>({
+      page: 1,
+      limit: 20,
+      order: "createdAt",
+      shop_mb_id: shop_id,
+    });
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+  const handlePaginationChange = (event: any, value: number) => {
+    targetProductsSearchObj.page = value;
+    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+  };
+  useEffect(() => {
+    const shopService = new ShopApiService();
+    // shopService
+    //   .getShops({ page: 1, limit: 20, order: "random" })
+    //   .then((data) => setTargetShops(data))
+    //   .catch((err) => console.log(err));
+
+    // shopService
+    //   .getChosenShop(chosenShopId)
+    //   .then((data) => setChosenShop(data))
+    //   .catch((err) => console.log(err));
+
+    const productService = new ProductApiService();
+    productService
+      .getTargetProducts(targetProductsSearchObj)
+      .then((data) => setTargetProducts(data))
+      .catch((err) => console.log(err));
+  }, [chosenShopId, targetProductsSearchObj, productRebuild]);
+
+  /** HANDLERS */
+  const chosenShopHandler = (id: string) => {
+    setChosenShopId(id);
+    targetProductsSearchObj.shop_mb_id = id;
+    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+    history.push(`/shop/${id}`);
+  };
+
+  const searchShopProductsHandler = (shop: string) => {
+    targetProductsSearchObj.page = 1;
+    targetProductsSearchObj.shop_mb_id = shop;
+    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+  };
+  const searchShopAllProductsHandler = (shop: string) => {
+    targetProductsSearchObj.page = 1;
+    targetProductsSearchObj.order = shop;
+    targetProductsSearchObj.shop_mb_id = undefined;
+    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+  };
+  const searchOrderHandler = (order: string) => {
+    targetProductsSearchObj.page = 1;
+    targetProductsSearchObj.order = order;
+    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+  };
+
+  const chosenProductHandler = (id: string) => {
+    history.push(`/shop/${id}`);
+  };
+  // const chosenDishHandler = (id: string) => {
+  //   history.push(`/restaurant/dish/${id}`);
+  // };
+  // const targetLikeProduct = async (e: any) => {
+  //   try {
+  //     assert.ok(verifiedMemberData, Definer.auth_err1);
+
+  //     const memberService = new MemberApiService(),
+  //       like_result: any = await memberService.memberLikeTarget({
+  //         like_ref_id: e.target.id,
+  //         group_type: "product",
+  //       });
+  //     assert.ok(like_result, Definer.general_err1);
+
+  //     await sweetTopSmallSuccessAlert("success", 700, false);
+  //     setProductRebuild(new Date());
+  //   } catch (err: any) {
+  //     console.log("targetLikeProduct, ERROR", err);
+  //     sweetErrorHandling(err).then();
+  //   }
+  // };
+
   return (
     <div>
       <div className="shopPage">
@@ -89,55 +235,303 @@ export function AllProducts() {
             style={{ width: "300px", height: "570px" }}
           >
             <Box className="shop_categ">PRODUCT CATEGORIES</Box>
-            <Box className="shop_categ_text">
-              <span>Hot Offers</span>
-              <span>(12)</span>
+
+            <Box
+              className="shop_categ_text"
+              onClick={() => searchShopAllProductsHandler("createdAt")}
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+            >
+              <span>All product</span>
+              {targetProducts && <span>({targetProducts.length})</span>}
             </Box>
-            <Box className="shop_categ_text">
-              <span>New Arrivals</span>
-              <span>(23)</span>
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() => searchShopAllProductsHandler("product_likes")}
+            >
+              <span>Best product</span>
+              {targetProducts && <span>({targetProducts.length})</span>}
             </Box>
-            <Box className="shop_categ_text">
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() => searchShopAllProductsHandler("product_price")}
+            >
+              <span>Product price</span>
+              {targetProducts && <span>({targetProducts.length})</span>}
+            </Box>
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() =>
+                searchShopProductsHandler("646b0d1dc88f933b56ca3fd1")
+              }
+            >
               <span>Fruits</span>
-              <span>(34)</span>
+              {targetProducts && (
+                <span>
+                  (
+                  {
+                    targetProducts.filter(
+                      (product) =>
+                        product.shop_mb_id === "646b0d1dc88f933b56ca3fd1"
+                    ).length
+                  }
+                  )
+                </span>
+              )}
             </Box>
-            <Box className="shop_categ_text">
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() =>
+                searchShopProductsHandler("646b0d41c88f933b56ca3fd4")
+              }
+            >
               <span>Meats</span>
-              <span>(34)</span>
+              {targetProducts && (
+                <span>
+                  (
+                  {
+                    targetProducts.filter(
+                      (product) =>
+                        product.shop_mb_id === "646b0d41c88f933b56ca3fd4"
+                    ).length
+                  }
+                  )
+                </span>
+              )}
             </Box>
-            <Box className="shop_categ_text">
+
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() =>
+                searchShopProductsHandler("646ba6e0af5977f07c502244")
+              }
+            >
               <span>Fishs</span>
-              <span>(16)</span>
+              {targetProducts && (
+                <span>
+                  (
+                  {
+                    targetProducts.filter(
+                      (product) =>
+                        product.shop_mb_id === "646ba6e0af5977f07c502244"
+                    ).length
+                  }
+                  )
+                </span>
+              )}
             </Box>
-            <Box className="shop_categ_text">
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() =>
+                searchShopProductsHandler("646ba70daf5977f07c502247")
+              }
+            >
               <span>Vegetables</span>
-              <span>(45)</span>
+              {targetProducts && (
+                <span>
+                  (
+                  {
+                    targetProducts.filter(
+                      (product) =>
+                        product.shop_mb_id === "646ba70daf5977f07c502247"
+                    ).length
+                  }
+                  )
+                </span>
+              )}
             </Box>
-            <Box className="shop_categ_text">
-              <span>Drinks</span>
-              <span>(56)</span>
-            </Box>
-            <Box className="shop_categ_text">
+
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() =>
+                searchShopProductsHandler("646bb01eaf5977f07c50224d")
+              }
+            >
               <span>Bakery</span>
-              <span>(67)</span>
+              {targetProducts && (
+                <span>
+                  (
+                  {
+                    targetProducts.filter(
+                      (product) =>
+                        product.shop_mb_id === "646bb01eaf5977f07c50224d"
+                    ).length
+                  }
+                  )
+                </span>
+              )}
             </Box>
-            <Box className="shop_categ_text">
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() =>
+                searchShopProductsHandler("646bb04faf5977f07c502250")
+              }
+            >
               <span>Butter & Egges</span>
-              <span>(78)</span>
+              {targetProducts && (
+                <span>
+                  (
+                  {
+                    targetProducts.filter(
+                      (product) =>
+                        product.shop_mb_id === "646bb04faf5977f07c502250"
+                    ).length
+                  }
+                  )
+                </span>
+              )}
             </Box>
-            <Box className="shop_categ_text">
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+              onClick={() =>
+                searchShopProductsHandler("646ba793af5977f07c50224a")
+              }
+            >
               <span>Milks & Creams</span>
-              <span>(58)</span>
+              {targetProducts && (
+                <span>
+                  (
+                  {
+                    targetProducts.filter(
+                      (product) =>
+                        product.shop_mb_id === "646ba793af5977f07c50224a"
+                    ).length
+                  }
+                  )
+                </span>
+              )}
             </Box>
-            <Box className="shop_categ_text">
+            <Box
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+              className="shop_categ_text"
+            >
               <span>Cofee & Tea</span>
               <span>(89)</span>
             </Box>
-            <Box className="shop_categ_text">
+            <Box
+              className="shop_categ_text"
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+            >
               <span>Cookies</span>
               <span>(63)</span>
             </Box>
-            <Box className="shop_categ_text">
+            <Box
+              className="shop_categ_text"
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+            >
+              <span>Drinks</span>
+              <span>(56)</span>
+            </Box>
+            <Box
+              className="shop_categ_text"
+              style={{
+                fontFamily: "Lato",
+                fontStyle: "normal",
+                fontWeight: "600",
+                fontSize: "16px",
+                lineHeight: "35px",
+                color: "#121212",
+              }}
+            >
               <span>Chocolates</span>
               <span>(49)</span>
             </Box>
@@ -158,7 +552,8 @@ export function AllProducts() {
             <Box>
               {" "}
               Showing <span style={{ fontWeight: "600" }}>1–20</span> of{" "}
-              <span style={{ fontWeight: "600" }}>200</span> results
+              <span style={{ fontWeight: "600" }}>{targetProducts.length}</span>{" "}
+              results
             </Box>
             {/* <Marginer
               direction="horizontal"
@@ -233,11 +628,25 @@ export function AllProducts() {
                   inputProps={{ "aria-label": "Without label" }}
                 >
                   <MenuItem value={"shop_prod_sort"}>Default sorting</MenuItem>
-                  <MenuItem value={"best"}>Sort by best seller</MenuItem>
-                  <MenuItem value={"latest"}>Sort by latest</MenuItem>
+                  <MenuItem
+                    value={"best"}
+                    onClick={() => searchOrderHandler("product_likes")}
+                  >
+                    Sort by best seller
+                  </MenuItem>
+                  <MenuItem
+                    value={"latest"}
+                    onClick={() => searchOrderHandler("createdAt")}
+                  >
+                    Sort by latest
+                  </MenuItem>
                   <MenuItem value={"sales"}>Sort by sales</MenuItem>
-                  <MenuItem value={"high"}>Sort by price: low to high</MenuItem>
-                  <MenuItem value={"low"}>Sort by price: high to low</MenuItem>
+                  <MenuItem
+                    value={"high"}
+                    onClick={() => searchOrderHandler("product_price")}
+                  >
+                    Sort by price: low to high
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -251,10 +660,13 @@ export function AllProducts() {
             marginTop: "40px",
           }}
         >
-          {products_list.map((ele, index) => {
+          {targetProducts.map((product: Product) => {
+            const image_path = `${serverApi}/${product.product_images[0]}`;
             return (
               <Box
                 className="shop_sliderbest"
+                onClick={() => chosenProductHandler(product._id)}
+                key={product._id}
                 sx={{
                   border: "1px solid #ebebeb",
                   margin: "5px",
@@ -267,7 +679,7 @@ export function AllProducts() {
                       width: "240px",
                       height: "220px",
                     }}
-                    src="/homepage/cucumber.jpg"
+                    src={image_path}
                     alt=""
                   />
                   <Box
@@ -288,9 +700,7 @@ export function AllProducts() {
                   <Box className="product_retingbest">
                     <Rating size="small" name="read-only" value={4} readOnly />
                   </Box>
-                  <Box className="product_namebest">
-                    Fresh Strawberry - 100% Organic. Natural
-                  </Box>
+                  <Box className="product_namebest">{product.product_name}</Box>
                   <Box className="add_card_btnbest">
                     <Box>
                       <img
@@ -310,10 +720,20 @@ export function AllProducts() {
             );
           })}
         </Stack>
-        <Stack className="shop_pagination">
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "50px",
+          }}
+        >
           <Pagination
-            count={3}
-            page={1}
+            count={
+              targetProductsSearchObj.page >= 3
+                ? targetProductsSearchObj.page + 1
+                : 3
+            }
+            page={targetProductsSearchObj.page}
             renderItem={(item) => (
               <PaginationItem
                 components={{
@@ -324,8 +744,9 @@ export function AllProducts() {
                 color="secondary"
               />
             )}
+            onChange={handlePaginationChange}
           />
-        </Stack>
+        </Box>
       </Container>
     </div>
   );

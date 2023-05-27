@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
@@ -34,20 +34,106 @@ import { ReviewsComponent } from "./reviews";
 import Marginer from "../../components/marginer";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { BestPage } from "../HomePage/BestPage";
+import { Definer } from "../../../lib/Definer";
 
-export default function ChosenPage() {
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { Dispatch } from "@reduxjs/toolkit";
+import ProductApiService from "../../apiServices/productApiService";
+import ShopApiService from "../../apiServices/shopApiService";
+import { serverApi } from "../../../lib/config";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { Product } from "../../../types/product";
+import { Shop } from "../../../types/user";
+
+import { setChosenShop, setChosenProduct } from "./slice";
+import { retrieveChosenShop, retrieveChosenProduct } from "./selector";
+import { useParams } from "react-router-dom";
+import assert from "assert";
+import { verifiedMemberData } from "../../apiServices/verify";
+
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenProduct: (data: Product) => dispach(setChosenProduct(data)),
+  setChosenShop: (data: Shop) => dispach(setChosenShop(data)),
+});
+
+/** REDUX SELECTOR */
+const chosenProductRetriever = createSelector(
+  retrieveChosenProduct,
+  (chosenProduct) => ({
+    chosenProduct,
+  })
+);
+const chosenShopRetriever = createSelector(
+  retrieveChosenShop,
+  (chosenShop) => ({
+    chosenShop,
+  })
+);
+
+export default function ChosenPage(props: any) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   /** INITIALIZATIONS **/
+  let { product_id } = useParams<{ product_id: string }>();
+  const { setChosenProduct, setChosenShop } = actionDispatch(useDispatch());
+  const { chosenProduct } = useSelector(chosenProductRetriever);
+  const { chosenShop } = useSelector(chosenShopRetriever);
+
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+
+  const productRelatedProcess = async () => {
+    try {
+      const productService = new ProductApiService();
+      const product: Product = await productService.getChosenProduct(
+        product_id
+      );
+      setChosenProduct(product);
+
+      const shopService = new ShopApiService();
+      const shop = await shopService.getChosenShop(product.shop_mb_id);
+      setChosenShop(shop);
+    } catch (err) {
+      console.log(`ProductRelatedProcess, ERROR:`, err);
+    }
+  };
+
   const [value, setValue] = React.useState("1");
 
   const [tabValue, settabValue] = React.useState("a");
 
   const [product_cnt, setProduct_cnt] = React.useState(1);
 
-  React.useEffect(() => {
-    console.log("test");
-  }, [product_cnt]);
-  /** HANDLERS **/
+  useEffect(() => {
+    productRelatedProcess().then();
+  }, [productRebuild]);
+
+  /** HANDLERS */
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct, ERROR", err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   const handle_cnt_minus = (event: any) => {
     setProduct_cnt((prev) => prev - 1);
   };
@@ -105,65 +191,48 @@ export default function ChosenPage() {
           }}
         >
           <Box className="img_part_product">
-            <Box className="img_part_product1">
-              <Swiper
-                // style={{
-                //   "--swiper-navigation-color": "#fff",
-                //   "--swiper-pagination-color": "#fff",
-                // }}
-                style={{ width: "420px", height: "420px" }}
-                spaceBetween={10}
-                navigation={true}
-                thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper2"
-              >
-                <SwiperSlide>
-                  <img src="/homepage/natural-part.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/homepage/garlic-white-surface.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/homepage/garlic.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/homepage/garlic-white-surface.jpg" />
-                </SwiperSlide>
-              </Swiper>
-            </Box>
-          </Box>
-          <Box>
-            <Swiper
-              // onSwiper={setThumbsSwiper}
-              style={{ width: "516px", height: "121px" }}
-              spaceBetween={10}
-              slidesPerView={3}
-              freeMode={true}
-              watchSlidesProgress={true}
-              modules={[FreeMode, Navigation, Thumbs]}
-              className="mySwiper3"
-            >
-              <SwiperSlide>
-                <img src="/homepage/garlic-white-surface.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/homepage/garlic.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/homepage/natural-part.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/homepage/garlic.jpg" />
-              </SwiperSlide>
-            </Swiper>
+            <TabContext value={value}>
+              <Box>
+                {chosenProduct?.product_images.map((ele: string, index) => {
+                  const image_path = `${serverApi}/${ele}`;
+                  return (
+                    <TabPanel value={(index + 1).toString()}>
+                      <Box className="main_img_part_product">
+                        <img
+                          style={{ width: "560px" }}
+                          src={image_path}
+                          alt="chosen"
+                        />
+                      </Box>
+                    </TabPanel>
+                  );
+                })}
+              </Box>
+              <Box className="all_img_part_product">
+                <TabList onChange={handleChange}>
+                  {chosenProduct?.product_images.map((ele: string, index) => {
+                    const image_path = `${serverApi}/${ele}`;
+                    return (
+                      <Tab
+                        label={
+                          <Box className="small_img_part_product">
+                            <img src={image_path} alt="chosen" />
+                          </Box>
+                        }
+                        value={(index + 1).toString()}
+                      />
+                    );
+                  })}
+                </TabList>
+              </Box>
+            </TabContext>
           </Box>
         </Stack>
         <Stack className="chosen_pro_info">
           <Box className="chosen_instock">
             <Box className="chosen_instock1">IN STOCK</Box>
           </Box>
-          <Box className="chosen_pro_name">Pineapple (Tropical Gold) 1 lb</Box>
+          <Box className="chosen_pro_name"> {chosenProduct?.product_name}</Box>
           <Box className="product_reting_chosen">
             <Rating size="small" name="read-only" value={4} readOnly />
             <Box>4,057 reviews</Box>

@@ -171,39 +171,39 @@ export default function ChosenBlog() {
               <Box className="blog_categ">BLOG CATEGORIES</Box>
 
               <Box className="blog_categor1">
-                <span>Fruits</span>
+                <span className="blog_categor">Fruits</span>
                 <span>(34)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Meats</span>
+                <span className="blog_categor">Meats</span>
                 <span>(34)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Vegetables</span>
+                <span className="blog_categor">Vegetables</span>
                 <span>(45)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Drinks</span>
+                <span className="blog_categor">Drinks</span>
                 <span>(56)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Bakery</span>
+                <span className="blog_categor">Bakery</span>
                 <span>(67)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Freshen</span>
+                <span className="blog_categor">Freshen</span>
                 <span>(78)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Latest news</span>
+                <span className="blog_categor">Latest news</span>
                 <span>(58)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Best blogs</span>
+                <span className="blog_categor">Best blogs</span>
                 <span>(89)</span>
               </Box>
               <Box className="blog_categor1">
-                <span>Others</span>
+                <span className="blog_categor">Others</span>
                 <span>(63)</span>
               </Box>
             </Stack>

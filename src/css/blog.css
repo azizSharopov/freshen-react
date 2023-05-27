@@ -45,6 +45,13 @@
   flex-direction: column;
   gap: 20px;
 }
+.tablist_style {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+}
 .blog_categ {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -57,7 +64,7 @@
   text-transform: uppercase;
   color: #121212;
 }
-.blog_categor1 {
+.blog_categor {
   width: 100px;
 
   display: flex;
@@ -124,16 +131,18 @@
   order: 0;
   flex-grow: 0;
 }
-.blog_subject_info {
+.all_blog_subject_info {
   display: flex;
   flex-direction: column;
   text-align: start;
   gap: 10px;
+  margin-left: 20px;
+  height: 205px;
 }
-.blog_subject_text {
-  margin-top: 30px;
+.all_blog_subject_text {
+  margin-top: 20px;
   width: 390px;
-  height: 60px;
+  height: 40px;
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
@@ -142,13 +151,14 @@
   color: #121212;
 }
 
-.blog_by {
+.all_blog_by {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+
+  width: 390px;
+  height: 20px;
 }
-.blog_by_css {
-  margin-left: 10px;
+.all_by_css {
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
@@ -273,8 +283,8 @@
   color: #041e42;
 }
 .blog_text_small {
-  width: 425px;
-  height: 48px;
+  width: 390px;
+  height: 40px;
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
@@ -284,7 +294,7 @@
 }
 .blog_text_conti {
   width: 229px;
-  height: 24px;
+  height: 20px;
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
@@ -402,4 +412,5 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 15px;
 }

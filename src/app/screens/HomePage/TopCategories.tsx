@@ -12,6 +12,12 @@ import { createSelector } from "reselect";
 import { retrieveTopShops } from "../../screens/HomePage/selector";
 import { Shop } from "../../../types/user";
 import { serverApi } from "../../../lib/config";
+import {
+  retrieveChosenShop,
+  retrieveTargetProducts,
+  retrieveTargetShops,
+} from "../../screens/ShopPage/selector";
+import { useHistory } from "react-router-dom";
 
 /** REDUX SELECTOR */
 const topShopRetriever = createSelector(retrieveTopShops, (topShops) => ({
@@ -21,6 +27,15 @@ const topShopRetriever = createSelector(retrieveTopShops, (topShops) => ({
 export function TopCategories() {
   const { topShops } = useSelector(topShopRetriever);
   console.log("topShops:::", topShops);
+  const history = useHistory();
+  // const searchShopProductsHandler = (shop: string) => {
+  //   targetProductsSearchObj.page = 1;
+  //   targetProductsSearchObj.shop_mb_id = shop;
+  //   setTargetProductsSearchObj({ ...targetProductsSearchObj });
+  // };
+  // const searchShopProductsHandler = (shop_mb_id) => {
+  //  history.push(`/shop`);
+  // };
 
   return (
     <div style={{ background: "#ffffff" }}>
@@ -60,6 +75,7 @@ export function TopCategories() {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <SwiperSlide
+                  // onClick={() => searchShopProductsHandler(shop_mb_id)}
                   style={{ cursor: "pointer" }}
                   key={ele._id}
                   className={"shop_avatars"}

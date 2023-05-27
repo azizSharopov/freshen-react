@@ -50,6 +50,7 @@ export function AboutPage() {
         bo_id: "FRESHEN",
         page: 1,
         limit: 10,
+        order: "art_likes",
       })
       .then((data) => setFreshenBoArticles(data))
       .catch((err) => console.log(err));
@@ -443,7 +444,7 @@ export function AboutPage() {
                       <Box className="about_subject_text">
                         {article?.art_subject}
                       </Box>
-                      <Box className="blog_by">
+                      <Box className="about_blog_by">
                         <Box>
                           <img
                             style={{
@@ -454,7 +455,7 @@ export function AboutPage() {
                             alt="blog_by"
                           />
                         </Box>
-                        <Box className="blog_by_css">By Admin</Box>
+                        <Box className="about_by_css">By Admin</Box>
 
                         <Box>
                           <img
@@ -467,7 +468,7 @@ export function AboutPage() {
                             alt="blog_by"
                           />
                         </Box>
-                        <Box className="blog_by_css">32 Comments</Box>
+                        <Box className="about_by_css">32 Comments</Box>
                       </Box>
                     </Box>
                   </Box>

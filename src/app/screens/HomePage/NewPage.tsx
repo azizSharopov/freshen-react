@@ -54,7 +54,7 @@ export function NewPage() {
 
   /** HANDLERS */
   const chosenProductHandler = (id: string) => {
-    history.push(`/shop/product/${id}`);
+    history.push(`/shop/${id}`);
   };
   return (
     <div
