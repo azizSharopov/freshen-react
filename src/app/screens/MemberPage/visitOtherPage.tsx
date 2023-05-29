@@ -494,6 +494,10 @@ import { Definer } from "../../../lib/Definer";
 import assert from "assert";
 import FollowApiService from "../../apiServices/followApiService";
 import { verifiedMemberData } from "../../apiServices/verify";
+import Marginer from "../../components/marginer";
+import ArticleIcon from "@mui/icons-material/Article";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -636,14 +640,222 @@ export function VisitOtherPage(props: any) {
   };
 
   return (
-    <div className={"my_page"}>
-      <Container maxWidth="lg" sx={{ mt: "50px", mb: "50px" }}>
-        <Stack className={"my_page_frame"}>
-          <TabContext value={value}>
-            <Stack className={"my_page_left"}>
-              <Box display={"flex"} flexDirection={"column"}>
+    <div style={{ background: "#ffffff" }}>
+      <div className="blogPage">
+        <div>
+          <img src="/homepage/image 28.png" alt="" />
+        </div>
+        <Container>
+          <Box
+            sx={{
+              width: "135px",
+              height: "91px",
+              position: "absolute",
+              marginTop: "62px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Box className="blog_page">My_Page</Box>
+            <Box className="blog_page1">
+              <Box>
+                Home / <span style={{ fontWeight: "600" }}>Other_Account</span>
+              </Box>
+            </Box>
+          </Box>
+        </Container>
+      </div>
+      <Container>
+        <TabContext value={value}>
+          <Stack className={"my_page"}>
+            <Stack className={"my_page_tablist"}>
+              <Box className="account_infos_other">
+                <Box className="account_infos">
+                  <Box className="account_img_box">
+                    <img src={verifiedMemberData?.mb_image} alt="my_page" />
+                  </Box>
+                  <Box className="account_name_box">
+                    <span>{chosenMember?.mb_nick}</span>
+                    <br />
+                    {chosenMember?.mb_email}
+                  </Box>
+                </Box>
+                <Box className="spes_box">
+                  <Box className="spes_type">SNS:</Box>
+                  <Box className="sns_icons">
+                    <Box>
+                      <img src="/icons/fc.png" alt="fc" />
+                    </Box>
+                    <Box>
+                      <img src="/icons/tw1.png" alt="fc" />
+                    </Box>
+                    <Box>
+                      <img src="/icons/ins.png" alt="fc" />
+                    </Box>
+                    <Box>
+                      <img
+                        style={{ width: "15px" }}
+                        src="/icons/tg.png"
+                        alt="fc"
+                      />
+                    </Box>
+                  </Box>
+                </Box>
+                <Marginer
+                  direction="horizontal"
+                  height="1"
+                  width="2"
+                  bg="#EAEAEA"
+                  opsty="1"
+                />
+                <Box className={"user_media_box"}>
+                  <p className={"follows"}>
+                    Followers: {chosenMember?.mb_subscriber_cnt}
+                  </p>
+                  <p className={"follows"}>
+                    Followers: {chosenMember?.mb_follow_cnt}
+                  </p>
+                </Box>
+                <p className="dash_tab">
+                  {chosenMember?.mb_description ??
+                    "qushimcha malumot kiritilmagan"}
+                </p>
+
+                <TabList
+                  onChange={handleChange}
+                  aria-label="lap API tabs example"
+                >
+                  {chosenMember?.me_followed &&
+                  chosenMember?.me_followed[0]?.my_following ? (
+                    <Tab
+                      style={{ flexDirection: "column" }}
+                      value={"4"}
+                      component={(e) => (
+                        <Button
+                          value={chosenMember?._id}
+                          variant={"contained"}
+                          style={{
+                            background: "#d53f20",
+                            color: "#121212",
+                            fontWeight: "600",
+                          }}
+                          onClick={unsubscribeHandler}
+                        >
+                          Cancel
+                        </Button>
+                      )}
+                    />
+                  ) : (
+                    <Tab
+                      style={{ flexDirection: "column" }}
+                      value={"4"}
+                      component={(e) => (
+                        <Button
+                          value={chosenMember?._id}
+                          variant={"contained"}
+                          style={{ backgroundColor: "#30945e" }}
+                          onClick={subscribeHandler}
+                          // @ts-ignore
+                        >
+                          To Follow
+                        </Button>
+                      )}
+                    />
+                  )}
+                </TabList>
+                <Marginer
+                  direction="horizontal"
+                  height="1"
+                  width="2"
+                  bg="#EAEAEA"
+                  opsty="1"
+                />
+                <Box
+                  sx={{
+                    background: "#ffffff",
+                    mt: "20px",
+                    width: "270px",
+                    fontSize: "18px",
+                    fontWeight: "700",
+                  }}
+                >
+                  <TabList
+                    onChange={handleChange}
+                    orientation="vertical"
+                    variant="scrollable"
+
+                    // value={value}
+                    // aria-label="Vertical tabs example"
+                    // sx={{
+                    //   borderRight: 1,
+                    //   borderColor: "divider",
+                    //   width: "99%",
+                    // }}
+                  >
+                    <Tab
+                      value={"1"}
+                      component={(e) => (
+                        <div
+                          onClick={() => setValue("1")}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <ArticleIcon />{" "}
+                          <Box sx={{ marginTop: "5px" }}> Articles</Box>
+                        </div>
+                      )}
+                    />
+                    <Tab
+                      value={"2"}
+                      component={(e) => (
+                        <div
+                          onClick={() => setValue("2")}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <PeopleAltIcon />{" "}
+                          <Box sx={{ marginTop: "5px" }}> Followers</Box>
+                        </div>
+                      )}
+                    />
+                    <Tab
+                      value={"3"}
+                      component={(e) => (
+                        <div
+                          onClick={() => setValue("3")}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <PeopleOutlineIcon />{" "}
+                          <Box
+                            sx={{
+                              marginTop: "5px",
+                            }}
+                          >
+                            {" "}
+                            Followings
+                          </Box>
+                        </div>
+                      )}
+                    />
+                  </TabList>
+                </Box>
+              </Box>
+            </Stack>
+
+            <Stack className="my_page_tabpanels">
+              <Box>
                 <TabPanel value={"1"}>
-                  <Box className={"menu_name"}>Maqolalar</Box>
+                  <Box className={"menu_name"}>Articles</Box>
                   <Box className={"menu_content"}>
                     <AccauntArticle
                       actions_enabled={false}
@@ -711,138 +923,8 @@ export function VisitOtherPage(props: any) {
                 </TabPanel>
               </Box>
             </Stack>
-
-            <Stack className={"my_page_right"}>
-              <Box className={"order_info_box"}>
-                <Box
-                  display={"flex"}
-                  flexDirection={"column"}
-                  alignItems={"center"}
-                >
-                  <div className={"order_user_img"}>
-                    <img
-                      src={"/homepage/garlic.jpg"}
-                      className={"order_user_avatar"}
-                    />
-                    <div className={"order_user_icon_box"}>
-                      <img src={"/icons/default_user.png"} />
-                    </div>
-                  </div>
-                  <span className={"order_user_name"}>
-                    {chosenMember?.mb_nick}
-                  </span>
-                  <span className={"order_user_prof"}>
-                    {chosenMember?.mb_type}
-                  </span>
-                </Box>
-                <Box className={"user_media_box"}>
-                  <FacebookIcon />
-                  <InstagramIcon />
-                  <TelegramIcon />
-                  <YouTubeIcon />
-                </Box>
-                <Box className={"user_media_box"}>
-                  <p className={"follows"}>
-                    Followers: {chosenMember?.mb_subscriber_cnt}
-                  </p>
-                  <p className={"follows"}>
-                    Followers: {chosenMember?.mb_follow_cnt}
-                  </p>
-                </Box>
-                <p className={"user_desc"}>
-                  {chosenMember?.mb_description ??
-                    "qushimcha malumot kiritilmagan"}
-                </p>
-                <Box
-                  display={"flex"}
-                  justifyContent={"flex-end"}
-                  sx={{ mt: "10px" }}
-                >
-                  <TabList
-                    onChange={handleChange}
-                    aria-label="lap API tabs example"
-                  >
-                    {chosenMember?.me_followed &&
-                    chosenMember?.me_followed[0]?.my_following ? (
-                      <Tab
-                        style={{ flexDirection: "column" }}
-                        value={"4"}
-                        component={(e) => (
-                          <Button
-                            value={chosenMember?._id}
-                            variant={"contained"}
-                            style={{ background: "rgba(247, 9, 9, 0.72)" }}
-                            onClick={unsubscribeHandler}
-                          >
-                            Bekor qilish
-                          </Button>
-                        )}
-                      />
-                    ) : (
-                      <Tab
-                        style={{ flexDirection: "column" }}
-                        value={"4"}
-                        component={(e) => (
-                          <Button
-                            value={chosenMember?._id}
-                            variant={"contained"}
-                            style={{ backgroundColor: "#30945e" }}
-                            onClick={subscribeHandler}
-                            // @ts-ignore
-                          >
-                            Folow qilish
-                          </Button>
-                        )}
-                      />
-                    )}
-                  </TabList>
-                </Box>
-              </Box>
-
-              <Box className={"my_page_menu"}>
-                <TabList
-                  onChange={handleChange}
-                  orientation="vertical"
-                  variant="scrollable"
-                  value={value}
-                  aria-label="Vertical tabs example"
-                  sx={{ borderRight: 1, borderColor: "divider", width: "98%" }}
-                >
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"1"}
-                    component={(e) => (
-                      <div className={`menu_box`} onClick={() => setValue("1")}>
-                        <img src={"/icons/pencil.svg"} />
-                        <span>Articles</span>
-                      </div>
-                    )}
-                  />
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"2"}
-                    component={(e) => (
-                      <div className={`menu_box`} onClick={() => setValue("2")}>
-                        <img src={"/icons/followers.svg"} />
-                        <span>Followerlari</span>
-                      </div>
-                    )}
-                  />
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"3"}
-                    component={(e) => (
-                      <div className={`menu_box`} onClick={() => setValue("3")}>
-                        <img src={"/icons/following.svg"} />
-                        <span>Followlari</span>
-                      </div>
-                    )}
-                  />
-                </TabList>
-              </Box>
-            </Stack>
-          </TabContext>
-        </Stack>
+          </Stack>
+        </TabContext>
       </Container>
     </div>
   );

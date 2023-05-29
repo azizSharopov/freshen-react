@@ -1,7 +1,24 @@
 .my_page {
+  width: 100%;
+  height: auto;
+  display: flex;
+  background: #ffffff;
+}
+.my_page_other {
+  width: 100%;
+  height: auto;
+  display: flex;
+  background: #ffffff;
+  flex-direction: row;
+}
+.my_page_frame_other {
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
-  position: relative;
+}
+.my_page_right {
+  width: 75%;
 }
 .spec_input:focus {
   outline: none; /* Optional: Remove default focus outline */
@@ -28,6 +45,13 @@
   align-items: center;
   height: 90px;
   margin-bottom: 20px;
+  gap: 20px;
+}
+.account_infos_other {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
   gap: 20px;
 }
 
@@ -192,7 +216,7 @@
 }
 
 .media_change_box p {
-  color: #4f547b;
+  color: #86bc42;
   font-family: GT Walsheim Pro;
   font-size: 14px;
   font-style: normal;
@@ -245,7 +269,7 @@
   font-weight: 500;
   font-size: 24px;
   line-height: 40px;
-  color: #041e42;
+  color: #86bc42;
 }
 
 .dash_stat_box_info_icon {
@@ -277,7 +301,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 26px;
-  color: #041e42;
+  color: #86bc42;
 }
 .dash_order {
   width: 66%;
@@ -332,7 +356,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
-  color: #041e42;
+  color: #86bc42;
 }
 .activity_details span {
   font-weight: 500;
@@ -397,7 +421,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ff3365;
+  background-color: #86bc42;
 }
 .market_set_img_box img {
   border-radius: 50%;
@@ -490,7 +514,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  color: #041e42;
+  color: #86bc42;
 }
 .x_btn {
   position: absolute;
@@ -546,4 +570,16 @@
   color: #121212;
   padding: 10px;
   border: 1px solid #eaeaea;
+}
+
+/** Other_account */
+.user_media_box {
+  width: 260px;
+  height: 20px;
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
 }
