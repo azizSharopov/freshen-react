@@ -23,6 +23,7 @@ import { retrieveSaleProducts } from "./selector";
 import { createSelector } from "reselect";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { Review } from "../../../types/follow";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -155,7 +156,7 @@ export function DealPage() {
                   >
                     <img
                       style={{ width: "240px", height: "220px" }}
-                      src="/homepage/ripe-blueberries.jpg"
+                      src={image_path}
                       alt=""
                     />
 
@@ -182,12 +183,17 @@ export function DealPage() {
                       <Rating
                         size="small"
                         name="read-only"
-                        value={4}
+                        value={
+                          product.reviews && product.reviews.length > 0
+                            ? (product.reviews as Review[])[0]?.average_rating
+                            : 0 // Provide a default value if there are no reviews
+                        }
                         readOnly
                       />
                     </Box>
                     <Box className="product_namebest">
-                      Fresh Strawberry - 100% Organic. Natural
+                      {" "}
+                      {product.product_name}
                     </Box>
 
                     <Box className="product_pricebest">

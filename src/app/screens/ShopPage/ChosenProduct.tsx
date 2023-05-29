@@ -51,16 +51,18 @@ import {
 import { Product } from "../../../types/product";
 import { Shop } from "../../../types/user";
 
-import { setChosenShop, setChosenProduct } from "./slice";
+import { setChosenShop, setChosenProduct, setMemberReviews } from "./slice";
 import { retrieveChosenShop, retrieveChosenProduct } from "./selector";
 import { useParams } from "react-router-dom";
 import assert from "assert";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { Review } from "../../../types/follow";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setChosenProduct: (data: Product) => dispach(setChosenProduct(data)),
   setChosenShop: (data: Shop) => dispach(setChosenShop(data)),
+  setMemberReviews: (data: Review) => dispach(setMemberReviews(data)),
 });
 
 /** REDUX SELECTOR */
@@ -147,7 +149,9 @@ export default function ChosenPage(props: any) {
   const handleChangetablist = (event: any, newValue: string) => {
     settabValue(newValue);
   };
-
+  const shop_mb_nick = chosenShop?.mb_nick;
+  const product_raviews = chosenProduct?.reviews?.[0]?.average_rating ?? 0;
+  const product_raviews_cnt = chosenProduct?.reviews?.[0]?.reviews_cnt ?? 0;
   return (
     <div>
       <div className="ChosenPage">
@@ -168,8 +172,8 @@ export default function ChosenPage(props: any) {
             }}
           >
             <Box className="chosen_page">Home / Shop / </Box>
-            <Box className="chosen_page"> Fruits / </Box>
-            <Box className="chosen_page1">Pineapple (Tropical Gold) 1 lb </Box>
+            <Box className="chosen_page"> {chosenShop?.mb_nick} / </Box>
+            <Box className="chosen_page1">{chosenProduct?.product_name} </Box>
           </Box>
         </Container>
       </div>
@@ -234,8 +238,16 @@ export default function ChosenPage(props: any) {
           </Box>
           <Box className="chosen_pro_name"> {chosenProduct?.product_name}</Box>
           <Box className="product_reting_chosen">
-            <Rating size="small" name="read-only" value={4} readOnly />
-            <Box>4,057 reviews</Box>
+            <Box className="product_retingonsale">
+              <Rating
+                size="small"
+                name="read-only"
+                value={product_raviews ? product_raviews : 0}
+                readOnly
+              />
+
+              <Box>{product_raviews_cnt ? product_raviews_cnt : 0} reviews</Box>
+            </Box>
           </Box>
           <Box className="product_price_box">
             <Box>
@@ -273,11 +285,11 @@ export default function ChosenPage(props: any) {
           <Box sx={{ mt: "30px", mb: "20px" }}>
             <Box className="spes_box">
               <Box className="spes_type">SKU:</Box>
-              <Box className="spes_value">OG1203</Box>
+              <Box className="spes_value">{chosenProduct?.product_sku}</Box>
             </Box>
             <Box className="spes_box">
               <Box className="spes_type">Categories:</Box>
-              <Box className="spes_value">Meats</Box>
+              <Box className="spes_value"> {shop_mb_nick}</Box>
             </Box>
             <Box className="spes_box">
               <Box className="spes_type">Share:</Box>
@@ -538,7 +550,7 @@ export default function ChosenPage(props: any) {
               <TabPanel value={"3"}>
                 <Box sx={{ display: "flex", gap: "110px" }}>
                   <Box>
-                    <ReviewsComponent />
+                    <ReviewsComponent chosenProduct={chosenProduct} />
                   </Box>
                   <Box>
                     <Box className="write_review_section">

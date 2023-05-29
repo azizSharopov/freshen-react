@@ -1,11 +1,89 @@
-import React, { useState } from "react";
 import { Box, Button, Container, Switch, Tab } from "@mui/material";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Marginer from "../../components/marginer";
-const label = { inputProps: { "aria-label": "Switch demo" } };
-export default function AccauntDetail() {
+import { Stack } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
+import { verifiedMemberData } from "../../apiServices/verify";
+import { MemberUpdateData } from "../../../types/user";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { Definer } from "../../../lib/Definer";
+import assert from "assert";
+import MemberApiService from "../../apiServices/memberApiService";
+
+export default function AccauntDetail(props: any) {
   const [value, setValue] = useState("1");
+
+  /**INITIALIZATIONS */
+  const [file, setFile] = useState(verifiedMemberData?.mb_image);
+
+  const [memberUpdate, setMemberUpdate] = useState<MemberUpdateData>({
+    mb_nick: "",
+    mb_phone: "",
+    mb_address: "",
+    mb_description: "",
+    mb_image: "",
+  });
+  /**HANDLERS */
+
+  const changeMemberNickHandler = (e: any) => {
+    memberUpdate.mb_nick = e.target.value;
+    setMemberUpdate({ ...memberUpdate });
+  };
+
+  const changeMemberPhoneHandler = (e: any) => {
+    memberUpdate.mb_phone = e.target.value;
+    setMemberUpdate({ ...memberUpdate });
+  };
+
+  const changeMemberAddressHandler = (e: any) => {
+    memberUpdate.mb_address = e.target.value;
+    setMemberUpdate({ ...memberUpdate });
+  };
+
+  const changeMemberDescriptionHandler = (e: any) => {
+    memberUpdate.mb_description = e.target.value;
+    setMemberUpdate({ ...memberUpdate });
+  };
+
+  const handleImagePreviewer = (e: any) => {
+    try {
+      const file = e.target.files[0];
+
+      const fileType = file["type"];
+      const validTypes = ["image/jpg", "image/png", "image/jpeg"];
+      assert.ok(validTypes.includes(fileType) && file, Definer.input_err2);
+
+      memberUpdate.mb_image = file;
+      setMemberUpdate({ ...memberUpdate });
+      setFile(URL.createObjectURL(file));
+    } catch (err) {
+      console.log(`ERROR::: handleImagePreviewer ${err}`);
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const handleSubmitButton = async () => {
+    try {
+      const memberService = new MemberApiService();
+      const result = await memberService.updateMemberData(memberUpdate);
+
+      assert.ok(result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert(
+        "Information modified successfully!",
+        700,
+        false
+      );
+      window.location.reload();
+    } catch (err) {
+      console.log(`ERROR::: handleSubmitButton ${err}`);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
@@ -91,8 +169,9 @@ export default function AccauntDetail() {
                   <input
                     className={"spec_input mb_first_name"}
                     type="text"
-                    placeholder={"Ayden"}
-                    name="mb_first_name"
+                    placeholder={verifiedMemberData?.mb_nick}
+                    name="mb_nick"
+                    onChange={changeMemberNickHandler}
                   />
                 </Box>
                 <Box className="market_setting_input_box">
@@ -109,8 +188,9 @@ export default function AccauntDetail() {
                   <input
                     className={"spec_input mb_phone"}
                     type="text"
-                    placeholder={"01082578505"}
+                    placeholder={verifiedMemberData?.mb_phone}
                     name="mb_phone"
+                    onChange={changeMemberPhoneHandler}
                   />
                 </Box>{" "}
                 <Box className="market_setting_input_box">
@@ -125,6 +205,7 @@ export default function AccauntDetail() {
               </Box>
               <Box>
                 <Button
+                  onClick={handleSubmitButton}
                   className="dash_search_btn"
                   sx={{
                     background: "#86BC42",
@@ -209,6 +290,7 @@ export default function AccauntDetail() {
             </Box>
             <Box sx={{ mt: "40px" }}>
               <Button
+                onClick={handleSubmitButton}
                 className="dash_search_btn"
                 sx={{
                   background: "#86BC42",
@@ -345,7 +427,11 @@ export default function AccauntDetail() {
                 <span>Upload image</span>
                 <p>You can upload images in JPG, JPEG, PNG format!</p>
                 <div className={"up_del_box"}>
-                  <Button component="label" style={{ minWidth: "0" }}>
+                  <Button
+                    component="label"
+                    style={{ minWidth: "0" }}
+                    onChange={handleImagePreviewer}
+                  >
                     <CloudDownloadIcon />
                     <input type="file" hidden />
                   </Button>
@@ -427,6 +513,7 @@ export default function AccauntDetail() {
               </Box>
               <Box>
                 <Button
+                  onClick={handleSubmitButton}
                   className="dash_search_btn"
                   sx={{
                     background: "#86BC42",

@@ -13,6 +13,7 @@ import {
   styled,
 } from "@mui/material";
 import Marginer from "../../components/marginer";
+import { ProductSearchObj } from "../../../types/others";
 
 //BorderLinerProgress
 
@@ -31,7 +32,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const reviews: Array<number> = [1, 2];
 
-export function ReviewsComponent() {
+export function ReviewsComponent(props: any) {
   return (
     <Stack sx={{ width: "500px", height: "600px" }}>
       <Box className="count_of_review">Reviews</Box>
@@ -90,5 +91,140 @@ export function ReviewsComponent() {
         opsty="1"
       />
     </Stack>
+  );
+}
+
+export function RatingComponent(props: any) {
+  let chosenPro = props.chosenProduct;
+
+  const product_raviews = chosenPro?.reviews?.[0]?.average_rating ?? 0;
+  const product_raviews_cnt = chosenPro?.reviews?.[0]?.reviews_cnt ?? 0;
+
+  return (
+    <Box className="rating_box">
+      <Box className="overal_rating">
+        <Box className="rating_by_num">{product_raviews}</Box>
+        <Box className="rating_by_star">
+          <Rating
+            size="large"
+            name="read-only"
+            value={product_raviews}
+            readOnly
+          />
+          <br /> {product_raviews_cnt} reviews
+        </Box>
+      </Box>
+      <Box className="rating">
+        <Box>5 star</Box>
+        <Box className="reting_progress">
+          <BorderLinearProgress
+            variant="determinate"
+            value={
+              product_raviews_cnt
+                ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[5] ?? 0) * 100) /
+                  product_raviews_cnt
+                : 0
+            }
+          />
+        </Box>
+        <Box>
+          {" "}
+          {product_raviews_cnt
+            ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[5] ?? 0) * 100) /
+              product_raviews_cnt
+            : 0}
+          %
+        </Box>
+      </Box>
+
+      <Box className="rating">
+        <Box>4 star</Box>
+        <Box className="reting_progress">
+          <BorderLinearProgress
+            variant="determinate"
+            value={
+              product_raviews_cnt
+                ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[4] ?? 0) * 100) /
+                  product_raviews_cnt
+                : 0
+            }
+          />
+        </Box>
+        <Box>
+          {product_raviews_cnt
+            ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[4] ?? 0) * 100) /
+              product_raviews_cnt
+            : 0}
+          %
+        </Box>
+      </Box>
+
+      <Box className="rating">
+        <Box>3 star</Box>
+        <Box className="reting_progress">
+          <BorderLinearProgress
+            variant="determinate"
+            value={
+              product_raviews_cnt
+                ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[3] ?? 0) * 100) /
+                  product_raviews_cnt
+                : 0
+            }
+          />
+        </Box>
+        <Box>
+          {product_raviews_cnt
+            ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[3] ?? 0) * 100) /
+              product_raviews_cnt
+            : 0}
+          %
+        </Box>
+      </Box>
+
+      <Box className="rating">
+        <Box>2 star</Box>
+        <Box className="reting_progress">
+          <BorderLinearProgress
+            variant="determinate"
+            value={
+              product_raviews_cnt
+                ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[2] ?? 0) * 100) /
+                  product_raviews_cnt
+                : 0
+            }
+          />
+        </Box>
+        <Box>
+          {product_raviews_cnt
+            ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[2] ?? 0) * 100) /
+              product_raviews_cnt
+            : 0}
+          %
+        </Box>
+      </Box>
+
+      <Box className="rating">
+        <Box>1 star</Box>
+        <Box className="reting_progress">
+          <BorderLinearProgress
+            variant="determinate"
+            value={
+              product_raviews_cnt
+                ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[1] ?? 0) * 100) /
+                  product_raviews_cnt
+                : 0
+            }
+          />
+        </Box>
+        <Box>
+          {product_raviews_cnt
+            ? ((chosenPro?.reviews?.[0]?.ratingByValue?.[1] ?? 0) * 100) /
+              product_raviews_cnt
+            : 0}
+          %
+        </Box>
+      </Box>
+      <Box className="rating_btn">Write Your Review</Box>
+    </Box>
   );
 }

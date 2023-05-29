@@ -54,102 +54,102 @@ export function TargetArticles(props: any) {
           ? `${serverApi}/${article.art_image}`
           : "/admin_photo/girl_milk.jpg";
         return (
-          <Stack
-            className="blog_box"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              height: "500px",
-              width: "440px",
-              marginTop: "40px",
-              // border: "1px solid #eaeaea",
-            }}
+          <Link
+            href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
           >
-            <Box
-              className="blog_img"
+            <Stack
+              className="blog_box"
               sx={{
-                backgroundImage: `url(${art_image_url})`,
-                zIndex: "3",
-                width: "438px",
-                height: "300px",
+                display: "flex",
+                flexDirection: "column",
+                height: "500px",
+                width: "440px",
+                marginTop: "40px",
+                // border: "1px solid #eaeaea",
               }}
             >
               <Box
+                className="blog_img"
                 sx={{
-                  width: "65px",
-                  height: "77px",
-                  background: "#ffffff",
-                  zIndex: "5",
-                  position: "absolute",
-                  marginLeft: "20px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "5px",
+                  backgroundImage: `url(${art_image_url})`,
+                  zIndex: "3",
+                  width: "438px",
+                  height: "300px",
                 }}
               >
-                <span className="brand_namebest" style={{ color: "#121212" }}>
-                  MAY
-                </span>
-                <span className="home_blog_date">24</span>
-              </Box>
-              <Box
-                sx={{
-                  width: "150px",
-                  height: "30px",
-                  background: "#86bc42",
-                  zIndex: "5",
-                  position: "absolute",
-                  marginLeft: "20px",
-                  marginTop: "275px",
-                  borderRadius: "60px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Box className="blog_subject_home">{article?.bo_id}</Box>
-              </Box>
-            </Box>
-            <Stack className="all_blog_subject_info">
-              <Box className="all_blog_subject_text">
-                {article?.art_subject}
-              </Box>
-              <Stack
-                className="all_blog_by"
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: "10px",
-                  marginTop: "20px",
-                }}
-              >
-                <Box>
-                  <img src="/icons/user1.png" alt="all_blog_by" />
+                <Box
+                  sx={{
+                    width: "65px",
+                    height: "77px",
+                    background: "#ffffff",
+                    zIndex: "5",
+                    position: "absolute",
+                    marginLeft: "20px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                  }}
+                >
+                  <span className="brand_namebest" style={{ color: "#121212" }}>
+                    MAY
+                  </span>
+                  <span className="home_blog_date">24</span>
                 </Box>
-                <Box className="all_by_css">
-                  {/* <Link
-                    href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
-                  >
+                <Box
+                  sx={{
+                    width: "150px",
+                    height: "30px",
+                    background: "#86bc42",
+                    zIndex: "5",
+                    position: "absolute",
+                    marginLeft: "20px",
+                    marginTop: "275px",
+                    borderRadius: "60px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Box className="blog_subject_home">{article?.bo_id}</Box>
+                </Box>
+              </Box>
+              <Stack className="all_blog_subject_info">
+                <Box className="all_blog_subject_text">
+                  {article?.art_subject}
+                </Box>
+                <Stack
+                  className="all_blog_by"
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: "10px",
+                    marginTop: "20px",
+                  }}
+                >
+                  <Box>
+                    <img src="/icons/user1.png" alt="all_blog_by" />
+                  </Box>
+                  <Box className="all_by_css">
                     {" "}
-                  </Link> */}
-                  {article?.member_data.mb_nick}
+                    {article?.member_data.mb_nick}
+                  </Box>
+
+                  <Box sx={{ marginLeft: "30px", marginTop: "5px" }}>
+                    <img src="/icons/chat1.png" alt="all_blog_by" />
+                  </Box>
+                  <Box className="all_by_css">32 Comments</Box>
+                </Stack>
+                <Box className="chosen_retingbest">
+                  <Rating size="small" name="read-only" value={4} readOnly />
                 </Box>
 
-                <Box sx={{ marginLeft: "30px", marginTop: "5px" }}>
-                  <img src="/icons/chat1.png" alt="all_blog_by" />
-                </Box>
-                <Box className="all_by_css">32 Comments</Box>
+                <Box className="blog_text_conti">CONTINUE READING</Box>
               </Stack>
-              <Box className="chosen_retingbest">
-                <Rating size="small" name="read-only" value={4} readOnly />
-              </Box>
-
-              <Box className="blog_text_conti">CONTINUE READING</Box>
             </Stack>
-          </Stack>
+          </Link>
         );
       })}
     </Stack>

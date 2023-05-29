@@ -1,3 +1,5 @@
+import { Review } from "./follow";
+import { Member, Shop } from "./user";
 export interface MeLiked {
   mb_id: string;
   like_ref_id: string;
@@ -10,8 +12,16 @@ export interface Product {
   product_collection: string;
   product_status: string;
   product_price: number;
-  product_discount: number;
+  discounted_price: number;
+  product_discount?: {
+    isValid: boolean;
+    type: string;
+    value: number;
+    startDate: Date;
+    endDate: Date;
+  };
   product_left_cnt: number;
+  product_sold_cnt: number;
   product_size: string;
   product_sku: string;
   product_volume: number;
@@ -23,4 +33,6 @@ export interface Product {
   createdAt: Date;
   updatedAt: Date;
   me_liked: MeLiked[];
+  reviews?: Review[];
+  member_data: Shop[];
 }

@@ -1,3 +1,6 @@
+import { Review } from "./follow";
+import { Shop } from "./user";
+
 export interface SearchObj {
   page: number;
   limit: number;
@@ -8,8 +11,11 @@ export interface ProductSearchObj {
   page: number;
   limit: number;
   order: string;
+  product_price?: string;
+  product_type?: string;
   shop_mb_id?: string;
-  product_collection?: string;
+  product_sold_cnt?: string;
+  reviews?: Review[];
 }
 
 export interface MemberLiken {

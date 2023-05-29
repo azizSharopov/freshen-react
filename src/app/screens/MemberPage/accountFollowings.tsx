@@ -49,7 +49,7 @@ const rows = [
   },
 ];
 
-export default function AccountFollowings() {
+export default function AccountFollowings(props: any) {
   return (
     <Box className="dash_tabpanels">
       <Box className="dash_head_text">

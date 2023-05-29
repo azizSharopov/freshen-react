@@ -1,14 +1,31 @@
 import { Box, Stack } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
 import React from "react";
+import moment from "moment";
 
-const finishedOrders = [[1]];
+// REDUX
+import { createSelector } from "reselect";
+import { retrieveFinishedOrders } from "../../screens/OrdersPage/selector";
+import { useSelector } from "react-redux";
+import { Order } from "../../../types/order";
+import { Product } from "../../../types/product";
+import { serverApi } from "../../../lib/config";
+
+/** REDUX SELECTOR */
+const finishedOrdersRetriever = createSelector(
+  retrieveFinishedOrders,
+  (finishedOrders) => ({
+    finishedOrders,
+  })
+);
 
 export default function FinishedOrders(props: any) {
+  /** INITIALIZATIONS */
+  const { finishedOrders } = useSelector(finishedOrdersRetriever);
   return (
     <TabPanel value={"3"}>
       <Stack>
-        {finishedOrders?.map((order) => {
+        {finishedOrders?.map((order: Order) => {
           return (
             <Box className={"order_finish_box"}>
               <Box className={"orders_finish"}>
@@ -38,12 +55,17 @@ export default function FinishedOrders(props: any) {
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <span className="boxfinish_tex">Date</span>
 
-                  <span className="boxfinish_tex1">27/11/2020</span>
+                  <span className="boxfinish_tex1">
+                    {" "}
+                    {moment(order.createdAt).format("YY-MM-DD HH:mm")}
+                  </span>
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <span className="boxfinish_tex">Total</span>
 
-                  <span className="boxfinish_tex1">$40.10</span>
+                  <span className="boxfinish_tex1">
+                    ${order.order_total_amount}
+                  </span>
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <span className="boxfinish_tex">Payment Method</span>

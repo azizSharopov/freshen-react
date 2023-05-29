@@ -1,5 +1,5 @@
 import { BoArticle } from "./boArticle";
-import { Follower, Following } from "./follow";
+import { Follower, Following, Review } from "./follow";
 import { Order } from "./order";
 import { Product } from "./product";
 import { Member, Shop } from "./user";
@@ -33,6 +33,7 @@ export interface ShopPageState {
   targetProducts: Product[];
   chosenProduct: Product | null;
   targetShops: Shop[];
+  memberReviews: Review | null;
 }
 
 /** ORDERS PAGE */

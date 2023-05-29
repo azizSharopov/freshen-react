@@ -74,6 +74,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { Review } from "../../../types/follow";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -111,6 +112,7 @@ export function AllProducts(props: any) {
     useDispatch()
   );
   const { targetShops } = useSelector(targetShopsRetriever);
+
   const { chosenShop } = useSelector(chosenShopRetriever);
   const { targetProducts } = useSelector(targetProductsRetriever);
   const [chosenShopId, setChosenShopId] = useState<string>(shop_id);
@@ -152,7 +154,7 @@ export function AllProducts(props: any) {
     setTargetProductsSearchObj({ ...targetProductsSearchObj });
     history.push(`/shop/${id}`);
   };
-
+  const shop_mb_nick = chosenShop?.mb_nick;
   const searchShopProductsHandler = (shop: string) => {
     targetProductsSearchObj.page = 1;
     targetProductsSearchObj.shop_mb_id = shop;
@@ -696,9 +698,20 @@ export function AllProducts(props: any) {
                   </Box>
                 </Box>
                 <Box className="product_infobest">
-                  <Box className="brand_namebest">FRUITS</Box>
+                  <Box className="brand_namebest">
+                    {product?.member_data[0]?.mb_nick}
+                  </Box>
                   <Box className="product_retingbest">
-                    <Rating size="small" name="read-only" value={4} readOnly />
+                    <Rating
+                      size="small"
+                      name="read-only"
+                      value={
+                        product.reviews && product.reviews.length > 0
+                          ? (product.reviews as Review[])[0]?.average_rating
+                          : 0 // Provide a default value if there are no reviews
+                      }
+                      readOnly
+                    />
                   </Box>
                   <Box className="product_namebest">{product.product_name}</Box>
                   <Box className="add_card_btnbest">

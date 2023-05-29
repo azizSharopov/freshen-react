@@ -1,5 +1,6 @@
 import { MeLiked } from "./product";
 import { Member } from "./user";
+import { Review } from "./follow";
 
 export interface BoArticleInput {
   art_subject: string;
@@ -22,6 +23,7 @@ export interface BoArticle {
   updatedAt: Date;
   member_data: Member;
   me_liked: MeLiked[];
+  reviews?: Review[];
 }
 
 export interface SearchArticlesObj {

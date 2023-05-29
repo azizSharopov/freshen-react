@@ -19,3 +19,7 @@ export const retrieveTargetShops = createSelector(
   selectShopPage,
   (ShopPage) => ShopPage.targetShops
 );
+export const retrieveMemberReviews = createSelector(
+  selectShopPage,
+  (ShopPage) => ShopPage.memberReviews
+);

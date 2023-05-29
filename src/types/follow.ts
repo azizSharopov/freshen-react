@@ -6,6 +6,18 @@ export interface MeFollowed {
   my_following: boolean;
 }
 
+export interface Review {
+  reviews_cnt?: number;
+  ratingByValue?: {
+    1?: number;
+    2?: number;
+    3?: number;
+    4?: number;
+    5?: number;
+  };
+  average_rating?: number;
+}
+
 export interface Follower {
   _id: string;
   follow_id: string;

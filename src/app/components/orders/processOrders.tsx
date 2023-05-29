@@ -6,9 +6,55 @@ import Marginer from "../marginer";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import moment from "moment";
 
-const pausedOrders = [[1, 2, 3, 4]];
+// REDUX
+import { createSelector } from "reselect";
+import { retrieveProcessOrders } from "../../screens/OrdersPage/selector";
+import { useSelector } from "react-redux";
+import { Order } from "../../../types/order";
+import { Product } from "../../../types/product";
+import { serverApi } from "../../../lib/config";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import OrderApiService from "../../apiServices/orderApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
+
+/** REDUX SELECTOR */
+const processOrdersRetriever = createSelector(
+  retrieveProcessOrders,
+  (processOrders) => ({
+    processOrders,
+  })
+);
 
 export default function ProcessOrders(props: any) {
+  /** INITIALIZATIONS */
+  const { processOrders } = useSelector(processOrdersRetriever);
+
+  /** HANDLERS **/
+  const finishOrderHandler = async (event: any) => {
+    try {
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "FINISHED" };
+
+      if (!verifiedMemberData) {
+        sweetFailureProvider("Please login first", true);
+      }
+
+      let confirmation = window.confirm(
+        "Buyurtmangizni olganingizni tasdiqlaysizmi?"
+      );
+      if (confirmation) {
+        const orderService = new OrderApiService();
+        await orderService.updateOrderStatus(data);
+        props.setOrderRebuild(new Date());
+      }
+    } catch (err) {
+      console.log("finishOrderHandler, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
     <TabPanel value={"2"}>
       <Stack
@@ -43,12 +89,15 @@ export default function ProcessOrders(props: any) {
         opsty="1"
       />
       <Stack>
-        {pausedOrders?.map((order) => {
+        {processOrders?.map((order: Order) => {
           return (
             <Box className={"order_main_box"}>
               <Box className={"order_box_scroll"}>
-                {order.map((item) => {
-                  const image_path = `/shop_photo/bell-pepper.jpg`;
+                {order.order_items.map((item) => {
+                  const product: Product = order.product_data.filter(
+                    (ele) => ele._id === item.product_id
+                  )[0];
+                  const image_path = `${serverApi}/${product.product_images[0]}`;
                   return (
                     <Box className={"ordersName_price"}>
                       <Box className={"priceBox"}>
@@ -60,15 +109,15 @@ export default function ProcessOrders(props: any) {
                           className={"titleProduct"}
                           style={{ textAlign: "start" }}
                         >
-                          Bell-pepper
+                          ${item.item_price}
                         </p>
                       </Box>
                       <Box className={"priceBox"}>
                         <p style={{ color: "#86bc42" }}>$11</p>
 
-                        <p>5</p>
+                        <p>{item.item_quantity}</p>
 
-                        <p>$55</p>
+                        <p>${item.item_price * item.item_quantity}</p>
                       </Box>
                     </Box>
                   );
@@ -81,19 +130,23 @@ export default function ProcessOrders(props: any) {
               >
                 <Box className={"boxTotal"}>
                   <p>Product price</p>
-                  <p>$55</p>
+                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
 
                   <p>Shipping</p>
-                  <p>$2</p>
+                  <p>${order.order_delivery_cost}</p>
 
                   <p>Totals</p>
-                  <p style={{ color: "#86bc42", fontWeight: "600" }}>$57</p>
+                  <p style={{ color: "#86bc42", fontWeight: "600" }}>
+                    ${order.order_total_amount}
+                  </p>
                 </Box>
                 <p className={"data_compl"}>
                   {moment().format("YY-MM-DD HH:mm")}
                 </p>
 
                 <Button
+                  value={order._id}
+                  onClick={finishOrderHandler}
                   variant="contained"
                   style={{
                     background: "#86bc42",

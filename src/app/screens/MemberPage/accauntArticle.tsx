@@ -1,10 +1,50 @@
-import React from "react";
 import { Box, Button, Container, Rating, Stack } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import PaginationAllProducts from "../ShopPage/paginationAllProduct";
+import { verifiedMemberData } from "../../apiServices/verify";
+import { Definer } from "../../../lib/Definer";
+import assert from "assert";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { BoArticle } from "../../../types/boArticle";
+import { serverApi } from "../../../lib/config";
+import MemberApiService from "../../apiServices/memberApiService";
+import moment from "moment";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 
-const blogs_list = Array.from(Array(6).keys());
-export default function AccauntArticle() {
+export default function AccauntArticle(props: any) {
+  const {
+    chosenMemberBoArticles,
+    renderChosenArticleHandler,
+    setArticlesRebuild,
+  } = props;
+
+  /** HANDLERS */
+  const targetLikeHandler = async (e: any) => {
+    try {
+      e.stopPropagation();
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+
+      const memberService = new MemberApiService();
+      const like_result = await memberService.memberLikeTarget({
+        like_ref_id: e.target.id,
+        group_type: "community",
+      });
+      assert.ok(like_result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setArticlesRebuild(new Date());
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   return (
     <Box>
       <Box
@@ -48,13 +88,20 @@ export default function AccauntArticle() {
           className="blogs"
           sx={{ flexDirection: "row", flexWrap: "wrap" }}
         >
-          {blogs_list.map((ele, index) => {
+          {chosenMemberBoArticles.map((article: BoArticle) => {
+            const image_path = article.art_image
+              ? `${serverApi}/${article.art_image}`
+              : "/icons/default_user.png";
             return (
-              <Box className="blog_box">
+              <Box
+                className="blog_box"
+                sx={{ cursor: "pointer" }}
+                // onClick={() => renderChosenArticleHandler(article?._id)}
+              >
                 <Box
                   className="blog_img"
                   sx={{
-                    backgroundImage: "url(/admin_photo/girl-milk.jpg)",
+                    backgroundImage: { image_path },
                     zIndex: "3",
                   }}
                 >
@@ -78,9 +125,12 @@ export default function AccauntArticle() {
                       className="brand_namebest"
                       style={{ color: "#121212" }}
                     >
-                      MAY
+                      {moment(article?.createdAt).format("MM")}
                     </span>
-                    <span className="home_blog_date">24</span>
+                    <span className="home_blog_date">
+                      {" "}
+                      {moment(article?.createdAt).format("DD")}
+                    </span>
                   </Box>
                   <Box
                     sx={{
@@ -97,19 +147,22 @@ export default function AccauntArticle() {
                       alignItems: "center",
                     }}
                   >
-                    <Box className="blog_subject_home">BAKERY</Box>
+                    <Box className="blog_subject_home">{article?.bo_id}</Box>
                   </Box>
                 </Box>
                 <Box className="blog_subject_info">
                   <Box className="blog_subject_text">
-                    How To Make A Fresh Juice Blended For Your Family?
+                    {article?.art_subject}
                   </Box>
                   <Box className="blog_by">
                     <Box>
                       <span>
                         <img src="/icons/user1.png" alt="blog_by" />
                       </span>
-                      <span className="blog_by_css">By Admin</span>
+                      <span className="blog_by_css">
+                        {" "}
+                        {article?.member_data?.mb_nick}
+                      </span>
                     </Box>
                     <Box>
                       <span>

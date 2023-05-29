@@ -17,9 +17,9 @@ import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneR
 import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Marginer from "../marginer";
-import Basket from "./basket";
 import { verifiedMemberData } from "../../apiServices/verify";
 import { Logout } from "@mui/icons-material";
+import Basket from "./basket";
 
 const ITEM_HEIGHT = 50;
 const ITEM_PADDING_TOP = 8;
@@ -392,9 +392,7 @@ export function NavbarCommon(props: any) {
                 <img src="/icons/heart.png" alt="heart" />
               </Badge>
             </Box>
-            <Box className="icon_box">
-              <Basket />
-            </Box>
+            <Box className="icon_box"></Box>
             <Box>
               {/* Total */}
               $99.99

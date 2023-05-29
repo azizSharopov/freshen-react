@@ -24,6 +24,7 @@ import { retrieveBestProducts } from "./selector";
 import { createSelector } from "reselect";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { Review } from "../../../types/follow";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -45,7 +46,7 @@ const bestProductRetriever = createSelector(
 //   })
 // );
 
-export function BestPage() {
+export function BestPage(props: any) {
   /** INITIALIZATIONS */
   const history = useHistory();
   const { setBestProducts } = actionDispatch(useDispatch());
@@ -153,13 +154,16 @@ export function BestPage() {
                     <Box className="product_infobest">
                       <Box className="brand_namebest">
                         {/* {chosenShop?.mb_nick} */}
-                        FRUITS
                       </Box>
                       <Box className="product_retingbest">
                         <Rating
                           size="small"
                           name="read-only"
-                          value={4}
+                          value={
+                            product.reviews && product.reviews.length > 0
+                              ? (product.reviews as Review[])[0]?.average_rating
+                              : 0 // Provide a default value if there are no reviews
+                          }
                           readOnly
                         />
                       </Box>
