@@ -8,7 +8,7 @@ import { Member, Shop } from "./user";
 export interface AppRootState {
   homePage: HomePageState;
   shopPage: ShopPageState;
-  ordersPage: OrdersPageState;
+  orderPage: OrdersPageState;
   communityPage: CommunityPageState;
   memberPage: MemberPageState;
   aboutPage: AboutPageState;
@@ -28,6 +28,12 @@ export interface AboutPageState {
   freshenBoArticles: BoArticle[];
 }
 /** SHOP PAGE */
+export interface ShopPageState {
+  chosenShop: Shop | null;
+  targetProducts: Product[];
+}
+
+/** SALE PAGE */
 export interface ShopPageState {
   chosenShop: Shop | null;
   targetProducts: Product[];

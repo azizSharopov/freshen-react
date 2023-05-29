@@ -1,6 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 export function SalePage() {
   return (
@@ -30,7 +30,7 @@ export function SalePage() {
               >
                 Fresh Summer With Just $99.99
               </Box>
-              <NavLink to="/our_stores">
+              <NavLink to="/shop">
                 <Box className="sale_page_info3"> SHOP NOW</Box>
               </NavLink>
             </Box>
@@ -59,7 +59,7 @@ export function SalePage() {
                 <span style={{ color: "#849D6A" }}>20% Off</span>
               </Box>
 
-              <NavLink to="/our_stores">
+              <NavLink to="/shop">
                 <Box className="sale_page_info3"> SHOP NOW</Box>
               </NavLink>
             </Box>
@@ -89,7 +89,7 @@ export function SalePage() {
 
                 <span style={{ color: "#849D6A" }}>Vegetables</span>
               </Box>
-              <NavLink to="/our_stores">
+              <NavLink to="/shop">
                 <Box className="sale_page_info3"> SHOP NOW</Box>
               </NavLink>
             </Box>

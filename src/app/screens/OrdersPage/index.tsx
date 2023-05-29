@@ -36,7 +36,7 @@ export function OrdersPage(props: any) {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
   const [value, setValue] = useState("1");
-
+  const verifiedMemberData: Member | null = props.verifiedMemberData;
   useEffect(() => {
     const orderService = new OrderApiService();
     orderService
@@ -182,7 +182,14 @@ export function OrdersPage(props: any) {
           <Box className={"order_info_box"}>
             <Box className="account_infos">
               <Box className="account_img_box">
-                <img src="/homepage/hand-drawn.jpg" alt="my_page" />
+                <img
+                  src={
+                    verifiedMemberData?.mb_image
+                      ? verifiedMemberData.mb_image
+                      : "/homepage/hand-drawn.jpg"
+                  }
+                  alt="my_page"
+                />
               </Box>
               <Box className="account_name_box">
                 <span> {verifiedMemberData?.mb_nick}</span>

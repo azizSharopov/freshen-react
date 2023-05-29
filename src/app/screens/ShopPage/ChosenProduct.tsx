@@ -268,7 +268,12 @@ export default function ChosenPage(props: any) {
                 +
               </Box>
             </Box>
-            <Box className="add_card_chosen">
+            <Box
+              className="add_card_chosen"
+              onClick={(e) => {
+                props.onAdd(chosenProduct);
+              }}
+            >
               <Box>
                 <img
                   style={{ width: "20px", height: "20px" }}

@@ -19,7 +19,6 @@ import { ContactPage } from "./screens/ContactPage";
 import AuthenticationModal from "./components";
 import { Member } from "../types/user";
 import { serverApi } from "../lib/config";
-import { CartItem } from "../types/others";
 
 import {
   sweetFailureProvider,
@@ -32,6 +31,7 @@ import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import { Product } from "../types/product";
 import { OrdersPage } from "./screens/OrdersPage";
 import { MyPage } from "./screens/MemberPage";
+import { CartItem } from "../types/others";
 
 function App() {
   /** INITIALIZATIONS */
@@ -200,7 +200,7 @@ function App() {
 
       <Switch>
         <Route path="/shop">
-          <ShopPage />
+          <ShopPage onAdd={onAdd} />
         </Route>
         <Route path="/community">
           <CommunityPage />
@@ -209,6 +209,7 @@ function App() {
           <OrdersPage
             orderRebuild={orderRebuild}
             setOrderRebuild={setOrderRebuild}
+            verifiedMemberData={verifiedMemberData}
           />
         </Route>
         <Route path="/member-page">

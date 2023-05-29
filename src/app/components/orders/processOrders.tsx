@@ -109,11 +109,11 @@ export default function ProcessOrders(props: any) {
                           className={"titleProduct"}
                           style={{ textAlign: "start" }}
                         >
-                          ${item.item_price}
+                          {product.product_name}
                         </p>
                       </Box>
                       <Box className={"priceBox"}>
-                        <p style={{ color: "#86bc42" }}>$11</p>
+                        <p style={{ color: "#86bc42" }}> ${item.item_price}</p>
 
                         <p>{item.item_quantity}</p>
 

@@ -5,16 +5,16 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { AllProducts } from "./AllProducts";
 import ChosenProduct from "./ChosenProduct";
 
-export default function ShopPage() {
+export default function ShopPage(props: any) {
   const shop = useRouteMatch();
   return (
     <div style={{ background: "#ffffff" }}>
       <Switch>
         <Route path={`${shop.path}/:product_id`}>
-          <ChosenProduct />
+          <ChosenProduct onAdd={props.onAdd} />
         </Route>
         <Route path={`${shop.path}`}>
-          <AllProducts />
+          <AllProducts onAdd={props.onAdd} />
         </Route>
       </Switch>
     </div>

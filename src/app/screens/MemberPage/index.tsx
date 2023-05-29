@@ -4,7 +4,8 @@ import { Route, Switch, useRouteMatch, useLocation } from "react-router-dom";
 
 import "../../../css/my_page.css";
 import { VisitOtherPage } from "./visitOtherPage";
-import MemberPage from "./memberPage";
+import { verifiedMemberData } from "../../apiServices/verify";
+import VisitMyPage from "./VisitMyPage";
 
 function useQuery() {
   const { search } = useLocation();
@@ -12,7 +13,6 @@ function useQuery() {
 }
 
 export function MyPage(props: any) {
-  const { verifiedMemberData } = props;
   const query = useQuery();
   let member = useRouteMatch();
   const chosen_mb_id: string | null = query.get("mb_id") ?? null;
@@ -30,7 +30,7 @@ export function MyPage(props: any) {
           />
         </Route>
         <Route path={`${member.path}`}>
-          <MemberPage />
+          <VisitMyPage />
         </Route>
       </Switch>
     </div>

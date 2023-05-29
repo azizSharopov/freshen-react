@@ -48,6 +48,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 // REDUX
 import { createSelector } from "reselect";
 import {
+  retrieveChosenProduct,
   retrieveChosenShop,
   retrieveTargetProducts,
   retrieveTargetShops,
@@ -59,6 +60,7 @@ import {
   setChosenShop,
   setTargetProducts,
   setTargetShops,
+  setChosenProduct,
 } from "../../screens/ShopPage/slice";
 import { verifiedMemberData } from "../../apiServices/verify";
 import { Product } from "../../../types/product";
@@ -78,6 +80,7 @@ import { Review } from "../../../types/follow";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
+  setChosenProduct: (data: Product) => dispach(setChosenProduct(data)),
   setChosenShop: (data: Shop) => dispach(setChosenShop(data)),
   setTargetProducts: (data: Product[]) => dispach(setTargetProducts(data)),
   setTargetShops: (data: Shop[]) => dispach(setTargetShops(data)),
@@ -103,6 +106,12 @@ const targetProductsRetriever = createSelector(
     targetProducts,
   })
 );
+const chosenProductRetriever = createSelector(
+  retrieveChosenProduct,
+  (chosenProduct) => ({
+    chosenProduct,
+  })
+);
 
 export function AllProducts(props: any) {
   /** INITIALIZATIONS */
@@ -112,7 +121,7 @@ export function AllProducts(props: any) {
     useDispatch()
   );
   const { targetShops } = useSelector(targetShopsRetriever);
-
+  const { chosenProduct } = useSelector(chosenProductRetriever);
   const { chosenShop } = useSelector(chosenShopRetriever);
   const { targetProducts } = useSelector(targetProductsRetriever);
   const [chosenShopId, setChosenShopId] = useState<string>(shop_id);
@@ -714,7 +723,13 @@ export function AllProducts(props: any) {
                     />
                   </Box>
                   <Box className="product_namebest">{product.product_name}</Box>
-                  <Box className="add_card_btnbest">
+                  <Box
+                    className="add_card_btnbest"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      props.onAdd(chosenProduct);
+                    }}
+                  >
                     <Box>
                       <img
                         style={{ width: "20px", height: "20px" }}

@@ -25,7 +25,7 @@ import { ReviewsComponent } from "../ShopPage/reviews";
 import { ChosenReviews } from "./chosenReviews";
 import BlogPage from "../HomePage/BlogPage";
 
-const restaurant_list = Array.from(Array(3).keys());
+const chosen_blog_list = Array.from(Array(3).keys());
 export default function ChosenBlog() {
   return (
     <div>

@@ -167,7 +167,13 @@ export function DealPage() {
                       <img src="/icons/heart_green.png" alt="" />
                     </Box>
                   </Box>
-                  <Box className="add_card_deal" sx={{ marginBottom: "0px" }}>
+                  <Box
+                    className="add_card_deal"
+                    sx={{ marginBottom: "0px" }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
                     <Box>
                       <img
                         style={{ width: "20px", height: "20px" }}
@@ -178,7 +184,10 @@ export function DealPage() {
                     <Box>ADD TO CART</Box>
                   </Box>
                   <Box className="product_infosale" sx={{ marginTop: "30px" }}>
-                    <Box className="brand_namebest">FRUITS</Box>
+                    <Box className="brand_namebest">
+                      {" "}
+                      {product?.member_data[0]?.mb_nick}
+                    </Box>
                     <Box className="product_retingbest">
                       <Rating
                         size="small"

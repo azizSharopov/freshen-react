@@ -392,7 +392,16 @@ export function NavbarCommon(props: any) {
                 <img src="/icons/heart.png" alt="heart" />
               </Badge>
             </Box>
-            <Box className="icon_box"></Box>
+            <Box className="icon_box">
+              <Basket
+                cartItems={props.cartItems}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+                onDelete={props.onDelete}
+                onDeleteAll={props.onDeleteAll}
+                setOrderRebuild={props.setOrderRebuild}
+              />
+            </Box>
             <Box>
               {/* Total */}
               $99.99

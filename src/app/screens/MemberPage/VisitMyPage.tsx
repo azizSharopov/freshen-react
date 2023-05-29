@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Tab } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Marginer from "../../components/marginer";
@@ -19,12 +19,122 @@ import AccountFollowers from "./accountFollowers";
 import AccountFollowings from "./accountFollowings";
 import AccauntArticle from "./accauntArticle";
 import AccauntCoupon from "./accauntCoupon";
+import { TuiEditor } from "../../components/TUIEditor/TuiEditor";
+import TViewer from "../../components/TUIEditor/TuiViewer";
+// REDUX
+import { createSelector } from "reselect";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setChosenMember,
+  setChosenSingleBoArticle,
+  setChosenMemberBoArticles,
+} from "./slice";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberBoArticles,
+  retrieveChosenSingleBoArticle,
+} from "./selector";
+import { Member } from "../../../types/user";
+import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import CommunityApiService from "../../apiServices/communityApiService";
+import MemberApiService from "../../apiServices/memberApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
 
-export default function MemberPage(props: any) {
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenMember: (data: Member) => dispach(setChosenMember(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispach(setChosenSingleBoArticle(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispach(setChosenMemberBoArticles(data)),
+});
+/** REDUX SELECTOR */
+const chosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const chosenMemberBoArticlesRetriever = createSelector(
+  retrieveChosenMemberBoArticles,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+const chosenSingleBoArticleRetriever = createSelector(
+  retrieveChosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
+
+export default function VisitMyPage(props: any) {
+  /** INITIALIZATIONS **/
+
+  const {
+    setChosenMember,
+    setChosenSingleBoArticle,
+    setChosenMemberBoArticles,
+  } = actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(chosenMemberRetriever);
+  const { chosenMemberBoArticles } = useSelector(
+    chosenMemberBoArticlesRetriever
+  );
+  const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
+
   const [value, setValue] = useState("1");
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+  const [followeRebuild, setFollowRebuild] = useState<boolean>(false);
+  const [memberArticleSearchObj, setMemberArticleSearchObj] =
+    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 4 });
+
+  useEffect(() => {
+    if (!verifiedMemberData) {
+      sweetFailureProvider("Please login first", true, true);
+    }
+
+    const communityService = new CommunityApiService();
+    const memberService = new MemberApiService();
+    communityService
+      .getMemberCommunityArticles(memberArticleSearchObj)
+      .then((data) => setChosenMemberBoArticles(data))
+      .catch((err) => console.log(err));
+    memberService
+      .getChosenMember(verifiedMemberData?._id)
+      .then((data) => setChosenMember(data))
+      .catch((err) => console.log(err));
+  }, [memberArticleSearchObj, articlesRebuild, followeRebuild]);
+
+  /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
+  const handlePaginationChange = (event: any, value: number) => {
+    memberArticleSearchObj.page = value;
+    setMemberArticleSearchObj({ ...memberArticleSearchObj });
+  };
+
+  const renderChosenArticleHandler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => {
+          setChosenSingleBoArticle(data);
+          setValue("5");
+        })
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   return (
     <div style={{ background: "#ffffff" }}>
       <div className="blogPage">
@@ -58,12 +168,12 @@ export default function MemberPage(props: any) {
             <Box className="my_page_tablist">
               <Box className="account_infos">
                 <Box className="account_img_box">
-                  <img src="/homepage/hand-drawn.jpg" alt="my_page" />
+                  <img src={verifiedMemberData?.mb_image} alt="my_page" />
                 </Box>
                 <Box className="account_name_box">
-                  <span>Ayden</span>
+                  <span>{chosenMember?.mb_nick}</span>
                   <br />
-                  sharopovaziz23@gmail.com
+                  {chosenMember?.mb_email}
                 </Box>
               </Box>
               <Box className="spes_box">
@@ -258,13 +368,27 @@ export default function MemberPage(props: any) {
                 <AccauntAddress />
               </TabPanel>
               <TabPanel value={"3"}>
-                <AccauntArticle />
+                <AccauntArticle
+                  chosenMemberBoArticles={chosenMemberBoArticles}
+                  renderChosenArticleHandler={renderChosenArticleHandler}
+                  setArticlesRebuild={setArticlesRebuild}
+                />
               </TabPanel>
               <TabPanel value={"4"}>
-                <AccountFollowings />
+                <AccountFollowings
+                  action_enabled={true}
+                  followeRebuild={followeRebuild}
+                  setFollowRebuild={setFollowRebuild}
+                  mb_id={verifiedMemberData?._id}
+                />
               </TabPanel>
               <TabPanel value={"5"}>
-                <AccountFollowers />
+                <AccountFollowers
+                  action_enabled={true}
+                  followeRebuild={followeRebuild}
+                  setFollowRebuild={setFollowRebuild}
+                  mb_id={verifiedMemberData?._id}
+                />
               </TabPanel>
               <TabPanel value={"6"}>
                 <AccauntWishlist />

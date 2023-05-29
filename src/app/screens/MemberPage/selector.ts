@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { AppRootState } from "../../../types/screen";
 
 const selectMemberPage = (state: AppRootState) => state.memberPage;

@@ -153,7 +153,7 @@ export function BestPage(props: any) {
                     </Box>
                     <Box className="product_infobest">
                       <Box className="brand_namebest">
-                        {/* {chosenShop?.mb_nick} */}
+                        {product?.member_data[0]?.mb_nick}
                       </Box>
                       <Box className="product_retingbest">
                         <Rating
@@ -170,7 +170,12 @@ export function BestPage(props: any) {
                       <Box className="product_namebest">
                         {product.product_name}
                       </Box>
-                      <Box className="add_card_btnbest">
+                      <Box
+                        className="add_card_btnbest"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
                         <Box>
                           <img
                             style={{ width: "20px", height: "20px" }}
