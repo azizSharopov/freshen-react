@@ -12,7 +12,7 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-export function MyPage(props: any) {
+export function MemberPage(props: any) {
   const query = useQuery();
   let member = useRouteMatch();
   const chosen_mb_id: string | null = query.get("mb_id") ?? null;
@@ -21,7 +21,7 @@ export function MyPage(props: any) {
   console.log("QUERY TEST:", query.get("art_id"));
 
   return (
-    <div className="my_page">
+    <div className="member_page">
       <Switch>
         <Route path={`${member.path}/other`}>
           <VisitOtherPage

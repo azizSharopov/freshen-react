@@ -2,23 +2,24 @@ import { createSelector } from "@reduxjs/toolkit";
 import { AppRootState } from "../../../types/screen";
 
 const selectMemberPage = (state: AppRootState) => state.memberPage;
+
 export const retrieveChosenMember = createSelector(
   selectMemberPage,
-  (MemberPage) => MemberPage.chosenMember
+  (memberPage) => memberPage.chosenMember
 );
 export const retrieveChosenMemberBoArticles = createSelector(
   selectMemberPage,
-  (MemberPage) => MemberPage.chosenMemberBoArticles
+  (memberPage) => memberPage.chosenMemberBoArticles
 );
 export const retrieveChosenSingleBoArticle = createSelector(
   selectMemberPage,
-  (MemberPage) => MemberPage.chosenSingleBoArticle
+  (memberPage) => memberPage.chosenSingleBoArticle
 );
 export const retrieveMemberFollowers = createSelector(
   selectMemberPage,
-  (MemberPage) => MemberPage.memberFollowers
+  (memberPage) => memberPage.memberFollowers
 );
 export const retrieveMemberFollowings = createSelector(
   selectMemberPage,
-  (MemberPage) => MemberPage.memberFollowings
+  (memberPage) => memberPage.memberFollowings
 );

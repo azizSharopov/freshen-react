@@ -721,11 +721,11 @@ export function VisitOtherPage(props: any) {
                 >
                   <div className={"order_user_img"}>
                     <img
-                      src={"/auth/Ayden.jpg"}
+                      src={"/homepage/garlic.jpg"}
                       className={"order_user_avatar"}
                     />
                     <div className={"order_user_icon_box"}>
-                      <img src={"/icons/user_icon.svg"} />
+                      <img src={"/icons/default_user.png"} />
                     </div>
                   </div>
                   <span className={"order_user_name"}>

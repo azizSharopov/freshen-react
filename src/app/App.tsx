@@ -30,7 +30,7 @@ import "../app/apiServices/verify";
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import { Product } from "../types/product";
 import { OrdersPage } from "./screens/OrdersPage";
-import { MyPage } from "./screens/MemberPage";
+import { MemberPage } from "./screens/MemberPage";
 import { CartItem } from "../types/others";
 
 function App() {
@@ -213,7 +213,7 @@ function App() {
           />
         </Route>
         <Route path="/member-page">
-          <MyPage />
+          <MemberPage />
         </Route>
         <Route path="/help">
           <HelpPage />

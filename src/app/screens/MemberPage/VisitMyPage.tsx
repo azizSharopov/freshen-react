@@ -126,7 +126,7 @@ export default function VisitMyPage(props: any) {
         .getChosenArticle(art_id)
         .then((data) => {
           setChosenSingleBoArticle(data);
-          setValue("5");
+          setValue("3");
         })
         .catch((err) => console.log(err));
     } catch (err: any) {
@@ -217,7 +217,7 @@ export default function VisitMyPage(props: any) {
                       <ViewListIcon /> Orders
                     </Box>
                   }
-                  value={"7"}
+                  value={"9"}
                   className="tablist_style"
                   sx={{
                     "&.Mui-selected": {
@@ -239,7 +239,7 @@ export default function VisitMyPage(props: any) {
                       <img src="/icons/heart.png" alt="" /> Wishlist
                     </Box>
                   }
-                  value={"6"}
+                  value={"8"}
                   className="tablist_style"
                   sx={{
                     "&.Mui-selected": {
@@ -257,7 +257,7 @@ export default function VisitMyPage(props: any) {
                       <AccountBalanceWalletIcon /> Coupon
                     </Box>
                   }
-                  value={"8"}
+                  value={"7"}
                   className="tablist_style"
                   sx={{
                     "&.Mui-selected": {
@@ -275,7 +275,7 @@ export default function VisitMyPage(props: any) {
                       <PeopleAltIcon /> Followers
                     </Box>
                   }
-                  value={"5"}
+                  value={"6"}
                   className="tablist_style"
                   sx={{
                     "&.Mui-selected": {
@@ -293,7 +293,7 @@ export default function VisitMyPage(props: any) {
                       <PeopleOutlineIcon /> Followings
                     </Box>
                   }
-                  value={"4"}
+                  value={"5"}
                   className="tablist_style"
                   sx={{
                     "&.Mui-selected": {
@@ -310,6 +310,25 @@ export default function VisitMyPage(props: any) {
                     <Box className="dash_tab">
                       {" "}
                       <ArticleIcon /> Articles
+                    </Box>
+                  }
+                  value={"4"}
+                  className="tablist_style"
+                  sx={{
+                    "&.Mui-selected": {
+                      color: "#000000;",
+                      backgroundColor: "#86bc42",
+                      borderRadius: "5px",
+                    },
+                    textTransform: "none",
+                  }}
+                />
+                <Tab
+                  label={
+                    <Box className="dash_tab">
+                      {" "}
+                      <ArticleIcon />
+                      Selected articles
                     </Box>
                   }
                   value={"3"}
@@ -367,14 +386,17 @@ export default function VisitMyPage(props: any) {
               <TabPanel value={"2"}>
                 <AccauntAddress />
               </TabPanel>
-              <TabPanel value={"3"}>
+              <TabPanel value={"4"}>
                 <AccauntArticle
                   chosenMemberBoArticles={chosenMemberBoArticles}
                   renderChosenArticleHandler={renderChosenArticleHandler}
                   setArticlesRebuild={setArticlesRebuild}
                 />
               </TabPanel>
-              <TabPanel value={"4"}>
+              <TabPanel value={"3"}>
+                <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
+              </TabPanel>
+              <TabPanel value={"5"}>
                 <AccountFollowings
                   action_enabled={true}
                   followeRebuild={followeRebuild}
@@ -382,7 +404,7 @@ export default function VisitMyPage(props: any) {
                   mb_id={verifiedMemberData?._id}
                 />
               </TabPanel>
-              <TabPanel value={"5"}>
+              <TabPanel value={"6"}>
                 <AccountFollowers
                   action_enabled={true}
                   followeRebuild={followeRebuild}
@@ -390,13 +412,13 @@ export default function VisitMyPage(props: any) {
                   mb_id={verifiedMemberData?._id}
                 />
               </TabPanel>
-              <TabPanel value={"6"}>
+              <TabPanel value={"8"}>
                 <AccauntWishlist />
               </TabPanel>
-              <TabPanel value={"7"}>
+              <TabPanel value={"9"}>
                 <AccauntOrders />
               </TabPanel>
-              <TabPanel value={"8"}>
+              <TabPanel value={"7"}>
                 <AccauntCoupon />
               </TabPanel>
             </Box>

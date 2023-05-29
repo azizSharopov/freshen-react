@@ -5,6 +5,7 @@ import AboutPageReducer from "./screens/AboutPage/slice";
 import CommunityPageReducer from "./screens/CommunityPage/slice";
 import ShopPageReducer from "./screens/ShopPage/slice";
 import OrdersPageReducer from "./screens/OrdersPage/slice";
+import MemberPageReducer from "./screens/MemberPage/slice";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -15,6 +16,7 @@ export const store = configureStore({
     communityPage: CommunityPageReducer,
     shopPage: ShopPageReducer,
     orderPage: OrdersPageReducer,
+    memberPage: MemberPageReducer,
   },
 });
 
