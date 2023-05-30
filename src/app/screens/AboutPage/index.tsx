@@ -22,6 +22,7 @@ import { serverApi } from "../../../lib/config";
 import TViewer from "../../components/TUIEditor/TuiViewer";
 import CommunityApiService from "../../apiServices/communityApiService";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -416,9 +417,12 @@ export function AboutPage() {
                           className="brand_namebest"
                           style={{ color: "#121212" }}
                         >
-                          MAY
+                          {moment(article?.createdAt).format("MM")}
                         </span>
-                        <span className="home_blog_date">24</span>
+                        <span className="home_blog_date">
+                          {" "}
+                          {moment(article?.createdAt).format("DD")}
+                        </span>
                       </Box>
                       <Box
                         sx={{
@@ -455,7 +459,9 @@ export function AboutPage() {
                             alt="blog_by"
                           />
                         </Box>
-                        <Box className="about_by_css">By Admin</Box>
+                        <Box className="about_by_css">
+                          {article?.member_data?.mb_nick}
+                        </Box>
 
                         <Box>
                           <img

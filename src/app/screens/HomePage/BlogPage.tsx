@@ -17,6 +17,7 @@ import { serverApi } from "../../../lib/config";
 import TViewer from "../../components/TUIEditor/TuiViewer";
 import CommunityApiService from "../../apiServices/communityApiService";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -41,7 +42,7 @@ export default function BlogPage() {
     const communityService = new CommunityApiService();
     communityService
       .getTargetArticles({
-        bo_id: "MEATS",
+        bo_id: "all",
         page: 1,
         limit: 3,
         order: "art_likes",
@@ -89,9 +90,12 @@ export default function BlogPage() {
                   }}
                 >
                   <span className="brand_namebest" style={{ color: "#121212" }}>
-                    MAY
+                    {moment().format("MM")}
                   </span>
-                  <span className="home_blog_date">24</span>
+                  <span className="home_blog_date">
+                    {" "}
+                    {moment(article?.createdAt).format("DD")}
+                  </span>
                 </Box>
                 <Box
                   sx={{
@@ -118,7 +122,9 @@ export default function BlogPage() {
                     <span>
                       <img src="/icons/user1.png" alt="blog_by" />
                     </span>
-                    <span className="blog_by_css">By Admin</span>
+                    <span className="blog_by_css">
+                      {article?.member_data?.mb_nick}
+                    </span>
                   </Box>
                   <Box>
                     <span>

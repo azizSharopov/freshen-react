@@ -93,9 +93,11 @@ export function TargetArticles(props: any) {
                   }}
                 >
                   <span className="brand_namebest" style={{ color: "#121212" }}>
-                    MAY
+                    {moment().format("MM")}
                   </span>
-                  <span className="home_blog_date">24</span>
+                  <span className="home_blog_date">
+                    {moment().format("DD")}
+                  </span>
                 </Box>
                 <Box
                   sx={{
@@ -134,7 +136,7 @@ export function TargetArticles(props: any) {
                   </Box>
                   <Box className="all_by_css">
                     {" "}
-                    {article?.member_data.mb_nick}
+                    {article?.member_data?.mb_nick}
                   </Box>
 
                   <Box sx={{ marginLeft: "30px", marginTop: "5px" }}>

@@ -24,6 +24,7 @@ import TViewer from "../../components/TUIEditor/TuiViewer";
 import { ReviewsComponent } from "../ShopPage/reviews";
 import { ChosenReviews } from "./chosenReviews";
 import BlogPage from "../HomePage/BlogPage";
+import moment from "moment";
 
 const chosen_blog_list = Array.from(Array(3).keys());
 export default function ChosenBlog() {
@@ -86,9 +87,9 @@ export default function ChosenBlog() {
                 }}
               >
                 <span className="brand_namebest" style={{ color: "#121212" }}>
-                  MAY
+                  {moment().format("MM")}
                 </span>
-                <span className="home_blog_date">24</span>
+                <span className="home_blog_date">{moment().format("DD")}</span>
               </Box>
               <Box
                 sx={{
