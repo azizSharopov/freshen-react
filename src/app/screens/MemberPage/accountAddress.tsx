@@ -5,8 +5,7 @@ export default function AccauntAddress() {
   const [isEditing, setIsEditing] = useState(false);
 
   const [addressValue, setAddressValue] = useState(`Ayden
-1418 River Drive, Suite 35 Cottonhall, CA 9622
-South Korea
+Seoul. Daegu South Korea
 
 sharopovaziz23@gmail.com
 010 8257 8505`);

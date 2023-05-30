@@ -52,7 +52,7 @@ export function TargetArticles(props: any) {
       {props.targetBoArticles?.map((article: BoArticle) => {
         const art_image_url = article?.art_image
           ? `${serverApi}/${article.art_image}`
-          : "/admin_photo/girl_milk.jpg";
+          : "/homepage/diet-food.jpg";
         return (
           <Link
             href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}

@@ -43,7 +43,7 @@ export default function ProcessOrders(props: any) {
       }
 
       let confirmation = window.confirm(
-        "Buyurtmangizni olganingizni tasdiqlaysizmi?"
+        "Confirm that your order has been completed?"
       );
       if (confirmation) {
         const orderService = new OrderApiService();
@@ -136,7 +136,13 @@ export default function ProcessOrders(props: any) {
                   <p>${order.order_delivery_cost}</p>
 
                   <p>Totals</p>
-                  <p style={{ color: "#86bc42", fontWeight: "600" }}>
+                  <p
+                    style={{
+                      color: "#41544A",
+                      fontWeight: "600",
+                      fontSize: "16px",
+                    }}
+                  >
                     ${order.order_total_amount}
                   </p>
                 </Box>

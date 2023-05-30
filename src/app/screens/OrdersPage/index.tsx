@@ -181,20 +181,23 @@ export function OrdersPage(props: any) {
         <Stack className={"order_right"}>
           <Box className={"order_info_box"}>
             <Box className="account_infos">
-              <Box className="account_img_box">
-                <img
-                  src={
-                    verifiedMemberData?.mb_image
-                      ? verifiedMemberData.mb_image
-                      : "/homepage/hand-drawn.jpg"
-                  }
-                  alt="my_page"
-                />
-              </Box>
-              <Box className="account_name_box">
-                <span> {verifiedMemberData?.mb_nick}</span>
-                <br />
-                sharopovaziz23@gmail.com
+              <Box className="account_img1">
+                <Box className="account_img_box">
+                  {/* <img
+                    src={
+                      verifiedMemberData?.mb_image
+                        ? verifiedMemberData.mb_image
+                        : "/icons/user1.svg"
+                    }
+                    alt="my_page"
+                  /> */}
+                  <img src={"/icons/user1.svg"} alt="my_page" />
+                </Box>
+                <Box className="account_name_box">
+                  <span> {verifiedMemberData?.mb_nick}</span>
+                  <br />
+                  {verifiedMemberData?.mb_email}
+                </Box>
               </Box>
             </Box>
             <Box className="spes_box">
@@ -230,9 +233,7 @@ export function OrdersPage(props: any) {
               <div style={{ display: "flex" }}>
                 <LocationOnIcon />
               </div>
-              <div className={"spec_address_txt"}>
-                1418 River Drive, Suite 35 Cottonhall, Daegu, South Korea
-              </div>
+              <div className={"spec_address_txt"}>Daegu, South Korea</div>
             </Box>
             <Box className="order_text_conti">Change address</Box>
           </Box>
@@ -266,7 +267,7 @@ export function OrdersPage(props: any) {
             <input
               type={"text"}
               name={"card_creator"}
-              placeholder={"Ayden Sharopov"}
+              placeholder={"User Name"}
               className={"card_input"}
             />
             <div className={"cards_box"}>

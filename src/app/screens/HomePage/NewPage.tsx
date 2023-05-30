@@ -142,7 +142,10 @@ export function NewPage() {
                       alt="new product"
                     />
 
-                    <Box className="like_view_boxbest">
+                    <Box
+                      className="like_view_boxbest"
+                      sx={{ marginLeft: "240px" }}
+                    >
                       <img src="/icons/heart_green.png" alt="" />
                     </Box>
                   </Box>

@@ -13,7 +13,7 @@ if (cookies.get("access_token")) {
   if (member_data) {
     member_data.mb_image = member_data.mb_image
       ? `${serverApi}/${member_data.mb_image}`
-      : "/icons/1181.jpg";
+      : "/icons/user1.svg";
   }
 } else {
   localStorage.removeItem("member_data");

@@ -41,9 +41,7 @@ export default function PausedOrders(props: any) {
         sweetFailureProvider("Please login first", true);
       }
 
-      let confirmation = window.confirm(
-        "Buyurtmani bekor qilishni xohlaysizmi?"
-      );
+      let confirmation = window.confirm("Do you want to cancel the order?");
       if (confirmation) {
         const orderService = new OrderApiService();
         await orderService.updateOrderStatus(data);
@@ -65,7 +63,7 @@ export default function PausedOrders(props: any) {
       }
 
       let confirmation = window.confirm(
-        "Buyurtmangizni to'lashni tasdiqlaysizmi?"
+        "Confirm the transfer of your order to the next process?"
       );
       if (confirmation) {
         const orderService = new OrderApiService();
@@ -112,92 +110,101 @@ export default function PausedOrders(props: any) {
         opsty="1"
       />
       <Stack>
-        {pausedOrders?.map((order: Order) => {
-          return (
-            <Box className={"order_main_box"}>
-              <Box className={"order_box_scroll"}>
-                {order.order_items.map((item) => {
-                  const product: Product = order.product_data.filter(
-                    (ele) => ele._id === item.product_id
-                  )[0];
-                  const image_path = `${serverApi}/${product.product_images[0]}`;
-                  return (
-                    <Box className={"ordersName_price"}>
-                      <Box className={"priceBox"}>
-                        <Box sx={{ marginTop: "10px" }}>
-                          <HighlightOffIcon />
+        {pausedOrders &&
+          pausedOrders.map((order: Order) => {
+            return (
+              <Box className={"order_main_box"}>
+                <Box className={"order_box_scroll"}>
+                  {order.order_items.map((item) => {
+                    const product: Product = order.product_data.filter(
+                      (ele) => ele._id === item.product_id
+                    )[0];
+                    const image_path = `${serverApi}/${product.product_images[0]}`;
+                    return (
+                      <Box className={"ordersName_price"}>
+                        <Box className={"priceBox"}>
+                          <Box sx={{ marginTop: "10px" }}>
+                            <HighlightOffIcon />
+                          </Box>
+                          <img src={image_path} className={"orderProductImg"} />
+                          <p
+                            className={"titleProduct"}
+                            style={{ textAlign: "start" }}
+                          >
+                            {product.product_name}
+                          </p>
                         </Box>
-                        <img src={image_path} className={"orderProductImg"} />
-                        <p
-                          className={"titleProduct"}
-                          style={{ textAlign: "start" }}
-                        >
-                          {product.product_name}
-                        </p>
+                        <Box className={"priceBox"}>
+                          <p style={{ color: "#86bc42" }}>${item.item_price}</p>
+
+                          <p>{item.item_quantity}</p>
+
+                          <p> ${item.item_price * item.item_quantity}</p>
+                        </Box>
                       </Box>
-                      <Box className={"priceBox"}>
-                        <p style={{ color: "#86bc42" }}>${item.item_price}</p>
-
-                        <p>{item.item_quantity}</p>
-
-                        <p> ${item.item_price * item.item_quantity}</p>
-                      </Box>
-                    </Box>
-                  );
-                })}
-              </Box>
-
-              <Box className={"total_price_box black_solid"}>
-                <Box className={"boxTotal"}>
-                  <p>Product price</p>
-                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
-
-                  <p>Shipping</p>
-                  <p>${order.order_delivery_cost}</p>
-
-                  <p>Totals</p>
-                  <p style={{ color: "#86bc42", fontWeight: "600" }}>
-                    ${order.order_total_amount}
-                  </p>
+                    );
+                  })}
                 </Box>
-                <Button
-                  value={order._id}
-                  onClick={deleteOrderHandler}
-                  variant="contained"
-                  style={{
-                    background: "#d53f20",
-                    color: "#ffffff",
-                    borderRadius: "4px",
-                    fontWeight: "700",
-                    fontSize: "13px",
-                    lineHeight: "24px",
-                    boxShadow:
-                      "0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  value={order._id}
-                  onClick={processOrderHandler}
-                  variant="contained"
-                  style={{
-                    background: "#86bc42",
-                    color: "#ffffff",
-                    borderRadius: "4px",
-                    fontWeight: "700",
-                    fontSize: "13px",
-                    lineHeight: "24px",
-                    boxShadow:
-                      "0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
-                  }}
-                >
-                  PROCEED TO CHECKOUT
-                </Button>
+
+                <Box className={"total_price_box black_solid"}>
+                  <Box className={"boxTotal"}>
+                    <p>Product price</p>
+                    <p>
+                      ${order.order_total_amount - order.order_delivery_cost}
+                    </p>
+
+                    <p>Shipping</p>
+                    <p>${order.order_delivery_cost}</p>
+
+                    <p>Totals</p>
+                    <p
+                      style={{
+                        color: "#41544A",
+                        fontWeight: "600",
+                        fontSize: "16px",
+                      }}
+                    >
+                      ${order.order_total_amount}
+                    </p>
+                  </Box>
+                  <Button
+                    value={order._id}
+                    onClick={deleteOrderHandler}
+                    variant="contained"
+                    style={{
+                      background: "#d53f20",
+                      color: "#ffffff",
+                      borderRadius: "4px",
+                      fontWeight: "700",
+                      fontSize: "13px",
+                      lineHeight: "24px",
+                      boxShadow:
+                        "0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    value={order._id}
+                    onClick={processOrderHandler}
+                    variant="contained"
+                    style={{
+                      background: "#86bc42",
+                      color: "#ffffff",
+                      borderRadius: "4px",
+                      fontWeight: "700",
+                      fontSize: "13px",
+                      lineHeight: "24px",
+                      boxShadow:
+                        "0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    }}
+                  >
+                    PROCEED TO CHECKOUT
+                  </Button>
+                </Box>
               </Box>
-            </Box>
-          );
-        })}
+            );
+          })}
       </Stack>
     </TabPanel>
   );

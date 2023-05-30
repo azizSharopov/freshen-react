@@ -23,7 +23,7 @@ export default function AccauntDetail(props: any) {
   const [memberUpdate, setMemberUpdate] = useState<MemberUpdateData>({
     mb_nick: "",
     mb_phone: "",
-    mb_address: "",
+    // mb_email: "",
     mb_description: "",
     mb_image: "",
   });
@@ -39,10 +39,10 @@ export default function AccauntDetail(props: any) {
     setMemberUpdate({ ...memberUpdate });
   };
 
-  const changeMemberAddressHandler = (e: any) => {
-    memberUpdate.mb_address = e.target.value;
-    setMemberUpdate({ ...memberUpdate });
-  };
+  // const changeMemberEmailHandler = (e: any) => {
+  //   memberUpdate.mb_email = e.target.value;
+  //   setMemberUpdate({ ...memberUpdate });
+  // };
 
   const changeMemberDescriptionHandler = (e: any) => {
     memberUpdate.mb_description = e.target.value;
@@ -132,7 +132,7 @@ export default function AccauntDetail(props: any) {
               }}
             ></Tab>
             <Tab
-              label="Img and SNS link"
+              label="SNS link"
               value={"3"}
               sx={{
                 fontFamily: "Lato",
@@ -164,23 +164,37 @@ export default function AccauntDetail(props: any) {
                   marginBottom: "20px",
                 }}
               >
+                <Box className={"member_media_frame"}>
+                  <img
+                    src={file}
+                    className={"mb_image"}
+                    style={{ borderRadius: "50%" }}
+                    width={"100px"}
+                    height={"100px"}
+                  />
+                  <div className={"media_change_box"}>
+                    <span>Upload image</span>
+                    <p>You can upload images in JPG, JPEG, PNG format!</p>
+                    <div className={"up_del_box"}>
+                      <Button
+                        component="label"
+                        style={{ minWidth: "0" }}
+                        onChange={handleImagePreviewer}
+                      >
+                        <CloudDownloadIcon />
+                        <input type="file" hidden />
+                      </Button>
+                    </div>
+                  </div>
+                </Box>
                 <Box className="market_setting_input_box">
-                  <label className={"spec_label"}>First Name</label>
+                  <label className={"spec_label"}>User Name</label>
                   <input
                     className={"spec_input mb_first_name"}
                     type="text"
                     placeholder={verifiedMemberData?.mb_nick}
                     name="mb_nick"
                     onChange={changeMemberNickHandler}
-                  />
-                </Box>
-                <Box className="market_setting_input_box">
-                  <label className={"spec_label"}>Last Name</label>
-                  <input
-                    className={"spec_input mb_last_name"}
-                    type="text"
-                    placeholder={"Sharopov"}
-                    name="mb_last_name"
                   />
                 </Box>
                 <Box className="market_setting_input_box">
@@ -198,8 +212,21 @@ export default function AccauntDetail(props: any) {
                   <input
                     className={"spec_input mb_email"}
                     type="text"
-                    placeholder={"sharopovaziz23@mail.com"}
+                    placeholder={verifiedMemberData?.mb_email}
                     name="mb_email"
+                    // onChange={changeMemberEmailHandler}
+                  />
+                </Box>
+                <Box className="market_setting_input_box">
+                  <label className={"spec_label"}>User description</label>
+                  <textarea
+                    style={{ height: "150px" }}
+                    className={"spec_input mb_description"}
+                    placeholder={
+                      verifiedMemberData?.mb_description ?? "not available"
+                    }
+                    name="mb_description"
+                    onChange={changeMemberDescriptionHandler}
                   />
                 </Box>
               </Box>
@@ -415,29 +442,6 @@ export default function AccauntDetail(props: any) {
             </Box>
           </TabPanel> */}
           <TabPanel value={"3"}>
-            <Box className={"member_media_frame"}>
-              <img
-                src={"/homepage/hand-drawn.jpg"}
-                className={"mb_image"}
-                style={{ borderRadius: "50%" }}
-                width={"100px"}
-                height={"100px"}
-              />
-              <div className={"media_change_box"}>
-                <span>Upload image</span>
-                <p>You can upload images in JPG, JPEG, PNG format!</p>
-                <div className={"up_del_box"}>
-                  <Button
-                    component="label"
-                    style={{ minWidth: "0" }}
-                    onChange={handleImagePreviewer}
-                  >
-                    <CloudDownloadIcon />
-                    <input type="file" hidden />
-                  </Button>
-                </div>
-              </div>
-            </Box>
             <Box className="market_account_set_box" sx={{ marginTop: "40px" }}>
               <Box
                 sx={{

@@ -1,6 +1,31 @@
-import React from "react";
+import { Stack, Box, Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import Avatar from "@mui/material/Avatar";
+// Others
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+// REDUX
+import { createSelector } from "reselect";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setMemberFollowers } from "./slice";
+import { retrieveMemberFollowers } from "./selector";
+import { FollowSearchObj, Follower } from "../../../types/follow";
+import FollowApiService from "../../apiServices/followApiService";
+import { log } from "console";
+import { serverApi } from "../../../lib/config";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
 import {
-  Box,
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { useHistory } from "react-router-dom";
+import { verifiedMemberData } from "../../apiServices/verify";
+import {
   Container,
   Table,
   TableBody,
@@ -9,47 +34,66 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
 } from "@mui/material";
 
-function createData(
-  Id: number,
-  member: string,
-  phone: string,
-  buying_rank: number
-) {
-  return {
-    Id,
-    member,
-    phone,
-    buying_rank,
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setMemberFollowers: (data: Follower[]) => dispach(setMemberFollowers(data)),
+});
+
+/** REDUX SELECTOR */
+const memberFollowersRetriever = createSelector(
+  retrieveMemberFollowers,
+  (memberFollowers) => ({
+    memberFollowers,
+  })
+);
+
+export function MemberFollowers(props: any) {
+  /** INITIALIZATIONS **/
+  const history = useHistory();
+  const { mb_id, followeRebuild, setFollowRebuild } = props;
+  const { setMemberFollowers } = actionDispatch(useDispatch());
+  const { memberFollowers } = useSelector(memberFollowersRetriever);
+  const [followersSearchObj, setFollowersSearchObj] = useState<FollowSearchObj>(
+    { page: 1, limit: 50, mb_id: mb_id }
+  );
+
+  useEffect(() => {
+    const followService = new FollowApiService();
+    followService
+      .getMemberFollowers(followersSearchObj)
+      .then((data) => setMemberFollowers(data))
+      .catch((err) => console.log(err));
+  }, [followersSearchObj, followeRebuild]);
+
+  /** HANDLERS */
+  const subscribeHandler = async (e: any, id: string) => {
+    try {
+      e.stopPropagation();
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+
+      const followService = new FollowApiService();
+      await followService.subscribe(id);
+
+      await sweetTopSmallSuccessAlert("subscribed successfully", 700, false);
+      setFollowRebuild(!followeRebuild);
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
   };
-}
 
-const rows = [
-  {
-    id: 1,
-    member_name: "Raykhon Asadova",
-  },
-  {
-    id: 1,
-    member_name: "Dili",
-  },
-  {
-    id: 1,
-    member_name: "Nigor",
-  },
-  {
-    id: 1,
-    member_name: "Dunyo Azizova",
-  },
-  {
-    id: 1,
-    member_name: "Guli",
-  },
-];
+  const handlePaginationChange = (event: any, value: number) => {
+    followersSearchObj.page = value;
+    setFollowersSearchObj({ ...followersSearchObj });
+  };
 
-export default function AccountFollowers(props: any) {
+  const visitMemberHandler = (mb_id: string) => {
+    history.push(`/member-page/other?mb_id=${mb_id}`);
+    document.location.reload();
+  };
+
   return (
     <Box className="dash_tabpanels">
       <Box className="dash_head_text">
@@ -108,90 +152,116 @@ export default function AccountFollowers(props: any) {
                     fontFamily: "Lato",
                   }}
                 >
-                  Delete
+                  Follow back
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody className="table_data" sx={{ border: "none" }}>
-              {rows.map((row, index) => (
-                <TableRow
-                  key={row.id}
-                  sx={{
-                    "&:last-child td, &:last-child th": {},
-                  }}
-                >
-                  <TableCell
+              {memberFollowers.map((follower: Follower) => {
+                const image_url = follower?.subscriber_member_data?.mb_image
+                  ? `${serverApi}/${follower.subscriber_member_data.mb_image}`
+                  : "/icons/user1.svg";
+                return (
+                  <TableRow
                     sx={{
-                      fontSize: "13px",
-                      fontFamily: "Lato",
-                    }}
-                    component="th"
-                    scope="row"
-                  >
-                    {index + 1}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontSize: "16px",
-                      fontFamily: "Lato",
+                      "&:last-child td, &:last-child th": {},
                     }}
                   >
-                    <Box
+                    <TableCell
                       sx={{
-                        width: "70px",
-                        height: "70px",
+                        fontSize: "13px",
+                        fontFamily: "Lato",
+                      }}
+                      component="th"
+                      scope="row"
+                    ></TableCell>
+                    <TableCell
+                      sx={{
+                        fontSize: "16px",
+                        fontFamily: "Lato",
                       }}
                     >
-                      <img
-                        style={{
-                          backgroundSize: "cover",
+                      <Box
+                        sx={{
                           width: "70px",
                           height: "70px",
-                          borderRadius: "50%",
-                          border: "1px solid #86bc42",
                         }}
-                        src="/homepage/portrait.jpg"
-                        alt="follow"
-                      />
-                    </Box>
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      fontFamily: "Lato",
-                    }}
-                  >
-                    {row.member_name}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontSize: "13px",
-                      fontFamily: "Lato",
-                    }}
-                  >
-                    <Button
-                      className="dash_search_btn"
+                      >
+                        <img
+                          style={{
+                            backgroundSize: "cover",
+                            width: "70px",
+                            height: "70px",
+                            borderRadius: "50%",
+                            border: "1px solid #86bc42",
+                          }}
+                          src={image_url}
+                          alt="follow"
+                        />
+                      </Box>
+                    </TableCell>
+                    <TableCell
                       sx={{
-                        color: "#ffffff",
-                        fontSize: "13px",
-                        width: "100px",
-                        height: "25px",
-
-                        backgroundColor: "#86bc42",
-                        textTransform: "none",
-                        "&:hover": {
-                          backgroundColor: "#ffffff",
-                          border: "1px solid #eaeaea",
-                          color: "#121212",
-                        },
+                        fontSize: "16px",
+                        fontWeight: "500",
+                        fontFamily: "Lato",
                       }}
                     >
-                      Follow back
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+                      {follower?.subscriber_member_data?.mb_nick}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontSize: "13px",
+                        fontFamily: "Lato",
+                      }}
+                    >
+                      {" "}
+                      {props.action_enabled &&
+                        (follower?.me_followed &&
+                        follower.me_followed[0]?.my_following ? (
+                          <Button
+                            variant={"contained"}
+                            className={"following_already"}
+                            disabled
+                            sx={{
+                              fontSize: "13px",
+                              width: "180px",
+                              height: "25px",
+
+                              textTransform: "none",
+                            }}
+                          >
+                            Following
+                          </Button>
+                        ) : (
+                          <Button
+                            variant={"contained"}
+                            className="dash_search_btn"
+                            sx={{
+                              color: "#ffffff",
+                              fontSize: "13px",
+                              width: "180px",
+                              height: "25px",
+
+                              backgroundColor: "#86bc42",
+                              textTransform: "none",
+                              "&:hover": {
+                                backgroundColor: "#ffffff",
+                                border: "1px solid #eaeaea",
+                                color: "#121212",
+                              },
+                            }}
+                            onClick={(e) =>
+                              subscribeHandler(e, follower?.subscriber_id)
+                            }
+                          >
+                            Follow back
+                          </Button>
+                        ))}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </TableContainer>

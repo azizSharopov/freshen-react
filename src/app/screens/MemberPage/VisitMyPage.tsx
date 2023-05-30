@@ -15,7 +15,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import ArticleIcon from "@mui/icons-material/Article";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import "../../../css/my_page.css";
-import AccountFollowers from "./accountFollowers";
+import { MemberFollowers } from "./accountFollowers";
 import AccountFollowings from "./accountFollowings";
 import AccauntArticle from "./accauntArticle";
 import AccauntCoupon from "./accauntCoupon";
@@ -91,7 +91,7 @@ export default function VisitMyPage(props: any) {
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const [followeRebuild, setFollowRebuild] = useState<boolean>(false);
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
-    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 4 });
+    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 10 });
 
   useEffect(() => {
     if (!verifiedMemberData) {
@@ -405,7 +405,7 @@ export default function VisitMyPage(props: any) {
                 />
               </TabPanel>
               <TabPanel value={"6"}>
-                <AccountFollowers
+                <MemberFollowers
                   action_enabled={true}
                   followeRebuild={followeRebuild}
                   setFollowRebuild={setFollowRebuild}

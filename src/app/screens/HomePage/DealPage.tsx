@@ -141,7 +141,7 @@ export function DealPage() {
                 className="productsbest"
               >
                 <Box
-                  className="products_sliderbest"
+                  className="products_sliderbest1"
                   onClick={() => chosenProductHandler(product._id)}
                 >
                   <Box

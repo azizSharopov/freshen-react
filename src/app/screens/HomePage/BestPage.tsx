@@ -147,7 +147,10 @@ export function BestPage(props: any) {
                     <Box className="products_slider_img_best">
                       <img src={image_path} alt="best product" />
 
-                      <Box className="like_view_boxbest">
+                      <Box
+                        className="like_view_boxbest"
+                        sx={{ marginLeft: "240px" }}
+                      >
                         <img src="/icons/heart_green.png" alt="" />
                       </Box>
                     </Box>
@@ -176,14 +179,12 @@ export function BestPage(props: any) {
                           e.stopPropagation();
                         }}
                       >
-                        <Box>
-                          <img
-                            style={{ width: "20px", height: "20px" }}
-                            src="/icons/shopping-cart.png"
-                            alt=""
-                          />{" "}
-                        </Box>
-                        <Box>ADD TO CART</Box>
+                        <img
+                          style={{ width: "20px", height: "20px" }}
+                          src="/icons/shopping-cart.png"
+                          alt=""
+                        />{" "}
+                        ADD TO CAR
                       </Box>
                       <Box className="product_pricebest">
                         <Box className="product_price_currentbest">$11.99</Box>

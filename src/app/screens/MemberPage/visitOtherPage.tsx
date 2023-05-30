@@ -454,7 +454,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import AccauntArticle from "./accauntArticle";
-import AccountFollowers from "./accountFollowers";
+import { MemberFollowers } from "./accountFollowers";
 import AccountFollowings from "./accountFollowings";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -548,7 +548,7 @@ export function VisitOtherPage(props: any) {
     useState<SearchMemberArticlesObj>({
       mb_id: chosen_mb_id,
       page: 1,
-      limit: 4,
+      limit: 8,
     });
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
@@ -667,10 +667,10 @@ export function VisitOtherPage(props: any) {
       </div>
       <Container>
         <TabContext value={value}>
-          <Stack className={"my_page"}>
+          <Box className={"my_page1"}>
             <Stack className={"my_page_tablist"}>
               <Box className="account_infos_other">
-                <Box className="account_infos">
+                <Box className="account_img">
                   <Box className="account_img_box">
                     <img src={verifiedMemberData?.mb_image} alt="my_page" />
                   </Box>
@@ -680,6 +680,7 @@ export function VisitOtherPage(props: any) {
                     {chosenMember?.mb_email}
                   </Box>
                 </Box>
+
                 <Box className="spes_box">
                   <Box className="spes_type">SNS:</Box>
                   <Box className="sns_icons">
@@ -701,19 +702,15 @@ export function VisitOtherPage(props: any) {
                     </Box>
                   </Box>
                 </Box>
-                <Marginer
-                  direction="horizontal"
-                  height="1"
-                  width="2"
-                  bg="#EAEAEA"
-                  opsty="1"
-                />
+                <Box
+                  sx={{ width: "300px", height: "2px", background: "#86bc42" }}
+                ></Box>
                 <Box className={"user_media_box"}>
                   <p className={"follows"}>
                     Followers: {chosenMember?.mb_subscriber_cnt}
                   </p>
                   <p className={"follows"}>
-                    Followers: {chosenMember?.mb_follow_cnt}
+                    Following: {chosenMember?.mb_follow_cnt}
                   </p>
                 </Box>
                 <p className="dash_tab">
@@ -753,7 +750,11 @@ export function VisitOtherPage(props: any) {
                         <Button
                           value={chosenMember?._id}
                           variant={"contained"}
-                          style={{ backgroundColor: "#30945e" }}
+                          style={{
+                            backgroundColor: "#86bc42",
+                            color: "#121212",
+                            fontWeight: "600",
+                          }}
                           onClick={subscribeHandler}
                           // @ts-ignore
                         >
@@ -763,13 +764,9 @@ export function VisitOtherPage(props: any) {
                     />
                   )}
                 </TabList>
-                <Marginer
-                  direction="horizontal"
-                  height="1"
-                  width="2"
-                  bg="#EAEAEA"
-                  opsty="1"
-                />
+                <Box
+                  sx={{ width: "300px", height: "2px", background: "#86bc42" }}
+                ></Box>
                 <Box
                   sx={{
                     background: "#ffffff",
@@ -852,7 +849,7 @@ export function VisitOtherPage(props: any) {
               </Box>
             </Stack>
 
-            <Stack className="my_page_tabpanels">
+            <Stack className="my_page_tabpanels" sx={{ background: "#ffffff" }}>
               <Box>
                 <TabPanel value={"1"}>
                   <Box className={"menu_name"}>Articles</Box>
@@ -863,7 +860,7 @@ export function VisitOtherPage(props: any) {
                       renderChosenArticleHandler={renderChosenArticleHandler}
                       setArticlesRebuild={setArticlesRebuild}
                     />
-                    <Stack
+                    {/* <Stack
                       sx={{ my: "40px" }}
                       direction="row"
                       alignItems="center"
@@ -890,13 +887,13 @@ export function VisitOtherPage(props: any) {
                           onChange={handlePaginationChange}
                         />
                       </Box>
-                    </Stack>
+                    </Stack> */}
                   </Box>
                 </TabPanel>
                 <TabPanel value={"2"}>
                   <Box className={"menu_name"}>Followers</Box>
                   <Box className={"menu_content"}>
-                    <AccountFollowers
+                    <MemberFollowers
                       action_enabled={false}
                       mb_id={chosen_mb_id}
                       setFollowRebuild={setFollowRebuild}
@@ -923,7 +920,7 @@ export function VisitOtherPage(props: any) {
                 </TabPanel>
               </Box>
             </Stack>
-          </Stack>
+          </Box>
         </TabContext>
       </Container>
     </div>

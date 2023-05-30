@@ -1,4 +1,12 @@
-import { Box, Button, Container, Rating, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Rating,
+  Stack,
+  Pagination,
+  PaginationItem,
+} from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import PaginationAllProducts from "../ShopPage/paginationAllProduct";
 import { verifiedMemberData } from "../../apiServices/verify";
@@ -12,13 +20,19 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { BoArticle } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
 import MemberApiService from "../../apiServices/memberApiService";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import moment from "moment";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { SearchMemberArticlesObj } from "../../../types/boArticle";
 
 export default function AccauntArticle(props: any) {
+  const [memberArticleSearchObj, setMemberArticleSearchObj] =
+    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 10 });
+
   const {
     chosenMemberBoArticles,
     renderChosenArticleHandler,
@@ -43,6 +57,10 @@ export default function AccauntArticle(props: any) {
       console.log(err);
       sweetErrorHandling(err).then();
     }
+  };
+  const handlePaginationChange = (event: any, value: number) => {
+    memberArticleSearchObj.page = value;
+    setMemberArticleSearchObj({ ...memberArticleSearchObj });
   };
 
   return (
@@ -91,7 +109,7 @@ export default function AccauntArticle(props: any) {
           {chosenMemberBoArticles.map((article: BoArticle) => {
             const image_path = article.art_image
               ? `${serverApi}/${article.art_image}`
-              : "/icons/default_user.png";
+              : "/homepage/diet-food.jpg";
             return (
               <Box
                 className="blog_box"
@@ -101,7 +119,7 @@ export default function AccauntArticle(props: any) {
                 <Box
                   className="blog_img"
                   sx={{
-                    backgroundImage: { image_path },
+                    backgroundImage: `url(${image_path})`,
                     zIndex: "3",
                   }}
                 >
@@ -203,6 +221,7 @@ export default function AccauntArticle(props: any) {
             );
           })}
         </Stack>
+
         <Box
           sx={{
             display: "flex",
@@ -213,7 +232,25 @@ export default function AccauntArticle(props: any) {
             mt: "90px",
           }}
         >
-          <PaginationAllProducts />
+          <Pagination
+            count={
+              memberArticleSearchObj.page >= 3
+                ? memberArticleSearchObj.page + 1
+                : 3
+            }
+            page={memberArticleSearchObj.page}
+            renderItem={(item) => (
+              <PaginationItem
+                components={{
+                  previous: ArrowBackIcon,
+                  next: ArrowForwardIcon,
+                }}
+                {...item}
+                color="secondary"
+              />
+            )}
+            onChange={handlePaginationChange}
+          />
         </Box>
       </Box>
     </Box>

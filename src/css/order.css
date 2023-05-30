@@ -72,7 +72,19 @@
   flex-direction: row;
   gap: 10px;
 }
-
+.account_img_box {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account_img_box img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1px solid #86bc42;
+}
 .spec_address_txt {
   margin-left: 5px;
   font-family: "Lato";

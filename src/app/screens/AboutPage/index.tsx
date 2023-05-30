@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Stack, Link } from "@mui/material";
 import React, { useEffect } from "react";
 import "../../../css/about.css";
 import "../../../css/home.css";
@@ -389,95 +389,99 @@ export function AboutPage() {
                     cursor: "pointer",
                   }}
                 >
-                  <Box className="blog_box_about" key={index}>
-                    <Box
-                      className="blog_img_about"
-                      sx={{
-                        backgroundImage: `url(${art_image_url})`,
-                        zIndex: "3",
-                      }}
-                    >
-                      {/* <img src="/homepage/blog.jpg" alt="blog" /> */}
+                  <Link
+                    href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
+                  >
+                    <Box className="blog_box_about" key={index}>
                       <Box
+                        className="blog_img_about"
                         sx={{
-                          width: "65px",
-                          height: "77px",
-                          background: "#ffffff",
-                          zIndex: "5",
-                          position: "absolute",
-                          marginLeft: "20px",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "5px",
+                          backgroundImage: `url(${art_image_url})`,
+                          zIndex: "3",
                         }}
                       >
-                        <span
-                          className="brand_namebest"
-                          style={{ color: "#121212" }}
+                        {/* <img src="/homepage/blog.jpg" alt="blog" /> */}
+                        <Box
+                          sx={{
+                            width: "65px",
+                            height: "77px",
+                            background: "#ffffff",
+                            zIndex: "5",
+                            position: "absolute",
+                            marginLeft: "20px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "5px",
+                          }}
                         >
-                          {moment(article?.createdAt).format("MM")}
-                        </span>
-                        <span className="home_blog_date">
-                          {" "}
-                          {moment(article?.createdAt).format("DD")}
-                        </span>
-                      </Box>
-                      <Box
-                        sx={{
-                          width: "150px",
-                          height: "30px",
-                          background: "#86bc42",
-                          zIndex: "5",
-                          position: "absolute",
-                          marginLeft: "20px",
-                          marginTop: "225px",
-                          borderRadius: "60px",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Box className="blog_subject_home">
-                          {article?.bo_id}
+                          <span
+                            className="brand_namebest"
+                            style={{ color: "#121212" }}
+                          >
+                            {moment(article?.createdAt).format("MM")}
+                          </span>
+                          <span className="home_blog_date">
+                            {" "}
+                            {moment(article?.createdAt).format("DD")}
+                          </span>
+                        </Box>
+                        <Box
+                          sx={{
+                            width: "150px",
+                            height: "30px",
+                            background: "#86bc42",
+                            zIndex: "5",
+                            position: "absolute",
+                            marginLeft: "20px",
+                            marginTop: "225px",
+                            borderRadius: "60px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Box className="blog_subject_home">
+                            {article?.bo_id}
+                          </Box>
                         </Box>
                       </Box>
-                    </Box>
-                    <Box className="blog_subject_info">
-                      <Box className="about_subject_text">
-                        {article?.art_subject}
-                      </Box>
-                      <Box className="about_blog_by">
-                        <Box>
-                          <img
-                            style={{
-                              width: "15px",
-                              height: "15px",
-                            }}
-                            src="/icons/user1.png"
-                            alt="blog_by"
-                          />
+                      <Box className="blog_subject_info">
+                        <Box className="about_subject_text">
+                          {article?.art_subject}
                         </Box>
-                        <Box className="about_by_css">
-                          {article?.member_data?.mb_nick}
-                        </Box>
+                        <Box className="about_blog_by">
+                          <Box>
+                            <img
+                              style={{
+                                width: "15px",
+                                height: "15px",
+                              }}
+                              src="/icons/user1.png"
+                              alt="blog_by"
+                            />
+                          </Box>
+                          <Box className="about_by_css">
+                            {article?.member_data?.mb_nick}
+                          </Box>
 
-                        <Box>
-                          <img
-                            style={{
-                              width: "15px",
-                              height: "15px",
-                              marginLeft: "50px",
-                            }}
-                            src="/icons/chat1.png"
-                            alt="blog_by"
-                          />
+                          <Box>
+                            <img
+                              style={{
+                                width: "15px",
+                                height: "15px",
+                                marginLeft: "50px",
+                              }}
+                              src="/icons/chat1.png"
+                              alt="blog_by"
+                            />
+                          </Box>
+                          <Box className="about_by_css">32 Comments</Box>
                         </Box>
-                        <Box className="about_by_css">32 Comments</Box>
                       </Box>
                     </Box>
-                  </Box>
+                  </Link>
                 </SwiperSlide>
               );
             })}

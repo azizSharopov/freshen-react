@@ -120,7 +120,7 @@ export function ContactPage() {
                   <input
                     className={"spec_input mb_first_name"}
                     type="text"
-                    placeholder={"Ayden"}
+                    placeholder={"User Name"}
                     name="mb_first_name"
                   />
                 </div>
@@ -129,7 +129,7 @@ export function ContactPage() {
                   <input
                     className={"spec_input mb_email"}
                     type="text"
-                    placeholder={"sharopovaziz23@mail.com"}
+                    placeholder={"Email"}
                     name="mb_email"
                   />
                 </div>
