@@ -24,6 +24,32 @@ const topShopRetriever = createSelector(retrieveTopShops, (topShops) => ({
   topShops,
 }));
 
+// /** REDUX SLICE */
+// const actionDispatch = (dispatch: Dispatch) => ({
+//   setRandomShops: (data: Shop[]) => dispatch(setRandomShops(data)),
+//   setChosenShop: (data: Shop) => dispatch(setChosenShop(data)),
+//   setTargetProducts: (data: Product[]) => dispatch(setTargetProducts(data)),
+// });
+// /** REDUX SELECTOR */
+// const randomShopsRetriever = createSelector(
+//   retrieveRandomShops,
+//   (randomShops) => ({
+//     randomShops,
+//   })
+// );
+// const chosenShopRetriever = createSelector(
+//   retrieveChosenShop,
+//   (chosenShop) => ({
+//     chosenShop,
+//   })
+// );
+// const targetProductsRetriever = createSelector(
+//   retrieveTargetProducts,
+//   (targetProducts) => ({
+//     targetProducts,
+//   })
+// );
+
 export function TopCategories() {
   const { topShops } = useSelector(topShopRetriever);
   console.log("topShops:::", topShops);
@@ -37,6 +63,40 @@ export function TopCategories() {
   //  history.push(`/shop`);
   // };
 
+  // let { shop_id } = useParams<{ shop_id: string }>();
+  // const { setRandomShops, setChosenShop, setTargetProducts } = actionDispatch(
+  //   useDispatch()
+  // );
+  // const { randomShops } = useSelector(randomShopsRetriever);
+  // const { chosenShop } = useSelector(chosenShopRetriever);
+  // const { targetProducts } = useSelector(targetProductsRetriever);
+  // const [chosenShopId, setChosenShopId] = useState<string>(shop_id);
+
+  // useEffect(() => {
+  //   const shopService = new ShopApiService();
+  //   shopService
+  //     .getShops({ page: 1, limit: 10, order: "random" })
+  //     .then((data) => setRandomShops(data))
+  //     .catch((err) => console.log(err));
+
+  //   shopService
+  //     .getChosenShop(chosenShopId)
+  //     .then((data) => setChosenShop(data))
+  //     .catch((err) => console.log(err));
+
+  //   const productService = new ProductApiService();
+  //   productService
+  //     .getTargetProducts(targetProductsSearchObj)
+  //     .then((data) => setTargetProducts(data))
+  //     .catch((err) => console.log(err));
+  // }, [chosenShopId, targetProductsSearchObj, productRebuild]);
+
+  // const chosenShopHandler = (id: string) => {
+  //   setChosenShopId(id);
+  //   targetProductsSearchObj.shop_mb_id = id;
+  //   setTargetProductsSearchObj({ ...targetProductsSearchObj });
+  //   history.push(`/shop/${id}`);
+  // };
   return (
     <div style={{ background: "#ffffff" }}>
       <Container className="home_top_categ">
@@ -75,7 +135,7 @@ export function TopCategories() {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <SwiperSlide
-                  // onClick={() => searchShopProductsHandler(shop_mb_id)}
+                  // onClick={() => chosenShopHandler(ele._id)}
                   style={{ cursor: "pointer" }}
                   key={ele._id}
                   className={"shop_avatars"}

@@ -165,12 +165,12 @@
   transition: all 0.5s;
 }
 .add_card_btnbest {
-  height: 45px;
+  height: 25px;
   width: 240px;
   position: relative;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   background: #86bc42;
-  box-shadow: 0px 5px 20px rgba(0, 83, 246, 0.1);
+  box-shadow: 0px 5px 20px rgba(69, 189, 101, 0.1);
   border-radius: 6px;
   display: flex;
   flex-direction: row;

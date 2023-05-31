@@ -31,7 +31,7 @@ const topShopRetriever = createSelector(retrieveTopShops, (topShops) => ({
   topShops,
 }));
 
-export function HomePage() {
+export function HomePage(props: any) {
   /** INITIALIZATION */
   const { setTopShops } = actionDispatch(useDispatch());
 
@@ -44,16 +44,17 @@ export function HomePage() {
       })
       .catch((err) => console.log(err));
   }, []);
+  let onAdd = props.onAdd;
 
   return (
     <div className="homepage">
       <AdsPage />
       <TopCategories />
       <SalePage />
-      <BestPage />
-      <NewPage />
+      <BestPage onAdd={onAdd} />
+      <NewPage onAdd={onAdd} />
       <DeliveryPage />
-      <DealPage />
+      <DealPage onAdd={onAdd} />
       <AdverPage />
       <BlogPage />
       <WhyChoose />

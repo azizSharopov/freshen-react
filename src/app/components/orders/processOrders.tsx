@@ -97,7 +97,7 @@ export default function ProcessOrders(props: any) {
                   const product: Product = order.product_data.filter(
                     (ele) => ele._id === item.product_id
                   )[0];
-                  const image_path = `${serverApi}/${product.product_images[0]}`;
+                  const image_path = `${serverApi}/${product?.product_images[0]}`;
                   return (
                     <Box className={"ordersName_price"}>
                       <Box className={"priceBox"}>
@@ -109,13 +109,13 @@ export default function ProcessOrders(props: any) {
                           className={"titleProduct"}
                           style={{ textAlign: "start" }}
                         >
-                          {product.product_name}
+                          {product?.product_name}
                         </p>
                       </Box>
                       <Box className={"priceBox"}>
                         <p style={{ color: "#86bc42" }}> ${item.item_price}</p>
 
-                        <p>{item.item_quantity}</p>
+                        <p>${item.item_quantity}</p>
 
                         <p>${item.item_price * item.item_quantity}</p>
                       </Box>

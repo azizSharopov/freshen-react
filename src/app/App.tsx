@@ -226,7 +226,7 @@ function App() {
         </Route>
 
         <Route path="/">
-          <HomePage />
+          <HomePage onAdd={onAdd} />
         </Route>
       </Switch>
 

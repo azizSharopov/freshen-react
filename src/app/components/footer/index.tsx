@@ -52,7 +52,7 @@ export function Footer() {
         >
           <Box className="follows" sx={{ width: "172px" }}>
             <Box>
-              <img src="/icons/logo1.png" alt="logo" />
+              <img src="/icons/logo.svg" alt="logo" />
             </Box>
             <Box className="service_link" sx={{ mt: "40px" }}>
               Collins Street West, Victoria 8007, Australia.

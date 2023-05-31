@@ -25,6 +25,13 @@ import { createSelector } from "reselect";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
 import { Review } from "../../../types/follow";
+import MemberApiService from "../../apiServices/memberApiService";
+import { Definer } from "../../../lib/Definer";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -64,6 +71,25 @@ export function BestPage(props: any) {
   const chosenProductHandler = (id: string) => {
     history.push(`/shop/${id}`);
   };
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct, ERROR", err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   return (
     <div
       style={{
@@ -151,10 +177,37 @@ export function BestPage(props: any) {
                         className="like_view_boxbest"
                         sx={{ marginLeft: "240px" }}
                       >
-                        <img src="/icons/heart_green.png" alt="" />
+                        <Badge
+                          badgeContent={product.product_likes}
+                          sx={{
+                            color: "#121212",
+                            fontSize: "18px",
+                            fontWeight: 700,
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          <Checkbox
+                            icon={<img src="/icons/heart_green.png" alt="" />}
+                            id={product._id}
+                            checkedIcon={<Favorite style={{ color: "red" }} />}
+                            onClick={targetLikeProduct}
+                            /*@ts-ignore*/
+                            checked={
+                              product?.me_liked &&
+                              product?.me_liked[0]?.my_favorite
+                                ? true
+                                : false
+                            }
+                          />
+                        </Badge>
                       </Box>
                     </Box>
-                    <Box className="product_infobest">
+                    <Box
+                      className="product_infobest"
+                      sx={{ marginTop: "20px" }}
+                    >
                       <Box className="brand_namebest">
                         {product?.member_data[0]?.mb_nick}
                       </Box>
@@ -173,22 +226,43 @@ export function BestPage(props: any) {
                       <Box className="product_namebest">
                         {product.product_name}
                       </Box>
-                      <Box
-                        className="add_card_btnbest"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <img
-                          style={{ width: "20px", height: "20px" }}
-                          src="/icons/shopping-cart.png"
-                          alt=""
-                        />{" "}
-                        ADD TO CAR
-                      </Box>
                       <Box className="product_pricebest">
                         <Box className="product_price_currentbest">$11.99</Box>
                         <Box className="product_price_oldbest">$15</Box>
+                      </Box>
+                      <Box>
+                        {" "}
+                        <Button
+                          className={"add_card_btnbest"}
+                          onClick={(e) => {
+                            props.onAdd(product);
+                            e.stopPropagation();
+                          }}
+                          sx={{
+                            background: "#86bc42",
+                            width: "240px",
+                            height: "35px",
+                          }}
+                        >
+                          <img
+                            src={"/icons/shopping-cart.png"}
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              display: "flex",
+                            }}
+                          />{" "}
+                          <span
+                            style={{
+                              color: "#ffffff",
+                              fontSize: "13px",
+                              fontWeight: "700",
+                              lineHeight: "16px",
+                            }}
+                          >
+                            ADD TO CART
+                          </span>
+                        </Button>
                       </Box>
                     </Box>
                   </Box>
@@ -203,4 +277,7 @@ export function BestPage(props: any) {
       </div>
     </div>
   );
+}
+function setProductRebuild(arg0: Date) {
+  throw new Error("Function not implemented.");
 }

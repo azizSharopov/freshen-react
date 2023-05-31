@@ -10,6 +10,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { FavoriteBorder } from "@mui/icons-material";
 import {
+  Badge,
   Box,
   Button,
   Checkbox,
@@ -187,24 +188,25 @@ export function AllProducts(props: any) {
   // const chosenDishHandler = (id: string) => {
   //   history.push(`/restaurant/dish/${id}`);
   // };
-  // const targetLikeProduct = async (e: any) => {
-  //   try {
-  //     assert.ok(verifiedMemberData, Definer.auth_err1);
 
-  //     const memberService = new MemberApiService(),
-  //       like_result: any = await memberService.memberLikeTarget({
-  //         like_ref_id: e.target.id,
-  //         group_type: "product",
-  //       });
-  //     assert.ok(like_result, Definer.general_err1);
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
-  //     await sweetTopSmallSuccessAlert("success", 700, false);
-  //     setProductRebuild(new Date());
-  //   } catch (err: any) {
-  //     console.log("targetLikeProduct, ERROR", err);
-  //     sweetErrorHandling(err).then();
-  //   }
-  // };
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct, ERROR", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div>
@@ -703,10 +705,33 @@ export function AllProducts(props: any) {
                     sx={{ marginBottom: "130px" }}
                     className="like_view_boxbest"
                   >
-                    <img src="/icons/heart_green.png" alt="" />
+                    <Badge
+                      badgeContent={product.product_likes}
+                      sx={{
+                        color: "#121212",
+                        fontSize: "18px",
+                        fontWeight: 700,
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
+                      <Checkbox
+                        icon={<img src="/icons/heart_green.png" alt="" />}
+                        id={product._id}
+                        checkedIcon={<Favorite style={{ color: "red" }} />}
+                        onClick={targetLikeProduct}
+                        /*@ts-ignore*/
+                        checked={
+                          product?.me_liked && product?.me_liked[0]?.my_favorite
+                            ? true
+                            : false
+                        }
+                      />
+                    </Badge>
                   </Box>
                 </Box>
-                <Box className="product_infobest">
+                <Box className="product_infobest" sx={{ marginTop: "20px" }}>
                   <Box className="brand_namebest">
                     {product?.member_data[0]?.mb_nick}
                   </Box>
@@ -723,7 +748,7 @@ export function AllProducts(props: any) {
                     />
                   </Box>
                   <Box className="product_namebest">{product.product_name}</Box>
-                  <Box
+                  {/* <Box
                     className="add_card_btnbest"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -738,7 +763,42 @@ export function AllProducts(props: any) {
                       />{" "}
                     </Box>
                     <Box>ADD TO CART</Box>
+                  </Box> */}
+                  <Box>
+                    {" "}
+                    <Button
+                      className={"add_card_btnbest"}
+                      onClick={(e) => {
+                        props.onAdd(product);
+                        e.stopPropagation();
+                      }}
+                      sx={{
+                        background: "#86bc42",
+                        width: "240px",
+                        height: "35px",
+                      }}
+                    >
+                      <img
+                        src={"/icons/shopping-cart.png"}
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                          display: "flex",
+                        }}
+                      />{" "}
+                      <span
+                        style={{
+                          color: "#ffffff",
+                          fontSize: "13px",
+                          fontWeight: "700",
+                          lineHeight: "16px",
+                        }}
+                      >
+                        ADD TO CART
+                      </span>
+                    </Button>
                   </Box>
+
                   <Box className="product_pricebest">
                     <Box className="product_price_currentbest">$11.99</Box>
                     <Box className="product_price_oldbest">$15</Box>

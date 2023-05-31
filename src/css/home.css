@@ -392,8 +392,13 @@
 
   z-index: 2;
 }
+.products_slider_img_best img {
+  width: 300px;
+  height: 220px;
+  transition: all 0.5s;
+}
 .products_sliderbest:hover .products_slider_img_best img {
-  width: 270px;
+  width: 280px;
   height: 200px;
   z-index: 3;
 }
@@ -402,11 +407,7 @@
   height: 200px;
   z-index: 3;
 }
-.products_slider_img_best img {
-  width: 280px;
-  height: 220px;
-  transition: all 0.5s;
-}
+
 .add_card_btnbest {
   height: 45px;
   width: 240px;
