@@ -52,13 +52,13 @@ export function Footer() {
         >
           <Box className="follows" sx={{ width: "172px" }}>
             <Box>
-              <img src="/icons/logo.svg" alt="logo" />
+              <img src="/icons/logo12.svg" alt="logo" />
             </Box>
             <Box className="service_link" sx={{ mt: "40px" }}>
               Collins Street West, Victoria 8007, Australia.
             </Box>
             <Box sx={{ mt: "40px" }}>
-              <NavLink className="service_link" to="/our_stores">
+              <NavLink className="service_link" to="/contact">
                 SHOW ON MAP
               </NavLink>
             </Box>

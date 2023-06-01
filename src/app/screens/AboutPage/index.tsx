@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Link, Badge, Checkbox } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../../css/about.css";
 import "../../../css/home.css";
 
@@ -51,6 +51,7 @@ const freshenBoArticlesRetriever = createSelector(
 export function AboutPage(props: any) {
   /** INITIALIZATIONSS **/
 
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const history = useHistory();
   const { setFreshenBoArticles } = actionDispatch(useDispatch());
   const { freshenBoArticles } = useSelector(freshenBoArticlesRetriever);
@@ -65,7 +66,7 @@ export function AboutPage(props: any) {
       })
       .then((data) => setFreshenBoArticles(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [articlesRebuild]);
   const refs: any = useRef([]);
 
   const targetLikeHandler = async (e: any) => {
@@ -86,9 +87,8 @@ export function AboutPage(props: any) {
         e.target.style.fill = "white";
         refs.current[like_result.like_ref_id].innerHTML--;
       }
-
       await sweetTopSmallSuccessAlert("success", 700, false);
-      props.setArticlesRebuild(new Date());
+      setArticlesRebuild(new Date());
     } catch (err: any) {
       console.log(err);
       sweetErrorHandling(err).then();
@@ -496,7 +496,9 @@ export function AboutPage(props: any) {
                             checkedIcon={
                               <img src="/icons/heart_red.png" alt="" />
                             }
-                            onClick={targetLikeHandler}
+                            onClick={(e) => {
+                              targetLikeHandler(e);
+                            }}
                             /*@ts-ignore*/
                             checked={
                               article?.me_liked &&

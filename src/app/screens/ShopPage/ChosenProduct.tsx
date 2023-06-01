@@ -29,7 +29,7 @@ import {
   TableRow,
 } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { ReviewsComponent } from "./reviews";
+import { RatingComponent, ReviewsComponent } from "./reviews";
 
 import Marginer from "../../components/marginer";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
@@ -52,17 +52,22 @@ import { Product } from "../../../types/product";
 import { Shop } from "../../../types/user";
 
 import { setChosenShop, setChosenProduct, setMemberReviews } from "./slice";
-import { retrieveChosenShop, retrieveChosenProduct } from "./selector";
+import {
+  retrieveChosenShop,
+  retrieveChosenProduct,
+  retrieveMemberReviews,
+} from "./selector";
 import { useParams } from "react-router-dom";
 import assert from "assert";
 import { verifiedMemberData } from "../../apiServices/verify";
-import { Review } from "../../../types/follow";
+import { Review, Reviews } from "../../../types/follow";
+import { SearchReviewsObj } from "../../../types/others";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setChosenProduct: (data: Product) => dispach(setChosenProduct(data)),
   setChosenShop: (data: Shop) => dispach(setChosenShop(data)),
-  setMemberReviews: (data: Review) => dispach(setMemberReviews(data)),
+  setMemberReviews: (data: Reviews) => dispach(setMemberReviews(data)),
 });
 
 /** REDUX SELECTOR */
@@ -78,14 +83,23 @@ const chosenShopRetriever = createSelector(
     chosenShop,
   })
 );
+const memberReviewsRetriever = createSelector(
+  retrieveMemberReviews,
+  (memberReviews) => ({
+    memberReviews,
+  })
+);
 
 export default function ChosenPage(props: any) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   /** INITIALIZATIONS **/
   let { product_id } = useParams<{ product_id: string }>();
-  const { setChosenProduct, setChosenShop } = actionDispatch(useDispatch());
+  const { setChosenProduct, setChosenShop, setMemberReviews } = actionDispatch(
+    useDispatch()
+  );
   const { chosenProduct } = useSelector(chosenProductRetriever);
   const { chosenShop } = useSelector(chosenShopRetriever);
+  const { memberReviews } = useSelector(memberReviewsRetriever);
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
@@ -106,6 +120,54 @@ export default function ChosenPage(props: any) {
     }
   };
 
+  /** review */
+  const [reviewContent, setReviewContent] = useState("");
+  const [reviewRating, setReviewRating] = useState(2);
+  const [displayedReviews, setDisplayedReviews] = useState<number>(2);
+
+  const [targetSearchObj, setTargetSearchObj] = useState<SearchReviewsObj>({
+    page: 1,
+    limit: displayedReviews,
+    order: "createdAt",
+    rating_ref_id: product_id,
+  });
+
+  const submitReview = async () => {
+    try {
+      // Validate the review content
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(reviewContent.trim() !== "", "Please enter your review.");
+
+      // Create the review object
+      const reviewData = {
+        rating_ref_id: product_id, // Replace articleId with the actual article ID
+        mb_id: verifiedMemberData._id, // Replace member._id with the actual member ID
+        cmt_content: reviewContent.trim(),
+        rating_stars: reviewRating, // Replace 2 with the actual rating value
+        rating_group: "product",
+      };
+
+      // Call the API to create the review
+      const communityService = new ProductApiService();
+      const createdReview = await communityService.createReview(reviewData);
+
+      // Handle the success case
+      console.log("Review created:", createdReview);
+      // Add any additional logic or state updates as needed
+
+      // Reset the review content
+      setReviewContent("");
+      await sweetTopSmallSuccessAlert("submitted successfully", 700, false);
+      setProductRebuild(new Date());
+    } catch (err) {
+      console.log("Error creating review:", err);
+      sweetErrorHandling(err).then();
+
+      // Handle the error case
+      // You can display an error message or perform any necessary actions
+    }
+  };
+
   const [value, setValue] = React.useState("1");
 
   const [tabValue, settabValue] = React.useState("a");
@@ -114,9 +176,18 @@ export default function ChosenPage(props: any) {
 
   useEffect(() => {
     productRelatedProcess().then();
-  }, [productRebuild]);
+  }, [productRebuild, displayedReviews]);
 
   /** HANDLERS */
+  const handleSeeAllReviews = () => {
+    const newDisplayedReviews = displayedReviews + 5; // Increase the number of displayed reviews
+    setDisplayedReviews(newDisplayedReviews);
+    setTargetSearchObj((prevSearchObj) => ({
+      ...prevSearchObj,
+      limit: newDisplayedReviews,
+    }));
+  };
+
   const targetLikeProduct = async (e: any) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
@@ -150,8 +221,10 @@ export default function ChosenPage(props: any) {
     settabValue(newValue);
   };
   const shop_mb_nick = chosenShop?.mb_nick;
+
   const product_raviews = chosenProduct?.reviews?.[0]?.average_rating ?? 0;
   const product_raviews_cnt = chosenProduct?.reviews?.[0]?.reviews_cnt ?? 0;
+
   return (
     <div>
       <div className="ChosenPage">
@@ -567,8 +640,10 @@ export default function ChosenPage(props: any) {
                           <Rating
                             size="small"
                             name="controlled"
-                            value={4}
-                            readOnly
+                            value={reviewRating}
+                            onChange={(event, value) =>
+                              setReviewRating(value as number)
+                            }
                           />
                         </Box>
                         <Box className="rating_select"> Your Review</Box>
@@ -576,10 +651,16 @@ export default function ChosenPage(props: any) {
                           <textarea
                             name="comment_content"
                             className="comment_content"
-                            value={""}
+                            value={reviewContent}
+                            onChange={(e) => setReviewContent(e.target.value)}
                           ></textarea>
                         </Box>
-                        <Box className="review_submit_btn">SUBMIT</Box>
+                        <Box
+                          className="review_submit_btn"
+                          onClick={submitReview}
+                        >
+                          SUBMIT
+                        </Box>
                       </Box>
 
                       <Box className="wrire_review_box"></Box>

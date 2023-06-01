@@ -31,7 +31,8 @@ import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import { Product } from "../types/product";
 import { OrdersPage } from "./screens/OrdersPage";
 import { MemberPage } from "./screens/MemberPage";
-import { CartItem } from "../types/others";
+import { CartItem, ProductSearchObj } from "../types/others";
+import { log } from "console";
 
 function App() {
   /** INITIALIZATIONS */
@@ -64,6 +65,14 @@ function App() {
       setVerifiedMemberData(member_data);
     }
   }, [signUpOpen, loginOpen]);
+
+  const [targetProductsSearchObj, setTargetProductsSearchObj] =
+    useState<ProductSearchObj>({
+      page: 1,
+      limit: 20,
+      order: "createdAt",
+    });
+  console.log("targetProductsSearchObjfdghg", targetProductsSearchObj);
 
   /** HANDLERS */
   const handleSignUpOpen = () => setSignUpOpen(true);
@@ -200,7 +209,11 @@ function App() {
 
       <Switch>
         <Route path="/shop">
-          <ShopPage onAdd={onAdd} />
+          <ShopPage
+            onAdd={onAdd}
+            targetProductsSearchObj={targetProductsSearchObj}
+            setTargetProductsSearchObj={setTargetProductsSearchObj}
+          />
         </Route>
         <Route path="/community">
           <CommunityPage />
@@ -209,7 +222,6 @@ function App() {
           <OrdersPage
             orderRebuild={orderRebuild}
             setOrderRebuild={setOrderRebuild}
-            verifiedMemberData={verifiedMemberData}
           />
         </Route>
         <Route path="/member-page">
@@ -226,7 +238,11 @@ function App() {
         </Route>
 
         <Route path="/">
-          <HomePage onAdd={onAdd} />
+          <HomePage
+            onAdd={onAdd}
+            targetProductsSearchObj={targetProductsSearchObj}
+            setTargetProductsSearchObj={setTargetProductsSearchObj}
+          />
         </Route>
       </Switch>
 

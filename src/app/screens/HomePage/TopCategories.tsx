@@ -50,10 +50,17 @@ const topShopRetriever = createSelector(retrieveTopShops, (topShops) => ({
 //   })
 // );
 
-export function TopCategories() {
+export function TopCategories(props: any) {
   const { topShops } = useSelector(topShopRetriever);
   console.log("topShops:::", topShops);
   const history = useHistory();
+
+  const chosenShopHandler = (id: string) => {
+    // setChosenShopId(id);
+    history.push(`/shop`);
+    props.targetProductsSearchObj.shop_mb_id = id;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
+  };
   // const searchShopProductsHandler = (shop: string) => {
   //   targetProductsSearchObj.page = 1;
   //   targetProductsSearchObj.shop_mb_id = shop;
@@ -135,7 +142,7 @@ export function TopCategories() {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <SwiperSlide
-                  // onClick={() => chosenShopHandler(ele._id)}
+                  onClick={() => chosenShopHandler(ele._id)}
                   style={{ cursor: "pointer" }}
                   key={ele._id}
                   className={"shop_avatars"}

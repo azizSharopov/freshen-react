@@ -126,17 +126,19 @@ export function AllProducts(props: any) {
   const { chosenShop } = useSelector(chosenShopRetriever);
   const { targetProducts } = useSelector(targetProductsRetriever);
   const [chosenShopId, setChosenShopId] = useState<string>(shop_id);
-  const [targetProductsSearchObj, setTargetProductsSearchObj] =
-    useState<ProductSearchObj>({
-      page: 1,
-      limit: 20,
-      order: "createdAt",
-      shop_mb_id: shop_id,
-    });
+
+  const [imageSrc, setImageSrc] = useState("/homepage/all_pro.jpg");
+  // const [props.targetProductsSearchObj, props.setTargetProductsSearchObj] =
+  //   useState<ProductSearchObj>({
+  //     page: 1,
+  //     limit: 20,
+  //     order: "createdAt",
+  //     shop_mb_id: shop_id,
+  //   });
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
   const handlePaginationChange = (event: any, value: number) => {
-    targetProductsSearchObj.page = value;
-    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+    props.targetProductsSearchObj.page = value;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
   };
   useEffect(() => {
     const shopService = new ShopApiService();
@@ -152,42 +154,40 @@ export function AllProducts(props: any) {
 
     const productService = new ProductApiService();
     productService
-      .getTargetProducts(targetProductsSearchObj)
+      .getTargetProducts(props.targetProductsSearchObj)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [chosenShopId, targetProductsSearchObj, productRebuild]);
+  }, [chosenShopId, props.targetProductsSearchObj, productRebuild]);
 
   /** HANDLERS */
   const chosenShopHandler = (id: string) => {
     setChosenShopId(id);
-    targetProductsSearchObj.shop_mb_id = id;
-    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+    props.targetProductsSearchObj.shop_mb_id = id;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
     history.push(`/shop/${id}`);
   };
   const shop_mb_nick = chosenShop?.mb_nick;
+
   const searchShopProductsHandler = (shop: string) => {
-    targetProductsSearchObj.page = 1;
-    targetProductsSearchObj.shop_mb_id = shop;
-    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+    props.targetProductsSearchObj.page = 1;
+    props.targetProductsSearchObj.shop_mb_id = shop;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
   };
   const searchShopAllProductsHandler = (shop: string) => {
-    targetProductsSearchObj.page = 1;
-    targetProductsSearchObj.order = shop;
-    targetProductsSearchObj.shop_mb_id = undefined;
-    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+    props.targetProductsSearchObj.page = 1;
+    props.targetProductsSearchObj.order = shop;
+    props.targetProductsSearchObj.shop_mb_id = undefined;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
   };
   const searchOrderHandler = (order: string) => {
-    targetProductsSearchObj.page = 1;
-    targetProductsSearchObj.order = order;
-    setTargetProductsSearchObj({ ...targetProductsSearchObj });
+    props.targetProductsSearchObj.page = 1;
+    props.targetProductsSearchObj.order = order;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
   };
 
   const chosenProductHandler = (id: string) => {
     history.push(`/shop/${id}`);
   };
-  // const chosenDishHandler = (id: string) => {
-  //   history.push(`/restaurant/dish/${id}`);
-  // };
 
   const targetLikeProduct = async (e: any) => {
     try {
@@ -262,7 +262,6 @@ export function AllProducts(props: any) {
               }}
             >
               <span>All product</span>
-              {targetProducts && <span>({targetProducts.length})</span>}
             </Box>
             <Box
               style={{
@@ -277,7 +276,6 @@ export function AllProducts(props: any) {
               onClick={() => searchShopAllProductsHandler("product_likes")}
             >
               <span>Best product</span>
-              {targetProducts && <span>({targetProducts.length})</span>}
             </Box>
             <Box
               style={{
@@ -292,7 +290,6 @@ export function AllProducts(props: any) {
               onClick={() => searchShopAllProductsHandler("product_price")}
             >
               <span>Product price</span>
-              {targetProducts && <span>({targetProducts.length})</span>}
             </Box>
             <Box
               style={{
@@ -304,24 +301,14 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() =>
-                searchShopProductsHandler("646b0d1dc88f933b56ca3fd1")
-              }
+              onClick={() => {
+                searchShopProductsHandler("646b0d1dc88f933b56ca3fd1");
+                setImageSrc("/homepage/cucumber.jpg");
+              }}
             >
               <span>Fruits</span>
-              {targetProducts && (
-                <span>
-                  (
-                  {
-                    targetProducts.filter(
-                      (product) =>
-                        product.shop_mb_id === "646b0d1dc88f933b56ca3fd1"
-                    ).length
-                  }
-                  )
-                </span>
-              )}
             </Box>
+
             <Box
               style={{
                 fontFamily: "Lato",
@@ -337,18 +324,6 @@ export function AllProducts(props: any) {
               }
             >
               <span>Meats</span>
-              {targetProducts && (
-                <span>
-                  (
-                  {
-                    targetProducts.filter(
-                      (product) =>
-                        product.shop_mb_id === "646b0d41c88f933b56ca3fd4"
-                    ).length
-                  }
-                  )
-                </span>
-              )}
             </Box>
 
             <Box
@@ -366,18 +341,6 @@ export function AllProducts(props: any) {
               }
             >
               <span>Fishs</span>
-              {targetProducts && (
-                <span>
-                  (
-                  {
-                    targetProducts.filter(
-                      (product) =>
-                        product.shop_mb_id === "646ba6e0af5977f07c502244"
-                    ).length
-                  }
-                  )
-                </span>
-              )}
             </Box>
             <Box
               style={{
@@ -394,18 +357,6 @@ export function AllProducts(props: any) {
               }
             >
               <span>Vegetables</span>
-              {targetProducts && (
-                <span>
-                  (
-                  {
-                    targetProducts.filter(
-                      (product) =>
-                        product.shop_mb_id === "646ba70daf5977f07c502247"
-                    ).length
-                  }
-                  )
-                </span>
-              )}
             </Box>
 
             <Box
@@ -423,18 +374,6 @@ export function AllProducts(props: any) {
               }
             >
               <span>Bakery</span>
-              {targetProducts && (
-                <span>
-                  (
-                  {
-                    targetProducts.filter(
-                      (product) =>
-                        product.shop_mb_id === "646bb01eaf5977f07c50224d"
-                    ).length
-                  }
-                  )
-                </span>
-              )}
             </Box>
             <Box
               style={{
@@ -451,18 +390,6 @@ export function AllProducts(props: any) {
               }
             >
               <span>Butter & Egges</span>
-              {targetProducts && (
-                <span>
-                  (
-                  {
-                    targetProducts.filter(
-                      (product) =>
-                        product.shop_mb_id === "646bb04faf5977f07c502250"
-                    ).length
-                  }
-                  )
-                </span>
-              )}
             </Box>
             <Box
               style={{
@@ -479,18 +406,6 @@ export function AllProducts(props: any) {
               }
             >
               <span>Milks & Creams</span>
-              {targetProducts && (
-                <span>
-                  (
-                  {
-                    targetProducts.filter(
-                      (product) =>
-                        product.shop_mb_id === "646ba793af5977f07c50224a"
-                    ).length
-                  }
-                  )
-                </span>
-              )}
             </Box>
             <Box
               style={{
@@ -504,7 +419,6 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
             >
               <span>Cofee & Tea</span>
-              <span>(89)</span>
             </Box>
             <Box
               className="shop_categ_text"
@@ -518,7 +432,6 @@ export function AllProducts(props: any) {
               }}
             >
               <span>Cookies</span>
-              <span>(63)</span>
             </Box>
             <Box
               className="shop_categ_text"
@@ -532,7 +445,6 @@ export function AllProducts(props: any) {
               }}
             >
               <span>Drinks</span>
-              <span>(56)</span>
             </Box>
             <Box
               className="shop_categ_text"
@@ -546,10 +458,15 @@ export function AllProducts(props: any) {
               }}
             >
               <span>Chocolates</span>
-              <span>(49)</span>
             </Box>
           </Stack>
-          <Stack className="shop_ads"></Stack>
+          <Box className="shop_ads">
+            <img
+              style={{ width: "900px", height: "530px" }}
+              src={imageSrc}
+              alt="shop_page"
+            />
+          </Box>
         </Stack>
         <Box sx={{ marginTop: "50px" }}></Box>
         <Marginer
@@ -708,17 +625,6 @@ export function AllProducts(props: any) {
                       e.stopPropagation();
                     }}
                   >
-                    {/* <Badge
-                      badgeContent={product.product_likes}
-                      sx={{
-                        color: "#121212",
-                        fontSize: "18px",
-                        fontWeight: 700,
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                    > */}
                     <Checkbox
                       icon={<img src="/icons/heart_green.png" alt="" />}
                       id={product._id}
@@ -731,7 +637,6 @@ export function AllProducts(props: any) {
                           : false
                       }
                     />
-                    {/* </Badge> */}
                   </Box>
                 </Box>
                 <Box className="product_infobest" sx={{ marginTop: "20px" }}>
@@ -745,28 +650,13 @@ export function AllProducts(props: any) {
                       value={
                         product.reviews && product.reviews.length > 0
                           ? (product.reviews as Review[])[0]?.average_rating
-                          : 0 // Provide a default value if there are no reviews
+                          : 0
                       }
                       readOnly
                     />
                   </Box>
                   <Box className="product_namebest">{product.product_name}</Box>
-                  {/* <Box
-                    className="add_card_btnbest"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      props.onAdd(chosenProduct);
-                    }}
-                  >
-                    <Box>
-                      <img
-                        style={{ width: "20px", height: "20px" }}
-                        src="./icons/shopping-cart.png"
-                        alt=""
-                      />{" "}
-                    </Box>
-                    <Box>ADD TO CART</Box>
-                  </Box> */}
+
                   <Box>
                     {" "}
                     <Button
@@ -776,9 +666,15 @@ export function AllProducts(props: any) {
                         e.stopPropagation();
                       }}
                       sx={{
-                        background: "#86bc42",
+                        color: "#ffffff",
+                        fontSize: "14px",
                         width: "240px",
                         height: "35px",
+                        background: "#86bc42",
+                        textTransform: "none",
+                        "&:hover": {
+                          backgroundColor: "#86bc42",
+                        },
                       }}
                     >
                       <img
@@ -786,12 +682,10 @@ export function AllProducts(props: any) {
                         style={{
                           width: "20px",
                           height: "20px",
-                          display: "flex",
                         }}
                       />{" "}
                       <span
                         style={{
-                          color: "#ffffff",
                           fontSize: "13px",
                           fontWeight: "700",
                           lineHeight: "16px",
@@ -820,11 +714,11 @@ export function AllProducts(props: any) {
         >
           <Pagination
             count={
-              targetProductsSearchObj.page >= 3
-                ? targetProductsSearchObj.page + 1
+              props.targetProductsSearchObj.page >= 3
+                ? props.targetProductsSearchObj.page + 1
                 : 3
             }
-            page={targetProductsSearchObj.page}
+            page={props.targetProductsSearchObj.page}
             renderItem={(item) => (
               <PaginationItem
                 components={{

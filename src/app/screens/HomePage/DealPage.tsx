@@ -164,31 +164,36 @@ export function DealPage(props: any) {
                   cursor: "pointer",
                   border: "1px solid #eaeaea",
                 }}
-                className="productsbest"
+                className="productsbest1"
               >
                 <Box
                   className="products_sliderbest1"
+                  sx={{ height: "410px" }}
                   onClick={() => chosenProductHandler(product._id)}
                 >
                   <Box
-                    sx={{ zIndex: "5", position: "absolute" }}
+                    sx={{
+                      zIndex: "5",
+                      position: "absolute",
+                      marginLeft: "20px",
+                    }}
                     className="product_sale_info"
                   >
                     -10 %
                   </Box>
                   <Box
-                    className="products_slider_img_best"
-                    style={{ width: "240px", height: "220px" }}
+                    className="products_slider_img_best1"
+                    // style={{ width: "220px", height: "200px" }}
                   >
                     <img
-                      style={{ width: "240px", height: "220px" }}
+                      style={{ width: "210px", height: "190px" }}
                       src={image_path}
                       alt=""
                     />
 
                     <Box
-                      sx={{ zIndex: "6", position: "absolute" }}
-                      className="like_view_boxbest"
+                      sx={{ zIndex: "6" }}
+                      className="like_view_boxbest1"
                       onClick={(e) => {
                         e.stopPropagation();
                       }}
@@ -226,9 +231,15 @@ export function DealPage(props: any) {
                         e.stopPropagation();
                       }}
                       sx={{
-                        background: "#86bc42",
+                        color: "#ffffff",
+                        fontSize: "14px",
                         width: "240px",
                         height: "35px",
+                        background: "#86bc42",
+                        textTransform: "none",
+                        "&:hover": {
+                          backgroundColor: "#86bc42",
+                        },
                       }}
                     >
                       <img
@@ -251,7 +262,7 @@ export function DealPage(props: any) {
                       </span>
                     </Button>
                   </Box>
-                  <Box className="product_infosale" sx={{ marginTop: "30px" }}>
+                  <Box className="product_infosale1" sx={{ marginTop: "10px" }}>
                     <Box className="brand_namebest">
                       {" "}
                       {product?.member_data[0]?.mb_nick}

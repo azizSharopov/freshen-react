@@ -6,6 +6,12 @@ export interface SearchObj {
   limit: number;
   order: string;
 }
+export interface SearchReviewsObj {
+  rating_ref_id: string;
+  limit?: number;
+  order?: string;
+  page?: number;
+}
 
 export interface ProductSearchObj {
   page: number;

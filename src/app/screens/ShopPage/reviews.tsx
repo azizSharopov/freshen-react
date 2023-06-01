@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import Marginer from "../../components/marginer";
 import { ProductSearchObj } from "../../../types/others";
+import { Reviews } from "../../../types/follow";
 
 //BorderLinerProgress
 
@@ -100,17 +101,27 @@ export function RatingComponent(props: any) {
   const product_raviews = chosenPro?.reviews?.[0]?.average_rating ?? 0;
   const product_raviews_cnt = chosenPro?.reviews?.[0]?.reviews_cnt ?? 0;
 
+  // {Array.isArray(memberReviews) &&
+  //   memberReviews.map((reviews: Reviews, index: any) => {
+  //     const options: Intl.DateTimeFormatOptions = {
+  //       year: "numeric",
+  //       month: "long",
+  //       day: "numeric",
+  //       hour: "numeric",
+  //       minute: "numeric",
+  //     };
+  //     const createAt = new Date(reviews.createdAt);
+  //     const formattedDate =
+  //       createAt instanceof Date
+  //         ? createAt.toLocaleDateString(undefined, options)
+  //         : "";
+
   return (
     <Box className="rating_box">
       <Box className="overal_rating">
         <Box className="rating_by_num">{product_raviews}</Box>
         <Box className="rating_by_star">
-          <Rating
-            size="large"
-            name="read-only"
-            value={product_raviews}
-            readOnly
-          />
+          <Rating size="large" name="read-only" />
           <br /> {product_raviews_cnt} reviews
         </Box>
       </Box>

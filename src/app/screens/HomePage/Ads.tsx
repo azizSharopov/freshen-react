@@ -10,10 +10,18 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Box, Button, Container, Stack } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { url } from "inspector";
 
-export function AdsPage() {
+export function AdsPage(props: any) {
+  const history = useHistory();
+
+  const chosenShopHandler = (id: string) => {
+    // setChosenShopId(id);
+    history.push(`/shop`);
+    props.targetProductsSearchObj.shop_mb_id = id;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
+  };
   return (
     <div>
       <Swiper
@@ -67,7 +75,7 @@ export function AdsPage() {
                   color: "#FFFFFF",
                   position: "relative",
                 }}
-                // onClick={() => setValue(!value)}
+                onClick={() => chosenShopHandler("646ba70daf5977f07c502247")}
               >
                 SHOP NOW
               </Button>
@@ -117,7 +125,7 @@ export function AdsPage() {
                   color: "#FFFFFF",
                   position: "relative",
                 }}
-                // onClick={() => setValue(!value)}
+                onClick={() => chosenShopHandler("646b0d1dc88f933b56ca3fd1")}
               >
                 SHOP NOW
               </Button>

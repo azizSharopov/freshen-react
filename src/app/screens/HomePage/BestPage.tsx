@@ -59,6 +59,13 @@ export function BestPage(props: any) {
   const { setBestProducts } = actionDispatch(useDispatch());
   const { bestProducts } = useSelector(bestProductRetriever);
 
+  const chosenShopHandler = (order: string) => {
+    // setChosenShopId(id);
+    history.push(`/shop`);
+    props.targetProductsSearchObj.shop_mb_id = null;
+    props.targetProductsSearchObj.order = order;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
+  };
   useEffect(() => {
     const productService = new ProductApiService();
     productService
@@ -106,7 +113,10 @@ export function BestPage(props: any) {
     >
       <Container style={{ display: "flex", flexDirection: "row" }}>
         <Box className="home_top"> Best Products</Box>
-        <Box className="best_product_link">
+        <Box
+          className="best_product_link"
+          onClick={() => chosenShopHandler("product_likes")}
+        >
           View All_ <ArrowRightAltIcon />
         </Box>
       </Container>
@@ -170,12 +180,15 @@ export function BestPage(props: any) {
                     className="products_sliderbest"
                     onClick={() => chosenProductHandler(product._id)}
                   >
-                    <Box className="products_slider_img_best">
+                    <Box
+                      className="products_slider_img_best"
+                      sx={{ marginLeft: "30px" }}
+                    >
                       <img src={image_path} alt="best product" />
 
                       <Box
                         className="like_view_boxbest"
-                        sx={{ marginLeft: "240px" }}
+                        sx={{ marginLeft: "230px" }}
                         onClick={(e) => {
                           e.stopPropagation();
                         }}
@@ -244,9 +257,15 @@ export function BestPage(props: any) {
                             e.stopPropagation();
                           }}
                           sx={{
-                            background: "#86bc42",
+                            color: "#ffffff",
+                            fontSize: "14px",
                             width: "240px",
                             height: "35px",
+                            background: "#86bc42",
+                            textTransform: "none",
+                            "&:hover": {
+                              backgroundColor: "#86bc42",
+                            },
                           }}
                         >
                           <img

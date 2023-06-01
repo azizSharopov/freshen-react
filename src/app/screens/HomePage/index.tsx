@@ -48,14 +48,34 @@ export function HomePage(props: any) {
 
   return (
     <div className="homepage">
-      <AdsPage />
-      <TopCategories />
-      <SalePage />
-      <BestPage onAdd={onAdd} />
-      <NewPage onAdd={onAdd} />
+      <AdsPage
+        targetProductsSearchObj={props.targetProductsSearchObj}
+        setTargetProductsSearchObj={props.setTargetProductsSearchObj}
+      />
+      <TopCategories
+        targetProductsSearchObj={props.targetProductsSearchObj}
+        setTargetProductsSearchObj={props.setTargetProductsSearchObj}
+      />
+      <SalePage
+        targetProductsSearchObj={props.targetProductsSearchObj}
+        setTargetProductsSearchObj={props.setTargetProductsSearchObj}
+      />
+      <BestPage
+        onAdd={onAdd}
+        targetProductsSearchObj={props.targetProductsSearchObj}
+        setTargetProductsSearchObj={props.setTargetProductsSearchObj}
+      />
+      <NewPage
+        onAdd={onAdd}
+        targetProductsSearchObj={props.targetProductsSearchObj}
+        setTargetProductsSearchObj={props.setTargetProductsSearchObj}
+      />
       <DeliveryPage />
       <DealPage onAdd={onAdd} />
-      <AdverPage />
+      <AdverPage
+        targetProductsSearchObj={props.targetProductsSearchObj}
+        setTargetProductsSearchObj={props.setTargetProductsSearchObj}
+      />
       <BlogPage />
       <WhyChoose />
       <GalleryPage />

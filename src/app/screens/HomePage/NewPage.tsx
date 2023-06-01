@@ -23,7 +23,7 @@ import ProductApiService from "../../apiServices/productApiService";
 import { retrieveNewProducts } from "./selector";
 import { createSelector } from "reselect";
 import { serverApi } from "../../../lib/config";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { Review } from "../../../types/follow";
 import { verifiedMemberData } from "../../apiServices/verify";
 import { Definer } from "../../../lib/Definer";
@@ -65,6 +65,13 @@ export function NewPage(props: any) {
     history.push(`/shop/${id}`);
   };
 
+  const chosenShopHandler = (order: string) => {
+    // setChosenShopId(id);
+    history.push(`/shop`);
+    props.targetProductsSearchObj.shop_mb_id = null;
+    props.targetProductsSearchObj.order = order;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
+  };
   const targetLikeProduct = async (e: any) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
@@ -98,7 +105,10 @@ export function NewPage(props: any) {
     >
       <Container style={{ display: "flex", flexDirection: "row" }}>
         <Box className="home_top"> New Products</Box>
-        <Box className="best_product_link">
+        <Box
+          className="best_product_link"
+          onClick={() => chosenShopHandler("createdAt")}
+        >
           View All_ <ArrowRightAltIcon />
         </Box>
       </Container>
@@ -161,12 +171,15 @@ export function NewPage(props: any) {
                   className="products_sliderbest"
                   onClick={() => chosenProductHandler(product._id)}
                 >
-                  <Box className="products_slider_img_best">
+                  <Box
+                    className="products_slider_img_best"
+                    sx={{ marginLeft: "30px" }}
+                  >
                     <img src={image_path} alt="best product" />
 
                     <Box
                       className="like_view_boxbest"
-                      sx={{ marginLeft: "240px" }}
+                      sx={{ marginLeft: "230px" }}
                       onClick={(e) => {
                         e.stopPropagation();
                       }}
@@ -229,9 +242,15 @@ export function NewPage(props: any) {
                           e.stopPropagation();
                         }}
                         sx={{
-                          background: "#86bc42",
+                          color: "#ffffff",
+                          fontSize: "14px",
                           width: "240px",
                           height: "35px",
+                          background: "#86bc42",
+                          textTransform: "none",
+                          "&:hover": {
+                            backgroundColor: "#86bc42",
+                          },
                         }}
                       >
                         <img

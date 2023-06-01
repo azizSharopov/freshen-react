@@ -166,6 +166,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  margin-left: 5px;
 }
 .sns_icons {
   display: flex;

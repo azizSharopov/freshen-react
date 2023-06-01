@@ -29,7 +29,12 @@ export default function FinishedOrders(props: any) {
           return (
             <Box className={"order_finish_box"}>
               <Box className={"orders_finish"}>
-                <Box sx={{ textAlign: "center", marginTop: "50px" }}>
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    marginTop: "20px",
+                  }}
+                >
                   <img src="/icons/icons.png" alt="" />
                 </Box>
 

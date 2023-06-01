@@ -53,7 +53,7 @@
 .shop_ads {
   width: 900px;
   height: 530px;
-  background-image: url("/public/homepage/all_pro.jpg");
+  /* background-image: url("/public/homepage/all_pro.jpg"); */
   background-size: cover;
 }
 .count_sort_products_section {
@@ -813,3 +813,5 @@
   height: 110px;
   border-radius: 6px;
 }
+
+/** Review */

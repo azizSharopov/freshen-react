@@ -14,7 +14,11 @@ export default function ShopPage(props: any) {
           <ChosenProduct onAdd={props.onAdd} />
         </Route>
         <Route path={`${shop.path}`}>
-          <AllProducts onAdd={props.onAdd} />
+          <AllProducts
+            onAdd={props.onAdd}
+            targetProductsSearchObj={props.targetProductsSearchObj}
+            setTargetProductsSearchObj={props.setTargetProductsSearchObj}
+          />
         </Route>
       </Switch>
     </div>

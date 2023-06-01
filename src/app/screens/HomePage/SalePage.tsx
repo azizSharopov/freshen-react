@@ -2,7 +2,15 @@ import { Box, Container, Stack } from "@mui/material";
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 
-export function SalePage() {
+export function SalePage(props: any) {
+  const history = useHistory();
+  const chosenShopHandler = (id: string) => {
+    // setChosenShopId(id);
+    history.push(`/shop`);
+    props.targetProductsSearchObj.shop_mb_id = id;
+    props.setTargetProductsSearchObj({ ...props.targetProductsSearchObj });
+  };
+
   return (
     <div style={{ background: "#ffffff", marginTop: "70px" }}>
       <Container>
@@ -31,7 +39,13 @@ export function SalePage() {
                 Fresh Summer With Just $99.99
               </Box>
               <NavLink to="/shop">
-                <Box className="sale_page_info3"> SHOP NOW</Box>
+                <Box
+                  className="sale_page_info3"
+                  onClick={() => chosenShopHandler("646b0d1dc88f933b56ca3fd1")}
+                >
+                  {" "}
+                  SHOP NOW
+                </Box>
               </NavLink>
             </Box>
           </Box>
@@ -60,7 +74,13 @@ export function SalePage() {
               </Box>
 
               <NavLink to="/shop">
-                <Box className="sale_page_info3"> SHOP NOW</Box>
+                <Box
+                  className="sale_page_info3"
+                  onClick={() => chosenShopHandler("646bb01eaf5977f07c50224d")}
+                >
+                  {" "}
+                  SHOP NOW
+                </Box>
               </NavLink>
             </Box>
           </Box>
@@ -90,7 +110,13 @@ export function SalePage() {
                 <span style={{ color: "#849D6A" }}>Vegetables</span>
               </Box>
               <NavLink to="/shop">
-                <Box className="sale_page_info3"> SHOP NOW</Box>
+                <Box
+                  className="sale_page_info3"
+                  onClick={() => chosenShopHandler("646ba70daf5977f07c502247")}
+                >
+                  {" "}
+                  SHOP NOW
+                </Box>
               </NavLink>
             </Box>
           </Box>
