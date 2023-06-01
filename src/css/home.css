@@ -761,30 +761,24 @@
 .blog_subject_home {
   width: 99px;
   height: 14px;
-
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* 12 / Bold */
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
   line-height: 14px;
   text-align: center;
-  /* White */
   color: #ffffff;
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 .blog_subject_info {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  text-align: start;
-  gap: 10px;
+  height: 130px;
+  justify-content: space-between;
+  margin-left: 20px;
 }
 .blog_subject_text {
   margin-top: 30px;
@@ -795,12 +789,9 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 30px;
-  /* or 167% */
-
-  /* Head */
-
   color: #121212;
 }
+
 .blog_subject_text:hover {
   color: #86bc42;
 }
@@ -811,20 +802,30 @@
 }
 .blog_by_css {
   margin-left: 10px;
-  /* 14 / Regular */
-
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  /* identical to box height, or 171% */
-
-  /* Text */
-
   color: #4f4f4f;
 }
 
+.home_blog_by {
+  width: 380px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.about_by_css {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #4f4f4f;
+}
 .blogs {
   margin-top: 30px;
 
@@ -861,7 +862,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 29px;
-  color: #041e42;
+  color: #121212;
 }
 .blog_date {
   font-family: "Jost";
@@ -870,6 +871,18 @@
   font-size: 16px;
   line-height: 28px;
   color: #626974;
+}
+.blog_subject_blog2 {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin-left: 350px;
+  margin-top: 145px;
+  border: 1px solid #86bc42;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /** Why Choose */

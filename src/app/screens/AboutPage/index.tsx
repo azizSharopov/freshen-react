@@ -1,5 +1,5 @@
-import { Box, Container, Stack, Link } from "@mui/material";
-import React, { useEffect } from "react";
+import { Box, Container, Stack, Link, Badge, Checkbox } from "@mui/material";
+import React, { useEffect, useRef } from "react";
 import "../../../css/about.css";
 import "../../../css/home.css";
 
@@ -23,6 +23,16 @@ import TViewer from "../../components/TUIEditor/TuiViewer";
 import CommunityApiService from "../../apiServices/communityApiService";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
+import { Favorite } from "@mui/icons-material";
+import assert from "assert";
+import { verifiedMemberData } from "../../apiServices/verify";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { Review } from "../../../types/follow";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -38,7 +48,7 @@ const freshenBoArticlesRetriever = createSelector(
   })
 );
 
-export function AboutPage() {
+export function AboutPage(props: any) {
   /** INITIALIZATIONSS **/
 
   const history = useHistory();
@@ -56,6 +66,34 @@ export function AboutPage() {
       .then((data) => setFreshenBoArticles(data))
       .catch((err) => console.log(err));
   }, []);
+  const refs: any = useRef([]);
+
+  const targetLikeHandler = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+
+      const memberService = new MemberApiService();
+      const like_result = await memberService.memberLikeTarget({
+        like_ref_id: e.target.id,
+        group_type: "community",
+      });
+      assert.ok(like_result, Definer.general_err1);
+
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      props.setArticlesRebuild(new Date());
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div style={{ background: "#ffffff" }}>
@@ -438,7 +476,7 @@ export function AboutPage() {
                             marginTop: "225px",
                             borderRadius: "60px",
                             display: "flex",
-                            justifyContent: "center",
+                            justifyContent: "space-around",
                             alignItems: "center",
                           }}
                         >
@@ -446,38 +484,106 @@ export function AboutPage() {
                             {article?.bo_id}
                           </Box>
                         </Box>
+                        <Box
+                          className="blog_subject_about"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          <Checkbox
+                            icon={<img src="/icons/heart_green.png" alt="" />}
+                            id={article._id}
+                            checkedIcon={
+                              <img src="/icons/heart_red.png" alt="" />
+                            }
+                            onClick={targetLikeHandler}
+                            /*@ts-ignore*/
+                            checked={
+                              article?.me_liked &&
+                              article?.me_liked[0]?.my_favorite
+                                ? true
+                                : false
+                            }
+                          />
+                        </Box>
                       </Box>
                       <Box className="blog_subject_info">
                         <Box className="about_subject_text">
                           {article?.art_subject}
                         </Box>
                         <Box className="about_blog_by">
-                          <Box>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "10px",
+                            }}
+                          >
                             <img
                               style={{
                                 width: "15px",
                                 height: "15px",
+                                marginTop: "5px",
                               }}
                               src="/icons/user1.png"
                               alt="blog_by"
                             />
-                          </Box>
-                          <Box className="about_by_css">
-                            {article?.member_data?.mb_nick}
+                            <Box className="about_by_css">
+                              {article?.member_data?.mb_nick}
+                            </Box>
                           </Box>
 
-                          <Box>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "10px",
+                              marginLeft: "30px",
+                            }}
+                          >
                             <img
                               style={{
                                 width: "15px",
                                 height: "15px",
-                                marginLeft: "50px",
+                                marginTop: "5px",
                               }}
                               src="/icons/chat1.png"
                               alt="blog_by"
                             />
+                            <Box className="about_by_css">
+                              {
+                                article.reviews && article.reviews.length > 0
+                                  ? (article.reviews as Review[])[0]
+                                      ?.average_rating
+                                  : 0 // Provide a default value if there are no reviews
+                              }
+                              <span style={{ marginLeft: "5px" }}>
+                                Comments
+                              </span>
+                            </Box>
                           </Box>
-                          <Box className="about_by_css">32 Comments</Box>
+
+                          <Box
+                            className="about_by_css"
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "10px",
+                              marginLeft: "30px",
+                            }}
+                          >
+                            {" "}
+                            <Favorite
+                              sx={{ fontSize: 20, marginLeft: "5px" }}
+                            />
+                            <div
+                              ref={(element) =>
+                                (refs.current[article._id] = element)
+                              }
+                            >
+                              {article.art_likes}
+                            </div>
+                          </Box>
                         </Box>
                       </Box>
                     </Box>

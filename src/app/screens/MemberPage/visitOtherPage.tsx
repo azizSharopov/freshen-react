@@ -50,6 +50,7 @@ import Marginer from "../../components/marginer";
 import ArticleIcon from "@mui/icons-material/Article";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
+import { serverApi } from "../../../lib/config";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -100,7 +101,7 @@ export function VisitOtherPage(props: any) {
     useState<SearchMemberArticlesObj>({
       mb_id: chosen_mb_id,
       page: 1,
-      limit: 8,
+      limit: 12,
     });
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
@@ -224,7 +225,14 @@ export function VisitOtherPage(props: any) {
               <Box className="account_infos_other">
                 <Box className="account_img">
                   <Box className="account_img_box">
-                    <img src={verifiedMemberData?.mb_image} alt="my_page" />
+                    <img
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember.mb_image}`
+                          : "/icons/user1.svg"
+                      }
+                      alt="my_page"
+                    />
                   </Box>
                   <Box className="account_name_box">
                     <span>{chosenMember?.mb_nick}</span>

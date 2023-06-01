@@ -30,6 +30,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setTargetBoArticles } from "./slice";
 import { retrieveTargetBoArticles } from "./selector";
+import assert from "assert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -45,7 +52,7 @@ const targetBoArticlesRetriever = createSelector(
   })
 );
 
-export default function AllBlogs() {
+export default function AllBlogs(props: any) {
   /** INITIALIZATIONS **/
   const { setTargetBoArticles } = actionDispatch(useDispatch());
   const { targetBoArticles } = useSelector(targetBoArticlesRetriever);
@@ -106,6 +113,24 @@ export default function AllBlogs() {
   const handlePaginationChange = (event: any, value: number) => {
     searchArticlesObj.page = value;
     setSearchArticlesObj({ ...searchArticlesObj });
+  };
+
+  const targetLikeHandler = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+
+      const memberService = new MemberApiService();
+      const like_result = await memberService.memberLikeTarget({
+        like_ref_id: e.target.id,
+        group_type: "community",
+      });
+      assert.ok(like_result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      props.setArticlesRebuild(new Date());
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
   };
 
   return (

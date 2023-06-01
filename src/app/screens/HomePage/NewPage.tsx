@@ -162,46 +162,43 @@ export function NewPage(props: any) {
                   onClick={() => chosenProductHandler(product._id)}
                 >
                   <Box className="products_slider_img_best">
-                    <img
-                      style={{ backgroundSize: "cover" }}
-                      src={image_path}
-                      alt="new product"
-                    />
+                    <img src={image_path} alt="best product" />
 
                     <Box
                       className="like_view_boxbest"
                       sx={{ marginLeft: "240px" }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
                     >
-                      <Badge
-                        badgeContent={product.product_likes}
-                        sx={{
-                          color: "#121212",
-                          fontSize: "18px",
-                          fontWeight: 700,
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <Checkbox
-                          icon={<FavoriteBorder style={{ color: "green" }} />}
-                          id={product._id}
-                          checkedIcon={<Favorite style={{ color: "red" }} />}
-                          onClick={targetLikeProduct}
-                          /*@ts-ignore*/
-                          checked={
-                            product?.me_liked &&
-                            product?.me_liked[0]?.my_favorite
-                              ? true
-                              : false
-                          }
-                        />
-                      </Badge>
+                      {/* <Badge
+                      badgeContent={product.product_likes}
+                      sx={{
+                        color: "#121212",
+                        fontSize: "18px",
+                        fontWeight: 700,
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    > */}
+                      <Checkbox
+                        icon={<img src="/icons/heart_green.png" alt="" />}
+                        id={product._id}
+                        checkedIcon={<img src="/icons/heart_red.png" alt="" />}
+                        onClick={targetLikeProduct}
+                        /*@ts-ignore*/
+                        checked={
+                          product?.me_liked && product?.me_liked[0]?.my_favorite
+                            ? true
+                            : false
+                        }
+                      />
+                      {/* </Badge> */}
                     </Box>
                   </Box>
-                  <Box className="product_infobest">
+                  <Box className="product_infobest" sx={{ marginTop: "20px" }}>
                     <Box className="brand_namebest">
-                      {" "}
                       {product?.member_data[0]?.mb_nick}
                     </Box>
                     <Box className="product_retingbest">
@@ -219,7 +216,10 @@ export function NewPage(props: any) {
                     <Box className="product_namebest">
                       {product.product_name}
                     </Box>
-
+                    <Box className="product_pricebest">
+                      <Box className="product_price_currentbest">$11.99</Box>
+                      <Box className="product_price_oldbest">$15</Box>
+                    </Box>
                     <Box>
                       {" "}
                       <Button
@@ -231,7 +231,7 @@ export function NewPage(props: any) {
                         sx={{
                           background: "#86bc42",
                           width: "240px",
-                          height: "45px",
+                          height: "35px",
                         }}
                       >
                         <img
@@ -253,10 +253,6 @@ export function NewPage(props: any) {
                           ADD TO CART
                         </span>
                       </Button>
-                    </Box>
-                    <Box className="product_pricebest">
-                      <Box className="product_price_currentbest">$11.99</Box>
-                      <Box className="product_price_oldbest">$15</Box>
                     </Box>
                   </Box>
                 </Box>

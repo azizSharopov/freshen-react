@@ -11,6 +11,7 @@ import ProcessOrders from "../../components/orders/processOrders";
 import FinishedOrders from "../../components/orders/finishedOrders";
 import Marginer from "../../components/marginer";
 import { Order } from "../../../types/order";
+import { useLocation } from "react-router-dom";
 
 // REDUX
 import { useDispatch } from "react-redux";
@@ -23,6 +24,7 @@ import {
 import OrderApiService from "../../apiServices/orderApiService";
 import { Member } from "../../../types/user";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { Link } from "react-router-dom";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -171,8 +173,14 @@ export function OrdersPage(props: any) {
               </Box>
             </Box>
             <Stack className={"order_main_content"}>
-              <PausedOrders setOrderRebuild={props.setOrderRebuild} />
-              <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
+              <PausedOrders
+                setValue={setValue}
+                setOrderRebuild={props.setOrderRebuild}
+              />
+              <ProcessOrders
+                setValue={setValue}
+                setOrderRebuild={props.setOrderRebuild}
+              />
               <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
             </Stack>
           </TabContext>
@@ -235,7 +243,9 @@ export function OrdersPage(props: any) {
               </div>
               <div className={"spec_address_txt"}>Daegu, South Korea</div>
             </Box>
-            <Box className="order_text_conti">Change address</Box>
+            <Link to="/member-page" className="order_text_conti">
+              Change address
+            </Link>
           </Box>
           <Box className={"order_info_box"} sx={{ mt: "15px" }}>
             <input

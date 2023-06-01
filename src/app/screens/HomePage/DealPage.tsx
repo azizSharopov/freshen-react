@@ -189,32 +189,32 @@ export function DealPage(props: any) {
                     <Box
                       sx={{ zIndex: "6", position: "absolute" }}
                       className="like_view_boxbest"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
                     >
-                      <Badge
+                      {/* <Badge
                         badgeContent={product.product_likes}
                         sx={{
                           color: "#121212",
                           fontSize: "18px",
                           fontWeight: 700,
                         }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <Checkbox
-                          icon={<img src="/icons/heart_green.png" alt="" />}
-                          id={product._id}
-                          checkedIcon={<Favorite style={{ color: "red" }} />}
-                          onClick={targetLikeProduct}
-                          /*@ts-ignore*/
-                          checked={
-                            product?.me_liked &&
-                            product?.me_liked[0]?.my_favorite
-                              ? true
-                              : false
-                          }
-                        />
-                      </Badge>
+                       
+                      > */}
+                      <Checkbox
+                        icon={<img src="/icons/heart_green.png" alt="" />}
+                        id={product._id}
+                        checkedIcon={<img src="/icons/heart_red.png" alt="" />}
+                        onClick={targetLikeProduct}
+                        /*@ts-ignore*/
+                        checked={
+                          product?.me_liked && product?.me_liked[0]?.my_favorite
+                            ? true
+                            : false
+                        }
+                      />
+                      {/* </Badge> */}
                     </Box>
                   </Box>
                   <Box>

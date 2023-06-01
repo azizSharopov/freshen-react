@@ -50,6 +50,7 @@ export default function ProcessOrders(props: any) {
         await orderService.updateOrderStatus(data);
         props.setOrderRebuild(new Date());
       }
+      props.setValue("3");
     } catch (err) {
       console.log("finishOrderHandler, ERROR:", err);
       sweetErrorHandling(err).then();

@@ -70,6 +70,7 @@ export default function PausedOrders(props: any) {
         await orderService.updateOrderStatus(data);
         props.setOrderRebuild(new Date());
       }
+      props.setValue("2");
     } catch (err) {
       console.log("processOrderHandler, ERROR:", err);
       sweetErrorHandling(err).then();

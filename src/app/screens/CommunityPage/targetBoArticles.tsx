@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Box, Link, Rating, Stack } from "@mui/material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
@@ -16,9 +16,11 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { Review } from "../../../types/follow";
 
 export function TargetArticles(props: any) {
   const { setArticlesRebuild } = props;
+  const refs: any = useRef([]);
   /** HANDLERS */
   const targetLikeHandler = async (e: any) => {
     try {
@@ -30,6 +32,14 @@ export function TargetArticles(props: any) {
         group_type: "community",
       });
       assert.ok(like_result, Definer.general_err1);
+
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
       await sweetTopSmallSuccessAlert("success", 700, false);
       props.setArticlesRebuild(new Date());
     } catch (err: any) {
@@ -74,7 +84,7 @@ export function TargetArticles(props: any) {
                   backgroundImage: `url(${art_image_url})`,
                   zIndex: "3",
                   width: "438px",
-                  height: "300px",
+                  height: "290px",
                 }}
               >
                 <Box
@@ -107,7 +117,7 @@ export function TargetArticles(props: any) {
                     zIndex: "5",
                     position: "absolute",
                     marginLeft: "20px",
-                    marginTop: "275px",
+                    marginTop: "280px",
                     borderRadius: "60px",
                     display: "flex",
                     justifyContent: "center",
@@ -116,40 +126,103 @@ export function TargetArticles(props: any) {
                 >
                   <Box className="blog_subject_home">{article?.bo_id}</Box>
                 </Box>
+                <Box
+                  className="blog_subject_blog1"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <Checkbox
+                    icon={<img src="/icons/heart_green.png" alt="" />}
+                    id={article._id}
+                    checkedIcon={<img src="/icons/heart_red.png" alt="" />}
+                    onClick={targetLikeHandler}
+                    /*@ts-ignore*/
+                    checked={
+                      article?.me_liked && article?.me_liked[0]?.my_favorite
+                        ? true
+                        : false
+                    }
+                  />
+                </Box>
               </Box>
-              <Stack className="all_blog_subject_info">
+              <Box className="all_blog_subject_info">
                 <Box className="all_blog_subject_text">
                   {article?.art_subject}
                 </Box>
-                <Stack
-                  className="all_blog_by"
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: "10px",
-                    marginTop: "20px",
-                  }}
-                >
-                  <Box>
-                    <img src="/icons/user1.png" alt="all_blog_by" />
-                  </Box>
-                  <Box className="all_by_css">
-                    {" "}
-                    {article?.member_data?.mb_nick}
+                <Box className="all_blog_by">
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "10px",
+                    }}
+                  >
+                    <img
+                      style={{
+                        width: "15px",
+                        height: "15px",
+                        marginTop: "5px",
+                      }}
+                      src="/icons/user1.png"
+                      alt="blog_by"
+                    />
+                    <Box className="about_by_css">
+                      {article?.member_data?.mb_nick}
+                    </Box>
                   </Box>
 
-                  <Box sx={{ marginLeft: "30px", marginTop: "5px" }}>
-                    <img src="/icons/chat1.png" alt="all_blog_by" />
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "10px",
+                      marginLeft: "30px",
+                    }}
+                  >
+                    <img
+                      style={{
+                        width: "15px",
+                        height: "15px",
+                        marginTop: "5px",
+                      }}
+                      src="/icons/chat1.png"
+                      alt="blog_by"
+                    />
+                    <Box className="about_by_css">
+                      {
+                        article.reviews && article.reviews.length > 0
+                          ? (article.reviews as Review[])[0]?.average_rating
+                          : 0 // Provide a default value if there are no reviews
+                      }
+                      <span style={{ marginLeft: "5px" }}>Comments</span>
+                    </Box>
                   </Box>
-                  <Box className="all_by_css">32 Comments</Box>
-                </Stack>
+
+                  <Box
+                    className="about_by_css"
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "10px",
+                      marginLeft: "30px",
+                    }}
+                  >
+                    {" "}
+                    <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                    <div
+                      ref={(element) => (refs.current[article._id] = element)}
+                    >
+                      {article.art_likes}
+                    </div>
+                  </Box>
+                </Box>
                 <Box className="chosen_retingbest">
-                  <Rating size="small" name="read-only" value={4} readOnly />
+                  <Rating size="small" name="read-only" readOnly />
                 </Box>
 
                 <Box className="blog_text_conti">CONTINUE READING</Box>
-              </Stack>
+              </Box>
             </Stack>
           </Link>
         );
