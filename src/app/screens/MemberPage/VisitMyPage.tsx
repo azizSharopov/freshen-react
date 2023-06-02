@@ -323,30 +323,11 @@ export default function VisitMyPage(props: any) {
                     textTransform: "none",
                   }}
                 />
+
                 <Tab
                   label={
                     <Box className="dash_tab">
-                      {" "}
-                      <ArticleIcon />
-                      Selected articles
-                    </Box>
-                  }
-                  value={"3"}
-                  className="tablist_style"
-                  sx={{
-                    "&.Mui-selected": {
-                      color: "#000000;",
-                      backgroundColor: "#86bc42",
-                      borderRadius: "5px",
-                    },
-                    textTransform: "none",
-                  }}
-                />
-                <Tab
-                  label={
-                    <Box className="dash_tab">
-                      {" "}
-                      <HomeIcon /> Address
+                      <ManageAccountsIcon /> Accaunt Details
                     </Box>
                   }
                   value={"2"}
@@ -360,32 +341,13 @@ export default function VisitMyPage(props: any) {
                     textTransform: "none",
                   }}
                 />
-                <Tab
-                  label={
-                    <Box className="dash_tab">
-                      <ManageAccountsIcon /> Accaunt Details
-                    </Box>
-                  }
-                  value={"1"}
-                  className="tablist_style"
-                  sx={{
-                    "&.Mui-selected": {
-                      color: "#000000;",
-                      backgroundColor: "#86bc42",
-                      borderRadius: "5px",
-                    },
-                    textTransform: "none",
-                  }}
-                />
               </TabList>
             </Box>
             <Box sx={{ background: "#ffffff" }} className="my_page_tabpanels">
-              <TabPanel value={"1"}>
+              <TabPanel value={"2"}>
                 <AccauntDetail />
               </TabPanel>
-              <TabPanel value={"2"}>
-                <AccauntAddress />
-              </TabPanel>
+
               <TabPanel value={"4"}>
                 <AccauntArticle
                   chosenMemberBoArticles={chosenMemberBoArticles}
@@ -393,9 +355,9 @@ export default function VisitMyPage(props: any) {
                   setArticlesRebuild={setArticlesRebuild}
                 />
               </TabPanel>
-              <TabPanel value={"3"}>
+              {/* <TabPanel value={"3"}>
                 <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
-              </TabPanel>
+              </TabPanel> */}
               <TabPanel value={"5"}>
                 <AccountFollowings
                   action_enabled={true}

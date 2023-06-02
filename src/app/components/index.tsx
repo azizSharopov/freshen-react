@@ -225,6 +225,7 @@ export default function AuthenticationModal(props: any) {
                   },
                 }}
               />
+
               <Fab
                 style={{
                   marginTop: "20px",
@@ -294,7 +295,7 @@ export default function AuthenticationModal(props: any) {
                   marginBottom: "20px",
                 }}
                 id="filled-basic"
-                label="User password"
+                label="User Name"
                 variant="filled"
                 InputLabelProps={{
                   style: {

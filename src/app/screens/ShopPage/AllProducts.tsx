@@ -251,7 +251,10 @@ export function AllProducts(props: any) {
 
             <Box
               className="shop_categ_text"
-              onClick={() => searchShopAllProductsHandler("createdAt")}
+              onClick={() => {
+                searchShopAllProductsHandler("createdAt");
+                setImageSrc("/homepage/all_pro.jpg");
+              }}
               style={{
                 fontFamily: "Lato",
                 fontStyle: "normal",
@@ -273,7 +276,10 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() => searchShopAllProductsHandler("product_likes")}
+              onClick={() => {
+                searchShopAllProductsHandler("product_likes");
+                setImageSrc("/homepage/all_pro.jpg");
+              }}
             >
               <span>Best product</span>
             </Box>
@@ -287,7 +293,10 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() => searchShopAllProductsHandler("product_price")}
+              onClick={() => {
+                searchShopAllProductsHandler("product_price");
+                setImageSrc("/homepage/all_pro.jpg");
+              }}
             >
               <span>Product price</span>
             </Box>
@@ -319,9 +328,10 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() =>
-                searchShopProductsHandler("646b0d41c88f933b56ca3fd4")
-              }
+              onClick={() => {
+                searchShopProductsHandler("646b0d41c88f933b56ca3fd4");
+                setImageSrc("/homepage/garlic.jpg");
+              }}
             >
               <span>Meats</span>
             </Box>
@@ -336,9 +346,10 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() =>
-                searchShopProductsHandler("646ba6e0af5977f07c502244")
-              }
+              onClick={() => {
+                searchShopProductsHandler("646ba6e0af5977f07c502244");
+                setImageSrc("/homepage/garlic.jpg");
+              }}
             >
               <span>Fishs</span>
             </Box>
@@ -352,9 +363,10 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() =>
-                searchShopProductsHandler("646ba70daf5977f07c502247")
-              }
+              onClick={() => {
+                searchShopProductsHandler("646ba70daf5977f07c502247");
+                setImageSrc("/homepage/garlic.jpg");
+              }}
             >
               <span>Vegetables</span>
             </Box>
@@ -369,9 +381,10 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() =>
-                searchShopProductsHandler("646bb01eaf5977f07c50224d")
-              }
+              onClick={() => {
+                searchShopProductsHandler("646bb01eaf5977f07c50224d");
+                setImageSrc("/homepage/garlic.jpg");
+              }}
             >
               <span>Bakery</span>
             </Box>
@@ -385,9 +398,10 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() =>
-                searchShopProductsHandler("646bb04faf5977f07c502250")
-              }
+              onClick={() => {
+                searchShopProductsHandler("646bb04faf5977f07c502250");
+                setImageSrc("/homepage/garlic.jpg");
+              }}
             >
               <span>Butter & Egges</span>
             </Box>
@@ -401,9 +415,10 @@ export function AllProducts(props: any) {
                 color: "#121212",
               }}
               className="shop_categ_text"
-              onClick={() =>
-                searchShopProductsHandler("646ba793af5977f07c50224a")
-              }
+              onClick={() => {
+                searchShopProductsHandler("646ba793af5977f07c50224a");
+                setImageSrc("/homepage/garlic.jpg");
+              }}
             >
               <span>Milks & Creams</span>
             </Box>
@@ -606,8 +621,8 @@ export function AllProducts(props: any) {
                   <img
                     style={{
                       backgroundSize: "cover",
-                      width: "240px",
-                      height: "220px",
+                      width: "210px",
+                      height: "200px",
                     }}
                     src={image_path}
                     alt=""
@@ -669,7 +684,7 @@ export function AllProducts(props: any) {
                         color: "#ffffff",
                         fontSize: "14px",
                         width: "240px",
-                        height: "35px",
+                        height: "30px",
                         background: "#86bc42",
                         textTransform: "none",
                         "&:hover": {

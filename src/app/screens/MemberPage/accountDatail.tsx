@@ -23,7 +23,7 @@ export default function AccauntDetail(props: any) {
   const [memberUpdate, setMemberUpdate] = useState<MemberUpdateData>({
     mb_nick: "",
     mb_phone: "",
-    // mb_email: "",
+    mb_address: "",
     mb_description: "",
     mb_image: "",
   });
@@ -39,10 +39,10 @@ export default function AccauntDetail(props: any) {
     setMemberUpdate({ ...memberUpdate });
   };
 
-  // const changeMemberEmailHandler = (e: any) => {
-  //   memberUpdate.mb_email = e.target.value;
-  //   setMemberUpdate({ ...memberUpdate });
-  // };
+  const changeMemberAddressHandler = (e: any) => {
+    memberUpdate.mb_address = e.target.value;
+    setMemberUpdate({ ...memberUpdate });
+  };
 
   const changeMemberDescriptionHandler = (e: any) => {
     memberUpdate.mb_description = e.target.value;
@@ -208,13 +208,15 @@ export default function AccauntDetail(props: any) {
                   />
                 </Box>{" "}
                 <Box className="market_setting_input_box">
-                  <label className={"spec_label"}>E-mail</label>
+                  <label className={"spec_label"}>Address</label>
                   <input
-                    className={"spec_input mb_email"}
+                    className={"spec_input mb_address"}
                     type="text"
-                    placeholder={verifiedMemberData?.mb_email}
-                    name="mb_email"
-                    // onChange={changeMemberEmailHandler}
+                    placeholder={
+                      verifiedMemberData?.mb_address ?? "manzil kitirilmagan"
+                    }
+                    name="mb_address"
+                    onChange={changeMemberAddressHandler}
                   />
                 </Box>
                 <Box className="market_setting_input_box">

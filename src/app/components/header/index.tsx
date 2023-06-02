@@ -432,7 +432,6 @@ export function NavbarCommon(props: any) {
         }}
       >
         <Stack className="nav_footer">
-          {/* {!verifiedMemberData ? ( */}
           {!verifiedMemberData ? (
             <Button
               variant="contained"
@@ -503,30 +502,34 @@ export function NavbarCommon(props: any) {
               BLOGS
             </NavLink>
           </Box>
-          <Box className="hover-line" onClick={props.setPath}>
-            <NavLink
-              to="/orders"
-              style={{
-                color: "#121212",
-                textDecoration: "none",
-              }}
-              activeClassName="underline"
-            >
-              ORDER
-            </NavLink>
-          </Box>
-          <Box className="hover-line" onClick={props.setPath}>
-            <NavLink
-              to="/member-page"
-              style={{
-                color: "#121212",
-                textDecoration: "none",
-              }}
-              activeClassName="underline"
-            >
-              MY PAGE
-            </NavLink>
-          </Box>
+          {verifiedMemberData ? (
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink
+                to="/orders"
+                style={{
+                  color: "#121212",
+                  textDecoration: "none",
+                }}
+                activeClassName="underline"
+              >
+                ORDER
+              </NavLink>
+            </Box>
+          ) : null}
+          {verifiedMemberData ? (
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink
+                to="/member-page"
+                style={{
+                  color: "#121212",
+                  textDecoration: "none",
+                }}
+                activeClassName="underline"
+              >
+                MY PAGE
+              </NavLink>
+            </Box>
+          ) : null}
           <Box className="hover-line" onClick={props.setPath}>
             <NavLink
               to="/help"

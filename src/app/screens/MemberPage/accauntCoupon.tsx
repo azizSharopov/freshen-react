@@ -32,7 +32,7 @@ export default function AccauntCoupon() {
           marginTop: "10px",
           width: "120px",
           height: "40px",
-          marginLeft: "190px",
+          marginLeft: "178px",
           textTransform: "none",
           "&:hover": {
             color: "#121212",
@@ -41,7 +41,7 @@ export default function AccauntCoupon() {
       >
         <PointOfSaleIcon />
       </Button>
-      <Box sx={{ marginTop: "50px", marginLeft: "50px" }}></Box>
+      <Box sx={{ marginTop: "50px", marginLeft: "10px" }}></Box>
       <Marginer
         direction="horizontal"
         height="1"

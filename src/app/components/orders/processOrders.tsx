@@ -102,9 +102,9 @@ export default function ProcessOrders(props: any) {
                   return (
                     <Box className={"ordersName_price"}>
                       <Box className={"priceBox"}>
-                        <Box sx={{ marginTop: "10px" }}>
+                        {/* <Box sx={{ marginTop: "10px" }}>
                           <HighlightOffIcon />
-                        </Box>
+                        </Box> */}
                         <img src={image_path} className={"orderProductImg"} />
                         <p
                           className={"titleProduct"}

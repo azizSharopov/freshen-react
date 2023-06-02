@@ -187,33 +187,6 @@ export default function AccauntArticle(props: any) {
                         <img src="/icons/chat1.png" alt="blog_by" />
                       </span>
                       <span className="blog_by_css">32 Comments</span>
-                      <span>
-                        {" "}
-                        <Button
-                          sx={{
-                            background: "#ff2c2c",
-                            borderRadius: "40px",
-                            fontFamily: "Lato",
-                            fontStyle: "normal",
-                            fontWeight: "700",
-                            fontSize: "13px",
-                            lineHeight: "16px",
-                            color: "#FFFFFF",
-
-                            width: "130px",
-                            height: "20px",
-                            marginLeft: "20px",
-                            textTransform: "none",
-                            "&:hover": {
-                              color: "#121212",
-                              border: "1px solid #eaeaea",
-                              background: "#d53f20",
-                            },
-                          }}
-                        >
-                          DELETE
-                        </Button>
-                      </span>
                     </Box>
                   </Box>
                 </Box>

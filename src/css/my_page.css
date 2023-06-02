@@ -22,6 +22,10 @@
   background: #ffffff;
   flex-direction: row;
 }
+.admin_input_box:focus {
+  outline: none; /* Optional: Remove default focus outline */
+  border-color: #86bc42; /* Change the border color when focused */
+}
 .my_page_frame_other {
   width: 100%;
   height: auto;

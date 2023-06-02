@@ -9,7 +9,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { createSelector } from "reselect";
 import { retrievePausedOrders } from "../../screens/OrdersPage/selector";
 import { useSelector } from "react-redux";
-import { Order } from "../../../types/order";
+import { Order, OrderItem } from "../../../types/order";
 import { Product } from "../../../types/product";
 import { serverApi } from "../../../lib/config";
 import {
@@ -121,12 +121,16 @@ export default function PausedOrders(props: any) {
                       (ele) => ele._id === item.product_id
                     )[0];
                     const image_path = `${serverApi}/${product?.product_images[0]}`;
+                    function onDelete(item: OrderItem): void {
+                      throw new Error("Function not implemented.");
+                    }
+
                     return (
                       <Box className={"ordersName_price"}>
                         <Box className={"priceBox"}>
-                          <Box sx={{ marginTop: "10px" }}>
+                          {/* <Box sx={{ marginTop: "10px" }}>
                             <HighlightOffIcon />
-                          </Box>
+                          </Box> */}
                           <img src={image_path} className={"orderProductImg"} />
                           <p
                             className={"titleProduct"}
@@ -138,7 +142,7 @@ export default function PausedOrders(props: any) {
                         <Box className={"priceBox"}>
                           <p style={{ color: "#86bc42" }}>${item.item_price}</p>
 
-                          <p>${item.item_quantity}</p>
+                          <p>{item.item_quantity}</p>
 
                           <p> ${item.item_price * item.item_quantity}</p>
                         </Box>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Checkbox, Container, Stack } from "@mui/material";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 // import PaginationAllProducts from "../ShopPage/paginationAllProduct";
@@ -44,7 +44,8 @@ const bestBoArticlesRetriever = createSelector(
 
 export default function BlogPage(props: any) {
   /** INITIALIZATIONSS **/
-  const refs: any = useRef([]);
+
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const history = useHistory();
   const { setBestBoArticles } = actionDispatch(useDispatch());
   const { bestBoArticles } = useSelector(bestBoArticlesRetriever);
@@ -59,8 +60,9 @@ export default function BlogPage(props: any) {
       })
       .then((data) => setBestBoArticles(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [articlesRebuild]);
 
+  const refs: any = useRef([]);
   const targetLikeHandler = async (e: any) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
@@ -80,7 +82,7 @@ export default function BlogPage(props: any) {
         refs.current[like_result.like_ref_id].innerHTML--;
       }
       await sweetTopSmallSuccessAlert("success", 700, false);
-      props.setArticlesRebuild(new Date());
+      setArticlesRebuild(new Date());
     } catch (err: any) {
       console.log(err);
       sweetErrorHandling(err).then();
@@ -165,7 +167,9 @@ export default function BlogPage(props: any) {
                     icon={<img src="/icons/heart_green.png" alt="" />}
                     id={article._id}
                     checkedIcon={<img src="/icons/heart_red.png" alt="" />}
-                    onClick={targetLikeHandler}
+                    onClick={(e) => {
+                      targetLikeHandler(e);
+                    }}
                     /*@ts-ignore*/
                     checked={
                       article?.me_liked && article?.me_liked[0]?.my_favorite
