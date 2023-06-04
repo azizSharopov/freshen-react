@@ -11,8 +11,8 @@ import {
   SelectChangeEvent,
   Stack,
 } from "@mui/material";
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -20,6 +20,12 @@ import Marginer from "../marginer";
 import { verifiedMemberData } from "../../apiServices/verify";
 import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
+import ProductApiService from "../../apiServices/productApiService";
+import { setTargetProducts } from "../../screens/ShopPage/slice";
+import { Product } from "../../../types/product";
+import { retrieveTargetProducts } from "../../screens/ShopPage/selector";
+import { Dispatch, createSelector } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
 
 const ITEM_HEIGHT = 50;
 const ITEM_PADDING_TOP = 8;
@@ -55,9 +61,27 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
   };
 }
 
+const targetProductsActionDispatch = (dispatch: Dispatch) => ({
+  setTargetProducts: (data: Product[]) => dispatch(setTargetProducts(data)),
+});
+
+/** REDUX SELECTOR */
+const targetProductsRetriever = createSelector(
+  retrieveTargetProducts,
+  (targetProducts) => ({
+    targetProducts,
+  })
+);
+
 export function NavbarCommon(props: any) {
+  const history = useHistory();
+  const [searchValue, setSearchValue] = useState();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+  const { setTargetProducts } = targetProductsActionDispatch(useDispatch());
+  const { targetProducts } = useSelector(targetProductsRetriever);
+
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
       target: { value },
@@ -67,6 +91,21 @@ export function NavbarCommon(props: any) {
       typeof value === "string" ? value.split(",") : value
     );
   };
+  const handleInputChange = (event: any) => {
+    history.push(`/shop`);
+    setSearchValue(event.target.value);
+    const productService = new ProductApiService();
+
+    productService
+      .getTargetProductsBySearch(event.target.value)
+      .then((data) => setTargetProducts(data))
+      .catch((err) => console.log(err));
+
+    setProductRebuild(new Date());
+  };
+
+  useEffect(() => {}, [productRebuild]);
+
   return (
     <div className="freshen_navbar">
       <div className="navbar_header">
@@ -298,6 +337,7 @@ export function NavbarCommon(props: any) {
                 className="searchinput"
                 type="text"
                 placeholder="Search products..."
+                onChange={handleInputChange}
               />
               <Box
                 sx={{
@@ -402,10 +442,7 @@ export function NavbarCommon(props: any) {
                 setOrderRebuild={props.setOrderRebuild}
               />
             </Box>
-            <Box>
-              {/* Total */}
-              $99.99
-            </Box>
+            <Box>$99.99</Box>
             <Box className="icon_box">
               <Badge badgeContent={3} color="secondary">
                 <NotificationsNoneRoundedIcon />

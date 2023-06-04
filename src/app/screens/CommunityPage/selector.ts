@@ -6,3 +6,7 @@ export const retrieveTargetBoArticles = createSelector(
   selectCommunityPage,
   (CommunityPage) => CommunityPage.targetBoArticles
 );
+export const retrieveChosenSingleBoArticle = createSelector(
+  selectCommunityPage,
+  (CommunityPage) => CommunityPage.chosenSingleBoArticle
+);

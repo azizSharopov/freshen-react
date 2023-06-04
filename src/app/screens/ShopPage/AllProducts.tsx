@@ -2,15 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PaginationItem from "@mui/material/PaginationItem";
-import CallIcon from "@mui/icons-material/Call";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import CheckIcon from "@mui/icons-material/Check";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { FavoriteBorder } from "@mui/icons-material";
+
 import {
-  Badge,
   Box,
   Button,
   Checkbox,
@@ -22,17 +15,7 @@ import {
   Select,
   Stack,
 } from "@mui/material";
-import {
-  AspectRatio,
-  Card,
-  CardOverflow,
-  CssVarsProvider,
-  IconButton,
-  Link,
-  Typography,
-} from "@mui/joy";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -627,12 +610,16 @@ export function AllProducts(props: any) {
                     src={image_path}
                     alt=""
                   />
-                  <Box
-                    sx={{ zIndex: "5", position: "absolute" }}
-                    className="product_sale_shop"
-                  >
-                    -10 %
-                  </Box>
+                  {product.discounted_price &&
+                  product.product_discount?.isValid === true &&
+                  product.product_discount?.type === "percentage" ? (
+                    <Box
+                      sx={{ zIndex: "5", position: "absolute" }}
+                      className="product_sale_shop"
+                    >
+                      {product.product_discount?.value}%{" "}
+                    </Box>
+                  ) : null}
                   <Box
                     sx={{ marginBottom: "130px" }}
                     className="like_view_boxbest"
@@ -712,8 +699,55 @@ export function AllProducts(props: any) {
                   </Box>
 
                   <Box className="product_pricebest">
-                    <Box className="product_price_currentbest">$11.99</Box>
-                    <Box className="product_price_oldbest">$15</Box>
+                    {product.discounted_price &&
+                    product.product_discount?.isValid === true &&
+                    product.product_discount?.type === "percentage" ? (
+                      <Box
+                        className="product_price"
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "15px",
+                        }}
+                      >
+                        <Box
+                          className="product_price_current"
+                          sx={{
+                            color: "#86bc42",
+                            fontWeight: "700",
+                            fontSize: "18px",
+                          }}
+                        >
+                          ${product.discounted_price}{" "}
+                        </Box>
+
+                        <Box
+                          className="product_price_old"
+                          sx={{
+                            textDecorationLine: "line-through",
+                            color: "#7a7878",
+                            fontWeight: "600",
+                            fontSize: "16px",
+                          }}
+                        >
+                          {" "}
+                          ${product.product_price}
+                        </Box>
+                      </Box>
+                    ) : (
+                      <Box className="product_price">
+                        <Box
+                          className="product_price_current"
+                          sx={{
+                            color: "#86bc42",
+                            fontWeight: "700",
+                            fontSize: "18px",
+                          }}
+                        >
+                          ${product.product_price}
+                        </Box>
+                      </Box>
+                    )}
                   </Box>
                 </Box>
               </Box>

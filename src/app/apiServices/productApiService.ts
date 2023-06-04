@@ -31,6 +31,27 @@ class ProductApiService {
     }
   }
 
+  async getTargetProductsBySearch(searchText: string): Promise<Product[]> {
+    try {
+      console.log("path::::", this.path);
+
+      const url = `/search?q=${searchText}`;
+      const result = await axios.get(this.path + url, {
+        withCredentials: true,
+      });
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
+
+      console.log("getTargetProductsBySearch:::", result.data.state);
+      const products: Product[] = result.data.data;
+      return products;
+    } catch (err: any) {
+      console.log(`ERROR::: getTargetProducts ${err.message}`);
+      throw err;
+    }
+  }
+
   async getChosenProduct(product_id: string): Promise<Product> {
     try {
       const url = `/products/${product_id}`,

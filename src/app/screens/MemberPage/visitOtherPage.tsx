@@ -101,43 +101,52 @@ export function VisitOtherPage(props: any) {
     useState<SearchMemberArticlesObj>({
       mb_id: chosen_mb_id,
       page: 1,
-      limit: 12,
+      limit: 8,
     });
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
 
   useEffect(() => {
-    if (chosen_mb_id === verifiedMemberData?._id) {
-      history.push("/member-page");
-    }
+    // if (chosen_mb_id === verifiedMemberData?._id) {
+    //   history.push("/member-page");
+    // }
     const communityService = new CommunityApiService();
-    communityService
-      .getChosenArticle(chosen_art_id)
-      .then((data) => {
-        setChosenSingleBoArticle(data);
-        setValue("4");
-      })
-      .catch((err) => console.log(err));
+    if (chosen_art_id) {
+      communityService
+        .getChosenArticle(chosen_art_id)
+        .then((data) => {
+          setChosenSingleBoArticle(data);
+          setValue("4");
+        })
+        .catch((err) => console.log(err));
+    }
+    // communityService
+    //   .getChosenArticle(chosen_art_id)
+    //   .then((data) => {
+    //     setChosenSingleBoArticle(data);
+    //     setValue("4");
+    //   })
+    //   .catch((err) => console.log(err));
     communityService
       .getMemberCommunityArticles(memberArticleSearchObj)
       .then((data) => setChosenMemberBoArticles(data))
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj, chosen_mb_id, articlesRebuild, followRebuild]);
+  }, [memberArticleSearchObj, chosen_mb_id, articlesRebuild]);
 
   useEffect(() => {
-    if (chosen_mb_id === verifiedMemberData?._id) {
-      history.push("/member-page");
-    }
+    // if (chosen_mb_id === verifiedMemberData?._id) {
+    //   history.push("/member-page");
+    // }
 
     const memberService = new MemberApiService();
     memberService
-      .getChosenMember(memberArticleSearchObj.mb_id)
+      .getChosenMember(memberArticleSearchObj?.mb_id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
   }, [verifiedMemberData, chosen_mb_id, followRebuild]);
 
   /** HANDLERS **/
-  const handleChange = (event: any, newValue: string) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
@@ -420,7 +429,7 @@ export function VisitOtherPage(props: any) {
                       renderChosenArticleHandler={renderChosenArticleHandler}
                       setArticlesRebuild={setArticlesRebuild}
                     />
-                    {/* <Stack
+                    <Stack
                       sx={{ my: "40px" }}
                       direction="row"
                       alignItems="center"
@@ -447,7 +456,7 @@ export function VisitOtherPage(props: any) {
                           onChange={handlePaginationChange}
                         />
                       </Box>
-                    </Stack> */}
+                    </Stack>
                   </Box>
                 </TabPanel>
                 <TabPanel value={"2"}>
@@ -475,8 +484,14 @@ export function VisitOtherPage(props: any) {
 
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Tanlangan maqola</Box>
-                  <Box className={"menu_content"}></Box>
-                  <TViewer text={`<h3>Hello</h3>`} />
+                  <Box className={"menu_content"}>
+                    <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
+                  </Box>
+
+                  {/* <TViewer
+                    actions_enabled={false}
+                    chosenSingleBoArticle={chosenSingleBoArticle}
+                  /> */}
                 </TabPanel>
               </Box>
             </Stack>

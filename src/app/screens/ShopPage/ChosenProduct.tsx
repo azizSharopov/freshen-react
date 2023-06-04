@@ -1,10 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Favorite } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -13,10 +7,8 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 // import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper";
 import {
   Box,
-  Button,
   Checkbox,
   Container,
   Rating,
@@ -208,7 +200,7 @@ export default function ChosenPage(props: any) {
   };
 
   const handle_cnt_minus = (event: any) => {
-    setProduct_cnt((prev) => prev - 1);
+    setProduct_cnt((prev) => (prev > 0 ? prev - 1 : 0));
   };
   const handle_cnt_plus = (event: any) => {
     setProduct_cnt((prev) => prev + 1);
@@ -324,12 +316,12 @@ export default function ChosenPage(props: any) {
           </Box>
           <Box className="product_price_box">
             <Box>
-              $17.99 <span>$21</span>
+              ${chosenProduct?.discounted_price}{" "}
+              <span>${chosenProduct?.product_price}</span>
             </Box>
           </Box>
           <Box className="product_box_text">
-            Feugiat malesuada a a elit varius diam hac ad penatibus tellus
-            vivamus suscipit duis suspendisse diam ac adipiscing mauris.
+            {chosenProduct?.product_description}
           </Box>
           <Box className="add_cart_buy">
             <Box className="count_cart_buy">
@@ -357,8 +349,49 @@ export default function ChosenPage(props: any) {
               <Box>ADD TO CART</Box>
             </Box>
           </Box>
-          <Box className="chosen_heart">
-            <img src="/icons/heart.png" alt="chosen_heart" /> Add to Wishlist
+          {/* <Box
+            sx={{ marginBottom: "130px" }}
+            className="like_view_boxbest"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <Checkbox
+              icon={<img src="/icons/heart_green.png" alt="" />}
+              id={chosenProduct?._id}
+              checkedIcon={<img src="/icons/heart_red.png" alt="" />}
+              onClick={targetLikeProduct}
+           
+              checked={
+                chosenProduct?.me_liked &&
+                !!chosenProduct?.me_liked[0]?.my_favorite
+                  ? true
+                  : false
+              }
+            />{" "}
+            Add to Wishlist
+          </Box> */}
+          <Box
+            className="chosen_heart"
+            sx={{ width: "200px" }}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <Checkbox
+              icon={<img src="/icons/heart_green.png" alt="" />}
+              id={chosenProduct?._id}
+              checkedIcon={<img src="/icons/heart_red.png" alt="" />}
+              onClick={targetLikeProduct}
+              /*@ts-ignore*/
+              checked={
+                chosenProduct?.me_liked &&
+                !!chosenProduct?.me_liked[0]?.my_favorite
+                  ? true
+                  : false
+              }
+            />{" "}
+            Add to Wishlist
           </Box>
           <Box sx={{ mt: "30px", mb: "20px" }}>
             <Box className="spes_box">
@@ -552,14 +585,7 @@ export default function ChosenPage(props: any) {
             <Box sx={{ marginTop: "50px" }}>
               <TabPanel value={"1"}>
                 <Box className="desc_tab">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Donec odio. Quisque volutpat mattis eros. Nullam malesuada
-                  erat ut turpis. Suspendisse urna viverra non, semper suscipit,
-                  posuere a, pede. Donec nec justo eget felis facilisis
-                  fermentum. Aliquam porttitor mauris sit amet orci. Aenean
-                  dignissim pellentesque felis. Phasellus ultrices nulla quis
-                  nibh. Quisque a lectus. Donec consectetuer ligula vulputate
-                  sem tristique cursus.
+                  {chosenProduct?.product_description}
                 </Box>
               </TabPanel>
               <TabPanel value={"2"}>

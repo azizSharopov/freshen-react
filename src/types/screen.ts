@@ -52,6 +52,7 @@ export interface OrdersPageState {
 /** COMMUNITY PAGE */
 export interface CommunityPageState {
   targetBoArticles: BoArticle[];
+  chosenSingleBoArticle: BoArticle | null;
 }
 
 /** MEMBER PAGE */
