@@ -193,17 +193,6 @@ export function BestPage(props: any) {
                           e.stopPropagation();
                         }}
                       >
-                        {/* <Badge
-                          badgeContent={product.product_likes}
-                          sx={{
-                            color: "#121212",
-                            fontSize: "18px",
-                            fontWeight: 700,
-                          }}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                          }}
-                        > */}
                         <Checkbox
                           icon={<img src="/icons/heart_green.png" alt="" />}
                           id={product._id}
@@ -211,7 +200,6 @@ export function BestPage(props: any) {
                             <img src="/icons/heart_red.png" alt="" />
                           }
                           onClick={targetLikeProduct}
-                          /*@ts-ignore*/
                           checked={
                             product?.me_liked &&
                             product?.me_liked[0]?.my_favorite
@@ -219,7 +207,6 @@ export function BestPage(props: any) {
                               : false
                           }
                         />
-                        {/* </Badge> */}
                       </Box>
                     </Box>
                     <Box
@@ -245,10 +232,57 @@ export function BestPage(props: any) {
                         {product.product_name}
                       </Box>
                       <Box className="product_pricebest">
-                        <Box className="product_price_currentbest">$11.99</Box>
-                        <Box className="product_price_oldbest">$15</Box>
+                        {product.discounted_price &&
+                        product.product_discount?.isValid === true &&
+                        product.product_discount?.type === "percentage" ? (
+                          <Box
+                            className="product_price"
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.discounted_price}{" "}
+                            </Box>
+
+                            <Box
+                              className="product_price_old"
+                              sx={{
+                                textDecorationLine: "line-through",
+                                color: "#7a7878",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              {" "}
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        ) : (
+                          <Box className="product_price">
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        )}
                       </Box>
-                      <Box>
+                      <Box sx={{ marginBottom: "10px" }}>
                         {" "}
                         <Button
                           className={"add_card_btnbest"}

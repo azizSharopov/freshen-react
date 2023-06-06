@@ -1,6 +1,6 @@
 .help_page {
   width: 100%;
-  height: 700px;
+  height: auto;
   display: flex;
   background: #ffffff;
 }

@@ -1,11 +1,6 @@
 import { Stack, Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
-// Others
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 // REDUX
 import { createSelector } from "reselect";
@@ -26,7 +21,6 @@ import {
 import { useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../apiServices/verify";
 import {
-  Container,
   Table,
   TableBody,
   TableCell,

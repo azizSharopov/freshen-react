@@ -112,9 +112,11 @@ class MemberApiService {
       let formData = new FormData();
       formData.append("mb_nick", data.mb_nick || "");
       formData.append("mb_phone", data.mb_phone || "");
+      formData.append("mb_email", data.mb_email || "");
       formData.append("mb_address", data.mb_address || "");
       formData.append("mb_description", data.mb_description || "");
       formData.append("mb_image", data.mb_image || "");
+      formData.append("mb_password", data.mb_password || "");
 
       const result = await axios(`${this.path}/member/update`, {
         method: "POST",

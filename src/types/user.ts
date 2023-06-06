@@ -54,4 +54,6 @@ export interface MemberUpdateData {
   mb_address?: string | null;
   mb_description?: string | null;
   mb_image?: string | null;
+  mb_email?: string | null;
+  mb_password?: string;
 }

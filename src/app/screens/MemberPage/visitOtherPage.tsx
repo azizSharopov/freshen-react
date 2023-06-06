@@ -483,15 +483,10 @@ export function VisitOtherPage(props: any) {
                 </TabPanel>
 
                 <TabPanel value={"4"}>
-                  <Box className={"menu_name"}>Tanlangan maqola</Box>
+                  <Box className={"menu_name"}>Selected article</Box>
                   <Box className={"menu_content"}>
                     <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
-
-                  {/* <TViewer
-                    actions_enabled={false}
-                    chosenSingleBoArticle={chosenSingleBoArticle}
-                  /> */}
                 </TabPanel>
               </Box>
             </Stack>

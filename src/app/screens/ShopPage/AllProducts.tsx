@@ -605,7 +605,7 @@ export function AllProducts(props: any) {
                     style={{
                       backgroundSize: "cover",
                       width: "210px",
-                      height: "200px",
+                      height: "210px",
                     }}
                     src={image_path}
                     alt=""
@@ -714,8 +714,8 @@ export function AllProducts(props: any) {
                           className="product_price_current"
                           sx={{
                             color: "#86bc42",
-                            fontWeight: "700",
-                            fontSize: "18px",
+                            fontWeight: "600",
+                            fontSize: "16px",
                           }}
                         >
                           ${product.discounted_price}{" "}
@@ -740,8 +740,8 @@ export function AllProducts(props: any) {
                           className="product_price_current"
                           sx={{
                             color: "#86bc42",
-                            fontWeight: "700",
-                            fontSize: "18px",
+                            fontWeight: "600",
+                            fontSize: "16px",
                           }}
                         >
                           ${product.product_price}

@@ -23,3 +23,7 @@ export const retrieveMemberFollowings = createSelector(
   selectMemberPage,
   (memberPage) => memberPage.memberFollowings
 );
+export const retriveMemberLikedProducts = createSelector(
+  selectMemberPage,
+  (MemberPage) => MemberPage.memberLikedProducts
+);

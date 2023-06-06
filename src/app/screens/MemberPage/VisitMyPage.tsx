@@ -5,7 +5,7 @@ import Marginer from "../../components/marginer";
 import PersonIcon from "@mui/icons-material/Person";
 import AccauntDetail from "./accountDatail";
 import AccauntOrders from "./accauntOrders";
-import AccauntAddress from "./accountAddress";
+
 import AccauntWishlist from "./accauntWishlist";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import HomeIcon from "@mui/icons-material/Home";
@@ -211,7 +211,7 @@ export default function VisitMyPage(props: any) {
                 variant="scrollable"
                 sx={{ mt: "20px" }}
               >
-                <Tab
+                {/* <Tab
                   label={
                     <Box className="dash_tab">
                       <ViewListIcon /> Orders
@@ -230,7 +230,7 @@ export default function VisitMyPage(props: any) {
                     },
                     textTransform: "none",
                   }}
-                />
+                /> */}
 
                 <Tab
                   label={
@@ -250,7 +250,7 @@ export default function VisitMyPage(props: any) {
                     textTransform: "none",
                   }}
                 />
-                <Tab
+                {/* <Tab
                   label={
                     <Box className="dash_tab">
                       {" "}
@@ -267,7 +267,7 @@ export default function VisitMyPage(props: any) {
                     },
                     textTransform: "none",
                   }}
-                />
+                /> */}
                 <Tab
                   label={
                     <Box className="dash_tab">
@@ -355,9 +355,7 @@ export default function VisitMyPage(props: any) {
                   setArticlesRebuild={setArticlesRebuild}
                 />
               </TabPanel>
-              {/* <TabPanel value={"3"}>
-                <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
-              </TabPanel> */}
+
               <TabPanel value={"5"}>
                 <AccountFollowings
                   action_enabled={true}

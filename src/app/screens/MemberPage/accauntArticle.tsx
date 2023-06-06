@@ -7,57 +7,27 @@ import {
   Pagination,
   PaginationItem,
 } from "@mui/material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import PaginationAllProducts from "../ShopPage/paginationAllProduct";
-import { verifiedMemberData } from "../../apiServices/verify";
-import { Definer } from "../../../lib/Definer";
-import assert from "assert";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import Checkbox from "@mui/material/Checkbox";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+
 import Favorite from "@mui/icons-material/Favorite";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+
 import { BoArticle } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
-import MemberApiService from "../../apiServices/memberApiService";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import moment from "moment";
-import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-} from "../../../lib/sweetAlert";
 import { SearchMemberArticlesObj } from "../../../types/boArticle";
+import { Review } from "../../../types/follow";
 
 export default function AccauntArticle(props: any) {
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 10 });
-
-  const {
-    chosenMemberBoArticles,
-    renderChosenArticleHandler,
-    setArticlesRebuild,
-  } = props;
+  const refs: any = useRef([]);
+  const { chosenMemberBoArticles } = props;
 
   /** HANDLERS */
-  const targetLikeHandler = async (e: any) => {
-    try {
-      e.stopPropagation();
-      assert.ok(verifiedMemberData, Definer.auth_err1);
 
-      const memberService = new MemberApiService();
-      const like_result = await memberService.memberLikeTarget({
-        like_ref_id: e.target.id,
-        group_type: "community",
-      });
-      assert.ok(like_result, Definer.general_err1);
-      await sweetTopSmallSuccessAlert("success", 700, false);
-      setArticlesRebuild(new Date());
-    } catch (err: any) {
-      console.log(err);
-      sweetErrorHandling(err).then();
-    }
-  };
   const handlePaginationChange = (event: any, value: number) => {
     memberArticleSearchObj.page = value;
     setMemberArticleSearchObj({ ...memberArticleSearchObj });
@@ -172,21 +142,71 @@ export default function AccauntArticle(props: any) {
                   <Box className="blog_subject_text">
                     {article?.art_subject}
                   </Box>
-                  <Box className="blog_by">
-                    <Box>
-                      <span>
-                        <img src="/icons/user1.png" alt="blog_by" />
-                      </span>
-                      <span className="blog_by_css">
-                        {" "}
+                  <Box className="all_blog_by">
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px",
+                      }}
+                    >
+                      <img
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          marginTop: "5px",
+                        }}
+                        src="/icons/user1.png"
+                        alt="blog_by"
+                      />
+                      <Box className="about_by_css">
                         {article?.member_data?.mb_nick}
-                      </span>
+                      </Box>
                     </Box>
-                    <Box>
-                      <span>
-                        <img src="/icons/chat1.png" alt="blog_by" />
-                      </span>
-                      <span className="blog_by_css">32 Comments</span>
+
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px",
+                        marginLeft: "30px",
+                      }}
+                    >
+                      <img
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          marginTop: "5px",
+                        }}
+                        src="/icons/chat1.png"
+                        alt="blog_by"
+                      />
+                      <Box className="about_by_css">
+                        {
+                          article.reviews && article.reviews.length > 0
+                            ? (article.reviews as Review[])[0]?.average_rating
+                            : 0 // Provide a default value if there are no reviews
+                        }
+                        <span style={{ marginLeft: "5px" }}>Comments</span>
+                      </Box>
+                    </Box>
+
+                    <Box
+                      className="about_by_css"
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px",
+                        marginLeft: "30px",
+                      }}
+                    >
+                      {" "}
+                      <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                      <div
+                        ref={(element) => (refs.current[article._id] = element)}
+                      >
+                        {article.art_likes}
+                      </div>
                     </Box>
                   </Box>
                 </Box>

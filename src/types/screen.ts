@@ -40,6 +40,7 @@ export interface ShopPageState {
   chosenProduct: Product | null;
   targetShops: Shop[];
   memberReviews: Review | null;
+  bestProducts: Product[];
 }
 
 /** ORDERS PAGE */
@@ -62,4 +63,5 @@ export interface MemberPageState {
   chosenSingleBoArticle: BoArticle | null;
   memberFollowers: Follower[];
   memberFollowings: Following[];
+  memberLikedProducts: Product[];
 }

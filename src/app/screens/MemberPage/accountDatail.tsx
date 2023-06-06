@@ -13,9 +13,15 @@ import {
 import { Definer } from "../../../lib/Definer";
 import assert from "assert";
 import MemberApiService from "../../apiServices/memberApiService";
+import { useHistory } from "react-router-dom";
 
 export default function AccauntDetail(props: any) {
   const [value, setValue] = useState("1");
+  const history = useHistory();
+
+  const handleCancel = () => {
+    history.push("/");
+  };
 
   /**INITIALIZATIONS */
   const [file, setFile] = useState(verifiedMemberData?.mb_image);
@@ -23,9 +29,11 @@ export default function AccauntDetail(props: any) {
   const [memberUpdate, setMemberUpdate] = useState<MemberUpdateData>({
     mb_nick: "",
     mb_phone: "",
+    mb_email: "",
     mb_address: "",
     mb_description: "",
     mb_image: "",
+    mb_password: "",
   });
   /**HANDLERS */
 
@@ -38,6 +46,10 @@ export default function AccauntDetail(props: any) {
     memberUpdate.mb_phone = e.target.value;
     setMemberUpdate({ ...memberUpdate });
   };
+  const changeMemberEmailHandler = (e: any) => {
+    memberUpdate.mb_email = e.target.value;
+    setMemberUpdate({ ...memberUpdate });
+  };
 
   const changeMemberAddressHandler = (e: any) => {
     memberUpdate.mb_address = e.target.value;
@@ -46,6 +58,11 @@ export default function AccauntDetail(props: any) {
 
   const changeMemberDescriptionHandler = (e: any) => {
     memberUpdate.mb_description = e.target.value;
+    setMemberUpdate({ ...memberUpdate });
+  };
+
+  const changemb_passwordHandler = (e: any) => {
+    memberUpdate.mb_password = e.target.value;
     setMemberUpdate({ ...memberUpdate });
   };
 
@@ -113,7 +130,7 @@ export default function AccauntDetail(props: any) {
                 textTransform: "none",
               }}
             ></Tab>
-            <Tab
+            {/* <Tab
               label="Password"
               value={"2"}
               sx={{
@@ -148,7 +165,7 @@ export default function AccauntDetail(props: any) {
                 },
                 textTransform: "none",
               }}
-            ></Tab>
+            ></Tab> */}
           </TabList>
         </Box>
         <Box>
@@ -164,7 +181,7 @@ export default function AccauntDetail(props: any) {
                   marginBottom: "20px",
                 }}
               >
-                <Box className={"member_media_frame"}>
+                <Box className={"member_media_frame"} sx={{ width: "830px" }}>
                   <img
                     src={file}
                     className={"mb_image"}
@@ -213,10 +230,20 @@ export default function AccauntDetail(props: any) {
                     className={"spec_input mb_address"}
                     type="text"
                     placeholder={
-                      verifiedMemberData?.mb_address ?? "manzil kitirilmagan"
+                      verifiedMemberData?.mb_address ?? "no address entered"
                     }
                     name="mb_address"
                     onChange={changeMemberAddressHandler}
+                  />
+                </Box>
+                <Box className="market_setting_input_box">
+                  <label className={"spec_label"}>Email</label>
+                  <input
+                    className={"spec_input mb_email"}
+                    type="Email"
+                    placeholder={verifiedMemberData?.mb_email}
+                    name="mb_email"
+                    onChange={changeMemberEmailHandler}
                   />
                 </Box>
                 <Box className="market_setting_input_box">
@@ -260,6 +287,7 @@ export default function AccauntDetail(props: any) {
                 </Button>
                 <Button
                   className="dash_search_btn"
+                  onClick={handleCancel}
                   sx={{
                     background: "#86BC42",
                     borderRadius: "4px",
@@ -288,17 +316,6 @@ export default function AccauntDetail(props: any) {
           <TabPanel value={"2"}>
             <Box className="market_setting_input_box">
               <label style={{ marginTop: "15px" }} className={"spec_label"}>
-                Current Password
-              </label>
-              <input
-                className={"spec_input mb_password"}
-                type="password"
-                placeholder={""}
-                name="mb_password"
-              />
-            </Box>
-            <Box className="market_setting_input_box">
-              <label style={{ marginTop: "15px" }} className={"spec_label"}>
                 New Password
               </label>
               <input
@@ -306,6 +323,7 @@ export default function AccauntDetail(props: any) {
                 type="password"
                 placeholder={""}
                 name="new_mb_password"
+                // onChange={changemb_passwordHandler}
               />
             </Box>
             <Box className="market_setting_input_box">
@@ -315,6 +333,7 @@ export default function AccauntDetail(props: any) {
                 type="password"
                 placeholder={""}
                 name="new_mb_password"
+                //  onChange={changemb_passwordHandler}
               />
             </Box>
             <Box sx={{ mt: "40px" }}>
@@ -369,80 +388,7 @@ export default function AccauntDetail(props: any) {
               </Button>
             </Box>
           </TabPanel>
-          {/* <TabPanel value={"3"}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
 
-                width: "930px",
-                marginBottom: "20px",
-              }}
-            >
-              <Box className="per_box">
-                <Box>
-                  <Box className="note_type">SMS</Box>
-                  <Box className="note_text">
-                    Messages to be sent by Freshen to your mobile phone via SMS
-                    method
-                  </Box>
-                </Box>
-                <Box>
-                  <Switch {...label} defaultChecked />
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={{ mt: "40px" }}>
-              <Button
-                className="dash_search_btn"
-                sx={{
-                  background: "#86BC42",
-                  borderRadius: "4px",
-                  fontFamily: "Lato",
-                  fontStyle: "normal",
-                  fontWeight: "700",
-                  fontSize: "13px",
-                  lineHeight: "16px",
-                  color: "#FFFFFF",
-
-                  width: "160px",
-                  height: "50px",
-
-                  textTransform: "none",
-                  "&:hover": {
-                    color: "#121212",
-                    border: "1px solid #eaeaea",
-                  },
-                }}
-              >
-                UPDATE
-              </Button>
-              <Button
-                className="dash_search_btn"
-                sx={{
-                  background: "#86BC42",
-                  borderRadius: "4px",
-                  fontFamily: "Lato",
-                  fontStyle: "normal",
-                  fontWeight: "700",
-                  fontSize: "13px",
-                  lineHeight: "16px",
-                  color: "#FFFFFF",
-                  marginLeft: "20px",
-                  width: "160px",
-                  height: "50px",
-
-                  textTransform: "none",
-                  "&:hover": {
-                    color: "#121212",
-                    border: "1px solid #eaeaea",
-                  },
-                }}
-              >
-                CANCEL
-              </Button>
-            </Box>
-          </TabPanel> */}
           <TabPanel value={"3"}>
             <Box className="market_account_set_box" sx={{ marginTop: "40px" }}>
               <Box

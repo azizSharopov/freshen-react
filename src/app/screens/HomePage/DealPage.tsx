@@ -225,7 +225,7 @@ export function DealPage(props: any) {
                   <Box>
                     {" "}
                     <Button
-                      className={"add_card_btnbest"}
+                      className={"add_card_deal"}
                       onClick={(e) => {
                         props.onAdd(product);
                         e.stopPropagation();
@@ -262,7 +262,7 @@ export function DealPage(props: any) {
                       </span>
                     </Button>
                   </Box>
-                  <Box className="product_infosale1" sx={{ marginTop: "10px" }}>
+                  <Box className="product_infosale1" sx={{ marginTop: "30px" }}>
                     <Box className="brand_namebest">
                       {" "}
                       {product?.member_data[0]?.mb_nick}
@@ -285,8 +285,55 @@ export function DealPage(props: any) {
                     </Box>
 
                     <Box className="product_pricebest">
-                      <Box className="product_price_currentbest">$11.99</Box>
-                      <Box className="product_price_oldbest">$15</Box>
+                      {product.discounted_price &&
+                      product.product_discount?.isValid === true &&
+                      product.product_discount?.type === "percentage" ? (
+                        <Box
+                          className="product_price"
+                          sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            gap: "15px",
+                          }}
+                        >
+                          <Box
+                            className="product_price_current"
+                            sx={{
+                              color: "#86bc42",
+                              fontWeight: "600",
+                              fontSize: "16px",
+                            }}
+                          >
+                            ${product.discounted_price}{" "}
+                          </Box>
+
+                          <Box
+                            className="product_price_old"
+                            sx={{
+                              textDecorationLine: "line-through",
+                              color: "#7a7878",
+                              fontWeight: "600",
+                              fontSize: "16px",
+                            }}
+                          >
+                            {" "}
+                            ${product.product_price}
+                          </Box>
+                        </Box>
+                      ) : (
+                        <Box className="product_price">
+                          <Box
+                            className="product_price_current"
+                            sx={{
+                              color: "#86bc42",
+                              fontWeight: "600",
+                              fontSize: "16px",
+                            }}
+                          >
+                            ${product.product_price}
+                          </Box>
+                        </Box>
+                      )}
                     </Box>
                     <Box
                       className="product_sold"

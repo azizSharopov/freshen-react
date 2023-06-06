@@ -314,11 +314,59 @@ export default function ChosenPage(props: any) {
               <Box>{product_raviews_cnt ? product_raviews_cnt : 0} reviews</Box>
             </Box>
           </Box>
-          <Box className="product_price_box">
-            <Box>
-              ${chosenProduct?.discounted_price}{" "}
-              <span>${chosenProduct?.product_price}</span>
-            </Box>
+          <Box
+            className="product_pricebest"
+            sx={{ display: "flex", justifyContent: "flex-start" }}
+          >
+            {chosenProduct?.discounted_price &&
+            chosenProduct.product_discount?.isValid === true &&
+            chosenProduct.product_discount?.type === "percentage" ? (
+              <Box
+                className="product_price"
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "15px",
+                }}
+              >
+                <Box
+                  className="product_price_current"
+                  sx={{
+                    color: "#86bc42",
+                    fontWeight: "600",
+                    fontSize: "16px",
+                  }}
+                >
+                  ${chosenProduct.discounted_price}{" "}
+                </Box>
+
+                <Box
+                  className="product_price_old"
+                  sx={{
+                    textDecorationLine: "line-through",
+                    color: "#7a7878",
+                    fontWeight: "600",
+                    fontSize: "16px",
+                  }}
+                >
+                  {" "}
+                  ${chosenProduct?.product_price}
+                </Box>
+              </Box>
+            ) : (
+              <Box className="product_price">
+                <Box
+                  className="product_price_current"
+                  sx={{
+                    color: "#86bc42",
+                    fontWeight: "600",
+                    fontSize: "16px",
+                  }}
+                >
+                  ${chosenProduct?.product_price}
+                </Box>
+              </Box>
+            )}
           </Box>
           <Box className="product_box_text">
             {chosenProduct?.product_description}
@@ -349,28 +397,6 @@ export default function ChosenPage(props: any) {
               <Box>ADD TO CART</Box>
             </Box>
           </Box>
-          {/* <Box
-            sx={{ marginBottom: "130px" }}
-            className="like_view_boxbest"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <Checkbox
-              icon={<img src="/icons/heart_green.png" alt="" />}
-              id={chosenProduct?._id}
-              checkedIcon={<img src="/icons/heart_red.png" alt="" />}
-              onClick={targetLikeProduct}
-           
-              checked={
-                chosenProduct?.me_liked &&
-                !!chosenProduct?.me_liked[0]?.my_favorite
-                  ? true
-                  : false
-              }
-            />{" "}
-            Add to Wishlist
-          </Box> */}
           <Box
             className="chosen_heart"
             sx={{ width: "200px" }}
