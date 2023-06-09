@@ -295,7 +295,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646b0d1dc88f933b56ca3fd1");
-                setImageSrc("/homepage/cucumber.jpg");
+                setImageSrc("/homepage/fru.jpg");
               }}
             >
               <span>Fruits</span>
@@ -313,7 +313,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646b0d41c88f933b56ca3fd4");
-                setImageSrc("/homepage/garlic.jpg");
+                setImageSrc("/homepage/lamb.jpg");
               }}
             >
               <span>Meats</span>
@@ -331,7 +331,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646ba6e0af5977f07c502244");
-                setImageSrc("/homepage/garlic.jpg");
+                setImageSrc("/homepage/Seafood.jpg");
               }}
             >
               <span>Fishs</span>
@@ -348,7 +348,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646ba70daf5977f07c502247");
-                setImageSrc("/homepage/garlic.jpg");
+                setImageSrc("/homepage/vege.jpg");
               }}
             >
               <span>Vegetables</span>
@@ -366,7 +366,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646bb01eaf5977f07c50224d");
-                setImageSrc("/homepage/garlic.jpg");
+                setImageSrc("/homepage/breda.jpg");
               }}
             >
               <span>Bakery</span>
@@ -383,7 +383,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646bb04faf5977f07c502250");
-                setImageSrc("/homepage/garlic.jpg");
+                setImageSrc("/homepage/bakery_2.jpg");
               }}
             >
               <span>Butter & Egges</span>

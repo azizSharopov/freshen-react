@@ -373,7 +373,7 @@ export default function VisitMyPage(props: any) {
                 />
               </TabPanel>
               <TabPanel value={"8"}>
-                <AccauntWishlist />
+                <AccauntWishlist onAdd={props.onAdd} />
               </TabPanel>
               <TabPanel value={"9"}>
                 <AccauntOrders />

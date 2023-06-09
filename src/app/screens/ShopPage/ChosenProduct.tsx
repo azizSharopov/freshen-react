@@ -527,6 +527,135 @@ export default function ChosenPage(props: any) {
           </Box>
         </Stack>
       </Container>
+      <Box sx={{ marginTop: "130px" }}></Box>
+      <Marginer
+        direction="horizontal"
+        height="1"
+        width="2"
+        bg="#EAEAEA"
+        opsty="1"
+      />
+      <Container sx={{ marginTop: "50px" }}>
+        <Box sx={{ display: "flex", gap: "110px" }}>
+          {/* <Box>
+            <ReviewsComponent chosenProduct={chosenProduct} />
+          </Box> */}
+          <Stack sx={{ width: "500px", height: "600px" }}>
+            <Box className="count_of_review">Reviews</Box>
+            {Array.isArray(memberReviews) &&
+              memberReviews.map((reviews: Reviews, index: any) => {
+                const options: Intl.DateTimeFormatOptions = {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                };
+                const createAt = new Date(reviews.createdAt);
+                const formattedDate =
+                  createAt instanceof Date
+                    ? createAt.toLocaleDateString(undefined, options)
+                    : "";
+                console.log("review", reviews.member_data);
+
+                const image_path = `${serverApi}/${reviews.member_data[0]?.mb_image}`;
+                return (
+                  <Box className="reviews_box" key={reviews._id}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        width: "100%",
+                      }}
+                    >
+                      <Box className="review_account_info">
+                        <Box
+                          className="review_account_img"
+                          sx={{ backgroundColor: "#86bc42" }}
+                        >
+                          <img src={image_path} alt="user_chosen" />
+                        </Box>
+                        <Box sx={{ display: "flex", flexDirection: "column" }}>
+                          <Box className="user_of_review">
+                            {" "}
+                            {reviews?.member_data[0]?.mb_nick}
+                          </Box>
+                          <Box className="date_of_review">
+                            April 6, 2021 at 3:21 AM
+                          </Box>
+                        </Box>
+                      </Box>
+                      <Box
+                        className="rating_of_review"
+                        sx={{ display: "flex", alignItems: "center" }}
+                      >
+                        <Rating
+                          size="small"
+                          name="read-only"
+                          value={reviews.rating_stars}
+                          readOnly
+                        />
+                      </Box>
+                    </Box>
+                    <Box className="date_of_review">{reviews.cmt_content}</Box>
+                  </Box>
+                );
+              })}
+
+            {/* <Marginer
+                direction="vertical"
+                height="1"
+                width="2"
+                bg="#EAEAEA"
+                opsty="1"
+              />
+            </Box>
+
+            <Marginer
+              direction="horizontal"
+              height="1"
+              width="2"
+              bg="#EAEAEA"
+              opsty="1"
+            /> */}
+          </Stack>
+
+          <Box>
+            <Box className="write_review_section">
+              <Box className="write_review_box">
+                <Box className="count_of_review"> Add a review </Box>
+
+                <Box className="rating_select">
+                  Your Rating{" "}
+                  <Rating
+                    size="small"
+                    name="controlled"
+                    value={reviewRating}
+                    onChange={(event, value) =>
+                      setReviewRating(value as number)
+                    }
+                  />
+                </Box>
+                <Box className="rating_select"> Your Review</Box>
+                <Box className="write_review_box">
+                  <textarea
+                    name="comment_content"
+                    className="comment_content"
+                    value={reviewContent}
+                    onChange={(e) => setReviewContent(e.target.value)}
+                  ></textarea>
+                </Box>
+                <Box className="review_submit_btn" onClick={submitReview}>
+                  SUBMIT
+                </Box>
+              </Box>
+
+              <Box className="wrire_review_box"></Box>
+            </Box>
+          </Box>
+        </Box>
+      </Container>
       <Container>
         <Stack sx={{ mt: "30px", width: "960px", height: "auto" }}>
           <TabContext value={tabValue}>
@@ -644,7 +773,7 @@ export default function ChosenPage(props: any) {
                           }}
                         >
                           <TableCell style={{ fontWeight: "600" }}>
-                            Weight
+                            Weight{chosenProduct?.product_size}
                           </TableCell>
                           <TableCell>1 kg</TableCell>
                         </TableRow>

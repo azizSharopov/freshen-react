@@ -30,7 +30,7 @@ export function MemberPage(props: any) {
           />
         </Route>
         <Route path={`${member.path}`}>
-          <VisitMyPage />
+          <VisitMyPage onAdd={props.onAdd} />
         </Route>
       </Switch>
     </div>

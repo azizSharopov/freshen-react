@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {
   Box,
@@ -11,85 +11,26 @@ import {
   Paper,
 } from "@mui/material";
 import { retriveMemberLikedProducts } from "./selector";
-import { createSelector } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
+import { Dispatch, createSelector } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
 import { Product } from "../../../types/product";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
 import MemberApiService from "../../apiServices/memberApiService";
 import { Definer } from "../../../lib/Definer";
 import assert from "assert";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import ProductApiService from "../../apiServices/productApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
+import { setMemberLikedProducts } from "./slice";
 
-// function createData(
-//   Id: number,
-//   Product: string,
-//   Date: string,
-//   Payment: string,
-//   Status: string,
-//   Total: string
-// ) {
-//   return { Id, Product, Date, Payment, Status, Total };
-// }
-
-// const rows = [
-//   {
-//     id: 1,
-//     Product_name: "bell-pepper",
-//     Data: "2 Iyun, 2023",
-//     Product_price: "$4.99",
-//     Product_existence: "In stock",
-//     Total: "$4.99",
-//   },
-//   {
-//     id: 1,
-//     Product_name: "bell-pepper",
-//     Data: "2 Iyun, 2023",
-//     Product_price: "$4.99",
-//     Product_existence: "In stock",
-//     Total: "$4.99",
-//   },
-//   {
-//     id: 1,
-//     Product_name: "bell-pepper",
-//     Data: "2 Iyun, 2023",
-//     Product_price: "$4.99",
-//     Product_existence: "In stock",
-//     Total: "$4.99",
-//   },
-//   {
-//     id: 1,
-//     Product_name: "bell-pepper",
-//     Data: "2 Iyun, 2023",
-//     Product_price: "$4.99",
-//     Product_existence: "In stock",
-//     Total: "$4.99",
-//   },
-//   {
-//     id: 1,
-//     Product_name: "bell-pepper",
-//     Data: "2 Iyun, 2023",
-//     Product_price: "$4.99",
-//     Product_existence: "In stock",
-//     Total: "$4.99",
-//   },
-//   {
-//     id: 1,
-//     Product_name: "bell-pepper",
-//     Data: "2 Iyun, 2023",
-//     Product_price: "$4.99",
-//     Product_existence: "In stock",
-//     Total: "$4.99",
-//   },
-//   {
-//     id: 1,
-//     Product_name: "bell-pepper",
-//     Data: "2 Iyun, 2023",
-//     Product_price: "$4.99",
-//     Product_existence: "In stock",
-//     Total: "$4.99",
-//   },
-// ];
+const actionDispatch = (dispach: Dispatch) => ({
+  setMemberLikedProducts: (data: Product[]) =>
+    dispach(setMemberLikedProducts(data)),
+});
 
 const memberLikedProductsRetriever = createSelector(
   retriveMemberLikedProducts,
@@ -102,17 +43,32 @@ export default function AccauntWishlist(props: any) {
   const history = useHistory();
   const refs: any = useRef([]);
   const { memberLikedProducts } = useSelector(memberLikedProductsRetriever);
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
-  const targetLikeTop = async (e: any, id: string) => {
+  const { setMemberLikedProducts } = actionDispatch(useDispatch());
+
+  useEffect(() => {
+    const productService = new ProductApiService();
+    productService
+      .getProductsMemberLiked(verifiedMemberData?._id)
+      .then((data) => setMemberLikedProducts(data))
+      .catch((err) => console.log(err));
+  }, [productRebuild]);
+
+  const chosenProductHandler = (id: string) => {
+    history.push(`/shop/${id}`);
+  };
+
+  const targetLikeProduct = async (e: any, id: string) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const memberSetvice = new MemberApiService(),
         like_result: any = await memberSetvice.memberLikeTarget({
           like_ref_id: id,
           group_type: "product",
         });
-      props.setOrderRebuild(new Date());
+      setProductRebuild(new Date());
 
       assert.ok(like_result, Definer.auth_err1);
 
@@ -127,13 +83,13 @@ export default function AccauntWishlist(props: any) {
           refElement.innerHTML--;
         }
       }
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setProductRebuild(new Date());
     } catch (err: any) {
-      console.log("targetLikeTop ERROR:::", err);
+      console.log("targetLikeProduct, ERROR", err);
       sweetErrorHandling(err).then();
     }
-  };
-  const chosenProductHandler = (id: string) => {
-    history.push(`/shop/${id}`);
   };
 
   return (
@@ -150,8 +106,19 @@ export default function AccauntWishlist(props: any) {
                   backgroundColor: "#ebebeb",
                   borderRadius: "6px",
                   mb: "10px",
+                  width: "900px",
                 }}
               >
+                <TableCell
+                  sx={{
+                    width: "150px",
+                    fontSize: "13px",
+                    fontWeight: "500",
+                    fontFamily: "Lato",
+                  }}
+                >
+                  X
+                </TableCell>
                 <TableCell
                   sx={{
                     width: "150px",
@@ -164,7 +131,7 @@ export default function AccauntWishlist(props: any) {
                 </TableCell>
                 <TableCell
                   sx={{
-                    width: "150px",
+                    width: "250px",
                     fontSize: "13px",
                     fontWeight: "500",
                     fontFamily: "Lato",
@@ -182,17 +149,6 @@ export default function AccauntWishlist(props: any) {
                 >
                   Product_price
                 </TableCell>
-                <TableCell
-                  sx={{
-                    width: "100px",
-                    fontSize: "13px",
-                    fontWeight: "500",
-                    fontFamily: "Lato",
-                    paddingLeft: "5px",
-                  }}
-                >
-                  Data
-                </TableCell>
 
                 <TableCell
                   sx={{
@@ -200,7 +156,14 @@ export default function AccauntWishlist(props: any) {
                     fontSize: "13px",
                     fontWeight: "500",
                     fontFamily: "Lato",
-                    paddingLeft: "15px",
+                  }}
+                ></TableCell>
+                <TableCell
+                  sx={{
+                    width: "200px",
+                    fontSize: "13px",
+                    fontWeight: "500",
+                    fontFamily: "Lato",
                   }}
                 >
                   ADD TO CART
@@ -208,12 +171,6 @@ export default function AccauntWishlist(props: any) {
               </TableRow>
             </TableHead>
             <TableBody className="table_data" sx={{ border: "none" }}>
-              {/* {memberLikedProducts.map((product: Product, index) => {
-          const image_url = `${serverApi}/${product.product_images[0].replace(
-            /\\/g,
-            "/"
-          )}`;
-          return ( */}
               {memberLikedProducts.map((product: Product, index) => {
                 const image_url = `${serverApi}/${product.product_images[0]}`;
                 console.log("productname", product?.product_name);
@@ -234,7 +191,13 @@ export default function AccauntWishlist(props: any) {
                         fontFamily: "Lato",
                       }}
                     >
-                      <HighlightOffIcon />
+                      <Box>
+                        <HighlightOffIcon
+                          onClick={(e) => {
+                            targetLikeProduct(e, product._id);
+                          }}
+                        />
+                      </Box>
                     </TableCell>
                     <TableCell
                       sx={{
@@ -275,7 +238,7 @@ export default function AccauntWishlist(props: any) {
                     </TableCell>
                     <TableCell
                       sx={{
-                        width: "50px",
+                        width: "150px",
                         fontSize: "16px",
                         fontFamily: "Lato",
                         color: "#86bc42",
@@ -284,22 +247,48 @@ export default function AccauntWishlist(props: any) {
                       {product.discounted_price &&
                       product.product_discount?.isValid === true &&
                       product.product_discount?.type === "percentage" ? (
-                        <Box className="product_price">
-                          <Box className="product_price_current">
-                            ${Math.floor(product.discounted_price)}{" "}
+                        <Box
+                          className="product_price"
+                          sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            gap: "10px",
+                          }}
+                        >
+                          <Box
+                            className="product_price_current"
+                            sx={{
+                              color: "#86bc42",
+                              fontWeight: "600",
+                              fontSize: "16px",
+                            }}
+                          >
+                            ${product.discounted_price}{" "}
                           </Box>
 
-                          <Box className="product_price_old">
+                          <Box
+                            className="product_price_old"
+                            sx={{
+                              textDecorationLine: "line-through",
+                              color: "#7a7878",
+                              fontWeight: "600",
+                              fontSize: "16px",
+                            }}
+                          >
                             {" "}
                             ${product.product_price}
-                          </Box>
-                          <Box className="product_price_value">
-                            {product.product_discount?.value}%{" "}
                           </Box>
                         </Box>
                       ) : (
                         <Box className="product_price">
-                          <Box className="product_price_current">
+                          <Box
+                            className="product_price_current"
+                            sx={{
+                              color: "#86bc42",
+                              fontWeight: "600",
+                              fontSize: "16px",
+                            }}
+                          >
                             ${product.product_price}
                           </Box>
                         </Box>
@@ -313,14 +302,7 @@ export default function AccauntWishlist(props: any) {
                         fontFamily: "Lato",
                       }}
                     ></TableCell>
-                    <TableCell
-                      sx={{
-                        width: "50px",
-                        fontSize: "16px",
-                        fontFamily: "Lato",
-                        color: "#41544A",
-                      }}
-                    ></TableCell>
+
                     <TableCell
                       sx={{
                         width: "250px",

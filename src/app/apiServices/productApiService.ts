@@ -13,6 +13,24 @@ class ProductApiService {
     this.path = serverApi;
   }
 
+  async getProductsMemberLiked(product_id: string) {
+    try {
+      const url = `/member-liken/${product_id}`,
+        result = await axios.get(this.path + url, {
+          withCredentials: true,
+        });
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "failed", result?.data?.message);
+      console.log("state:", result.data.state);
+      const reviews: Product[] = result.data.data;
+      return reviews;
+    } catch (err: any) {
+      console.log(`ERROR ::: getReviewsChosenItem ${err.message}`);
+      throw err;
+    }
+  }
+
   async getTargetProducts(data: ProductSearchObj): Promise<Product[]> {
     try {
       const url = "/products",

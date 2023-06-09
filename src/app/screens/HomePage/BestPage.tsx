@@ -4,16 +4,11 @@ import React, { useState, useEffect, useRef } from "react";
 import assert from "assert";
 import StarIcon from "@mui/icons-material/Star";
 import { Swiper, SwiperSlide } from "swiper/react";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import Badge from "@mui/material/Badge";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -58,7 +53,7 @@ export function BestPage(props: any) {
   const history = useHistory();
   const { setBestProducts } = actionDispatch(useDispatch());
   const { bestProducts } = useSelector(bestProductRetriever);
-
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
   const chosenShopHandler = (order: string) => {
     // setChosenShopId(id);
     history.push(`/shop`);
@@ -72,7 +67,9 @@ export function BestPage(props: any) {
       .getTargetProducts({ order: "product_likes", page: 1, limit: 200 })
       .then((data) => setBestProducts(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [productRebuild]);
+
+  const refs: any = useRef([]);
 
   /** HANDLERS */
   const chosenProductHandler = (id: string) => {
@@ -88,6 +85,14 @@ export function BestPage(props: any) {
           group_type: "product",
         });
       assert.ok(like_result, Definer.general_err1);
+
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
 
       await sweetTopSmallSuccessAlert("success", 700, false);
       setProductRebuild(new Date());
@@ -200,6 +205,7 @@ export function BestPage(props: any) {
                             <img src="/icons/heart_red.png" alt="" />
                           }
                           onClick={targetLikeProduct}
+                          /*@ts-ignore*/
                           checked={
                             product?.me_liked &&
                             product?.me_liked[0]?.my_favorite
