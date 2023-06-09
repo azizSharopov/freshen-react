@@ -61,16 +61,19 @@ export default function PausedOrders(props: any) {
       if (!verifiedMemberData) {
         sweetFailureProvider("Please login first", true);
       }
-
-      let confirmation = window.confirm(
-        "Confirm the transfer of your order to the next process?"
-      );
-      if (confirmation) {
-        const orderService = new OrderApiService();
-        await orderService.updateOrderStatus(data);
-        props.setOrderRebuild(new Date());
+      if (!verifiedMemberData?.mb_address) {
+        sweetFailureProvider("adressni kirit", true);
+      } else {
+        let confirmation = window.confirm(
+          "Confirm the transfer of your order to the next process?"
+        );
+        if (confirmation) {
+          const orderService = new OrderApiService();
+          await orderService.updateOrderStatus(data);
+          props.setOrderRebuild(new Date());
+        }
+        props.setValue("2");
       }
-      props.setValue("2");
     } catch (err) {
       console.log("processOrderHandler, ERROR:", err);
       sweetErrorHandling(err).then();

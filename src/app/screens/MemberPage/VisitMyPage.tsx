@@ -87,7 +87,7 @@ export default function VisitMyPage(props: any) {
   );
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
 
-  const [value, setValue] = useState("2");
+  const [value, setValue] = useState("8");
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const [followeRebuild, setFollowRebuild] = useState<boolean>(false);
   const [memberArticleSearchObj, setMemberArticleSearchObj] =

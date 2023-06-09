@@ -334,7 +334,7 @@ export function AllProducts(props: any) {
                 setImageSrc("/homepage/Seafood.jpg");
               }}
             >
-              <span>Fishs</span>
+              <span>Fish</span>
             </Box>
             <Box
               style={{

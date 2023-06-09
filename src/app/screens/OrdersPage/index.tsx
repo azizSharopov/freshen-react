@@ -242,11 +242,13 @@ export function OrdersPage(props: any) {
               <div style={{ display: "flex" }}>
                 <LocationOnIcon />
               </div>
-              <div className={"spec_address_txt"}>Daegu, South Korea</div>
+              <div className={"spec_address_txt"}>
+                {verifiedMemberData?.mb_address}
+              </div>
             </Box>
-            <Link to="/member-page" className="order_text_conti">
+            {/* <Link to="/member-page" className="order_text_conti">
               Change address
-            </Link>
+            </Link> */}
           </Box>
           <Box className={"order_info_box"} sx={{ mt: "15px" }}>
             <input

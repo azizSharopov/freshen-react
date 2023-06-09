@@ -217,9 +217,9 @@ export function TargetArticles(props: any) {
                     </div>
                   </Box>
                 </Box>
-                <Box className="chosen_retingbest">
+                {/* <Box className="chosen_retingbest">
                   <Rating size="small" name="read-only" readOnly />
-                </Box>
+                </Box> */}
 
                 <Box className="blog_text_conti">CONTINUE READING</Box>
               </Box>

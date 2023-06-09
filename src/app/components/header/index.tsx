@@ -12,7 +12,7 @@ import {
   Stack,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -351,9 +351,9 @@ export function NavbarCommon(props: any) {
               </MenuItem>
             </Menu>
             <Box className="icon_box">
-              <Badge badgeContent={3} color="secondary">
+              <Link to="/member-page" className="icon_box">
                 <img src="/icons/heart.png" alt="heart" />
-              </Badge>
+              </Link>
             </Box>
             <Box className="icon_box">
               <Basket
@@ -366,11 +366,11 @@ export function NavbarCommon(props: any) {
               />
             </Box>
 
-            <Box className="icon_box">
+            {/* <Box className="icon_box">
               <Badge badgeContent={3} color="secondary">
                 <NotificationsNoneRoundedIcon />
               </Badge>
-            </Box>
+            </Box> */}
           </Box>
         </Stack>
       </Container>
