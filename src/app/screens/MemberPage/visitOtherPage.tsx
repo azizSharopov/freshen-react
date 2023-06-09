@@ -428,35 +428,9 @@ export function VisitOtherPage(props: any) {
                       chosenMemberBoArticles={chosenMemberBoArticles}
                       renderChosenArticleHandler={renderChosenArticleHandler}
                       setArticlesRebuild={setArticlesRebuild}
+                      memberArticleSearchObj={memberArticleSearchObj}
+                      setMemberArticleSearchObj={setMemberArticleSearchObj}
                     />
-                    <Stack
-                      sx={{ my: "40px" }}
-                      direction="row"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Box className={"bottom_box"}>
-                        <Pagination
-                          count={
-                            memberArticleSearchObj.page >= 3
-                              ? memberArticleSearchObj.page + 1
-                              : 3
-                          }
-                          page={memberArticleSearchObj.page}
-                          renderItem={(item) => (
-                            <PaginationItem
-                              components={{
-                                previous: ArrowBackIcon,
-                                next: ArrowForwardIcon,
-                              }}
-                              {...item}
-                              color={"secondary"}
-                            />
-                          )}
-                          onChange={handlePaginationChange}
-                        />
-                      </Box>
-                    </Stack>
                   </Box>
                 </TabPanel>
                 <TabPanel value={"2"}>

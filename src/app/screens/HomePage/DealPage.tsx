@@ -51,6 +51,7 @@ export function DealPage(props: any) {
   const history = useHistory();
   const { setSaleProducts } = actionDispatch(useDispatch());
   const { saleProducts } = useSelector(saleProductRetriever);
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
     const productService = new ProductApiService();
@@ -58,23 +59,40 @@ export function DealPage(props: any) {
       .getTargetProducts({ order: "discounted_price", page: 1, limit: 200 })
       .then((data) => setSaleProducts(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [productRebuild]);
+
+  const refs: any = useRef([]);
 
   /** HANDLERS */
   const chosenProductHandler = (id: string) => {
     history.push(`/shop/${id}`);
   };
 
-  const targetLikeProduct = async (e: any) => {
+  const targetLikeProduct = async (e: any, id: string) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
+      console.log("e.target.id:::::", id);
 
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({
-          like_ref_id: e.target.id,
+          like_ref_id: id,
           group_type: "product",
         });
+      console.log("like_result::::", like_result);
+
+      setProductRebuild(new Date());
       assert.ok(like_result, Definer.general_err1);
+
+      const targetRef = refs.current[like_result.like_ref_id];
+      if (targetRef) {
+        if (like_result.like_status > 0) {
+          e.target.style.fill = "red";
+          targetRef.innerHTML++;
+        } else {
+          e.target.style.fill = "white";
+          targetRef.innerHTML--;
+        }
+      }
 
       await sweetTopSmallSuccessAlert("success", 700, false);
       setProductRebuild(new Date());
@@ -211,7 +229,9 @@ export function DealPage(props: any) {
                         icon={<img src="/icons/heart_green.png" alt="" />}
                         id={product._id}
                         checkedIcon={<img src="/icons/heart_red.png" alt="" />}
-                        onClick={targetLikeProduct}
+                        onClick={(e) => {
+                          targetLikeProduct(e, product._id);
+                        }}
                         /*@ts-ignore*/
                         checked={
                           product?.me_liked && product?.me_liked[0]?.my_favorite

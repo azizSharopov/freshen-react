@@ -218,8 +218,6 @@ export default function AccauntWishlist(props: any) {
                             backgroundSize: "cover",
                             width: "90px",
                             height: "90px",
-
-                            border: "1px solid #86bc42",
                           }}
                           src={image_url}
                           alt="follow"

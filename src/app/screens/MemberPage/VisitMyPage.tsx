@@ -353,6 +353,8 @@ export default function VisitMyPage(props: any) {
                   chosenMemberBoArticles={chosenMemberBoArticles}
                   renderChosenArticleHandler={renderChosenArticleHandler}
                   setArticlesRebuild={setArticlesRebuild}
+                  memberArticleSearchObj={memberArticleSearchObj}
+                  setMemberArticleSearchObj={setMemberArticleSearchObj}
                 />
               </TabPanel>
 

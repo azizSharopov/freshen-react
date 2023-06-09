@@ -75,23 +75,30 @@ export function BestPage(props: any) {
   const chosenProductHandler = (id: string) => {
     history.push(`/shop/${id}`);
   };
-  const targetLikeProduct = async (e: any) => {
+  const targetLikeProduct = async (e: any, id: string) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
+      console.log("e.target.id:::::", id);
 
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({
-          like_ref_id: e.target.id,
+          like_ref_id: id,
           group_type: "product",
         });
+      console.log("like_result::::", like_result);
+
+      setProductRebuild(new Date());
       assert.ok(like_result, Definer.general_err1);
 
-      if (like_result.like_status > 0) {
-        e.target.style.fill = "red";
-        refs.current[like_result.like_ref_id].innerHTML++;
-      } else {
-        e.target.style.fill = "white";
-        refs.current[like_result.like_ref_id].innerHTML--;
+      const targetRef = refs.current[like_result.like_ref_id];
+      if (targetRef) {
+        if (like_result.like_status > 0) {
+          e.target.style.fill = "red";
+          targetRef.innerHTML++;
+        } else {
+          e.target.style.fill = "white";
+          targetRef.innerHTML--;
+        }
       }
 
       await sweetTopSmallSuccessAlert("success", 700, false);
@@ -204,7 +211,9 @@ export function BestPage(props: any) {
                           checkedIcon={
                             <img src="/icons/heart_red.png" alt="" />
                           }
-                          onClick={targetLikeProduct}
+                          onClick={(e) => {
+                            targetLikeProduct(e, product._id);
+                          }}
                           /*@ts-ignore*/
                           checked={
                             product?.me_liked &&
@@ -341,7 +350,4 @@ export function BestPage(props: any) {
       </div>
     </div>
   );
-}
-function setProductRebuild(arg0: Date) {
-  throw new Error("Function not implemented.");
 }

@@ -4,7 +4,7 @@ import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
 import { ProductSearchObj, SearchReviewsObj } from "../../types/others";
 import { Product } from "../../types/product";
-import { Review } from "../../types/follow";
+import { Review, Reviews } from "../../types/follow";
 
 class ProductApiService {
   private readonly path: string;
@@ -114,7 +114,7 @@ class ProductApiService {
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state:", result.data.state);
-      const reviews: Review[] = result.data.data;
+      const reviews: Reviews[] = result.data.data;
       return reviews;
     } catch (err: any) {
       console.log(`ERROR ::: getReviewsChosenItem ${err.message}`);

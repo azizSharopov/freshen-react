@@ -54,12 +54,13 @@ import assert from "assert";
 import { verifiedMemberData } from "../../apiServices/verify";
 import { Review, Reviews } from "../../../types/follow";
 import { SearchReviewsObj } from "../../../types/others";
+import moment from "moment";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setChosenProduct: (data: Product) => dispach(setChosenProduct(data)),
   setChosenShop: (data: Shop) => dispach(setChosenShop(data)),
-  setMemberReviews: (data: Reviews) => dispach(setMemberReviews(data)),
+  setMemberReviews: (data: Reviews[]) => dispach(setMemberReviews(data)),
 });
 
 /** REDUX SELECTOR */
@@ -107,6 +108,10 @@ export default function ChosenPage(props: any) {
       const shopService = new ShopApiService();
       const shop = await shopService.getChosenShop(product.shop_mb_id);
       setChosenShop(shop);
+
+      const productReviews: Reviews[] =
+        await productService.getReviewsChosenItem(targetSearchObj);
+      setMemberReviews(productReviews);
     } catch (err) {
       console.log(`ProductRelatedProcess, ERROR:`, err);
     }
@@ -115,7 +120,7 @@ export default function ChosenPage(props: any) {
   /** review */
   const [reviewContent, setReviewContent] = useState("");
   const [reviewRating, setReviewRating] = useState(2);
-  const [displayedReviews, setDisplayedReviews] = useState<number>(2);
+  const [displayedReviews, setDisplayedReviews] = useState<number>(20);
 
   const [targetSearchObj, setTargetSearchObj] = useState<SearchReviewsObj>({
     page: 1,
@@ -540,7 +545,7 @@ export default function ChosenPage(props: any) {
           {/* <Box>
             <ReviewsComponent chosenProduct={chosenProduct} />
           </Box> */}
-          <Stack sx={{ width: "500px", height: "600px" }}>
+          <Stack sx={{ width: "500px", height: "auto" }}>
             <Box className="count_of_review">Reviews</Box>
             {Array.isArray(memberReviews) &&
               memberReviews.map((reviews: Reviews, index: any) => {
@@ -570,19 +575,34 @@ export default function ChosenPage(props: any) {
                       }}
                     >
                       <Box className="review_account_info">
-                        <Box
-                          className="review_account_img"
-                          sx={{ backgroundColor: "#86bc42" }}
-                        >
-                          <img src={image_path} alt="user_chosen" />
-                        </Box>
+                        {reviews.member_data[0]?.mb_image ? (
+                          <Box
+                            className="review_account_img"
+                            sx={{ backgroundImage: `url(${image_path})` }}
+                          >
+                            {reviews.member_data[0]?.mb_nick[0]}.
+                          </Box>
+                        ) : (
+                          <Box
+                            className="review_account_img"
+                            sx={{ backgroundColor: "#86bc42" }}
+                          >
+                            <img
+                              src="/icons/default_user.png"
+                              alt="user_chosen"
+                            />
+                          </Box>
+                        )}
                         <Box sx={{ display: "flex", flexDirection: "column" }}>
                           <Box className="user_of_review">
                             {" "}
                             {reviews?.member_data[0]?.mb_nick}
                           </Box>
                           <Box className="date_of_review">
-                            April 6, 2021 at 3:21 AM
+                            {" "}
+                            {moment(reviews?.createdAt).format(
+                              "YY-MM-DD HH:mm"
+                            )}
                           </Box>
                         </Box>
                       </Box>
@@ -598,7 +618,17 @@ export default function ChosenPage(props: any) {
                         />
                       </Box>
                     </Box>
-                    <Box className="date_of_review">{reviews.cmt_content}</Box>
+                    <Box
+                      className="date_of_review"
+                      sx={{
+                        textAlign: "start",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      {reviews.cmt_content}
+                    </Box>
                   </Box>
                 );
               })}

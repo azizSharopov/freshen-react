@@ -38,20 +38,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Fruits",
-  "Meats",
-  "Fishs",
-  "Vegetables",
-  "Drinks",
-  "Bakery",
-  "Butter & Egges",
-  "Milks & Creams",
-  "Coffee & Tea",
-  "Cookies",
-  "Chocolates",
-];
-
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight:
@@ -244,7 +230,11 @@ export function NavbarCommon(props: any) {
       <Container>
         <Stack
           className="navbar_middle"
-          sx={{ width: "100%", flexDirection: "row" }}
+          sx={{
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "space-around",
+          }}
         >
           <Box className="logo">
             <img src="/icons/logo.svg" alt="logo" />
@@ -252,82 +242,15 @@ export function NavbarCommon(props: any) {
           <Box
             className="select"
             sx={{
-              width: "620px",
+              width: "490px",
               height: "50px",
-              ml: "20px",
+              marginLeft: "80px",
               background: "white",
               display: "flex",
               flexDirection: "row",
               borderRadius: "6px",
             }}
           >
-            <FormControl sx={{ m: 0, mb: 1, width: 130, height: 30 }}>
-              <Select
-                sx={{
-                  mt: "0px",
-
-                  boxShadow: "none",
-                  ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                  "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
-                    {
-                      border: 0,
-                    },
-                  "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                    {
-                      border: 0,
-                    },
-
-                  fontSize: "15px",
-                  color: "#041E42",
-                }}
-                multiple
-                displayEmpty
-                value={personName}
-                onChange={handleChange}
-                input={<OutlinedInput />}
-                renderValue={(selected) => {
-                  if (selected.length === 0) {
-                    return (
-                      <em
-                        className="nav_tex"
-                        style={{
-                          color: "#121212",
-                        }}
-                      >
-                        All Category
-                      </em>
-                    );
-                  }
-
-                  return selected.join(", ");
-                }}
-                MenuProps={MenuProps}
-                inputProps={{ "aria-label": "Without label" }}
-              >
-                {" "}
-                <MenuItem disabled value="">
-                  <em className="searchselect">All Category</em>
-                </MenuItem>
-                {names.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <Box sx={{ paddingTop: "10px" }}>
-              <Marginer
-                direction="vertical"
-                height="30"
-                width="1"
-                bg="#D6D6D6"
-                opsty="1"
-              />
-            </Box>
             <Box
               sx={{
                 display: "flex",
@@ -442,7 +365,7 @@ export function NavbarCommon(props: any) {
                 setOrderRebuild={props.setOrderRebuild}
               />
             </Box>
-            <Box>$99.99</Box>
+
             <Box className="icon_box">
               <Badge badgeContent={3} color="secondary">
                 <NotificationsNoneRoundedIcon />

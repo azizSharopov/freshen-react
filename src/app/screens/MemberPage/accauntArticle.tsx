@@ -29,8 +29,8 @@ export default function AccauntArticle(props: any) {
   /** HANDLERS */
 
   const handlePaginationChange = (event: any, value: number) => {
-    memberArticleSearchObj.page = value;
-    setMemberArticleSearchObj({ ...memberArticleSearchObj });
+    props.memberArticleSearchObj.page = value;
+    props.setMemberArticleSearchObj({ ...props.memberArticleSearchObj });
   };
 
   return (
@@ -227,11 +227,11 @@ export default function AccauntArticle(props: any) {
         >
           <Pagination
             count={
-              memberArticleSearchObj.page >= 3
-                ? memberArticleSearchObj.page + 1
+              props.memberArticleSearchObj.page >= 3
+                ? props.memberArticleSearchObj.page + 1
                 : 3
             }
-            page={memberArticleSearchObj.page}
+            page={props.memberArticleSearchObj.page}
             renderItem={(item) => (
               <PaginationItem
                 components={{
