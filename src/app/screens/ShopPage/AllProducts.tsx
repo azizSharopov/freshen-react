@@ -417,7 +417,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("6483315dff2df1ce67e83fee");
-                setImageSrc("/homepage/coffee.jpg");
+                setImageSrc("/homepage/cofi.jpg");
               }}
             >
               <span>Cofee & Tea</span>
@@ -435,7 +435,7 @@ export function AllProducts(props: any) {
               }}
               onClick={() => {
                 searchShopProductsHandler("6483301dff2df1ce67e83fce");
-                setImageSrc("/homepage/juxc.jpg");
+                setImageSrc("/homepage/jusi.jpg");
               }}
             >
               <span>Drinks</span>

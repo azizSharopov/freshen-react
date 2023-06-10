@@ -12,6 +12,7 @@ import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
 import "../css/home.css";
+import "../css/socket.css";
 import { AboutPage } from "./screens/AboutPage";
 import { Footer } from "./components/footer";
 import { ContactPage } from "./screens/ContactPage";
@@ -32,7 +33,7 @@ import { Product } from "../types/product";
 import { OrdersPage } from "./screens/OrdersPage";
 import { MemberPage } from "./screens/MemberPage";
 import { CartItem, ProductSearchObj } from "../types/others";
-import { log } from "console";
+import { SocketChats } from "./components/socket/socketChat";
 
 function App() {
   /** INITIALIZATIONS */
@@ -245,7 +246,7 @@ function App() {
           />
         </Route>
       </Switch>
-
+      <SocketChats />
       <Footer />
       <AuthenticationModal
         loginOpen={loginOpen}

@@ -377,7 +377,7 @@ export default function ChosenPage(props: any) {
             {chosenProduct?.product_description}
           </Box>
           <Box className="add_cart_buy">
-            <Box className="count_cart_buy">
+            {/* <Box className="count_cart_buy">
               <Box className="add_change" onClick={handle_cnt_minus}>
                 -
               </Box>
@@ -385,7 +385,7 @@ export default function ChosenPage(props: any) {
               <Box className="add_change" onClick={handle_cnt_plus}>
                 +
               </Box>
-            </Box>
+            </Box> */}
             <Box
               className="add_card_chosen"
               onClick={(e) => {

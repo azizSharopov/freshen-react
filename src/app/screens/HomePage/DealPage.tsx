@@ -56,8 +56,17 @@ export function DealPage(props: any) {
   useEffect(() => {
     const productService = new ProductApiService();
     productService
-      .getTargetProducts({ order: "discounted_price", page: 1, limit: 200 })
-      .then((data) => setSaleProducts(data))
+      .getTargetProducts({
+        order: "product_discount.value",
+        page: 1,
+        limit: 200,
+      })
+      .then((data) => {
+        const filteredData = data.filter(
+          (product) => product.product_discount?.value !== null
+        );
+        setSaleProducts(filteredData);
+      })
       .catch((err) => console.log(err));
   }, [productRebuild]);
 
