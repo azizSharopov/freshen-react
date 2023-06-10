@@ -222,13 +222,13 @@ export function AllProducts(props: any) {
           sx={{
             display: "flex",
             flexDirection: "row",
-            gap: "60px",
+
             marginTop: "50px",
           }}
         >
           <Stack
             className="shop_pro"
-            style={{ width: "300px", height: "570px" }}
+            style={{ width: "250px", height: "570px" }}
           >
             <Box className="shop_categ">PRODUCT CATEGORIES</Box>
 
@@ -261,7 +261,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopAllProductsHandler("product_likes");
-                setImageSrc("/homepage/m-s.jpg");
+                setImageSrc("/homepage/bestsel.jpg");
               }}
             >
               <span>Best product</span>
@@ -278,7 +278,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopAllProductsHandler("product_price");
-                setImageSrc("/homepage/price.jpg");
+                setImageSrc("/homepage/high.jpg");
               }}
             >
               <span>Product price</span>
@@ -295,7 +295,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646b0d1dc88f933b56ca3fd1");
-                setImageSrc("/homepage/fru.jpg");
+                setImageSrc("/homepage/293952.jpg");
               }}
             >
               <span>Fruits</span>
@@ -313,7 +313,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646b0d41c88f933b56ca3fd4");
-                setImageSrc("/homepage/lamb.jpg");
+                setImageSrc("/homepage/15-4.jpg");
               }}
             >
               <span>Meats</span>
@@ -366,7 +366,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646bb01eaf5977f07c50224d");
-                setImageSrc("/homepage/breads.jpg");
+                setImageSrc("/homepage/breb.jpg");
               }}
             >
               <span>Bakery</span>
@@ -383,7 +383,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646bb04faf5977f07c502250");
-                setImageSrc("/homepage/eggbut.jpg");
+                setImageSrc("/homepage/butter.jpg");
               }}
             >
               <span>Butter & Egges</span>
@@ -400,7 +400,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("646ba793af5977f07c50224a");
-                setImageSrc("/homepage/milkpro.jpg");
+                setImageSrc("/homepage/dairy-cheese-butter.jpeg");
               }}
             >
               <span>Milks & Creams</span>
@@ -417,7 +417,7 @@ export function AllProducts(props: any) {
               className="shop_categ_text"
               onClick={() => {
                 searchShopProductsHandler("6483315dff2df1ce67e83fee");
-                setImageSrc("/homepage/coftea.jpg");
+                setImageSrc("/homepage/coffee.jpg");
               }}
             >
               <span>Cofee & Tea</span>
@@ -435,7 +435,7 @@ export function AllProducts(props: any) {
               }}
               onClick={() => {
                 searchShopProductsHandler("6483301dff2df1ce67e83fce");
-                setImageSrc("/homepage/tom.jpg");
+                setImageSrc("/homepage/juxc.jpg");
               }}
             >
               <span>Drinks</span>
@@ -452,7 +452,7 @@ export function AllProducts(props: any) {
               }}
               onClick={() => {
                 searchShopProductsHandler("64832faaff2df1ce67e83fa4");
-                setImageSrc("/homepage/nut.jpg");
+                setImageSrc("/homepage/choko.jpg");
               }}
             >
               <span>Chocolates</span>
@@ -460,7 +460,7 @@ export function AllProducts(props: any) {
           </Stack>
           <Box className="shop_ads">
             <img
-              style={{ width: "900px", height: "600px" }}
+              style={{ width: "1000px", height: "600px" }}
               src={imageSrc}
               alt="shop_page"
             />

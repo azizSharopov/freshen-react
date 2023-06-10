@@ -665,7 +665,7 @@
 
 .sold_info {
   position: absolute;
-  width: 108px;
+  width: 240px;
   height: 6px;
   background: #86bc42;
   border-radius: 30px;
@@ -727,6 +727,28 @@
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
+}
+
+.product_sale_shop {
+  position: relative;
+  width: 59px;
+  height: 30px;
+  z-index: 6;
+  margin-bottom: 110px;
+  margin-right: 190px;
+  background: #d53f20;
+  border-radius: 60px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  padding-top: 7px;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 /** DeliveryPage */

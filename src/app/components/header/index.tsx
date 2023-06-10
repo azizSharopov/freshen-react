@@ -350,8 +350,11 @@ export function NavbarCommon(props: any) {
                 Logout
               </MenuItem>
             </Menu>
-            <Box className="icon_box">
-              <Link to="/member-page" className="icon_box">
+            <Box
+              className="hover-line"
+              sx={{ marginLeft: "20px", marginTop: "5px" }}
+            >
+              <Link to="/member-page">
                 <img src="/icons/heart.png" alt="heart" />
               </Link>
             </Box>

@@ -189,16 +189,40 @@ export function DealPage(props: any) {
                   sx={{ height: "410px" }}
                   onClick={() => chosenProductHandler(product._id)}
                 >
-                  <Box
+                  {/* <Box
                     sx={{
                       zIndex: "5",
                       position: "absolute",
                       marginLeft: "20px",
                     }}
                     className="product_sale_info"
-                  >
-                    -10 %
-                  </Box>
+                  > */}
+                  {product.discounted_price &&
+                  product.product_discount?.isValid === true &&
+                  product.product_discount?.type === "percentage" ? (
+                    <Box
+                      sx={{
+                        zIndex: "5",
+                        position: "absolute",
+                        marginLeft: "25px",
+                        marginTop: "25px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "30px",
+                        width: "59px",
+                        background: "#d53f20",
+                        borderRadius: "60px",
+                        color: "#ffffff",
+                        fontFamily: "Lato",
+                        fontWeight: "700",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {product.product_discount?.value}%{" "}
+                    </Box>
+                  ) : null}
+                  {/* </Box> */}
                   <Box
                     className="products_slider_img_best1"
                     // style={{ width: "220px", height: "200px" }}
@@ -216,15 +240,6 @@ export function DealPage(props: any) {
                         e.stopPropagation();
                       }}
                     >
-                      {/* <Badge
-                        badgeContent={product.product_likes}
-                        sx={{
-                          color: "#121212",
-                          fontSize: "18px",
-                          fontWeight: 700,
-                        }}
-                       
-                      > */}
                       <Checkbox
                         icon={<img src="/icons/heart_green.png" alt="" />}
                         id={product._id}
@@ -239,7 +254,6 @@ export function DealPage(props: any) {
                             : false
                         }
                       />
-                      {/* </Badge> */}
                     </Box>
                   </Box>
                   <Box>
@@ -377,7 +391,7 @@ export function DealPage(props: any) {
                       >
                         <Box className="sold_info"></Box>
                       </Box>
-                      <Box className="product_sold2">
+                      {/* <Box className="product_sold2">
                         <Box>
                           <span className="sold2_text">Available:</span>
                           <span className="sold2_numb">200</span>
@@ -386,7 +400,7 @@ export function DealPage(props: any) {
                           <span className="sold2_text">Already Sold:</span>
                           <span className="sold2_numb">157</span>
                         </Box>
-                      </Box>
+                      </Box> */}
                     </Box>
                   </Box>
                 </Box>

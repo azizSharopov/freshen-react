@@ -117,14 +117,14 @@ body {
 .underline {
   display: block;
   content: "";
-  border-bottom: solid 2px #41544a;
-  color: #41544a;
+  border-bottom: solid 2px #544541;
+  color: #544341;
 }
 
 .hover-line:after {
   display: block;
   content: "";
-  border-bottom: solid 2px #41544a;
+  border-bottom: solid 2px #86bc42;
   color: #41544a;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;

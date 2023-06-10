@@ -246,7 +246,8 @@ export function VisitOtherPage(props: any) {
                   <Box className="account_name_box">
                     <span>{chosenMember?.mb_nick}</span>
                     <br />
-                    {chosenMember?.mb_email}
+
+                    {chosenMember?.mb_email ?? "Email not entered"}
                   </Box>
                 </Box>
 
