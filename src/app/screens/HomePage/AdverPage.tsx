@@ -24,7 +24,7 @@ export function AdverPage(props: any) {
   return (
     <div
       style={{
-        marginTop: "150px",
+        marginTop: "120px",
         height: "690px",
         display: "flex",
         justifyContent: "center",

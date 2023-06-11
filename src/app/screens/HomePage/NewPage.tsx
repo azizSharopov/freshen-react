@@ -56,7 +56,7 @@ export function NewPage(props: any) {
   useEffect(() => {
     const productService = new ProductApiService();
     productService
-      .getTargetProducts({ order: "product_createdAt", page: 1, limit: 200 })
+      .getTargetProducts({ order: "createdAt", page: 1, limit: 200 })
       .then((data) => setNewProducts(data))
       .catch((err) => console.log(err));
   }, [productRebuild]);
@@ -198,7 +198,7 @@ export function NewPage(props: any) {
 
                     <Box
                       className="like_view_boxbest"
-                      sx={{ marginLeft: "230px" }}
+                      sx={{ marginLeft: "210px" }}
                       onClick={(e) => {
                         e.stopPropagation();
                       }}

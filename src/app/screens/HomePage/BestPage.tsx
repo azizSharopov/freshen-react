@@ -194,13 +194,22 @@ export function BestPage(props: any) {
                   >
                     <Box
                       className="products_slider_img_best"
-                      sx={{ marginLeft: "30px" }}
+                      sx={{
+                        marginLeft: "20px",
+                        width: "280px",
+                        height: "220px",
+                        backgroundSize: "cover",
+                      }}
                     >
-                      <img src={image_path} alt="best product" />
+                      <img
+                        style={{ backgroundSize: "cover" }}
+                        src={image_path}
+                        alt="best product"
+                      />
 
                       <Box
                         className="like_view_boxbest"
-                        sx={{ marginLeft: "230px" }}
+                        sx={{ marginLeft: "210px" }}
                         onClick={(e) => {
                           e.stopPropagation();
                         }}

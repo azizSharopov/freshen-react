@@ -233,7 +233,7 @@ export function NavbarCommon(props: any) {
           sx={{
             width: "100%",
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
           }}
         >
           <Box className="logo">
@@ -244,7 +244,7 @@ export function NavbarCommon(props: any) {
             sx={{
               width: "490px",
               height: "50px",
-              marginLeft: "80px",
+
               background: "white",
               display: "flex",
               flexDirection: "row",

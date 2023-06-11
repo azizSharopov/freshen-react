@@ -173,7 +173,7 @@ export default function ChosenPage(props: any) {
 
   useEffect(() => {
     productRelatedProcess().then();
-  }, [productRebuild, displayedReviews]);
+  }, [productRebuild, displayedReviews, product_id]);
 
   /** HANDLERS */
   const handleSeeAllReviews = () => {
@@ -302,7 +302,7 @@ export default function ChosenPage(props: any) {
             </TabContext>
           </Box>
         </Stack>
-        <Stack className="chosen_pro_info">
+        <Stack className="chosen_pro_info" sx={{ marginLeft: "20px" }}>
           <Box className="chosen_instock">
             <Box className="chosen_instock1">IN STOCK</Box>
           </Box>
@@ -671,6 +671,17 @@ export default function ChosenPage(props: any) {
       </Container>
 
       <div>
+        <Box
+          sx={{
+            width: "400px",
+            height: "50px",
+            marginLeft: "950px",
+            marginTop: "100px",
+            background: "#ffffff",
+            zIndex: "777",
+            position: "absolute",
+          }}
+        ></Box>
         <BestPage
           onAdd={props.onAdd}
           targetProductsSearchObj={props.targetProductsSearchObj}

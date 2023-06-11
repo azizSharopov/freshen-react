@@ -62,7 +62,7 @@ export default function PausedOrders(props: any) {
         sweetFailureProvider("Please login first", true);
       }
       if (!verifiedMemberData?.mb_address) {
-        sweetFailureProvider("adressni kirit", true);
+        sweetFailureProvider("Please enter the address", true);
       } else {
         let confirmation = window.confirm(
           "Confirm the transfer of your order to the next process?"

@@ -129,22 +129,30 @@ export function DealPage(props: any) {
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
+          marginTop: "40px",
         }}
       >
         <Box className="home_top" sx={{ width: "50%" }}>
           Deal of the Day
+          <img
+            style={{ width: "200px", marginLeft: "40px" }}
+            src="/homepage/sale.jpg"
+            alt="deal_sale"
+          />
         </Box>
-        <Box className="sale_time">
+
+        {/* <Box className="sale_time">
           <span className="sale_time_end">Ends in:</span>
           <span className="sale_time1">04 : 43 : 11</span>
-        </Box>
+         
+        </Box> */}
       </Container>
       <div
         className={"best_products"}
         style={{
           width: "1441",
           height: "454px",
-          marginTop: "40px",
+          marginTop: "60px",
           display: "flex",
           position: "relative",
           flexDirection: "row",
@@ -237,7 +245,7 @@ export function DealPage(props: any) {
                     // style={{ width: "220px", height: "200px" }}
                   >
                     <img
-                      style={{ width: "210px", height: "190px" }}
+                      // style={{ width: "210px", height: "190px" }}
                       src={image_path}
                       alt=""
                     />
@@ -378,7 +386,7 @@ export function DealPage(props: any) {
                         </Box>
                       )}
                     </Box>
-                    <Box
+                    {/* <Box
                       className="product_sold"
                       sx={{
                         display: "flex",
@@ -400,7 +408,7 @@ export function DealPage(props: any) {
                       >
                         <Box className="sold_info"></Box>
                       </Box>
-                      {/* <Box className="product_sold2">
+                      <Box className="product_sold2">
                         <Box>
                           <span className="sold2_text">Available:</span>
                           <span className="sold2_numb">200</span>
@@ -409,8 +417,8 @@ export function DealPage(props: any) {
                           <span className="sold2_text">Already Sold:</span>
                           <span className="sold2_numb">157</span>
                         </Box>
-                      </Box> */}
-                    </Box>
+                      </Box>
+                    </Box> */}
                   </Box>
                 </Box>
               </SwiperSlide>
