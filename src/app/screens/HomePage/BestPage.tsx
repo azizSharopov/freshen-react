@@ -9,6 +9,12 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -146,17 +152,18 @@ export function BestPage(props: any) {
           justifyContent: "space-around",
         }}
       >
-        <Box className="prev_btn shop_prev">
-          <ArrowBackIosNewIcon
-            sx={{ fontSize: 40 }}
-            style={{
-              color: "#41544A",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-            }}
-          />
+        <Box
+          className="prev_btn shop-prev"
+          style={{
+            color: "#41544A",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "relative",
+            fontSize: 40,
+          }}
+        >
+          <ArrowBackIosNewIcon sx={{ fontSize: 40, color: "#41544A" }} />
         </Box>
         <Container>
           <Swiper

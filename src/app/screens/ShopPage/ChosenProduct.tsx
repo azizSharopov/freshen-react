@@ -671,17 +671,17 @@ export default function ChosenPage(props: any) {
       </Container>
 
       <div>
-        <Box
+        <Container
           sx={{
-            width: "400px",
+            width: "50%",
             height: "50px",
-            marginLeft: "950px",
+            marginLeft: "50%",
             marginTop: "100px",
             background: "#ffffff",
             zIndex: "777",
             position: "absolute",
           }}
-        ></Box>
+        ></Container>
         <BestPage
           onAdd={props.onAdd}
           targetProductsSearchObj={props.targetProductsSearchObj}

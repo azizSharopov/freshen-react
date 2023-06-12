@@ -568,7 +568,12 @@ export function AllProducts(props: any) {
                   >
                     Sort by latest
                   </MenuItem>
-                  <MenuItem value={"sales"}>Sort by sales</MenuItem>
+                  <MenuItem
+                    value={"sales"}
+                    onClick={() => searchOrderHandler("product_discount.value")}
+                  >
+                    Sort by sales
+                  </MenuItem>
                   <MenuItem
                     value={"high"}
                     onClick={() => searchOrderHandler("product_price")}

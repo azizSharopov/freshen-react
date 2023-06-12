@@ -160,16 +160,18 @@ export function DealPage(props: any) {
           justifyContent: "center",
         }}
       >
-        <Box className="prev_btn shop_prev">
-          <ArrowBackIosNewIcon
-            sx={{ fontSize: 40 }}
-            style={{
-              color: "#41544A",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          />
+        <Box
+          className="prev_btn shop-prev"
+          style={{
+            color: "#41544A",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "relative",
+            fontSize: 40,
+          }}
+        >
+          <ArrowBackIosNewIcon sx={{ fontSize: 40, color: "#41544A" }} />
         </Box>
         <Swiper
           style={{ width: "1280px" }}
