@@ -57,13 +57,13 @@ export function DealPage(props: any) {
     const productService = new ProductApiService();
     productService
       .getTargetProducts({
-        order: "product_discount.value",
+        order: "discounted_result",
         page: 1,
-        limit: 200,
+        limit: 30,
       })
       .then((data) => {
         const filteredData = data.filter(
-          (product) => product.product_discount?.value !== null
+          (product) => product.discounted_result !== null
         );
         setSaleProducts(filteredData);
       })
@@ -216,8 +216,7 @@ export function DealPage(props: any) {
                     }}
                     className="product_sale_info"
                   > */}
-                  {product.discounted_price &&
-                  product.product_discount?.isValid === true &&
+                  {product.discounted_result &&
                   product.product_discount?.type === "percentage" ? (
                     <Box
                       sx={{
@@ -338,8 +337,7 @@ export function DealPage(props: any) {
                     </Box>
 
                     <Box className="product_pricebest">
-                      {product.discounted_price &&
-                      product.product_discount?.isValid === true &&
+                      {product.discounted_result &&
                       product.product_discount?.type === "percentage" ? (
                         <Box
                           className="product_price"
@@ -357,7 +355,7 @@ export function DealPage(props: any) {
                               fontSize: "16px",
                             }}
                           >
-                            ${product.discounted_price}{" "}
+                            ${product.discounted_result}{" "}
                           </Box>
 
                           <Box

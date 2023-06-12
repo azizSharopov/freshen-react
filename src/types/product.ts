@@ -35,4 +35,5 @@ export interface Product {
   me_liked: MeLiked[];
   reviews?: Review[];
   member_data: Shop[];
+  discounted_result: number;
 }

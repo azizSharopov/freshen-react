@@ -323,8 +323,7 @@ export default function ChosenPage(props: any) {
             className="product_pricebest"
             sx={{ display: "flex", justifyContent: "flex-start" }}
           >
-            {chosenProduct?.discounted_price &&
-            chosenProduct.product_discount?.isValid === true &&
+            {chosenProduct?.discounted_result &&
             chosenProduct.product_discount?.type === "percentage" ? (
               <Box
                 className="product_price"
@@ -342,7 +341,7 @@ export default function ChosenPage(props: any) {
                     fontSize: "16px",
                   }}
                 >
-                  ${chosenProduct.discounted_price}{" "}
+                  ${chosenProduct?.discounted_result}{" "}
                 </Box>
 
                 <Box

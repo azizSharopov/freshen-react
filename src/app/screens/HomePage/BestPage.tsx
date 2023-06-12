@@ -263,8 +263,7 @@ export function BestPage(props: any) {
                         {product.product_name}
                       </Box>
                       <Box className="product_pricebest">
-                        {product.discounted_price &&
-                        product.product_discount?.isValid === true &&
+                        {product.discounted_result &&
                         product.product_discount?.type === "percentage" ? (
                           <Box
                             className="product_price"
@@ -282,7 +281,7 @@ export function BestPage(props: any) {
                                 fontSize: "16px",
                               }}
                             >
-                              ${product.discounted_price}{" "}
+                              ${product.discounted_result}{" "}
                             </Box>
 
                             <Box

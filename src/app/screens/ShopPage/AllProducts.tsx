@@ -615,8 +615,7 @@ export function AllProducts(props: any) {
                     src={image_path}
                     alt=""
                   />
-                  {product.discounted_price &&
-                  product.product_discount?.isValid === true &&
+                  {product.discounted_result &&
                   product.product_discount?.type === "percentage" ? (
                     <Box
                       sx={{ zIndex: "5", position: "absolute" }}
@@ -704,8 +703,7 @@ export function AllProducts(props: any) {
                   </Box>
 
                   <Box className="product_pricebest">
-                    {product.discounted_price &&
-                    product.product_discount?.isValid === true &&
+                    {product.discounted_result &&
                     product.product_discount?.type === "percentage" ? (
                       <Box
                         className="product_price"
@@ -723,7 +721,7 @@ export function AllProducts(props: any) {
                             fontSize: "16px",
                           }}
                         >
-                          ${product.discounted_price}{" "}
+                          ${product.discounted_result}{" "}
                         </Box>
 
                         <Box
