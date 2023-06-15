@@ -153,7 +153,7 @@ export function BestPage(props: any) {
         }}
       >
         <Box
-          className="prev_btn shop-prev"
+          className="prev_btn shop-prev1"
           style={{
             color: "#41544A",
             display: "flex",
@@ -173,8 +173,8 @@ export function BestPage(props: any) {
             centeredSlides={false}
             spaceBetween={30}
             navigation={{
-              nextEl: ".shop-next",
-              prevEl: ".shop-prev",
+              nextEl: ".shop-next1",
+              prevEl: ".shop-prev1",
             }}
             pagination={{
               el: ".swiper-pagination",
@@ -359,7 +359,7 @@ export function BestPage(props: any) {
             })}
           </Swiper>
         </Container>
-        <Box className="next_btn shop-next" style={{ color: "#41544A" }}>
+        <Box className="next_btn shop-next1" style={{ color: "#41544A" }}>
           <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
         </Box>
       </div>

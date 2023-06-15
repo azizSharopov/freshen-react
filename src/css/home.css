@@ -55,7 +55,7 @@
 .swiper_box2 {
   width: 100%;
   height: 600px;
-  background-image: url("/public/homepage/fermer.jpg");
+  /* background-image: url("/public/homepage/fermer.jpg"); */
 }
 
 .specialOffer {

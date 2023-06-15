@@ -223,27 +223,34 @@ export default function ChosenPage(props: any) {
   const product_raviews_cnt = chosenProduct?.reviews?.[0]?.reviews_cnt ?? 0;
 
   return (
-    <div>
-      <div className="ChosenPage">
+    <div style={{ background: "#ffffff" }}>
+      <div className="blogPage">
         <div>
-          <img src="/icons/imagechosen.png" alt="" />
+          <img src="/homepage/image 28.png" alt="" />
         </div>
         <Container>
           <Box
             sx={{
-              width: "334px",
-              height: "24px",
-              position: "relative",
+              width: "335px",
+              height: "91px",
+              position: "absolute",
+              marginTop: "62px",
               display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "5px",
+              flexDirection: "column",
             }}
           >
-            <Box className="chosen_page">Home / Shop / </Box>
+            <Box className="blog_page" sx={{ width: "400px" }}>
+              {chosenProduct?.product_name}
+            </Box>
+            <Box className="blog_page1">
+              <Box>
+                Home / Shop /{" "}
+                <span style={{ fontWeight: "600" }}>{chosenShop?.mb_nick}</span>
+              </Box>
+            </Box>
+            {/* <Box className="chosen_page">Home / Shop / </Box>
             <Box className="chosen_page"> {chosenShop?.mb_nick} / </Box>
-            <Box className="chosen_page1">{chosenProduct?.product_name} </Box>
+            <Box className="chosen_page1">{chosenProduct?.product_name} </Box> */}
           </Box>
         </Container>
       </div>
@@ -390,6 +397,7 @@ export default function ChosenPage(props: any) {
               onClick={(e) => {
                 props.onAdd(chosenProduct);
               }}
+              sx={{ cursor: "pointer" }}
             >
               <Box>
                 <img
@@ -658,7 +666,11 @@ export default function ChosenPage(props: any) {
                     onChange={(e) => setReviewContent(e.target.value)}
                   ></textarea>
                 </Box>
-                <Box className="review_submit_btn" onClick={submitReview}>
+                <Box
+                  sx={{ cursor: "pointer" }}
+                  className="review_submit_btn"
+                  onClick={submitReview}
+                >
                   SUBMIT
                 </Box>
               </Box>

@@ -305,6 +305,7 @@ export function VisitOtherPage(props: any) {
                             background: "#d53f20",
                             color: "#121212",
                             fontWeight: "600",
+                            cursor: "pointer",
                           }}
                           onClick={unsubscribeHandler}
                         >
@@ -324,6 +325,7 @@ export function VisitOtherPage(props: any) {
                             backgroundColor: "#86bc42",
                             color: "#121212",
                             fontWeight: "600",
+                            cursor: "pointer",
                           }}
                           onClick={subscribeHandler}
                           // @ts-ignore
@@ -368,6 +370,7 @@ export function VisitOtherPage(props: any) {
                             display: "flex",
                             alignItems: "center",
                             gap: "15px",
+                            cursor: "pointer",
                           }}
                         >
                           <ArticleIcon />{" "}
@@ -384,6 +387,7 @@ export function VisitOtherPage(props: any) {
                             display: "flex",
                             alignItems: "center",
                             gap: "15px",
+                            cursor: "pointer",
                           }}
                         >
                           <PeopleAltIcon />{" "}
@@ -400,6 +404,7 @@ export function VisitOtherPage(props: any) {
                             display: "flex",
                             alignItems: "center",
                             gap: "15px",
+                            cursor: "pointer",
                           }}
                         >
                           <PeopleOutlineIcon />{" "}

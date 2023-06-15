@@ -161,7 +161,7 @@ export function DealPage(props: any) {
         }}
       >
         <Box
-          className="prev_btn shop-prev"
+          className="prev_btn shop-prev2"
           style={{
             color: "#41544A",
             display: "flex",
@@ -180,8 +180,8 @@ export function DealPage(props: any) {
           centeredSlides={false}
           spaceBetween={30}
           navigation={{
-            nextEl: ".shop-next",
-            prevEl: ".shop-prev",
+            nextEl: ".shop-next2",
+            prevEl: ".shop-prev2",
           }}
           pagination={{
             el: ".swiper-pagination",
@@ -425,13 +425,10 @@ export function DealPage(props: any) {
             );
           })}
         </Swiper>
-        <Box className="next_btn shop-next" style={{ color: "#41544A" }}>
+        <Box className="next_btn shop-next2" style={{ color: "#41544A" }}>
           <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
         </Box>
       </div>
     </div>
   );
-}
-function setProductRebuild(arg0: Date) {
-  throw new Error("Function not implemented.");
 }

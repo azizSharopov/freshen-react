@@ -40,11 +40,17 @@ export function AdsPage(props: any) {
       >
         <SwiperSlide>
           <Box className="swiper_box2">
+            <video autoPlay loop muted>
+              <source
+                src="/public/admin_photo/navbarvid.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
             <Container
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                // justifyContent: "space-between",
                 alignItems: "flex-start",
                 marginTop: "110px",
               }}

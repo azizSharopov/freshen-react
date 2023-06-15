@@ -292,11 +292,10 @@ export function NavbarCommon(props: any) {
                 <Box style={{ marginTop: "8px" }}>
                   <img
                     style={{
-                      width: "24px",
-                      height: "24px",
-                      borderRadius: "24px",
+                      width: "32px",
+                      height: "29px",
                     }}
-                    src="/icons/default_user.png"
+                    src="/icons/1144.jpg"
                     alt="user"
                   />
                 </Box>

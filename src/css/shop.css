@@ -46,6 +46,7 @@
   font-size: 16px;
   line-height: 35px;
   color: #121212;
+  cursor: pointer;
 }
 .shop_categ_text span:hover {
   color: #86bc42;
