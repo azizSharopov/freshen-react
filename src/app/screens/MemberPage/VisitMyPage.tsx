@@ -44,6 +44,13 @@ import {
 import CommunityApiService from "../../apiServices/communityApiService";
 import MemberApiService from "../../apiServices/memberApiService";
 import { verifiedMemberData } from "../../apiServices/verify";
+import {
+  Route,
+  Switch,
+  useHistory,
+  useLocation,
+  useRouteMatch,
+} from "react-router-dom";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -73,8 +80,17 @@ const chosenSingleBoArticleRetriever = createSelector(
   })
 );
 
+function useQuery() {
+  const { search } = useLocation();
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
 export default function VisitMyPage(props: any) {
   /** INITIALIZATIONS **/
+  const history = useHistory();
+  let member = useRouteMatch();
+  const query = useQuery();
+  const chosen_mb_id: string | null = query.get("mb_id") ?? null;
 
   const {
     setChosenMember,
@@ -345,7 +361,11 @@ export default function VisitMyPage(props: any) {
             </Box>
             <Box sx={{ background: "#ffffff" }} className="my_page_tabpanels">
               <TabPanel value={"2"}>
-                <AccauntDetail />
+                <Switch>
+                  <Route path={`${member.path}`}>
+                    <AccauntDetail />
+                  </Route>
+                </Switch>
               </TabPanel>
 
               <TabPanel value={"4"}>

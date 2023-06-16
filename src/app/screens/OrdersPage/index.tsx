@@ -11,7 +11,7 @@ import ProcessOrders from "../../components/orders/processOrders";
 import FinishedOrders from "../../components/orders/finishedOrders";
 import Marginer from "../../components/marginer";
 import { Order } from "../../../types/order";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 // REDUX
 import { useDispatch } from "react-redux";
@@ -34,6 +34,8 @@ const actionDispatch = (dispach: Dispatch) => ({
 });
 
 export function OrdersPage(props: any) {
+  const history = useHistory();
+
   /** INITIALIZATIONS **/
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
@@ -55,6 +57,10 @@ export function OrdersPage(props: any) {
       .catch((err) => console.log(err));
   }, [props.orderRebuild]);
 
+  const chosenSettingsHandler = () => {
+    history.push(`/member-page`);
+    setValue("2");
+  };
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
@@ -95,12 +101,10 @@ export function OrdersPage(props: any) {
           <TabContext value={value}>
             <Box className={"order_nav_frame"}>
               <Box
-                sx={{
-                  borderBottom: 1,
-                  borderColor: "diveder",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
+              // sx={{
+              //   borderBottom: 1,
+              //   borderColor: "diveder",
+              // }}
               >
                 <TabList
                   onChange={handleChange}
@@ -118,17 +122,14 @@ export function OrdersPage(props: any) {
                       color: "#121212",
                       fontFamily: "Signika",
                       lineHeight: "24px",
-
                       "&.Mui-selected": {
-                        backgroundColor: "#86bc42",
-                        borderRadius: "4px",
-                        border: "none !important",
-                        boxShadow: "none",
-                        outline: "none",
+                        borderBottom: "0.3rem solid",
+                        color: "#86bc42",
                       },
+
                       textTransform: "uppercase",
                     }}
-                    label="SHOPPING CART"
+                    label="My Orders"
                     value={"1"}
                   />
                   <Tab
@@ -139,15 +140,12 @@ export function OrdersPage(props: any) {
                       fontFamily: "Signika",
                       lineHeight: "24px",
                       "&.Mui-selected": {
-                        backgroundColor: "#86bc42",
-                        borderRadius: "4px",
-                        border: "none !important",
-                        boxShadow: "none",
-                        outline: "none",
+                        borderBottom: "0.3rem solid",
+                        color: "#86bc42",
                       },
                       textTransform: "uppercase",
                     }}
-                    label=" CHECKOUT"
+                    label="Process"
                     value={"2"}
                   />
                   <Tab
@@ -158,15 +156,12 @@ export function OrdersPage(props: any) {
                       fontFamily: "Signika",
                       lineHeight: "24px",
                       "&.Mui-selected": {
-                        backgroundColor: "#86bc42",
-                        borderRadius: "4px",
-                        border: "none !important",
-                        boxShadow: "none",
-                        outline: "none",
+                        borderBottom: "0.3rem solid",
+                        color: "#86bc42",
                       },
                       textTransform: "uppercase",
                     }}
-                    label="ORDER COMPLETE"
+                    label="Delevired"
                     value={"3"}
                   />
                 </TabList>
@@ -188,7 +183,7 @@ export function OrdersPage(props: any) {
 
         <Stack className={"order_right"}>
           <Box className={"order_info_box"}>
-            <Box className="account_infos">
+            <Box className="account_infos_order">
               <Box className="account_img1">
                 <Box className="account_img_box">
                   <img
@@ -202,7 +197,10 @@ export function OrdersPage(props: any) {
                   />
                   {/* <img src={"/icons/user1.svg"} alt="my_page" /> */}
                 </Box>
-                <Box className="account_name_box">
+                <Box
+                  className="account_name_box"
+                  sx={{ width: "100%", textAlign: "start" }}
+                >
                   <span> {verifiedMemberData?.mb_nick}</span>
                   <br />
                   {verifiedMemberData?.mb_email}
@@ -226,29 +224,32 @@ export function OrdersPage(props: any) {
                 </Box>
               </Box>
             </Box>
-            <Marginer
-              direction="horizontal"
-              height="1"
-              width="2"
-              bg="#EAEAEA"
-              opsty="1"
-            />
+
             <Box
               style={{ border: "1px solid #A1A1A1" }}
               width={"100%"}
-              sx={{ mt: "40px", mb: "8px" }}
+              sx={{ mt: "20px", mb: "8px" }}
             ></Box>
             <Box className={"order_user_address"}>
               <div style={{ display: "flex" }}>
                 <LocationOnIcon />
               </div>
               <div className={"spec_address_txt"}>
-                {verifiedMemberData?.mb_address}
+                {verifiedMemberData?.mb_address ?? "Address not entered"}
               </div>
             </Box>
-            {/* <Link to="/member-page" className="order_text_conti">
-              Change address
-            </Link> */}
+            <Box className={"order_info"}>
+              <span
+                style={{ color: "red", fontWeight: "700", fontSize: "20px" }}
+              >
+                !
+              </span>
+              Please check your address is correct before paying. If your
+              address is not entered please enter
+            </Box>
+            <Box onClick={chosenSettingsHandler} className="order_text_conti">
+              Add or change an address
+            </Box>
           </Box>
           <Box className={"order_info_box"} sx={{ mt: "15px" }}>
             <input

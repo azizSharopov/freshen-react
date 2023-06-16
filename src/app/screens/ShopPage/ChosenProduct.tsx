@@ -9,6 +9,7 @@ import "swiper/css/thumbs";
 // import required modules
 import {
   Box,
+  Button,
   Checkbox,
   Container,
   Rating,
@@ -392,12 +393,24 @@ export default function ChosenPage(props: any) {
                 +
               </Box>
             </Box> */}
-            <Box
+            <Button
               className="add_card_chosen"
               onClick={(e) => {
                 props.onAdd(chosenProduct);
               }}
-              sx={{ cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                color: "#ffffff",
+                fontSize: "14px",
+                width: "232px",
+                height: "55px",
+                background: "#86bc42",
+                textTransform: "none",
+                "&:hover": {
+                  boxShadow: "10px 5px 5px red",
+                  backgroundColor: "#86bc42",
+                },
+              }}
             >
               <Box>
                 <img
@@ -406,8 +419,17 @@ export default function ChosenPage(props: any) {
                   alt=""
                 />{" "}
               </Box>
-              <Box>ADD TO CART</Box>
-            </Box>
+              <Box
+                style={{
+                  color: "#ffffff",
+                  fontSize: "13px",
+                  fontWeight: "700",
+                  lineHeight: "16px",
+                }}
+              >
+                ADD TO CART
+              </Box>
+            </Button>
           </Box>
           <Box
             className="chosen_heart"

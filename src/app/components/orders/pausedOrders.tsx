@@ -207,7 +207,7 @@ export default function PausedOrders(props: any) {
                         "0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
                     }}
                   >
-                    PROCEED TO CHECKOUT
+                    PAY
                   </Button>
                 </Box>
               </Box>
