@@ -292,7 +292,7 @@ export function NavbarCommon(props: any) {
                 <Box style={{ marginTop: "8px" }}>
                   <img
                     style={{
-                      width: "32px",
+                      width: "30px",
                       height: "29px",
                     }}
                     src="/icons/1144.jpg"

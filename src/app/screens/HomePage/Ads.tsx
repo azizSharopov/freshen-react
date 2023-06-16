@@ -40,14 +40,15 @@ export function AdsPage(props: any) {
       >
         <SwiperSlide>
           <Box className="swiper_box2">
-            <video autoPlay loop muted>
-              <source
-                src="/public/admin_photo/navbarvid.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-            <Container
+            <video
+              style={{ width: "100%" }}
+              className="video"
+              src="/admin_photo/navbarvid.mp4"
+              autoPlay
+              muted
+              loop
+            />
+            {/* <Container
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -85,16 +86,11 @@ export function AdsPage(props: any) {
               >
                 SHOP NOW
               </Button>
-            </Container>
+            </Container> */}
           </Box>
         </SwiperSlide>
 
-        {/* <SwiperSlide style={{ background: "#ffffff" }} className="home_ads">
-          <Box className="home_ads1">
-            <img src="./admin_photo/large-set.jpg" alt="ads_vege" />
-          </Box>
-        </SwiperSlide> */}
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <Box className="swiper_box3">
             <Container
               sx={{
@@ -136,12 +132,6 @@ export function AdsPage(props: any) {
                 SHOP NOW
               </Button>
             </Container>
-          </Box>
-        </SwiperSlide>
-
-        {/* <SwiperSlide style={{ background: "#ffffff" }} className="home_ads">
-          <Box className="home_ads1">
-            <img src="./admin_photo/sert.jpg" alt="ads_fruit" />
           </Box>
         </SwiperSlide> */}
       </Swiper>

@@ -98,7 +98,7 @@ export function AdverPage(props: any) {
             </Container>
           </Box>
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <Box className="adver_box2">
             <Container
               sx={{
@@ -207,7 +207,7 @@ export function AdverPage(props: any) {
               </Box>
             </Box>
           </Container>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
       <Box
         sx={{

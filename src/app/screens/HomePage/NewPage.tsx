@@ -56,7 +56,7 @@ export function NewPage(props: any) {
   useEffect(() => {
     const productService = new ProductApiService();
     productService
-      .getTargetProducts({ order: "createdAt", page: 1, limit: 200 })
+      .getTargetProducts({ order: "createdAt", page: 1, limit: 30 })
       .then((data) => setNewProducts(data))
       .catch((err) => console.log(err));
   }, [productRebuild]);

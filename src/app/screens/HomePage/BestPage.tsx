@@ -70,7 +70,7 @@ export function BestPage(props: any) {
   useEffect(() => {
     const productService = new ProductApiService();
     productService
-      .getTargetProducts({ order: "product_likes", page: 1, limit: 200 })
+      .getTargetProducts({ order: "product_likes", page: 1, limit: 30 })
       .then((data) => setBestProducts(data))
       .catch((err) => console.log(err));
   }, [productRebuild]);
