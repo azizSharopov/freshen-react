@@ -32,6 +32,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import useDeviceDetect from "../../../lib/responsive/useDeviceDetect";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -108,103 +109,101 @@ export function NewPage(props: any) {
       sweetErrorHandling(err).then();
     }
   };
+  const { isMobile } = useDeviceDetect();
 
-  return (
-    <div
-      style={{
-        width: "100%",
-        height: "555px",
-        background: "#ffffff",
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Container style={{ display: "flex", flexDirection: "row" }}>
-        <Box className="home_top"> New Products</Box>
-        <Box
-          className="best_product_link"
-          onClick={() => chosenShopHandler("createdAt")}
-        >
-          View All_ <ArrowRightAltIcon />
-        </Box>
-      </Container>
-
+  if (isMobile()) {
+    return (
       <div
-        className={"best_products"}
         style={{
-          width: "1500px",
-          height: "454px",
-
-          marginTop: "40px",
+          width: "100%",
+          height: "450px",
+          background: "#ffffff",
           display: "flex",
-          position: "relative",
-          flexDirection: "row",
+          flexDirection: "column",
+          marginTop: "90px",
+          justifyContent: "center",
           alignItems: "center",
-          justifyContent: "space-around",
         }}
       >
-        <Box
-          className="prev_btn shop-prev"
-          style={{
-            color: "#41544A",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "relative",
-            fontSize: 40,
-          }}
-        >
-          <ArrowBackIosNewIcon sx={{ fontSize: 40, color: "#41544A" }} />
+        <Box style={{ display: "flex", flexDirection: "row" }}>
+          <Box className="home_top_mb" sx={{ marginTop: "50px" }}>
+            {" "}
+            New Products
+          </Box>
         </Box>
-        <Swiper
-          className={"best_products_wrapper"}
-          slidesPerView={4}
-          centeredSlides={false}
-          spaceBetween={30}
-          navigation={{
-            nextEl: ".shop-next",
-            prevEl: ".shop-prev",
-          }}
-          pagination={{
-            el: ".swiper-pagination",
-            clickable: true,
-          }}
-          modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
+
+        <div
+          className={"best_products"}
+          style={{
+            width: "100%",
+            height: "430px",
+            marginTop: "30px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {newProducts.map((product: Product) => {
-            const image_path = `${serverApi}/${product.product_images[0]}`;
-            return (
-              <SwiperSlide
-                style={{
-                  cursor: "pointer",
-                }}
-                className="productsbest"
-              >
-                <Box
-                  className="products_sliderbest"
-                  onClick={() => chosenProductHandler(product._id)}
+          <Box
+            className="prev_btn_mb shop-prev"
+            style={{
+              color: "#41544A",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              fontSize: 30,
+            }}
+          >
+            <ArrowBackIosNewIcon sx={{ fontSize: 30, color: "#41544A" }} />
+          </Box>
+          <Swiper
+            style={{ width: "100%" }}
+            className={"best_products_wrapper_mb"}
+            slidesPerView={1}
+            centeredSlides={false}
+            spaceBetween={30}
+            navigation={{
+              nextEl: ".shop-next",
+              prevEl: ".shop-prev",
+            }}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+          >
+            {newProducts.map((product: Product) => {
+              const image_path = `${serverApi}/${product.product_images[0]}`;
+              return (
+                <SwiperSlide
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  className="productsbest"
                 >
                   <Box
-                    className="products_slider_img_best"
-                    sx={{ marginLeft: "30px" }}
+                    className="products_sliderbest"
+                    // onClick={() => chosenProductHandler(product._id)}
                   >
-                    <img src={image_path} alt="best product" />
-
                     <Box
-                      className="like_view_boxbest"
-                      sx={{ marginLeft: "210px" }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
+                      className="products_slider_img_best"
+                      sx={{ marginLeft: "30px" }}
                     >
-                      {/* <Badge
+                      <img src={image_path} alt="best product" />
+
+                      <Box
+                        className="like_view_boxbest"
+                        sx={{ marginLeft: "210px" }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        {/* <Badge
                       badgeContent={product.product_likes}
                       sx={{
                         color: "#121212",
@@ -215,142 +214,400 @@ export function NewPage(props: any) {
                         e.stopPropagation();
                       }}
                     > */}
-                      <Checkbox
-                        icon={<img src="/icons/heart_green.png" alt="" />}
-                        id={product._id}
-                        checkedIcon={<img src="/icons/heart_red.png" alt="" />}
-                        onClick={(e) => {
-                          targetLikeProduct(e, product._id);
-                        }}
-                        /*@ts-ignore*/
-                        checked={
-                          product?.me_liked && product?.me_liked[0]?.my_favorite
-                            ? true
-                            : false
-                        }
-                      />
-                      {/* </Badge> */}
+                        <Checkbox
+                          icon={<img src="/icons/heart_green.png" alt="" />}
+                          id={product._id}
+                          checkedIcon={
+                            <img src="/icons/heart_red.png" alt="" />
+                          }
+                          onClick={(e) => {
+                            targetLikeProduct(e, product._id);
+                          }}
+                          /*@ts-ignore*/
+                          checked={
+                            product?.me_liked &&
+                            product?.me_liked[0]?.my_favorite
+                              ? true
+                              : false
+                          }
+                        />
+                        {/* </Badge> */}
+                      </Box>
                     </Box>
-                  </Box>
-                  <Box className="product_infobest" sx={{ marginTop: "20px" }}>
-                    <Box className="brand_namebest">
-                      {product?.member_data[0]?.mb_nick}
-                    </Box>
-                    <Box className="product_retingbest">
-                      <Rating
-                        size="small"
-                        name="read-only"
-                        value={
-                          product.reviews && product.reviews.length > 0
-                            ? (product.reviews as Review[])[0]?.average_rating
-                            : 0 // Provide a default value if there are no reviews
-                        }
-                        readOnly
-                      />
-                    </Box>
-                    <Box className="product_namebest">
-                      {product.product_name}
-                    </Box>
-                    <Box className="product_pricebest">
-                      {product.discounted_result &&
-                      product.product_discount?.type === "percentage" ? (
-                        <Box
-                          className="product_price"
+                    <Box
+                      className="product_infobest"
+                      sx={{ marginTop: "20px" }}
+                    >
+                      <Box className="brand_namebest">
+                        {product?.member_data[0]?.mb_nick}
+                      </Box>
+                      <Box className="product_retingbest">
+                        <Rating
+                          size="small"
+                          name="read-only"
+                          value={
+                            product.reviews && product.reviews.length > 0
+                              ? (product.reviews as Review[])[0]?.average_rating
+                              : 0 // Provide a default value if there are no reviews
+                          }
+                          readOnly
+                        />
+                      </Box>
+                      <Box className="product_namebest">
+                        {product.product_name}
+                      </Box>
+                      <Box className="product_pricebest">
+                        {product.discounted_result &&
+                        product.product_discount?.type === "percentage" ? (
+                          <Box
+                            className="product_price"
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.discounted_result}{" "}
+                            </Box>
+
+                            <Box
+                              className="product_price_old"
+                              sx={{
+                                textDecorationLine: "line-through",
+                                color: "#7a7878",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              {" "}
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        ) : (
+                          <Box className="product_price">
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        )}
+                      </Box>
+                      <Box sx={{ marginBottom: "10px" }}>
+                        {" "}
+                        <Button
+                          className={"add_card_btnbest"}
+                          onClick={(e) => {
+                            props.onAdd(product);
+                            e.stopPropagation();
+                          }}
                           sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            gap: "15px",
+                            color: "#ffffff",
+                            fontSize: "14px",
+                            width: "240px",
+                            height: "35px",
+                            background: "#86bc42",
+                            textTransform: "none",
+                            "&:hover": {
+                              backgroundColor: "#86bc42",
+                            },
                           }}
                         >
-                          <Box
-                            className="product_price_current"
-                            sx={{
-                              color: "#86bc42",
-                              fontWeight: "600",
-                              fontSize: "16px",
+                          <img
+                            src={"/icons/shopping-cart.png"}
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              display: "flex",
+                            }}
+                          />{" "}
+                          <span
+                            style={{
+                              color: "#ffffff",
+                              fontSize: "13px",
+                              fontWeight: "700",
+                              lineHeight: "16px",
                             }}
                           >
-                            ${product.discounted_result}{" "}
-                          </Box>
-
-                          <Box
-                            className="product_price_old"
-                            sx={{
-                              textDecorationLine: "line-through",
-                              color: "#7a7878",
-                              fontWeight: "600",
-                              fontSize: "16px",
-                            }}
-                          >
-                            {" "}
-                            ${product.product_price}
-                          </Box>
-                        </Box>
-                      ) : (
-                        <Box className="product_price">
-                          <Box
-                            className="product_price_current"
-                            sx={{
-                              color: "#86bc42",
-                              fontWeight: "600",
-                              fontSize: "16px",
-                            }}
-                          >
-                            ${product.product_price}
-                          </Box>
-                        </Box>
-                      )}
+                            ADD TO CART
+                          </span>
+                        </Button>
+                      </Box>
                     </Box>
-                    <Box sx={{ marginBottom: "10px" }}>
-                      {" "}
-                      <Button
-                        className={"add_card_btnbest"}
+                  </Box>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <Box className="next_btn_mb shop-next" style={{ color: "#41544A" }}>
+            <ArrowForwardIosIcon sx={{ fontSize: 30 }} />
+          </Box>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "555px",
+          background: "#ffffff",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Container style={{ display: "flex", flexDirection: "row" }}>
+          <Box className="home_top"> New Products</Box>
+          <Box
+            className="best_product_link"
+            onClick={() => chosenShopHandler("createdAt")}
+          >
+            View All_ <ArrowRightAltIcon />
+          </Box>
+        </Container>
+
+        <div
+          className={"best_products"}
+          style={{
+            width: "1500px",
+            height: "454px",
+
+            marginTop: "40px",
+            display: "flex",
+            position: "relative",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <Box
+            className="prev_btn shop-prev"
+            style={{
+              color: "#41544A",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              fontSize: 40,
+            }}
+          >
+            <ArrowBackIosNewIcon sx={{ fontSize: 40, color: "#41544A" }} />
+          </Box>
+          <Swiper
+            className={"best_products_wrapper"}
+            slidesPerView={4}
+            centeredSlides={false}
+            spaceBetween={30}
+            navigation={{
+              nextEl: ".shop-next",
+              prevEl: ".shop-prev",
+            }}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+          >
+            {newProducts.map((product: Product) => {
+              const image_path = `${serverApi}/${product.product_images[0]}`;
+              return (
+                <SwiperSlide
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  className="productsbest"
+                >
+                  <Box
+                    className="products_sliderbest"
+                    onClick={() => chosenProductHandler(product._id)}
+                  >
+                    <Box
+                      className="products_slider_img_best"
+                      sx={{ marginLeft: "30px" }}
+                    >
+                      <img src={image_path} alt="best product" />
+
+                      <Box
+                        className="like_view_boxbest"
+                        sx={{ marginLeft: "210px" }}
                         onClick={(e) => {
-                          props.onAdd(product);
                           e.stopPropagation();
                         }}
-                        sx={{
-                          color: "#ffffff",
-                          fontSize: "14px",
-                          width: "240px",
-                          height: "35px",
-                          background: "#86bc42",
-                          textTransform: "none",
-                          "&:hover": {
-                            backgroundColor: "#86bc42",
-                          },
-                        }}
                       >
-                        <img
-                          src={"/icons/shopping-cart.png"}
-                          style={{
-                            width: "20px",
-                            height: "20px",
-                            display: "flex",
+                        {/* <Badge
+                      badgeContent={product.product_likes}
+                      sx={{
+                        color: "#121212",
+                        fontSize: "18px",
+                        fontWeight: 700,
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    > */}
+                        <Checkbox
+                          icon={<img src="/icons/heart_green.png" alt="" />}
+                          id={product._id}
+                          checkedIcon={
+                            <img src="/icons/heart_red.png" alt="" />
+                          }
+                          onClick={(e) => {
+                            targetLikeProduct(e, product._id);
                           }}
-                        />{" "}
-                        <span
-                          style={{
+                          /*@ts-ignore*/
+                          checked={
+                            product?.me_liked &&
+                            product?.me_liked[0]?.my_favorite
+                              ? true
+                              : false
+                          }
+                        />
+                        {/* </Badge> */}
+                      </Box>
+                    </Box>
+                    <Box
+                      className="product_infobest"
+                      sx={{ marginTop: "20px" }}
+                    >
+                      <Box className="brand_namebest">
+                        {product?.member_data[0]?.mb_nick}
+                      </Box>
+                      <Box className="product_retingbest">
+                        <Rating
+                          size="small"
+                          name="read-only"
+                          value={
+                            product.reviews && product.reviews.length > 0
+                              ? (product.reviews as Review[])[0]?.average_rating
+                              : 0 // Provide a default value if there are no reviews
+                          }
+                          readOnly
+                        />
+                      </Box>
+                      <Box className="product_namebest">
+                        {product.product_name}
+                      </Box>
+                      <Box className="product_pricebest">
+                        {product.discounted_result &&
+                        product.product_discount?.type === "percentage" ? (
+                          <Box
+                            className="product_price"
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.discounted_result}{" "}
+                            </Box>
+
+                            <Box
+                              className="product_price_old"
+                              sx={{
+                                textDecorationLine: "line-through",
+                                color: "#7a7878",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              {" "}
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        ) : (
+                          <Box className="product_price">
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        )}
+                      </Box>
+                      <Box sx={{ marginBottom: "10px" }}>
+                        {" "}
+                        <Button
+                          className={"add_card_btnbest"}
+                          onClick={(e) => {
+                            props.onAdd(product);
+                            e.stopPropagation();
+                          }}
+                          sx={{
                             color: "#ffffff",
-                            fontSize: "13px",
-                            fontWeight: "700",
-                            lineHeight: "16px",
+                            fontSize: "14px",
+                            width: "240px",
+                            height: "35px",
+                            background: "#86bc42",
+                            textTransform: "none",
+                            "&:hover": {
+                              backgroundColor: "#86bc42",
+                            },
                           }}
                         >
-                          ADD TO CART
-                        </span>
-                      </Button>
+                          <img
+                            src={"/icons/shopping-cart.png"}
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              display: "flex",
+                            }}
+                          />{" "}
+                          <span
+                            style={{
+                              color: "#ffffff",
+                              fontSize: "13px",
+                              fontWeight: "700",
+                              lineHeight: "16px",
+                            }}
+                          >
+                            ADD TO CART
+                          </span>
+                        </Button>
+                      </Box>
                     </Box>
                   </Box>
-                </Box>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-        <Box className="next_btn shop-next" style={{ color: "#41544A" }}>
-          <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-        </Box>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <Box className="next_btn shop-next" style={{ color: "#41544A" }}>
+            <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
+          </Box>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }

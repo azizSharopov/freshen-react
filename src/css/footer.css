@@ -209,3 +209,33 @@
   margin-top: 15px;
   position: relative;
 }
+.footer_ft_mb {
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  margin-left: 20px;
+}
+.footer_ft1_mb {
+  width: 205px;
+  height: 20px;
+  margin-top: 5px;
+  position: relative;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 30px;
+  color: #ffffff;
+}
+.footer_ft2_mb {
+  width: 333px;
+  height: 30px;
+  margin-top: 15px;
+  position: relative;
+}

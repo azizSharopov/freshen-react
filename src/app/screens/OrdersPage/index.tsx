@@ -184,8 +184,14 @@ export function OrdersPage(props: any) {
         <Stack className={"order_right"}>
           <Box className={"order_info_box"}>
             <Box className="account_infos_order">
-              <Box className="account_img1">
-                <Box className="account_img_box">
+              <Box
+                // className="account_img1"
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Box className="account_img_box_ord">
                   <img
                     style={{ backgroundSize: "cover" }}
                     src={
@@ -199,7 +205,7 @@ export function OrdersPage(props: any) {
                 </Box>
                 <Box
                   className="account_name_box"
-                  sx={{ width: "100%", textAlign: "start" }}
+                  sx={{ width: "100%", textAlign: "center" }}
                 >
                   <span> {verifiedMemberData?.mb_nick}</span>
                   <br />
@@ -207,7 +213,7 @@ export function OrdersPage(props: any) {
                 </Box>
               </Box>
             </Box>
-            <Box className="spes_box">
+            <Box className="spes_box_order">
               <Box className="spes_type">SNS:</Box>
               <Box className="sns_icons">
                 <Box>

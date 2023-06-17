@@ -31,6 +31,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import useDeviceDetect from "../../../lib/responsive/useDeviceDetect";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -110,105 +111,107 @@ export function DealPage(props: any) {
       sweetErrorHandling(err).then();
     }
   };
+  const { isMobile } = useDeviceDetect();
 
-  return (
-    <div
-      style={{
-        width: "100%",
-        height: "530px",
-        background: "#ffffff",
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Container
+  if (isMobile()) {
+    return (
+      <div
         style={{
+          width: "100%",
+          height: "450px",
+          background: "#ffffff",
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
+          // position: "relative",
           justifyContent: "center",
-          marginTop: "40px",
+          alignItems: "center",
         }}
       >
-        <Box className="home_top" sx={{ width: "50%" }}>
-          Deal of the Day
-          <img
-            style={{ width: "200px", marginLeft: "40px" }}
-            src="/homepage/sale.jpg"
-            alt="deal_sale"
-          />
-        </Box>
+        <Box
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            marginTop: "100px",
+          }}
+        >
+          <Box className="home_top_mb" sx={{ width: "50%" }}>
+            Deal of the Day
+            <img
+              style={{ width: "100px", marginLeft: "40px" }}
+              src="/homepage/sale.jpg"
+              alt="deal_sale"
+            />
+          </Box>
 
-        {/* <Box className="sale_time">
+          {/* <Box className="sale_time">
           <span className="sale_time_end">Ends in:</span>
           <span className="sale_time1">04 : 43 : 11</span>
          
         </Box> */}
-      </Container>
-      <div
-        className={"best_products"}
-        style={{
-          width: "1441",
-          height: "454px",
-          marginTop: "60px",
-          display: "flex",
-          position: "relative",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Box
-          className="prev_btn shop-prev2"
-          style={{
-            color: "#41544A",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "relative",
-            fontSize: 40,
-          }}
-        >
-          <ArrowBackIosNewIcon sx={{ fontSize: 40, color: "#41544A" }} />
         </Box>
-        <Swiper
-          style={{ width: "1280px" }}
-          className={"best_products_wrapper"}
-          slidesPerView={4}
-          centeredSlides={false}
-          spaceBetween={30}
-          navigation={{
-            nextEl: ".shop-next2",
-            prevEl: ".shop-prev2",
-          }}
-          pagination={{
-            el: ".swiper-pagination",
-            clickable: true,
-          }}
-          modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
+        <div
+          className={"best_products"}
+          style={{
+            width: "100%",
+            height: "450px",
+            marginTop: "60px",
+            display: "flex",
+            // position: "relative",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {saleProducts.map((product: Product) => {
-            const image_path = `${serverApi}/${product.product_images[0]}`;
-            return (
-              <SwiperSlide
-                style={{
-                  cursor: "pointer",
-                  border: "1px solid #eaeaea",
-                }}
-                className="productsbest1"
-              >
-                <Box
-                  className="products_sliderbest1"
-                  sx={{ height: "410px" }}
-                  onClick={() => chosenProductHandler(product._id)}
+          <Box
+            className="prev_btn_mb shop-prev2"
+            style={{
+              color: "#41544A",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              fontSize: 30,
+            }}
+          >
+            <ArrowBackIosNewIcon sx={{ fontSize: 30, color: "#41544A" }} />
+          </Box>
+          <Swiper
+            // style={{ width: "100%" }}
+            className={"best_products_wrapper1"}
+            slidesPerView={1}
+            centeredSlides={false}
+            spaceBetween={30}
+            navigation={{
+              nextEl: ".shop-next2",
+              prevEl: ".shop-prev2",
+            }}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+          >
+            {saleProducts.map((product: Product) => {
+              const image_path = `${serverApi}/${product.product_images[0]}`;
+              return (
+                <SwiperSlide
+                  style={{
+                    cursor: "pointer",
+                    // border: "1px solid #eaeaea",
+                  }}
+                  className="productsbest1"
                 >
-                  {/* <Box
+                  <Box
+                    className="products_sliderbest1"
+                    sx={{ height: "410px" }}
+                    // onClick={() => chosenProductHandler(product._id)}
+                  >
+                    {/* <Box
                     sx={{
                       zIndex: "5",
                       position: "absolute",
@@ -216,177 +219,477 @@ export function DealPage(props: any) {
                     }}
                     className="product_sale_info"
                   > */}
-                  {product.discounted_result &&
-                  product.product_discount?.type === "percentage" ? (
-                    <Box
-                      sx={{
-                        zIndex: "5",
-                        position: "absolute",
-                        marginLeft: "25px",
-                        marginTop: "25px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: "30px",
-                        width: "59px",
-                        background: "#d53f20",
-                        borderRadius: "60px",
-                        color: "#ffffff",
-                        fontFamily: "Lato",
-                        fontWeight: "700",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {product.product_discount?.value}%{" "}
-                    </Box>
-                  ) : null}
-                  {/* </Box> */}
-                  <Box
-                    className="products_slider_img_best1"
-                    // style={{ width: "220px", height: "200px" }}
-                  >
-                    <img
-                      // style={{ width: "210px", height: "190px" }}
-                      src={image_path}
-                      alt=""
-                    />
-
-                    <Box
-                      sx={{ zIndex: "6" }}
-                      className="like_view_boxbest1"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                    >
-                      <Checkbox
-                        icon={<img src="/icons/heart_green.png" alt="" />}
-                        id={product._id}
-                        checkedIcon={<img src="/icons/heart_red.png" alt="" />}
-                        onClick={(e) => {
-                          targetLikeProduct(e, product._id);
-                        }}
-                        /*@ts-ignore*/
-                        checked={
-                          product?.me_liked && product?.me_liked[0]?.my_favorite
-                            ? true
-                            : false
-                        }
-                      />
-                    </Box>
-                  </Box>
-                  <Box>
-                    {" "}
-                    <Button
-                      className={"add_card_deal"}
-                      onClick={(e) => {
-                        props.onAdd(product);
-                        e.stopPropagation();
-                      }}
-                      sx={{
-                        color: "#ffffff",
-                        fontSize: "14px",
-                        width: "240px",
-                        height: "35px",
-                        background: "#86bc42",
-                        textTransform: "none",
-                        "&:hover": {
-                          backgroundColor: "#86bc42",
-                        },
-                      }}
-                    >
-                      <img
-                        src={"/icons/shopping-cart.png"}
-                        style={{
-                          width: "20px",
-                          height: "20px",
+                    {product.discounted_result &&
+                    product.product_discount?.type === "percentage" ? (
+                      <Box
+                        sx={{
+                          zIndex: "5",
+                          position: "absolute",
+                          marginLeft: "25px",
+                          marginTop: "25px",
                           display: "flex",
-                        }}
-                      />{" "}
-                      <span
-                        style={{
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "30px",
+                          width: "59px",
+                          background: "#d53f20",
+                          borderRadius: "60px",
                           color: "#ffffff",
-                          fontSize: "13px",
+                          fontFamily: "Lato",
                           fontWeight: "700",
-                          lineHeight: "16px",
+                          fontSize: "14px",
                         }}
                       >
-                        ADD TO CART
-                      </span>
-                    </Button>
-                  </Box>
-                  <Box className="product_infosale1" sx={{ marginTop: "30px" }}>
-                    <Box className="brand_namebest">
-                      {" "}
-                      {product?.member_data[0]?.mb_nick}
-                    </Box>
-                    <Box className="product_retingbest">
-                      <Rating
-                        size="small"
-                        name="read-only"
-                        value={
-                          product.reviews && product.reviews.length > 0
-                            ? (product.reviews as Review[])[0]?.average_rating
-                            : 0 // Provide a default value if there are no reviews
-                        }
-                        readOnly
+                        {product.product_discount?.value}%{" "}
+                      </Box>
+                    ) : null}
+                    {/* </Box> */}
+                    <Box
+                      className="products_slider_img_best1"
+                      // style={{ width: "220px", height: "200px" }}
+                    >
+                      <img
+                        // style={{ width: "210px", height: "190px" }}
+                        src={image_path}
+                        alt=""
                       />
-                    </Box>
-                    <Box className="product_namebest">
-                      {" "}
-                      {product.product_name}
-                    </Box>
 
-                    <Box className="product_pricebest">
-                      {product.discounted_result &&
-                      product.product_discount?.type === "percentage" ? (
-                        <Box
-                          className="product_price"
-                          sx={{
+                      <Box
+                        sx={{ zIndex: "6" }}
+                        className="like_view_boxbest1"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        <Checkbox
+                          icon={<img src="/icons/heart_green.png" alt="" />}
+                          id={product._id}
+                          checkedIcon={
+                            <img src="/icons/heart_red.png" alt="" />
+                          }
+                          onClick={(e) => {
+                            targetLikeProduct(e, product._id);
+                          }}
+                          /*@ts-ignore*/
+                          checked={
+                            product?.me_liked &&
+                            product?.me_liked[0]?.my_favorite
+                              ? true
+                              : false
+                          }
+                        />
+                      </Box>
+                    </Box>
+                    <Box>
+                      {" "}
+                      <Button
+                        className={"add_card_deal"}
+                        onClick={(e) => {
+                          props.onAdd(product);
+                          e.stopPropagation();
+                        }}
+                        sx={{
+                          color: "#ffffff",
+                          fontSize: "14px",
+                          width: "240px",
+                          height: "35px",
+                          background: "#86bc42",
+                          textTransform: "none",
+                          "&:hover": {
+                            backgroundColor: "#86bc42",
+                          },
+                        }}
+                      >
+                        <img
+                          src={"/icons/shopping-cart.png"}
+                          style={{
+                            width: "20px",
+                            height: "20px",
                             display: "flex",
-                            flexDirection: "row",
-                            gap: "15px",
+                          }}
+                        />{" "}
+                        <span
+                          style={{
+                            color: "#ffffff",
+                            fontSize: "13px",
+                            fontWeight: "700",
+                            lineHeight: "16px",
                           }}
                         >
-                          <Box
-                            className="product_price_current"
-                            sx={{
-                              color: "#86bc42",
-                              fontWeight: "600",
-                              fontSize: "16px",
-                            }}
-                          >
-                            ${product.discounted_result}{" "}
-                          </Box>
-
-                          <Box
-                            className="product_price_old"
-                            sx={{
-                              textDecorationLine: "line-through",
-                              color: "#7a7878",
-                              fontWeight: "600",
-                              fontSize: "16px",
-                            }}
-                          >
-                            {" "}
-                            ${product.product_price}
-                          </Box>
-                        </Box>
-                      ) : (
-                        <Box className="product_price">
-                          <Box
-                            className="product_price_current"
-                            sx={{
-                              color: "#86bc42",
-                              fontWeight: "600",
-                              fontSize: "16px",
-                            }}
-                          >
-                            ${product.product_price}
-                          </Box>
-                        </Box>
-                      )}
+                          ADD TO CART
+                        </span>
+                      </Button>
                     </Box>
+                    <Box
+                      className="product_infosale1"
+                      sx={{ marginTop: "30px" }}
+                    >
+                      <Box className="brand_namebest">
+                        {" "}
+                        {product?.member_data[0]?.mb_nick}
+                      </Box>
+                      <Box className="product_retingbest">
+                        <Rating
+                          size="small"
+                          name="read-only"
+                          value={
+                            product.reviews && product.reviews.length > 0
+                              ? (product.reviews as Review[])[0]?.average_rating
+                              : 0 // Provide a default value if there are no reviews
+                          }
+                          readOnly
+                        />
+                      </Box>
+                      <Box className="product_namebest">
+                        {" "}
+                        {product.product_name}
+                      </Box>
+
+                      <Box className="product_pricebest">
+                        {product.discounted_result &&
+                        product.product_discount?.type === "percentage" ? (
+                          <Box
+                            className="product_price"
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.discounted_result}{" "}
+                            </Box>
+
+                            <Box
+                              className="product_price_old"
+                              sx={{
+                                textDecorationLine: "line-through",
+                                color: "#7a7878",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              {" "}
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        ) : (
+                          <Box className="product_price">
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        )}
+                      </Box>
+                    </Box>
+                  </Box>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <Box className="next_btn_mb shop-next2" style={{ color: "#41544A" }}>
+            <ArrowForwardIosIcon sx={{ fontSize: 30 }} />
+          </Box>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "530px",
+          background: "#ffffff",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Container
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            marginTop: "40px",
+          }}
+        >
+          <Box className="home_top" sx={{ width: "50%" }}>
+            Deal of the Day
+            <img
+              style={{ width: "200px", marginLeft: "40px" }}
+              src="/homepage/sale.jpg"
+              alt="deal_sale"
+            />
+          </Box>
+
+          {/* <Box className="sale_time">
+          <span className="sale_time_end">Ends in:</span>
+          <span className="sale_time1">04 : 43 : 11</span>
+         
+        </Box> */}
+        </Container>
+        <div
+          className={"best_products"}
+          style={{
+            width: "1441",
+            height: "454px",
+            marginTop: "60px",
+            display: "flex",
+            position: "relative",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            className="prev_btn shop-prev2"
+            style={{
+              color: "#41544A",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              fontSize: 40,
+            }}
+          >
+            <ArrowBackIosNewIcon sx={{ fontSize: 40, color: "#41544A" }} />
+          </Box>
+          <Swiper
+            style={{ width: "1280px" }}
+            className={"best_products_wrapper"}
+            slidesPerView={4}
+            centeredSlides={false}
+            spaceBetween={30}
+            navigation={{
+              nextEl: ".shop-next2",
+              prevEl: ".shop-prev2",
+            }}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+          >
+            {saleProducts.map((product: Product) => {
+              const image_path = `${serverApi}/${product.product_images[0]}`;
+              return (
+                <SwiperSlide
+                  style={{
+                    cursor: "pointer",
+                    border: "1px solid #eaeaea",
+                  }}
+                  className="productsbest1"
+                >
+                  <Box
+                    className="products_sliderbest1"
+                    sx={{ height: "410px" }}
+                    onClick={() => chosenProductHandler(product._id)}
+                  >
                     {/* <Box
+                    sx={{
+                      zIndex: "5",
+                      position: "absolute",
+                      marginLeft: "20px",
+                    }}
+                    className="product_sale_info"
+                  > */}
+                    {product.discounted_result &&
+                    product.product_discount?.type === "percentage" ? (
+                      <Box
+                        sx={{
+                          zIndex: "5",
+                          position: "absolute",
+                          marginLeft: "25px",
+                          marginTop: "25px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "30px",
+                          width: "59px",
+                          background: "#d53f20",
+                          borderRadius: "60px",
+                          color: "#ffffff",
+                          fontFamily: "Lato",
+                          fontWeight: "700",
+                          fontSize: "14px",
+                        }}
+                      >
+                        {product.product_discount?.value}%{" "}
+                      </Box>
+                    ) : null}
+                    {/* </Box> */}
+                    <Box
+                      className="products_slider_img_best1"
+                      // style={{ width: "220px", height: "200px" }}
+                    >
+                      <img
+                        // style={{ width: "210px", height: "190px" }}
+                        src={image_path}
+                        alt=""
+                      />
+
+                      <Box
+                        sx={{ zIndex: "6" }}
+                        className="like_view_boxbest1"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        <Checkbox
+                          icon={<img src="/icons/heart_green.png" alt="" />}
+                          id={product._id}
+                          checkedIcon={
+                            <img src="/icons/heart_red.png" alt="" />
+                          }
+                          onClick={(e) => {
+                            targetLikeProduct(e, product._id);
+                          }}
+                          /*@ts-ignore*/
+                          checked={
+                            product?.me_liked &&
+                            product?.me_liked[0]?.my_favorite
+                              ? true
+                              : false
+                          }
+                        />
+                      </Box>
+                    </Box>
+                    <Box>
+                      {" "}
+                      <Button
+                        className={"add_card_deal"}
+                        onClick={(e) => {
+                          props.onAdd(product);
+                          e.stopPropagation();
+                        }}
+                        sx={{
+                          color: "#ffffff",
+                          fontSize: "14px",
+                          width: "240px",
+                          height: "35px",
+                          background: "#86bc42",
+                          textTransform: "none",
+                          "&:hover": {
+                            backgroundColor: "#86bc42",
+                          },
+                        }}
+                      >
+                        <img
+                          src={"/icons/shopping-cart.png"}
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            display: "flex",
+                          }}
+                        />{" "}
+                        <span
+                          style={{
+                            color: "#ffffff",
+                            fontSize: "13px",
+                            fontWeight: "700",
+                            lineHeight: "16px",
+                          }}
+                        >
+                          ADD TO CART
+                        </span>
+                      </Button>
+                    </Box>
+                    <Box
+                      className="product_infosale1"
+                      sx={{ marginTop: "30px" }}
+                    >
+                      <Box className="brand_namebest">
+                        {" "}
+                        {product?.member_data[0]?.mb_nick}
+                      </Box>
+                      <Box className="product_retingbest">
+                        <Rating
+                          size="small"
+                          name="read-only"
+                          value={
+                            product.reviews && product.reviews.length > 0
+                              ? (product.reviews as Review[])[0]?.average_rating
+                              : 0 // Provide a default value if there are no reviews
+                          }
+                          readOnly
+                        />
+                      </Box>
+                      <Box className="product_namebest">
+                        {" "}
+                        {product.product_name}
+                      </Box>
+
+                      <Box className="product_pricebest">
+                        {product.discounted_result &&
+                        product.product_discount?.type === "percentage" ? (
+                          <Box
+                            className="product_price"
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.discounted_result}{" "}
+                            </Box>
+
+                            <Box
+                              className="product_price_old"
+                              sx={{
+                                textDecorationLine: "line-through",
+                                color: "#7a7878",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              {" "}
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        ) : (
+                          <Box className="product_price">
+                            <Box
+                              className="product_price_current"
+                              sx={{
+                                color: "#86bc42",
+                                fontWeight: "600",
+                                fontSize: "16px",
+                              }}
+                            >
+                              ${product.product_price}
+                            </Box>
+                          </Box>
+                        )}
+                      </Box>
+                      {/* <Box
                       className="product_sold"
                       sx={{
                         display: "flex",
@@ -419,16 +722,17 @@ export function DealPage(props: any) {
                         </Box>
                       </Box>
                     </Box> */}
+                    </Box>
                   </Box>
-                </Box>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-        <Box className="next_btn shop-next2" style={{ color: "#41544A" }}>
-          <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-        </Box>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <Box className="next_btn shop-next2" style={{ color: "#41544A" }}>
+            <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
+          </Box>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }

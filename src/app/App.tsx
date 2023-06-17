@@ -1,6 +1,12 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 
 import CommunityPage from "./screens/CommunityPage";
 
@@ -34,13 +40,16 @@ import { OrdersPage } from "./screens/OrdersPage";
 import { MemberPage } from "./screens/MemberPage";
 import { CartItem, ProductSearchObj } from "../types/others";
 import { SocketChats } from "./components/socket/socketChat";
+import { Construction } from "./screens/ConstructionPage";
 
 function App() {
   /** INITIALIZATIONS */
   const [verifiedMemberData, setVerifiedMemberData] = useState<Member | null>(
     null
   );
+
   const [path, setPath] = useState();
+  const history = useHistory();
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -116,7 +125,9 @@ function App() {
         _id: product._id,
         quantity: 1,
         name: product.product_name,
-        price: product.product_price,
+        price: product.discounted_result
+          ? product.discounted_result
+          : product.product_price,
         image: product.product_images[0],
       };
       const cart_updated = [...cartItems, { ...new_item }];
@@ -160,12 +171,17 @@ function App() {
   const top = () => {
     window.scrollTo(0, 0);
   };
+  const handleClickOpenAlert = () => {
+    history.push("/construction");
+  };
+
   return (
     <Router>
       <p className="top_btn" onClick={top}>
         <AirplanemodeActiveIcon />
       </p>
       <NavbarCommon
+        setPath={setPath}
         handleLoginOpen={handleLoginOpen}
         handleSignUpOpen={handleSignUpOpen}
         handleSignUpClose={handleSignUpClose}
@@ -236,6 +252,12 @@ function App() {
         </Route>
         <Route path="/contact">
           <ContactPage />
+        </Route>
+        <Route path="/construction">
+          <Construction
+            handleClickOpenAlert={handleClickOpenAlert}
+            setPath={setPath}
+          />
         </Route>
 
         <Route path="/">
