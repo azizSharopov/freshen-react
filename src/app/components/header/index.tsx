@@ -100,7 +100,7 @@ export function NavbarCommon(props: any) {
   const { isMobile } = useDeviceDetect();
   const handlePushConstruction = () => {
     history.push("/construction");
-    window.scrollTo(1000, 0);
+    // window.scrollTo(1000, 0);
     props.setPath();
   };
 
@@ -240,7 +240,7 @@ export function NavbarCommon(props: any) {
             className="logo_mobile"
             onClick={() => {
               history.push("/");
-              window.scrollTo(1000, 0);
+              // window.scrollTo(1000, 0);
             }}
           >
             <img

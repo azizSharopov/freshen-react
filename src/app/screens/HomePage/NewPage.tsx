@@ -424,7 +424,7 @@ export function NewPage(props: any) {
             }}
             modules={[Autoplay, Pagination, Navigation]} // Add Autoplay module
             autoplay={{
-              delay: 2500,
+              delay: 3500,
               disableOnInteraction: false,
             }}
           >

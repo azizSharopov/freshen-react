@@ -67,13 +67,6 @@ body {
   border-radius: 0px;
   cursor: pointer;
 }
-.logo_mobile {
-  height: 50px;
-  width: 120px;
-  border-radius: 0px;
-  cursor: pointer;
-  padding: 10px;
-}
 
 .select {
   border: 2px solid #ebebeb;
@@ -344,3 +337,12 @@ body {
   color: #121212;
 }
 /* END BASKET */
+@media only screen and (max-width: 768px) {
+  .logo_mobile {
+    height: 50px;
+    width: 120px;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px;
+  }
+}

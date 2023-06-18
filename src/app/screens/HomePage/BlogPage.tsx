@@ -99,7 +99,7 @@ export default function BlogPage(props: any) {
           style={{
             display: "flex",
             flexDirection: "row",
-            marginTop: "10px",
+            marginTop: "90px",
           }}
         >
           <Box className="home_top_mb">OUR BLOG</Box>
@@ -190,16 +190,17 @@ export default function BlogPage(props: any) {
                     />
                   </Box>
                 </Box>
-                <Box className="blog_subject_info">
+                <Box className="blog_subject_info_mb">
                   <Box className="blog_subject_text" sx={{ width: "340px" }}>
                     {article?.art_subject}
                   </Box>
-                  <Box className="home_blog_by">
+                  <Box className="home_blog_by_mb">
                     <Box
                       sx={{
                         display: "flex",
                         flexDirection: "row",
                         gap: "10px",
+                        padding: "10px",
                       }}
                     >
                       <img

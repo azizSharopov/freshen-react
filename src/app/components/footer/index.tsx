@@ -10,19 +10,23 @@ export function Footer() {
     return (
       <div
         className="freshen_footer"
-        style={{ backgroundColor: "#ffffff", height: "700px" }}
+        style={{
+          backgroundColor: "#ffffff",
+          height: "700px",
+        }}
       >
         <Box className="footer">
           <Box
             sx={{
-              paddingTop: "100px",
+              // paddingTop: "100px",
               width: "100%",
               height: "338px",
               flexDirection: "row",
               justifyContent: "space-between",
+              padding: "50px",
             }}
           >
-            <Box className="follows" sx={{ width: "90%", marginLeft: "20px" }}>
+            <Box className="follows" sx={{ width: "90%" }}>
               <Box>
                 <img src="/icons/logo12.svg" alt="logo" />
               </Box>
@@ -53,8 +57,8 @@ export function Footer() {
             <Box
               className="footer_help"
               sx={{
-                width: "100%",
-                marginLeft: "60px",
+                width: "80%",
+                // marginLeft: "60px",
                 marginTop: "30px",
                 display: "flex",
                 flexDirection: "column",

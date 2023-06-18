@@ -64,7 +64,7 @@ export function SalePage(props: any) {
                   width: "188px",
                   height: "151px",
                   mt: "84px",
-                  ml: "30px",
+                  // ml: "30px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-around",
