@@ -123,7 +123,7 @@ export function BestPage(props: any) {
         style={{
           width: "100%",
           height: "450px",
-          marginTop: "30px",
+          marginTop: "50px",
           background: "#ffffff",
           display: "flex",
           flexDirection: "column",
