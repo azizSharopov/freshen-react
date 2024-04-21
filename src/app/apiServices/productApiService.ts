@@ -42,6 +42,7 @@ class ProductApiService {
       assert.ok(result?.data?.state != "fail", result?.data?.message);
       console.log("state:", result.data.state);
       const products: Product[] = result.data.data;
+      console.log("products:::", products);
       return products;
     } catch (err: any) {
       console.log(`ERROR ::: getTargetProducts ${err.message}`);
