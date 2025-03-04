@@ -18,7 +18,10 @@ class ProductApiService {
       const url = `/member-liken/${product_id}`,
         result = await axios.get(this.path + url, {
           withCredentials: true,
-        });
+          
+        }
+       
+      );
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state !== "failed", result?.data?.message);
@@ -33,10 +36,15 @@ class ProductApiService {
 
   async getTargetProducts(data: ProductSearchObj): Promise<Product[]> {
     try {
-      const url = "/products",
-        result = await axios.post(this.path + url, data, {
+      
+        
+      const url = "/products";
+      console.log("API request URL:", this.path + url); // Bu qatorni qo‘shing
+      
+      const result = await axios.post(this.path + url, data, {
           withCredentials: true,
         });
+        console.log("API response:", result.data); // Backenddan qaytayotgan ma'lumotni tekshirish
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);

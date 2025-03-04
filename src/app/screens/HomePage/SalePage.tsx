@@ -71,17 +71,18 @@ export function SalePage(props: any) {
                   position: "relative",
                 }}
               >
-                <Box className="sale_page_info1" sx={{ color: "#121212" }}>
+                <Box className="sale_page_info1" sx={{ color: "#121212", ml: "20px" }}>
                   Seasonal Sale
                 </Box>
-                <Box className="sale_page_info2" sx={{ width: "188px" }}>
-                  <Box sx={{ color: "#121212" }}>Up To Breads</Box>
+                <Box className="sale_page_info2" sx={{ width: "188px", ml: "20px" }}>
+                  <Box sx={{ color: "#121212"}}>Up To Breads</Box>
 
                   <span style={{ color: "#849D6A" }}>20% Off</span>
                 </Box>
 
                 <NavLink to="/shop">
                   <Box
+                  sx={{ml: "20px"}}
                     className="sale_page_info3"
                     onClick={() =>
                       chosenShopHandler("646bb01eaf5977f07c50224d")
